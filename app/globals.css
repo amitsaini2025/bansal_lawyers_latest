@@ -4095,14 +4095,20 @@ a.matter-item:hover .matter-item__arrow {
 /* ==========================================================================
    Clean Multi-Column Team Showcase (Matching Jiro Design Spec)
    ========================================================================== */
+/* ==========================================================================
+   Clean Multi-Column Team Showcase (Matching Jiro Design Spec)
+   ========================================================================== */
 .team-clean-header {
   max-width: 50rem;
+  margin-inline: auto;
+  text-align: center;
   margin-bottom: clamp(2rem, 4.5vw, 3.5rem);
 }
 
 .team-clean-eyebrow {
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   font-size: 0.78rem;
   font-weight: 700;
@@ -4142,35 +4148,27 @@ a.matter-item:hover .matter-item__arrow {
   line-height: 1.7;
   color: #475569;
   max-width: 44rem;
-  margin: 0;
+  margin-inline: auto;
 }
 
-/* Grid: 4 columns on large screens, wraps responsively */
+/* Grid: Centered cards, wraps responsively */
 .team-clean-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: clamp(1.5rem, 2.5vw, 2.25rem);
-}
-
-@media (max-width: 1080px) {
-  .team-clean-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 2.25rem 1.75rem;
-  }
-}
-
-@media (max-width: 580px) {
-  .team-clean-grid {
-    grid-template-columns: 1fr;
-    max-width: 360px;
-    margin-inline: auto;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: clamp(1.75rem, 3.5vw, 2.75rem);
+  margin-inline: auto;
 }
 
 /* Individual Team Card */
 .team-clean-card {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  flex: 0 1 315px;
+  width: 100%;
+  max-width: 330px;
   transition: transform 0.25s ease;
 }
 
@@ -4207,6 +4205,9 @@ a.matter-item:hover .matter-item__arrow {
   padding-top: 1.15rem;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
 }
 
 .team-clean-card__name {
@@ -4216,6 +4217,7 @@ a.matter-item:hover .matter-item__arrow {
   line-height: 1.25;
   margin: 0 0 0.35rem;
   letter-spacing: -0.015em;
+  text-align: center;
 }
 
 .team-clean-card__name a {
@@ -4236,6 +4238,7 @@ a.matter-item:hover .matter-item__arrow {
   margin-bottom: 0.35rem;
   display: inline-block;
   transition: color 0.2s ease;
+  text-align: center;
 }
 
 .team-clean-card__email:hover {
@@ -4249,11 +4252,13 @@ a.matter-item:hover .matter-item__arrow {
   line-height: 1.4;
   margin: 0 0 0.85rem;
   font-weight: 500;
+  text-align: center;
 }
 
 .team-clean-card__socials {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.75rem;
   margin-top: auto;
 }

@@ -243,6 +243,7 @@ export default function AboutPage() {
             <div className="team-clean-eyebrow">
               <span className="team-clean-eyebrow__line" aria-hidden="true" />
               <span>LEGAL PRACTITIONERS</span>
+              <span className="team-clean-eyebrow__line" aria-hidden="true" />
             </div>
             <h2 className="team-clean-title">
               Meet Our <span className="team-clean-title__serif">Legal Team</span>
