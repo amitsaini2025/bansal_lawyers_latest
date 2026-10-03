@@ -287,16 +287,10 @@ export default function AboutPage() {
                   <h3 className="team-showcase-story__title">My story</h3>
                   <div className="team-showcase-story__bio">
                     <p>
-                      Ajay Bansal is the founding Director of Bansal Lawyers. He brings over 15 years of legal experience to the firm and has worked with clients across a wide range of legal matters in Australia.
+                      Ajay Bansal is the founding Director of Bansal Lawyers with over 15 years of legal experience across Australia. His multidisciplinary practice spans immigration, family, property, commercial, criminal, and civil legal matters.
                     </p>
                     <p>
-                      His work covers immigration law, family law, property law, commercial law, criminal law, and civil matters. Over the years, he has assisted hundreds of clients with legal issues involving visas, family disputes, business matters, property transactions, criminal charges, and other legal concerns.
-                    </p>
-                    <p>
-                      Ajay’s approach is straightforward. He focuses on understanding the client’s situation, explaining the legal position clearly, and helping the client make informed decisions.
-                    </p>
-                    <p>
-                      He believes clients should not be left confused by legal language or unclear processes. His focus is on practical advice, careful preparation, and professional support at each stage of the matter.
+                      Ajay focuses on straightforward communication, practical legal advice, and meticulous preparation at every stage to ensure clients make clear, informed decisions.
                     </p>
                   </div>
                 </div>
@@ -311,10 +305,10 @@ export default function AboutPage() {
                           <circle cx="12" cy="8" r="7" />
                           <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
                         </svg>
-                        15+ Years Legal Experience
+                        15+ Years Experience
                       </span>
                       <span className="team-showcase-pill">Founding Director</span>
-                      <span className="team-showcase-pill">Victorian &amp; Federal Jurisdictions</span>
+                      <span className="team-showcase-pill">Victorian &amp; Federal Courts</span>
                     </div>
                   </div>
 
@@ -329,12 +323,20 @@ export default function AboutPage() {
                   </div>
 
                   <div className="team-showcase-cta">
-                    <Link
-                      href="/contact"
-                      className="button button--primary"
-                    >
-                      Schedule Consultation With Ajay Bansal →
-                    </Link>
+                    <div className="team-showcase-btn-group">
+                      <Link
+                        href="/about/ajay-bansal"
+                        className="button button--primary"
+                      >
+                        View Full Profile &amp; Bio →
+                      </Link>
+                      <Link
+                        href="/contact"
+                        className="button button--secondary"
+                      >
+                        Book Consultation
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -403,16 +405,10 @@ export default function AboutPage() {
                   <h3 className="team-showcase-story__title">My story</h3>
                   <div className="team-showcase-story__bio">
                     <p>
-                      Michael Saleh is a solicitor at Bansal Lawyers. He is admitted to the Supreme Court of Victoria and holds a Bachelor of Laws and a Graduate Diploma of Legal Practice.
+                      Michael Saleh is a solicitor at Bansal Lawyers admitted to the Supreme Court of Victoria. He represents clients across criminal defence, family law, civil litigation, and commercial disputes.
                     </p>
                     <p>
-                      Michael has experience across criminal law, family law, civil litigation, and commercial matters. He has appeared in the Magistrates’ Court, the Federal Circuit and Family Court of Australia, and VCAT.
-                    </p>
-                    <p>
-                      His work involves helping clients understand legal documents, court processes, dispute issues, and practical next steps. Michael takes a clear and measured approach when advising clients, especially in matters that involve stress, urgency, or uncertainty.
-                    </p>
-                    <p>
-                      He works closely with clients to review evidentiary requirements, formulate dispute strategies, and represent their rights vigorously before Victorian courts and tribunals.
+                      With regular appearances across the Magistrates’ Court, FCFCOA, and VCAT, Michael provides clear, measured guidance through complex dispute strategy and court proceedings.
                     </p>
                   </div>
                 </div>
@@ -430,7 +426,7 @@ export default function AboutPage() {
                         Supreme Court of Victoria
                       </span>
                       <span className="team-showcase-pill">Bachelor of Laws &amp; GDLP</span>
-                      <span className="team-showcase-pill">Magistrates&apos; Court, FCFCOA &amp; VCAT</span>
+                      <span className="team-showcase-pill">Court &amp; Tribunal Advocacy</span>
                     </div>
                   </div>
 
@@ -444,12 +440,20 @@ export default function AboutPage() {
                   </div>
 
                   <div className="team-showcase-cta">
-                    <Link
-                      href="/contact"
-                      className="button button--primary"
-                    >
-                      Schedule Consultation With Michael Saleh →
-                    </Link>
+                    <div className="team-showcase-btn-group">
+                      <Link
+                        href="/about/michael-saleh"
+                        className="button button--primary"
+                      >
+                        View Full Profile &amp; Bio →
+                      </Link>
+                      <Link
+                        href="/contact"
+                        className="button button--secondary"
+                      >
+                        Book Consultation
+                      </Link>
+                    </div>
                   </div>
                 </div>
               </div>
