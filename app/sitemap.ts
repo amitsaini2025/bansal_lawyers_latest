@@ -1,0 +1,341 @@
+import type { MetadataRoute } from "next";
+import {
+  articleSlugs,
+  policySlugs,
+  siteUrl,
+} from "@/lib/site";
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const currentDate = new Date().toISOString();
+
+  const staticRoutes: MetadataRoute.Sitemap = [
+    {
+      url: siteUrl,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 1.0,
+    },
+    {
+      url: `${siteUrl}/about`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/contact`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/civil-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/criminal-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.95,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/student-visa-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/visa-cancellation-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/citizenship-lawyer-australia`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/visa-application-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/divorce-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.9,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/child-custody-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/property-settlement-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/consent-orders-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/family-violence-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/binding-financial-agreement-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/intervention-order-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/spousal-maintenance-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/child-support-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/family-lawyers-melbourne/family-dispute-resolution-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/business-contract-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/contract-review-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/loan-agreement-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/shareholder-agreement-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/partnership-agreement-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/business-sale-purchase-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/commercial-dispute-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/debt-recovery-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/commercial-lawyers-melbourne/legal-notice-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/buying-property-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/selling-property-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/property-contract-review-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/conveyancing-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/commercial-lease-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/residential-lease-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/property-dispute-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/property-settlement-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/property-transfer-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/property-lawyers-melbourne/property-legal-notice-lawyer-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.85,
+    },
+  ];
+
+  const blogRoutes: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
+    url: `${siteUrl}/blog/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: "monthly",
+    priority: 0.7,
+  }));
+
+  const policyRoutes: MetadataRoute.Sitemap = policySlugs.map((slug) => ({
+    url: `${siteUrl}/legal/${slug}`,
+    lastModified: currentDate,
+    changeFrequency: "yearly",
+    priority: 0.3,
+  }));
+
+  return [...staticRoutes, ...blogRoutes, ...policyRoutes];
+}
