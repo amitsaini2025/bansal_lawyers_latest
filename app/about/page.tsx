@@ -133,6 +133,29 @@ const practiceClusters = [
   },
 ];
 
+const legalTeamMembers = [
+  {
+    name: "Ajay Bansal",
+    role: "Director & Principal Lawyer",
+    email: "info@bansallawyers.com.au",
+    phone: "0422 905 860",
+    phoneHref: "tel:+61422905860",
+    profileHref: "/about/ajay-bansal",
+    image: "/images/team/ajay-bansal-director.webp",
+    alt: "Ajay Bansal - Director & Principal Lawyer at Bansal Lawyers Melbourne",
+  },
+  {
+    name: "Michael Saleh",
+    role: "Solicitor",
+    email: "info@bansallawyers.com.au",
+    phone: "0422 905 860",
+    phoneHref: "tel:+61422905860",
+    profileHref: "/about/michael-saleh",
+    image: "/images/team/michael-saleh-solicitor.png",
+    alt: "Michael Saleh - Solicitor at Bansal Lawyers Melbourne",
+  },
+];
+
 export default function AboutPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -213,251 +236,92 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* 3. Meet Our Team Section (Side-by-Side in a Single Section) */}
-      <Section tone="warm" id="our-team">
+      {/* 3. Meet Our Team Section (Clean Showcase Matching Design Spec) */}
+      <Section tone="white" id="our-team">
         <Container>
-          <SectionHeader
-            eyebrow="Legal Leadership & Practitioners"
-            title="Meet Our Legal Team"
-            intro="Experienced Melbourne legal professionals committed to clear communication, thorough preparation, and practical advice."
-          />
+          <div className="team-clean-header">
+            <div className="team-clean-eyebrow">
+              <span className="team-clean-eyebrow__line" aria-hidden="true" />
+              <span>LEGAL PRACTITIONERS</span>
+            </div>
+            <h2 className="team-clean-title">
+              Meet Our <span className="team-clean-title__serif">Legal Team</span>
+            </h2>
+            <p className="team-clean-intro">
+              Experienced Melbourne legal professionals committed to clear communication, thorough preparation, and practical advice.
+            </p>
+          </div>
 
-          <div className="team-showcase-wrap">
-            {/* Person 1: Ajay Bansal */}
-            <article className="team-showcase-card">
-              {/* Left: Media Card with Floating Bottom Badge */}
-              <div className="team-showcase-media">
-                <Image
-                  src="/images/team/ajay-bansal-director.webp"
-                  alt="Ajay Bansal - Director & Principal Lawyer at Bansal Lawyers Melbourne"
-                  fill
-                  sizes="(max-width: 960px) 100vw, 520px"
-                  className="team-showcase-media__img"
-                  priority
-                />
-                <div className="team-showcase-media__gradient" aria-hidden="true" />
-                <div className="team-showcase-floating-card">
-                  <div className="team-showcase-floating-card__info">
-                    <h4 className="team-showcase-floating-card__name">Ajay Bansal</h4>
-                    <p className="team-showcase-floating-card__role">Director &amp; Principal Lawyer</p>
-                  </div>
-                  <div className="team-showcase-floating-card__actions">
+          <div className="team-clean-grid">
+            {legalTeamMembers.map((member) => (
+              <article key={member.name} className="team-clean-card">
+                <Link
+                  href={member.profileHref}
+                  className="team-clean-card__media-link"
+                  title={`View ${member.name}'s profile`}
+                >
+                  <Image
+                    src={member.image}
+                    alt={member.alt}
+                    fill
+                    sizes="(max-width: 580px) 100vw, (max-width: 1080px) 50vw, 25vw"
+                    className="team-clean-card__img"
+                  />
+                </Link>
+
+                <div className="team-clean-card__content">
+                  <h3 className="team-clean-card__name">
+                    <Link href={member.profileHref}>
+                      {member.name}
+                    </Link>
+                  </h3>
+                  <a
+                    href={`mailto:${member.email}`}
+                    className="team-clean-card__email"
+                    title={`Email ${member.name}`}
+                  >
+                    {member.email}
+                  </a>
+                  <p className="team-clean-card__role">{member.role}</p>
+
+                  <div className="team-clean-card__socials">
                     <a
-                      href="tel:+61422905860"
-                      className="team-showcase-action-btn"
-                      title="Call Ajay Bansal: 0422 905 860"
-                      aria-label="Call Ajay Bansal directly"
+                      href={member.phoneHref}
+                      className="team-clean-card__icon-link"
+                      title={`Call ${member.name}: ${member.phone}`}
+                      aria-label={`Call ${member.name}`}
                     >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
                       </svg>
                     </a>
-                    <Link
-                      href="/contact"
-                      className="team-showcase-action-btn"
-                      title="Schedule a consultation with Ajay Bansal"
-                      aria-label="Schedule consultation with Ajay Bansal"
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="team-clean-card__icon-link"
+                      title={`Send email to ${member.name}`}
+                      aria-label={`Send email to ${member.name}`}
                     >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
                         <polyline points="22,6 12,13 2,6" />
                       </svg>
-                    </Link>
-                    <a
-                      href="https://maps.google.com/?q=Level+14,+333+Collins+Street,+Melbourne+VIC+3000"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="team-showcase-action-btn"
-                      title="Melbourne CBD Office Location"
-                      aria-label="Melbourne CBD Office Location"
-                    >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Right: Story / Bio Card */}
-              <div className="team-showcase-story">
-                <div className="team-showcase-story__content">
-                  <span className="team-showcase-story__eyebrow">EXPERTISE</span>
-                  <h3 className="team-showcase-story__title">My story</h3>
-                  <div className="team-showcase-story__bio">
-                    <p>
-                      Ajay Bansal is the founding Director of Bansal Lawyers with over 15 years of legal experience across Australia. His multidisciplinary practice spans immigration, family, property, commercial, criminal, and civil legal matters.
-                    </p>
-                    <p>
-                      Ajay focuses on straightforward communication, practical legal advice, and meticulous preparation at every stage to ensure clients make clear, informed decisions.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="team-showcase-story__meta">
-                  <hr className="team-showcase-divider" />
-                  <div className="team-showcase-meta-group">
-                    <span className="team-showcase-meta-label">LEGAL CREDENTIALS &amp; EXPERIENCE</span>
-                    <div className="team-showcase-meta-badges">
-                      <span className="team-showcase-pill team-showcase-pill--highlight">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                          <circle cx="12" cy="8" r="7" />
-                          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                        </svg>
-                        15+ Years Experience
-                      </span>
-                      <span className="team-showcase-pill">Founding Director</span>
-                      <span className="team-showcase-pill">Victorian &amp; Federal Courts</span>
-                    </div>
-                  </div>
-
-                  <hr className="team-showcase-divider" />
-                  <div className="team-showcase-meta-group">
-                    <span className="team-showcase-meta-label">LANGUAGES SPOKEN</span>
-                    <div className="team-showcase-meta-badges">
-                      <span className="team-showcase-pill">English</span>
-                      <span className="team-showcase-pill">Hindi</span>
-                      <span className="team-showcase-pill">Punjabi</span>
-                    </div>
-                  </div>
-
-                  <div className="team-showcase-cta">
-                    <div className="team-showcase-btn-group">
-                      <Link
-                        href="/about/ajay-bansal"
-                        className="button button--primary"
-                      >
-                        View Full Profile &amp; Bio →
-                      </Link>
-                      <Link
-                        href="/contact"
-                        className="button button--secondary"
-                      >
-                        Book Consultation
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
-
-            {/* Person 2: Michael Saleh */}
-            <article className="team-showcase-card">
-              {/* Left: Media Card with Floating Bottom Badge */}
-              <div className="team-showcase-media">
-                <Image
-                  src="/images/team/michael-saleh-solicitor.png"
-                  alt="Michael Saleh - Solicitor at Bansal Lawyers Melbourne"
-                  fill
-                  sizes="(max-width: 960px) 100vw, 520px"
-                  className="team-showcase-media__img"
-                />
-                <div className="team-showcase-media__gradient" aria-hidden="true" />
-                <div className="team-showcase-floating-card">
-                  <div className="team-showcase-floating-card__info">
-                    <h4 className="team-showcase-floating-card__name">Michael Saleh</h4>
-                    <p className="team-showcase-floating-card__role">Solicitor</p>
-                  </div>
-                  <div className="team-showcase-floating-card__actions">
-                    <a
-                      href="tel:+61422905860"
-                      className="team-showcase-action-btn"
-                      title="Call Bansal Lawyers: 0422 905 860"
-                      aria-label="Call Bansal Lawyers directly"
-                    >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
-                      </svg>
                     </a>
                     <Link
-                      href="/contact"
-                      className="team-showcase-action-btn"
-                      title="Schedule a consultation with Michael Saleh"
-                      aria-label="Schedule consultation with Michael Saleh"
+                      href={member.profileHref}
+                      className="team-clean-card__icon-link"
+                      title={`View ${member.name}'s profile`}
+                      aria-label={`View ${member.name}'s profile`}
                     >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                        <polyline points="22,6 12,13 2,6" />
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="8.5" cy="7" r="4" />
+                        <polyline points="17 11 19 13 23 9" />
                       </svg>
                     </Link>
-                    <a
-                      href="https://maps.google.com/?q=Level+14,+333+Collins+Street,+Melbourne+VIC+3000"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="team-showcase-action-btn"
-                      title="Melbourne CBD Office Location"
-                      aria-label="Melbourne CBD Office Location"
-                    >
-                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                        <path d="M12 2a8 8 0 0 0-8 8c0 5.25 8 12 8 12s8-6.75 8-12a8 8 0 0 0-8-8z" />
-                        <circle cx="12" cy="10" r="3" />
-                      </svg>
-                    </a>
                   </div>
                 </div>
-              </div>
-
-              {/* Right: Story / Bio Card */}
-              <div className="team-showcase-story">
-                <div className="team-showcase-story__content">
-                  <span className="team-showcase-story__eyebrow">EXPERTISE</span>
-                  <h3 className="team-showcase-story__title">My story</h3>
-                  <div className="team-showcase-story__bio">
-                    <p>
-                      Michael Saleh is a solicitor at Bansal Lawyers admitted to the Supreme Court of Victoria. He represents clients across criminal defence, family law, civil litigation, and commercial disputes.
-                    </p>
-                    <p>
-                      With regular appearances across the Magistrates’ Court, FCFCOA, and VCAT, Michael provides clear, measured guidance through complex dispute strategy and court proceedings.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="team-showcase-story__meta">
-                  <hr className="team-showcase-divider" />
-                  <div className="team-showcase-meta-group">
-                    <span className="team-showcase-meta-label">COURT ADMISSION &amp; CREDENTIALS</span>
-                    <div className="team-showcase-meta-badges">
-                      <span className="team-showcase-pill team-showcase-pill--highlight">
-                        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                          <circle cx="12" cy="8" r="7" />
-                          <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88" />
-                        </svg>
-                        Supreme Court of Victoria
-                      </span>
-                      <span className="team-showcase-pill">Bachelor of Laws &amp; GDLP</span>
-                      <span className="team-showcase-pill">Court &amp; Tribunal Advocacy</span>
-                    </div>
-                  </div>
-
-                  <hr className="team-showcase-divider" />
-                  <div className="team-showcase-meta-group">
-                    <span className="team-showcase-meta-label">LANGUAGES SPOKEN</span>
-                    <div className="team-showcase-meta-badges">
-                      <span className="team-showcase-pill">English</span>
-                      <span className="team-showcase-pill">Arabic</span>
-                    </div>
-                  </div>
-
-                  <div className="team-showcase-cta">
-                    <div className="team-showcase-btn-group">
-                      <Link
-                        href="/about/michael-saleh"
-                        className="button button--primary"
-                      >
-                        View Full Profile &amp; Bio →
-                      </Link>
-                      <Link
-                        href="/contact"
-                        className="button button--secondary"
-                      >
-                        Book Consultation
-                      </Link>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
           </div>
         </Container>
       </Section>
