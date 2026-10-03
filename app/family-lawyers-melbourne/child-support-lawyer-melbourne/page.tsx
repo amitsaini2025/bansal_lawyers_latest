@@ -283,14 +283,7 @@ export default function ChildSupportLawyerMelbournePage() {
 
       {/* 7. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Common questions regarding child support assessments, private agreements, and Services Australia reviews in Victoria."
-          />
-          <Faq items={childSupportFaqs} />
-        </Container>
+        <Faq items={childSupportFaqs} subtitle="Common questions regarding child support assessments, private agreements, and Services Australia reviews in Victoria." />
       </Section>
     </>
   );

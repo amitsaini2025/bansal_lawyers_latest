@@ -275,14 +275,7 @@ export default function ImmigrationDocumentReviewLawyerMelbournePage() {
 
       {/* 6. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Common questions regarding immigration document audits, evidence requirements, and legal review."
-          />
-          <Faq items={docReviewFaqs} />
-        </Container>
+        <Faq items={docReviewFaqs} subtitle="Common questions regarding immigration document audits, evidence requirements, and legal review." />
       </Section>
     </>
   );

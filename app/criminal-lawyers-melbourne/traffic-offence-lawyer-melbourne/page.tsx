@@ -242,30 +242,7 @@ export default function TrafficOffenceLawyerMelbournePage() {
       </Section>
 
       <Section tone="warm" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>Frequently Asked Questions</h2>
-            <Faq items={trafficFaqs} />
-            <div
-              style={{
-                marginTop: "2.5rem",
-                textAlign: "center",
-                padding: "2rem",
-                background: "var(--white)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius-md)",
-              }}
-            >
-              <p style={{ margin: "0 0 1rem", color: "var(--ink-secondary)", fontSize: "0.98rem" }}>
-                Facing a traffic charge, speeding summons, or licence disqualification in Melbourne?
-              </p>
-              <ButtonLink href="/contact/" variant="primary">
-                Book a Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
+        <Faq items={trafficFaqs} />
       </Section>
     </>
   );

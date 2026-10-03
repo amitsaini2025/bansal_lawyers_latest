@@ -277,14 +277,7 @@ export default function RequestForFurtherInformationLawyerMelbournePage() {
 
       {/* 6. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Key answers to questions regarding Department of Home Affairs requests for further information and s56 notices."
-          />
-          <Faq items={rfiFaqs} />
-        </Container>
+        <Faq items={rfiFaqs} subtitle="Key answers to questions regarding Department of Home Affairs requests for further information and s56 notices." />
       </Section>
     </>
   );

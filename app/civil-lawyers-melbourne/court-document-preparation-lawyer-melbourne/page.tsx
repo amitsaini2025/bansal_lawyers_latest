@@ -237,30 +237,7 @@ export default function CourtDocumentPreparationLawyerMelbournePage() {
       </Section>
 
       <Section tone="warm" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>Frequently Asked Questions</h2>
-            <Faq items={courtDocFaqs} />
-            <div
-              style={{
-                marginTop: "2.5rem",
-                textAlign: "center",
-                padding: "2rem",
-                background: "var(--white)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius-md)",
-              }}
-            >
-              <p style={{ margin: "0 0 1rem", color: "var(--ink-secondary)", fontSize: "0.98rem" }}>
-                Need urgent court document preparation, defence drafting, or VCAT pleadings in Melbourne?
-              </p>
-              <ButtonLink href="/contact/" variant="primary">
-                Book a Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
+        <Faq items={courtDocFaqs} />
       </Section>
     </>
   );

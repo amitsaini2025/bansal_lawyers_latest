@@ -340,20 +340,10 @@ export default function HomePage() {
 
       {/* 8. FAQ Section */}
       <Section tone="warm" id="faq">
-        <SectionHeader
-          eyebrow="Common Questions"
-          title="Frequently Asked Questions"
-          intro="Find answers to common questions about our legal services, practice areas, and consultation process in Melbourne."
+        <Faq
+          items={homepageFaqs}
+          subtitle="Find answers to common questions about our legal services, practice areas, and consultation process in Melbourne."
         />
-        <Faq items={homepageFaqs} />
-        <div style={{ marginTop: "2.5rem" }}>
-          <p style={{ marginBottom: "1rem", color: "var(--muted)", fontSize: "0.95rem" }}>
-            Have a specific question about your legal matter?
-          </p>
-          <ButtonLink href="/contact" variant="primary">
-            Speak With Our Team
-          </ButtonLink>
-        </div>
       </Section>
     </>
   );

@@ -317,14 +317,7 @@ export default function VisaApplicationLawyerMelbournePage() {
 
       {/* 6. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Common questions regarding Australian visa applications, eligibility checks, and document requirements."
-          />
-          <Faq items={visaApplicationFaqs} />
-        </Container>
+        <Faq items={visaApplicationFaqs} subtitle="Common questions regarding Australian visa applications, eligibility checks, and document requirements." />
       </Section>
     </>
   );

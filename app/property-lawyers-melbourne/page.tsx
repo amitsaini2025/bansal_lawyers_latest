@@ -242,14 +242,7 @@ export default function PropertyLawyersMelbournePage() {
       />
 
       <Section tone="warm" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>Frequently Asked Questions</h2>
-            <Faq items={propertyFaqs} />
-            <p style={{ marginTop: "2rem" }}>Need advice on your documents? <Link href="/contact/">Contact Bansal Lawyers</Link> to discuss your matter.</p>
-          </div>
-        </Container>
+        <Faq items={propertyFaqs} />
       </Section>
     </>
   );

@@ -292,14 +292,7 @@ export default function FamilyDisputeResolutionLawyerMelbournePage() {
 
       {/* 7. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Common questions regarding family dispute resolution (FDR), mediation, and out-of-court settlements in Melbourne."
-          />
-          <Faq items={disputeFaqs} />
-        </Container>
+        <Faq items={disputeFaqs} subtitle="Common questions regarding family dispute resolution (FDR), mediation, and out-of-court settlements in Melbourne." />
       </Section>
     </>
   );

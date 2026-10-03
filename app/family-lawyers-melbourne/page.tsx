@@ -374,30 +374,7 @@ export default function FamilyLawyersMelbournePage() {
 
       {/* 10. FAQs [H2] */}
       <Section tone="white" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>FAQs</h2>
-            <Faq items={familyFaqs} />
-            <div
-              style={{
-                marginTop: "2.5rem",
-                textAlign: "center",
-                padding: "2rem",
-                background: "var(--warm-50)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius-md)",
-              }}
-            >
-              <p style={{ margin: "0 0 1rem", color: "var(--ink-secondary)", fontSize: "0.98rem" }}>
-                Need confidential advice regarding your family law situation?
-              </p>
-              <ButtonLink href="/contact" variant="primary">
-                Book a Confidential Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
+        <Faq items={familyFaqs} />
       </Section>
     </>
   );

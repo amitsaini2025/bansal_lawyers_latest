@@ -247,30 +247,7 @@ export default function BailApplicationLawyerMelbournePage() {
       </Section>
 
       <Section tone="warm" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>Frequently Asked Questions</h2>
-            <Faq items={bailFaqs} />
-            <div
-              style={{
-                marginTop: "2.5rem",
-                textAlign: "center",
-                padding: "2rem",
-                background: "var(--white)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius-md)",
-              }}
-            >
-              <p style={{ margin: "0 0 1rem", color: "var(--ink-secondary)", fontSize: "0.98rem" }}>
-                Need urgent legal assistance for an upcoming bail hearing or remand appearance in Melbourne?
-              </p>
-              <ButtonLink href="/contact/" variant="primary">
-                Book a Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
+        <Faq items={bailFaqs} />
       </Section>
     </>
   );

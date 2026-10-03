@@ -364,30 +364,7 @@ export default function ImmigrationLawyersMelbournePage() {
 
       {/* 9. FAQs [H2] with [H3] question items */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>FAQs</h2>
-            <Faq items={immigrationFaqs} />
-            <div
-              style={{
-                marginTop: "2.5rem",
-                textAlign: "center",
-                padding: "2rem",
-                background: "var(--white)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius-md)",
-              }}
-            >
-              <p style={{ margin: "0 0 1rem", color: "var(--ink-secondary)", fontSize: "0.98rem" }}>
-                Need specific advice regarding your visa or Department correspondence?
-              </p>
-              <ButtonLink href="/contact" variant="primary">
-                Book a Confidential Consultation
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
+        <Faq items={immigrationFaqs} />
       </Section>
     </>
   );

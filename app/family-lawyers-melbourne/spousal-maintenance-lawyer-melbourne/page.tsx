@@ -281,14 +281,7 @@ export default function SpousalMaintenanceLawyerMelbournePage() {
 
       {/* 6. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Key answers to questions about spousal maintenance eligibility, time limits, and financial disclosure under Australian family law."
-          />
-          <Faq items={spousalFaqs} />
-        </Container>
+        <Faq items={spousalFaqs} subtitle="Key answers to questions about spousal maintenance eligibility, time limits, and financial disclosure under Australian family law." />
       </Section>
     </>
   );
