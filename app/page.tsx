@@ -3,7 +3,6 @@ import Image from "next/image";
 import { StructuredData } from "@/components/seo";
 import {
   ButtonLink,
-  Container,
   CtaSection,
   Faq,
   Hero,
@@ -83,12 +82,12 @@ const corePracticeAreas = [
 ];
 
 const whyChoosePoints = [
-  "Clear and practical legal advice",
-  "Support across multiple areas of law",
-  "Careful review of documents and deadlines",
-  "Honest explanation of legal options",
-  "Professional handling of sensitive matters",
-  "Melbourne-based legal support",
+  "Clear, practical advice",
+  "Six areas of law under one roof",
+  "Careful checks of documents and deadlines",
+  "Honest explanations of your options",
+  "Sensitive matters handled with care",
+  "A Melbourne-based team",
 ];
 
 const whoWeHelpClients = [
@@ -264,14 +263,13 @@ export default function HomePage() {
       {/* 4. Why Choose Section */}
       <Section tone="white" id="why-choose">
         <ImageTextSection
-          eyebrow="Why Choose Bansal Lawyers"
-          title="Why Clients Choose Bansal Lawyers"
+          title="Why Clients Choose Us"
           imageSrc="/images/melbourne-legal-chambers.webp"
           imageAlt="Bansal Lawyers Executive Legal Consultation Suite in Melbourne CBD"
           body={
             <>
               <p>
-                Clients choose Bansal Lawyers because we explain legal issues in a way that is easy to understand. We do not overcomplicate the process. We review the facts, explain the risks, and help you decide what needs to be done next.
+                People come to us because we explain things simply. We look at the facts, tell you about the risks, and help you decide what to do next. No jargon and no pressure.
               </p>
               <ul className="points-list">
                 {whyChoosePoints.map((point) => (
@@ -286,28 +284,17 @@ export default function HomePage() {
 
       {/* 5. Who We Help Section */}
       <Section tone="warm" id="who-we-help">
-        <Container>
-          <SectionHeader
-            eyebrow="Client Representation"
-            title="Who We Help"
-            intro="We work with individuals, families, migrants, students, professionals, business owners, property buyers, landlords, tenants, and people involved in legal disputes."
-          />
-          <div className="who-we-help-grid">
-            {whoWeHelpClients.map((client) => (
-              <div key={client} className="who-we-help-card">
-                <div className="who-we-help-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <h3 className="who-we-help-card__title">{client}</h3>
-              </div>
-            ))}
-          </div>
-          <p style={{ color: "var(--ink-secondary)", marginTop: "2rem", fontSize: "1.02rem", maxWidth: "48rem", lineHeight: "1.7" }}>
-            Whether the matter is personal, business-related, or urgent, we help clients understand the process and take the right next step.
-          </p>
-        </Container>
+        <SectionHeader
+          title="Who We Help"
+          intro="Our clients range from students and young families to professionals and business owners. Some come to us with a routine matter and others with something urgent. Either way, we'll explain how the process works and what to do first."
+        />
+        <ul className="who-we-help-chips" aria-label="Client Groups We Help">
+          {whoWeHelpClients.map((client) => (
+            <li key={client} className="who-we-help-chip">
+              {client}
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* 6. Process Section */}
