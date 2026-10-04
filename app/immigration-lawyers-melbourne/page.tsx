@@ -3,11 +3,10 @@ import Link from "next/link";
 import { StructuredData } from "@/components/seo";
 import {
   Breadcrumbs,
-  ButtonLink,
-  Container,
   CtaSection,
   Faq,
   Hero,
+  HeroBookingPlaceholder,
   Section,
   SectionHeader,
   TrustBar,
@@ -50,7 +49,7 @@ const immigrationMatters = [
     href: "/immigration-lawyers-melbourne/visa-cancellation-lawyer-melbourne/",
   },
   {
-    title: "ART appeals",
+    title: "ART reviews",
     href: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/",
   },
   {
@@ -88,39 +87,39 @@ const immigrationMatters = [
 ];
 
 const approachPoints = [
-  "Plain-language explanation of your immigration options",
-  "Review of visa history and documents",
-  "Assistance with refusal and cancellation matters",
-  "Support with appeals and evidence preparation",
-  "Practical advice based on deadlines and risk",
-  "Professional handling of sensitive immigration matters",
+  "Explaining your immigration options in plain language",
+  "Reviewing your visa history and documents",
+  "Helping with refusals and cancellations",
+  "Supporting review applications and evidence preparation",
+  "Giving practical advice based on your deadlines and risks",
+  "Handling sensitive immigration matters with care",
 ];
 
 const immigrationFaqs = [
   {
-    question: "Can Bansal Lawyers help with a visa refusal?",
+    question: "Can you help with a visa refusal?",
     answer:
-      "Yes. We review the refusal decision, explain your options, help gather supporting evidence, and advise on appeal rights where they are available.",
+      "Yes. We review the refusal decision and explain your options. We help gather supporting evidence and advise on review rights where they're available.",
   },
   {
     question: "Do you assist with ART appeals?",
     answer:
-      "Yes. We assist with ART appeals for visa refusals and cancellations, and with other migration-related decisions that can be reviewed.",
+      "Yes. We assist with ART reviews, often called appeals, for visa refusals and cancellations. We also help with other migration-related decisions that can be reviewed.",
   },
   {
     question: "Can you help with partner visa applications?",
     answer:
-      "Yes. We prepare partner and spouse visa applications, including de facto relationship evidence and supporting documents.",
+      "Yes. We prepare partner visa applications (often called spouse visas), including de facto relationship evidence and supporting documents.",
   },
   {
     question: "Do you help with student visa matters?",
     answer:
-      "Yes. We assist with student visa applications, refusals, and requests from the Department, including the Genuine Student requirement.",
+      "Yes. We help with student visa applications, refusals and requests from the Department, including the Genuine Student requirement.",
   },
   {
     question: "When should I contact an immigration lawyer?",
     answer:
-      "As early as possible, especially if you have received a refusal, a cancellation notice, or a request for information, or if an appeal deadline is coming up.",
+      "As early as you can. That's especially true if you've received a refusal, a cancellation notice or a request for information, or if a review deadline is coming up.",
   },
 ];
 
@@ -138,233 +137,225 @@ export default function ImmigrationLawyersMelbournePage() {
 
       <Breadcrumbs items={breadcrumbs} />
 
-      {/* 1. Hero Section: Immigration Lawyers in Melbourne [H1] */}
+      {/* 1. Hero Section: Immigration Lawyers Melbourne [H1] */}
       <Hero
-        eyebrow="Bansal Lawyers · Melbourne CBD"
-        title="Immigration Lawyers in Melbourne"
+        title="Immigration Lawyers Melbourne"
         intro={
           <>
             <p>
-              Immigration matters can affect your family, work, study, business, and future in Australia. When a visa application, refusal, cancellation, or appeal is involved, clear legal advice is important.
+              Immigration decisions can affect your family, your work, your studies, your business and your future in Australia. When a visa application, refusal, cancellation or review is involved, you need solid legal advice.
             </p>
             <p style={{ marginTop: "0.75rem" }}>
-              Bansal Lawyers are immigration lawyers in Melbourne, assisting clients with a range of immigration and migration law matters across Australia. We help you understand your options, prepare the right documents, and take the next steps based on your situation.
+              At Bansal Lawyers, we&apos;re immigration lawyers in Melbourne. We help clients with immigration and migration law matters across Australia. We&apos;ll talk through your options, help you prepare the right documents and plan your next steps.
             </p>
           </>
         }
         primaryAction={{ label: "Book a Consultation", href: "/contact" }}
-        secondaryAction={{
-          label: "Speak With an Immigration Lawyer",
-          href: "tel:+61422905860",
-        }}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="immigration" />}
       />
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
-          "Merits Review & ART Experience",
-          "Plain-English Legal Advice",
-          "Prompt Matter Assessment",
+          "Collins St office and remote consultations",
+          "Merits review and Administrative Review Tribunal (ART) experience",
+          "Plain-English legal advice",
+          "Prompt matter assessment",
+          "Legal strategy built around your situation",
         ]}
       />
 
       {/* 2. Immigration Advice Based on Your Situation [H2] */}
       <Section tone="white">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Tailored Legal Strategy</span>
-            <h2>Immigration Advice Based on Your Situation</h2>
-            <p style={{ fontSize: "1.12rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-              Every immigration matter is unique—whether you need visa assistance, face a refusal or cancellation, or have an upcoming appeal deadline or information request.
-            </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
-              Our visa lawyers in Melbourne review your background, documents, visa history, and deadlines to give you actionable legal advice tailored to your options.
-            </p>
-          </div>
-        </Container>
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
+          <h2>Immigration Advice Based on Your Situation</h2>
+          <p style={{ fontSize: "1.12rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
+            Every immigration matter is different. You might need help with a visa application. You might have had a refusal or a cancellation. Or you might have an ART review deadline or a request for information coming up.
+          </p>
+          <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
+            Our visa lawyers in Melbourne look at your background, documents, visa history and deadlines. Then we give you practical legal advice on your options.
+          </p>
+        </div>
       </Section>
 
       {/* 3. Immigration Matters We Assist With [H2] */}
       <Section tone="warm" id="matters">
-        <Container>
-          <SectionHeader
-            eyebrow="Comprehensive Practice"
-            title="Immigration Matters We Assist With"
-            intro="As migration lawyers in Melbourne, Bansal Lawyers can assist with:"
-          />
-          <div className="matters-grid">
-            {immigrationMatters.map((matter) => (
-              <Link
-                key={matter.title}
-                href={matter.href}
-                className="matter-item"
-                title={`Explore ${matter.title}`}
+        <SectionHeader
+          title="Immigration Matters We Assist With"
+          intro="As migration lawyers in Melbourne, we can help with:"
+        />
+        <div className="matters-grid">
+          {immigrationMatters.map((matter) => (
+            <Link
+              key={matter.title}
+              href={matter.href}
+              className="matter-item"
+              title={`Explore ${matter.title}`}
+            >
+              <svg
+                className="matter-item__icon"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
               >
-                <svg
-                  className="matter-item__icon"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-                <span>{matter.title}</span>
-                <svg
-                  className="matter-item__arrow"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                  aria-hidden="true"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </Link>
-            ))}
-          </div>
-        </Container>
+                <path
+                  fillRule="evenodd"
+                  d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span>{matter.title}</span>
+              <svg
+                className="matter-item__arrow"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </Link>
+          ))}
+        </div>
       </Section>
 
       {/* 4. Visa Refusals and Appeals [H2] */}
       <Section tone="white" id="refusals-and-appeals">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Merits Review & Tribunal Deadlines</span>
-            <h2>Visa Refusals and Appeals</h2>
-            <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-              A visa refusal can be stressful, especially when you have limited time to respond or appeal. The next step depends on the type of visa, the reason for refusal, and whether review rights are available.
-            </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
-              As{" "}
-              <Link
-                href="/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/"
-                style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
-              >
-                Visa Refusal Lawyer Melbourne
-              </Link>
-              , we help clients review refusal decisions, understand the reasons given by the Department, prepare supporting evidence, and respond through the appropriate legal process, including ART appeals where review is available. If you need representation before the tribunal, consult an experienced{" "}
-              <Link
-                href="/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/"
-                style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
-              >
-                ART Appeal Lawyer Melbourne
-              </Link>
-              .
-            </p>
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
+          <span className="eyebrow">Merits Review & Tribunal Deadlines</span>
+          <h2>Visa Refusals and Appeals</h2>
+          <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
+            A visa refusal is stressful, especially when you don&apos;t have long to respond or ask for a review. What you do next depends on the visa type, the reason for the refusal and whether you have review rights.
+          </p>
+          <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
+            As{" "}
+            <Link
+              href="/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/"
+              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              visa refusal lawyers in Melbourne
+            </Link>
+            , we help you go through the decision and the reasons the Department of Home Affairs (the Department) gave. We help you gather supporting evidence and respond through the right legal process. That includes asking the ART to review the decision, often called an appeal, where review is available. If you need someone to represent you at the tribunal, talk to one of our{" "}
+            <Link
+              href="/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/"
+              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              ART appeal lawyers in Melbourne
+            </Link>
+            .
+          </p>
 
-            <div className="deadline-alert-box">
-              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
-                <path
-                  fillRule="evenodd"
-                  d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <div>
-                <strong>If your visa has been refused, do not delay. Appeal deadlines can be strict.</strong>
-                <p style={{ margin: "0.25rem 0 0", fontSize: "0.92rem", color: "#7a271a" }}>
-                  Most ART appeal applications must be lodged within strict statutory timeframes from the date of the Department&apos;s decision notification.
-                </p>
-              </div>
+          <div className="deadline-alert-box">
+            <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path
+                fillRule="evenodd"
+                d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z"
+                clipRule="evenodd"
+              />
+            </svg>
+            <div>
+              <strong>Don&apos;t wait if your visa has been refused. Time limits for review can be strict.</strong>
+              <p style={{ margin: "0.25rem 0 0", fontSize: "0.92rem", color: "#7a271a" }}>
+                Most ART review applications have strict time limits set by law. They run from the date you&apos;re notified of the Department&apos;s decision.
+              </p>
             </div>
           </div>
-        </Container>
+        </div>
       </Section>
 
       {/* 5. Partner Visa and Family Migration [H2] */}
       <Section tone="warm" id="partner-visas">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Family Unity & Relationship Evidence</span>
-            <h2>Partner Visa and Family Migration</h2>
-            <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-              Partner visa matters require strong evidence and careful preparation. A weak application or missing information can cause delays or refusal.
-            </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
-              Our dedicated{" "}
-              <Link
-                href="/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/"
-                style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
-              >
-                Partner Visa Lawyer Melbourne
-              </Link>{" "}
-              team assists clients with partner visa applications, spouse visa matters, de facto relationship evidence, document preparation, and responses to immigration concerns.
-            </p>
-          </div>
-        </Container>
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
+          <span className="eyebrow">Family Unity & Relationship Evidence</span>
+          <h2>Partner Visa and Family Migration</h2>
+          <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
+            Partner visa matters need strong evidence and careful preparation. A weak application or missing information can cause delays or a refusal.
+          </p>
+          <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
+            Our{" "}
+            <Link
+              href="/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/"
+              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              partner visa lawyers in Melbourne
+            </Link>{" "}
+            help with partner visa applications (often called spouse visas), de facto relationship evidence, document preparation and responses to immigration concerns.
+          </p>
+        </div>
       </Section>
 
       {/* 6. Student Visa and Skilled Migration [H2] */}
       <Section tone="white" id="student-and-skilled">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Education & Career Pathways</span>
-            <h2>Student Visa and Skilled Migration</h2>
-            <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-              Students and skilled workers often need guidance on eligibility, documents, Genuine Student requirements, work-related evidence, sponsorship pathways, and long-term visa planning.
-            </p>
-            <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
-              As experienced{" "}
-              <Link
-                href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
-                style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
-              >
-                Student Visa Lawyer Melbourne
-              </Link>{" "}
-              practitioners and skilled migration lawyers, we help clients understand the process clearly before submitting or responding to a visa matter.
-            </p>
-          </div>
-        </Container>
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
+          <span className="eyebrow">Education & Career Pathways</span>
+          <h2>Student Visa and Skilled Migration</h2>
+          <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
+            Students and skilled workers often need help with eligibility, documents, the Genuine Student requirement, work-related evidence, sponsorship pathways and long-term visa planning.
+          </p>
+          <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
+            As{" "}
+            <Link
+              href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              student visa lawyers
+            </Link>{" "}
+            and{" "}
+            <Link
+              href="/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/"
+              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              skilled migration lawyers in Melbourne
+            </Link>
+            , we help you understand the process before you submit or respond to a visa matter.
+          </p>
+        </div>
       </Section>
 
-      {/* 7. Why Choose Bansal Lawyers for Immigration Matters? [H2] */}
+      {/* 7. Why Choose Our Immigration Lawyers? [H2] */}
       <Section tone="warm" id="why-choose">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Client Commitment</span>
-            <h2>Why Choose Bansal Lawyers for Immigration Matters?</h2>
-            <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-              Immigration law can be complex, and small mistakes can create major issues. We provide straightforward advice, careful document review, and practical guidance at each stage of the matter.
-            </p>
-            <p style={{ fontSize: "1.02rem", fontWeight: 600, color: "var(--navy-950)", marginTop: "1.25rem", marginBottom: "0.75rem" }}>
-              Our approach includes:
-            </p>
-            <ul className="points-list">
-              {approachPoints.map((point) => (
-                <li key={point}>{point}</li>
-              ))}
-            </ul>
-          </div>
-        </Container>
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
+          <h2>Why Choose Our Immigration Lawyers?</h2>
+          <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
+            Immigration law is complicated, and small mistakes can cause big problems. We give you straightforward advice, check your documents carefully, and keep our guidance practical at every stage.
+          </p>
+          <p style={{ fontSize: "1.02rem", fontWeight: 600, color: "var(--navy-950)", marginTop: "1.25rem", marginBottom: "0.75rem" }}>
+            Our approach includes:
+          </p>
+          <ul className="points-list">
+            {approachPoints.map((point) => (
+              <li key={point}>{point}</li>
+            ))}
+          </ul>
+        </div>
       </Section>
 
       {/* 8. Speak With Immigration Lawyers in Melbourne [H2] */}
       <CtaSection
         title="Speak With Immigration Lawyers in Melbourne"
-        text="If you need help with a visa application, refusal, cancellation, appeal, or immigration advice, Bansal Lawyers can guide you through the next step."
+        text="Need help with a visa application, refusal, cancellation, review or immigration advice? Our team can talk you through the next step."
         action={{ label: "Book a Consultation", href: "/contact" }}
-        secondaryAction={{
-          label: "Speak With Our Immigration Team",
-          href: "tel:+61422905860",
-        }}
         phone="0422 905 860"
-        phoneLabel="Direct Immigration Solicitor"
+        phoneLabel="Speak With Our Immigration Team"
         badges={[
-          "Strictly confidential visa advice",
-          "Prompt response to urgent tribunal deadlines",
-          "Melbourne CBD & virtual consultations",
+          "Ready to talk about your visa matter? Get in touch today.",
+          "Strictly confidential consultation",
+          "Melbourne CBD & remote consultations",
         ]}
       />
 
-      {/* 9. FAQs [H2] with [H3] question items */}
+      {/* 9. FAQs [H2] */}
       <Section tone="warm" id="faqs">
-        <Faq items={immigrationFaqs} />
+        <Faq
+          items={immigrationFaqs}
+          title="Frequently Asked Questions"
+          subtitle="Quick answers to what people usually ask before they book."
+          contactTitle="Need advice about your visa or a letter from the Department?"
+          contactButtonLabel="Book a Confidential Consultation"
+          contactHref="/contact"
+        />
       </Section>
     </>
   );

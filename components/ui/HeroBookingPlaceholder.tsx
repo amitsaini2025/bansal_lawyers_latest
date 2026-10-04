@@ -3,11 +3,15 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-export function HeroBookingPlaceholder() {
+export function HeroBookingPlaceholder({
+  defaultPracticeArea = "immigration",
+}: {
+  defaultPracticeArea?: string;
+} = {}) {
   const router = useRouter();
   const [selectedFormat, setSelectedFormat] = useState<"office" | "phone" | "video">("office");
   const [selectedSlot, setSelectedSlot] = useState<string>("10:00 AM");
-  const [practiceArea, setPracticeArea] = useState<string>("immigration");
+  const [practiceArea, setPracticeArea] = useState<string>(defaultPracticeArea);
   const [name, setName] = useState<string>("");
   const [contact, setContact] = useState<string>("");
 
@@ -39,7 +43,7 @@ export function HeroBookingPlaceholder() {
       <div className="hero-booking-card__header">
         <h3 className="hero-booking-card__title">Book a Consultation</h3>
         <p className="hero-booking-card__subtitle">
-          Confidential legal advice at our Melbourne CBD office, via phone, or secure video.
+          Confidential legal advice at our Melbourne CBD office, by phone or by secure video.
         </p>
       </div>
 
@@ -179,6 +183,10 @@ export function HeroBookingPlaceholder() {
             <path fillRule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clipRule="evenodd" />
           </svg>
         </button>
+
+        <p style={{ fontSize: "0.72rem", color: "var(--ink-secondary)", lineHeight: "1.4", margin: "0.65rem 0 0", textAlign: "center" }}>
+          By sending this form, you agree to our Privacy Policy. Sending it doesn&apos;t create a lawyer-client relationship.
+        </p>
       </form>
 
       {/* Mockup helper note + Urgent call */}
@@ -192,7 +200,7 @@ export function HeroBookingPlaceholder() {
           <span>Interactive preview — routes directly to our legal intake team</span>
         </div>
         <div className="hero-booking-card__urgent">
-          <span>Urgent deadline or court date?</span>
+          <span>Urgent deadline or hearing date?</span>
           <a href="tel:0422905860" className="hero-booking-card__urgent-tel">
             Call 0422 905 860
           </a>
