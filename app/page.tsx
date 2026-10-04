@@ -211,13 +211,12 @@ export default function HomePage() {
       <Section tone="white" id="trust-clarity">
         <div className="trust-clarity-grid">
           <div className="trust-clarity-content">
-            <span className="eyebrow">Trust & Clarity</span>
             <h2>Legal Help That Starts With Clear Advice</h2>
             <p style={{ fontSize: "1.12rem", lineHeight: "1.75", color: "var(--ink)" }}>
-              When you are dealing with a legal matter, the first thing you need is clarity. Bansal Lawyers helps clients understand their position, their options, and the next steps before making important decisions.
+              When you&apos;re dealing with a legal problem, the first thing you need is a straight answer. We help you understand where you stand, what your options are and what could happen next, before you commit to anything.
             </p>
             <p style={{ marginTop: "1rem", color: "var(--ink-secondary)", fontSize: "1.05rem", lineHeight: "1.7" }}>
-              We provide legal services in Melbourne for personal, family, and business matters. Each matter is handled with proper attention, clear communication, and practical legal guidance.
+              We act for people in Melbourne on personal, family and business matters. Every matter gets proper attention, and we keep you updated in plain terms.
             </p>
             <div style={{ marginTop: "1.75rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
               <ButtonLink href="/contact" variant="primary">
