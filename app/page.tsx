@@ -107,22 +107,22 @@ const processSteps = [
   {
     title: "1. Contact Our Team",
     description:
-      "Share a short summary of your legal matter by phone, email, or enquiry form.",
+      "Tell us briefly what's happening, by phone, email or the enquiry form.",
   },
   {
     title: "2. Consultation and Review",
     description:
-      "We review your situation, documents, deadlines, and key legal concerns.",
+      "We go through your situation, your documents and any deadlines.",
   },
   {
     title: "3. Clear Legal Advice",
     description:
-      "You receive practical advice about your options and possible next steps.",
+      "We explain your options and what could happen next.",
   },
   {
     title: "4. Preparation and Support",
     description:
-      "Where required, we assist with applications, responses, contracts, notices, negotiations, or court documents.",
+      "If you go ahead, we help with applications, responses, contracts, notices, negotiations or court documents.",
   },
 ];
 
@@ -130,42 +130,42 @@ const homepageFaqs = [
   {
     question: "How much does a legal consultation cost?",
     answer:
-      "Fees depend on the type of matter and how much work is involved. When you book, our team can tell you the consultation fee up front. If you go ahead with the matter, we explain how costs are likely to work before any work begins, so nothing comes as a surprise.",
+      "It depends on the type of matter and how much work is involved. When you book, our team will tell you the consultation fee up front. If you decide to go ahead, we'll explain how costs are likely to work before we start, so there are no surprises.",
   },
   {
     question: "Can I have a consultation online or by phone?",
     answer:
-      "Yes. If you can't come to the office, or you are interstate or overseas, you can book a phone or video consultation. Just let us know your preference when you enquire.",
+      "Yes. If you can't get to the office, or you're interstate or overseas, you can book a phone or video consultation. Just tell us which you'd prefer when you get in touch.",
   },
   {
     question: "What happens during the first consultation?",
     answer:
-      "We ask you to explain what has happened and go through any documents you have. We then outline your options, any time limits that apply, and what the next steps could be. You leave knowing where you stand, and you can decide whether to proceed with us.",
+      "You tell us what's happened, and we go through any documents you have. Then we set out your options, any time limits that apply and what the next steps could be. You'll leave knowing where you stand, and it's up to you whether to go ahead with us.",
   },
   {
     question: "What documents should I bring?",
     answer:
-      "It depends on the matter, but bring anything related to it. That could be letters or notices, visa decision records, court or police paperwork, contracts, agreements, or identification. If you are unsure, bring what you have. We can tell you what else is needed.",
+      "It depends on the matter, but bring anything connected to it. That might be letters or notices, visa decision records, court or police paperwork, contracts, agreements or ID. If you're not sure, bring what you have and we'll tell you what else we need.",
   },
   {
     question: "How long will my legal matter take?",
     answer:
-      "Timeframes vary a lot. A contract review may take days, while a court matter, a property settlement, or an appeal can take months. We give you a realistic estimate once we have reviewed your situation, and we update you if anything changes.",
+      "It varies a lot. A contract review might take a few days, while a court matter, a property settlement or an ART review can take months. Once we've looked at your situation we'll give you a realistic estimate, and we'll tell you if anything changes.",
   },
   {
     question: "Are there deadlines I need to worry about?",
     answer:
-      "Often, yes. Time limits can apply to ART reviews, court dates, responding to notices, and other legal steps. Some are very short, so it is worth seeking advice as soon as you receive a decision or document.",
+      "Often, yes. Time limits can apply to ART reviews, court dates, notices and other legal steps, and some are short. If you've just received a decision or a document, it's worth getting advice straight away.",
   },
   {
     question: "What if my matter involves more than one area of law?",
     answer:
-      "This is common. A separation can affect a visa, and a business dispute can involve property. Because our team works across several areas of law, we can look at the whole picture rather than one issue at a time.",
+      "That happens a lot. A separation can affect a visa, and a business dispute can involve property. Because our team works across several areas of law, we can look at the whole picture instead of one issue at a time.",
   },
   {
     question: "What if I'm not sure which type of lawyer I need?",
     answer:
-      "That's fine. Tell us briefly what has happened when you contact us, and we'll point you to the right person on our team. You don't need to work out the legal category before you call.",
+      "That's fine. Tell us briefly what's happened when you get in touch, and we'll point you to the right person on our team. You don't need to work out the legal category before you call.",
   },
 ];
 
@@ -300,36 +300,28 @@ export default function HomePage() {
       {/* 6. Process Section */}
       <Section tone="white">
         <SectionHeader
-          eyebrow="Transparent Legal Journey"
           title="How the Process Works"
-          intro="We believe in simple, step-by-step guidance so you always know where your legal matter stands."
+          intro="It's a simple process, and you'll know where your matter stands at each step."
         />
         <ProcessSteps items={processSteps} />
       </Section>
 
       {/* 7. Urgent Advice CTA Section */}
       <CtaSection
-        eyebrow="Time-Critical Advice"
         title="Need Legal Advice Before Taking the Next Step?"
-        text={
-          <>
-            <p>
-              Some legal matters have strict time limits. Visa refusals, court dates, police matters, family violence issues, contract disputes, and property settlements should not be delayed.
-            </p>
-            <p style={{ marginTop: "0.75rem" }}>
-              If you are unsure what to do next, speak with Bansal Lawyers early and get clear advice before making important decisions.
-            </p>
-          </>
-        }
+        text="Some legal matters run on strict time limits. Visa refusals, court dates, police matters, family violence issues, contract disputes and property settlement dates shouldn't wait. If you're not sure what to do, talk to us early. It's far easier to deal with a problem before a deadline than after one."
         action={{ label: "Book a Consultation", href: "/contact" }}
-        secondaryAction={{ label: "Speak With Our Legal Team", href: "tel:+61422905860" }}
       />
 
       {/* 8. FAQ Section */}
       <Section tone="warm" id="faq">
         <Faq
           items={homepageFaqs}
-          subtitle="Find answers to common questions about our legal services, practice areas, and consultation process in Melbourne."
+          title="Frequently Asked Questions"
+          subtitle="Quick answers to what people usually ask before they book."
+          contactTitle="Have a specific question about your legal matter?"
+          contactButtonLabel="Speak With Our Team"
+          contactHref="/contact"
         />
       </Section>
     </>

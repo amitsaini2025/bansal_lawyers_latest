@@ -7,11 +7,11 @@ export function ProcessSteps({ items }: { items: ProcessItem[] }) {
     <ol className={`process-grid ${columnClass}`}>
       {items.map((item, index) => {
         // Strip duplicate numeric prefixes like "1. ", "2. "
-        const cleanTitle = item.title.replace(/^\d+\.\s*/, "");
+        const cleanTitle = item.title.replace(/^0?\d+\.\s*/, "");
         return (
           <li key={`${item.title}-${index}`} className="process-card">
             <div className="process-card__header">
-              <span className="process-number">{String(index + 1).padStart(2, "0")}</span>
+              <span className="process-number">{index + 1}</span>
             </div>
             <h3 className="process-card__title">{cleanTitle}</h3>
             <p className="process-card__description">{item.description}</p>

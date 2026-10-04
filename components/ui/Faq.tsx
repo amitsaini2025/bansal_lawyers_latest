@@ -7,6 +7,7 @@ export interface FaqProps {
   subtitle?: string;
   contactTitle?: string;
   contactText?: string;
+  contactButtonLabel?: string;
   contactEmail?: string;
   contactPhone?: string;
   contactHref?: string;
@@ -20,6 +21,7 @@ export function Faq({
   subtitle = "Quick answers before you start.",
   contactTitle = "Have another question?",
   contactText = "Speak with our legal team or send us an email.",
+  contactButtonLabel,
   contactEmail = "info@bansallawyers.com.au",
   contactPhone = "0422 905 860",
   contactHref = "/contact",
@@ -69,7 +71,7 @@ export function Faq({
 
               <div className="faq-contact-card__secondary">
                 <Link href={contactHref} className="faq-contact-card__consult-link">
-                  Book a Consultation →
+                  {contactButtonLabel || "Book a Consultation →"}
                 </Link>
                 {contactPhone && (
                   <a

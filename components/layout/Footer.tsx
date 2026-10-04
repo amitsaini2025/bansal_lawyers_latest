@@ -14,7 +14,6 @@ const footerPracticeAreas = [
 const footerNavLinks = [
   { label: "Home", href: "/" },
   { label: "About Bansal Lawyers", href: "/about/" },
-  { label: "Recent Cases", href: "/recent-cases/" },
   { label: "Blog & Legal Updates", href: "/blog/" },
   { label: "Contact Our Legal Team", href: "/contact/" },
 ];
@@ -35,7 +34,7 @@ export function Footer() {
             />
           </Link>
           <p>
-            Bansal Lawyers is a Melbourne law firm providing strategic counsel and practical guidance across immigration, family, criminal, commercial, property, and civil law matters.
+            Bansal Lawyers is a Melbourne law firm giving practical legal advice on immigration, family, criminal, commercial, property and civil law.
           </p>
 
           <div className="footer-socials" style={{ display: "flex", gap: "0.75rem", marginTop: "1.25rem" }} aria-label="Footer social media links">
@@ -168,7 +167,7 @@ export function Footer() {
               <strong>Email:</strong> {businessDetails.email}
             </a>
             <span style={{ fontSize: "0.85rem", color: "rgba(255, 255, 255, 0.65)", marginTop: "0.25rem" }}>
-              Mon – Fri: 8:30 AM – 5:30 PM AEST
+              Mon–Fri: 8:30 AM – 5:30 PM (Melbourne time)
             </span>
           </address>
         </div>
@@ -176,7 +175,7 @@ export function Footer() {
 
       {/* Footer Bottom */}
       <div className="container footer-bottom">
-        <span>© {new Date().getFullYear()} Bansal Lawyers. All rights reserved.</span>
+        <span>© 2026 Bansal Lawyers. All rights reserved.</span>
         <div>
           <Link href="/legal/privacy">Privacy Policy</Link>
           <Link href="/legal/terms">Terms of Service</Link>
