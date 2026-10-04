@@ -75,7 +75,7 @@ export function HeroBookingPlaceholder({
             >
               <option value="immigration">Immigration Law (Visas, Refusals & Appeals)</option>
               <option value="family">Family Law (Divorce, Custody & Property)</option>
-              <option value="commercial">Commercial Law & Business Contracts</option>
+              <option value="commercial">Commercial Law (Contracts, Disputes & Business Matters)</option>
               <option value="property">Property Law & Conveyancing</option>
               <option value="civil">Civil Litigation & Dispute Resolution</option>
               <option value="criminal">Criminal Law & Court Matters</option>
