@@ -182,10 +182,10 @@ export default function HomePage() {
         intro={
           <>
             <p>
-              Bansal Lawyers is a Melbourne law firm helping individuals, families, migrants, professionals, and businesses with clear legal advice across a wide range of personal, family, and business matters.
+              Bansal Lawyers is a Melbourne law firm that helps people and businesses with legal matters, from visas and separations to contracts and court dates.
             </p>
             <p style={{ marginTop: "0.75rem" }}>
-              We explain your options in plain language and guide you through the next steps with care and attention.
+              We&apos;ll talk through your options in words you can follow, and stay with you at every step.
             </p>
           </>
         }
