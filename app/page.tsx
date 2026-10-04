@@ -7,6 +7,7 @@ import {
   CtaSection,
   Faq,
   Hero,
+  HeroBookingPlaceholder,
   ImageTextSection,
   PracticeAreaCard,
   ProcessSteps,
@@ -193,14 +194,15 @@ export default function HomePage() {
           label: "Speak With Our Legal Team",
           href: "/contact",
         }}
+        aside={<HeroBookingPlaceholder />}
       />
 
       {/* Trust Highlights Bar */}
       <TrustBar
         items={[
           "Melbourne Legal Practice",
-          "Clear Plain-English Advice",
-          "Multidisciplinary Team",
+          "Plain-English Advice",
+          "Multi-Practice Team",
           "Direct Solicitor Contact",
         ]}
       />

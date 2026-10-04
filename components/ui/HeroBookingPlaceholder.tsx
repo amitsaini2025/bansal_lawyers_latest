@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 export function HeroBookingPlaceholder() {
@@ -9,10 +8,26 @@ export function HeroBookingPlaceholder() {
   const [selectedFormat, setSelectedFormat] = useState<"office" | "phone" | "video">("office");
   const [selectedSlot, setSelectedSlot] = useState<string>("10:00 AM");
   const [practiceArea, setPracticeArea] = useState<string>("immigration");
+  const [name, setName] = useState<string>("");
+  const [contact, setContact] = useState<string>("");
 
   return (
-    <div className="hero-booking-card" aria-label="Appointment Booking Placeholder">
-      {/* Top Banner / Wireframe Status */}
+    <div className="hero-booking-card" aria-label="Appointment Booking Mockup Preview">
+      {/* Mockup Window Frame Bar */}
+      <div className="hero-booking-card__mockup-bar">
+        <div className="mockup-dots" aria-hidden="true">
+          <span className="mockup-dot mockup-dot--red" />
+          <span className="mockup-dot mockup-dot--yellow" />
+          <span className="mockup-dot mockup-dot--green" />
+        </div>
+        <div className="mockup-title-badge">
+          <span className="mockup-sparkle">✦</span>
+          <span>BOOKING PREVIEW</span>
+        </div>
+        <span className="mockup-status-pill">Interactive Mockup</span>
+      </div>
+
+      {/* Top Banner / Status */}
       <div className="hero-booking-card__top">
         <div className="hero-booking-card__status">
           <span className="hero-booking-card__pulsing-dot" aria-hidden="true" />
@@ -32,7 +47,14 @@ export function HeroBookingPlaceholder() {
         className="hero-booking-card__form"
         onSubmit={(e) => {
           e.preventDefault();
-          router.push(`/contact?practice=${practiceArea}&format=${selectedFormat}&slot=${encodeURIComponent(selectedSlot)}`);
+          const query = new URLSearchParams({
+            practice: practiceArea,
+            format: selectedFormat,
+            slot: selectedSlot,
+            ...(name ? { name } : {}),
+            ...(contact ? { contact } : {}),
+          });
+          router.push(`/contact?${query.toString()}`);
         }}
       >
         {/* Step 1: Practice Area */}
@@ -131,6 +153,8 @@ export function HeroBookingPlaceholder() {
               type="text"
               className="booking-input"
               placeholder="Your Full Name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               required
             />
           </div>
@@ -141,6 +165,8 @@ export function HeroBookingPlaceholder() {
               type="text"
               className="booking-input"
               placeholder="Phone or Email"
+              value={contact}
+              onChange={(e) => setContact(e.target.value)}
               required
             />
           </div>
@@ -155,10 +181,18 @@ export function HeroBookingPlaceholder() {
         </button>
       </form>
 
-      {/* Urgent Legal Assistance Direct Link */}
+      {/* Mockup helper note + Urgent call */}
       <div className="hero-booking-card__footer">
+        <div className="hero-booking-card__mockup-note">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" y1="16" x2="12" y2="12" />
+            <line x1="12" y1="8" x2="12.01" y2="8" />
+          </svg>
+          <span>Interactive preview — routes directly to our legal intake team</span>
+        </div>
         <div className="hero-booking-card__urgent">
-          <span>Urgent legal deadline or court date?</span>
+          <span>Urgent deadline or court date?</span>
           <a href="tel:0422905860" className="hero-booking-card__urgent-tel">
             Call 0422 905 860
           </a>

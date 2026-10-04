@@ -14,21 +14,16 @@ export type ImageTextProps = {
   };
   imageSrc?: string;
   imageAlt?: string;
-  imageWidth?: number;
-  imageHeight?: number;
   priority?: boolean;
 };
 
 export function ImageTextSection({
-  eyebrow,
   title,
   body,
   reverse = false,
   action,
   imageSrc,
   imageAlt = "Bansal Lawyers Melbourne Legal Chambers",
-  imageWidth = 1200,
-  imageHeight = 900,
   priority = false,
 }: ImageTextProps) {
   const actionVariant = action?.variant || "primary";
@@ -40,15 +35,12 @@ export function ImageTextSection({
           <Image
             src={imageSrc}
             alt={imageAlt}
-            width={imageWidth}
-            height={imageHeight}
+            fill
             priority={priority}
             sizes="(max-width: 960px) 100vw, 50vw"
             style={{
-              width: "100%",
-              height: "100%",
               objectFit: "cover",
-              display: "block",
+              objectPosition: "center",
             }}
           />
         ) : (

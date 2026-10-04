@@ -2,8 +2,6 @@ import type { ReactNode } from "react";
 import { Container } from "@/components/layout/Container";
 import { ButtonLink } from "@/components/ui/Button";
 
-import { HeroBookingPlaceholder } from "@/components/ui/HeroBookingPlaceholder";
-
 export type HeroProps = {
   eyebrow?: string;
   title: ReactNode;
@@ -23,10 +21,12 @@ export function Hero({
   compact = false,
   aside,
 }: HeroProps) {
+  const hasAside = aside !== undefined && aside !== null;
+
   return (
     <section className={`hero${compact ? " hero--compact" : ""}`}>
       <Container>
-        <div className="hero__grid">
+        <div className={`hero__grid${!hasAside ? " hero__grid--single" : ""}`}>
           <div className="hero__content">
             {eyebrow && <span className="eyebrow eyebrow--light">{eyebrow}</span>}
             <h1>{title}</h1>
@@ -46,7 +46,7 @@ export function Hero({
               </div>
             )}
           </div>
-          {aside !== undefined ? aside : <HeroBookingPlaceholder />}
+          {hasAside && aside}
         </div>
       </Container>
     </section>

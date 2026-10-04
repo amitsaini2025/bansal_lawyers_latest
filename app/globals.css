@@ -1038,6 +1038,13 @@ h3 {
   grid-template-columns: 1fr;
 }
 
+.hero__grid--single {
+  grid-template-columns: 1fr !important;
+  max-width: 56rem;
+  min-height: auto !important;
+  padding-block: clamp(3.75rem, 6.5vw, 5.75rem) !important;
+}
+
 .hero__content {
   max-width: 52rem;
 }
@@ -1164,6 +1171,75 @@ h3 {
   box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(10, 26, 54, 0.08);
   overflow: hidden;
   padding: 1.4rem 1.6rem 1.15rem;
+}
+
+/* Mockup Window Bar */
+.hero-booking-card__mockup-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: -1.4rem -1.6rem 1rem -1.6rem;
+  padding: 0.65rem 1.25rem;
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.mockup-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.mockup-dot {
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.mockup-dot--red { background: #ef4444; }
+.mockup-dot--yellow { background: #f59e0b; }
+.mockup-dot--green { background: #10b981; }
+
+.mockup-title-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #475569;
+  text-transform: uppercase;
+}
+
+.mockup-sparkle {
+  color: var(--brand-blue);
+}
+
+.mockup-status-pill {
+  font-size: 0.62rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.15rem 0.45rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 9999px;
+  border: 1px solid #bfdbfe;
+}
+
+.hero-booking-card__mockup-note {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.72rem;
+  color: #64748b;
+  margin-bottom: 0.35rem;
+}
+
+.hero-booking-card__mockup-note svg {
+  color: var(--brand-blue);
+  flex-shrink: 0;
 }
 
 .hero-booking-card__top {
@@ -2242,8 +2318,8 @@ h3 {
 /* Image Text Section */
 .image-text {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 0.95fr);
-  align-items: center;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+  align-items: stretch;
   gap: clamp(2.5rem, 6vw, 5rem);
 }
 
@@ -2254,19 +2330,20 @@ h3 {
 .image-text__media {
   position: relative;
   display: block;
-  min-height: clamp(24rem, 40vw, 34rem);
-  color: var(--ink-secondary);
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
   border-radius: var(--radius-md);
-  background: var(--blue-50);
   border: 1px solid var(--line);
   overflow: hidden;
   box-shadow: 0 16px 40px rgba(10, 26, 47, 0.08);
 }
 
 .image-text__media img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  object-position: center !important;
   display: block;
   transition: transform 0.5s ease;
 }
