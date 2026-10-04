@@ -41,42 +41,42 @@ const corePracticeAreas = [
   {
     title: "Immigration Law",
     description:
-      "Our immigration lawyers in Melbourne help with visa applications, visa refusals, visa cancellations, Administrative Review Tribunal (ART) appeals, partner visas, student visas, skilled migration, permanent residency, and citizenship matters.",
+      "Our immigration lawyers in Melbourne help with visa applications, refusals and cancellations, and with reviews at the Administrative Review Tribunal (ART). We also handle partner visas, student visas, skilled migration, permanent residency and citizenship.",
     href: "/immigration-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Family Law",
     description:
-      "Our family lawyers in Melbourne advise on divorce, separation, parenting arrangements, property settlement, consent orders, family violence matters, and intervention orders.",
+      "Our family lawyers in Melbourne advise on divorce, separation, parenting arrangements, property settlement and consent orders. We also help with family violence matters, including applying for or responding to intervention orders.",
     href: "/family-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Criminal Law",
     description:
-      "Our criminal lawyers in Melbourne provide legal support for criminal charges, traffic offences, police matters, bail applications, intervention order breaches, and court representation.",
+      "Our criminal lawyers in Melbourne act for people facing criminal charges, traffic offences and police matters. That includes bail applications, intervention order breaches and representation in court.",
     href: "/criminal-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Commercial Law",
     description:
-      "Our commercial lawyers in Melbourne assist with business contracts, commercial agreements, loan agreements, shareholder matters, business transactions, disputes, and debt recovery.",
+      "Our commercial lawyers in Melbourne help business owners with contracts, commercial and loan agreements, shareholder matters, and buying or selling a business. The aim is to get agreements right before problems start.",
     href: "/commercial-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Property Law",
     description:
-      "Our property lawyers in Melbourne give legal advice for buying, selling, leasing, contract review, conveyancing support, property disputes, and settlement-related matters.",
+      "Our property lawyers in Melbourne advise on buying, selling and leasing property, contract review and conveyancing. We also help with property disputes and with sale and purchase settlements.",
     href: "/property-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Civil Law",
     description:
-      "Our civil lawyers in Melbourne support clients with civil disputes, legal notices, debt disputes, contract disputes, negotiation, document preparation, and court-related processes.",
+      "Our civil lawyers in Melbourne act in civil disputes, including contract disputes, debt recovery and debt disputes, legal notices and negotiation. We prepare the documents, and we guide you through court processes if a matter goes that far.",
     href: "/civil-lawyers-melbourne",
     ctaText: "Learn More",
   },
@@ -251,9 +251,8 @@ export default function HomePage() {
       {/* 3. Practice Areas Section */}
       <Section tone="warm" id="practice-areas">
         <SectionHeader
-          eyebrow="Key Practice Areas"
           title="Our Legal Services"
-          intro="Bansal Lawyers provides legal support across key areas of law for individuals, families, migrants, professionals, and business owners."
+          intro="We work across six areas of law for individuals, families, migrants, professionals and business owners."
         />
         <div className="card-grid">
           {corePracticeAreas.map((card) => (
