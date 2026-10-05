@@ -135,6 +135,14 @@ export default function BlogPage() {
               imageSrc="/images/blog/commercial-contracts.webp"
               imageAlt="How to Build a Strong Brand and Business Structure Guide"
             />
+            <BlogCard
+              title="Hiding Assets During Divorce in Australia: Legal Risks & Asset Protection"
+              eyebrow="Family Law"
+              description="A detailed analysis of the legal risks of hiding assets during divorce in Australia: strict duty of disclosure, court penalties, criminal fraud/perjury, and legal asset protection strategies."
+              href="/blog/hiding-assets-during-divorce-australia"
+              imageSrc="/images/legal-consultation-clarity.webp"
+              imageAlt="Hiding Assets During Divorce in Australia Guide"
+            />
           </div>
         </Container>
       </Section>
