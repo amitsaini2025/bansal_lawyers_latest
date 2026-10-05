@@ -32,121 +32,67 @@ export const metadata: Metadata = createMetadata({
 
 interface CaseCardItem {
   title: string;
-  slug?: string;
+  slug: string;
   practiceArea: string;
   publishedDate: string;
-  publishedTime: string;
   summary: string;
-  badge?: string;
-  isLive: boolean;
-  imageSrc?: string;
+  imageSrc: string;
 }
 
 const recentCases: CaseCardItem[] = [
+  {
+    title: "Tribunal Decision Overturned for \"Copy and Paste\" Reasoning — Maazuddin v Minister for Immigration 2024",
+    slug: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+    practiceArea: "Immigration Law",
+    publishedDate: "Apr 11, 2025",
+    summary:
+      "Federal Circuit and Family Court decision setting aside a student visa cancellation where the AAT reproduced the delegate's reasons verbatim, failing to bring an independent mind and breaching section 359A procedural fairness.",
+    imageSrc: "/images/cases/court-case-review.webp",
+  },
   {
     title: "The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister for Immigration 2025",
     slug: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
-    publishedTime: "Published Time: Not specified",
     summary:
       "Federal Circuit and Family Court decision examining why a tribunal's failure to correctly identify and apply the statutory test for employment under Schedule 6D constitutes jurisdictional error.",
     imageSrc: "/images/cases/court-case-review.webp",
-    isLive: true,
   },
   {
     title: "Khanal Migration Case Study: English Language Requirements and Flexibility During COVID-19",
     slug: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
-    publishedTime: "Published Time: Not specified",
     summary:
       "Administrative Review Tribunal (ART) decision examining Subclass 485 Temporary Graduate English requirements, Department pandemic flexibility, and substantive compliance during exceptional circumstances.",
     imageSrc: "/images/cases/court-case-review.webp",
-    isLive: true,
   },
   {
     title: "When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case",
     slug: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
-    publishedTime: "Published Time: Not specified",
     summary:
       "Federal Court of Australia decision examining when tribunal errors matter enough to overturn a visa refusal, focusing on materiality, jurisdictional error, and reasonable adjournment.",
     imageSrc: "/images/cases/court-case-review.webp",
-    isLive: true,
   },
   {
     title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
     slug: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
-    publishedTime: "Published Time: Not specified",
     summary:
       "Federal Circuit and Family Court decision upholding judicial review of an AAT student visa refusal where member comments and conduct created an apprehension of bias constituting jurisdictional error.",
     imageSrc: "/images/cases/court-case-review.webp",
-    isLive: true,
   },
   {
     title: "Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review",
     slug: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
     practiceArea: "Immigration Law",
     publishedDate: "Aug 23, 2025",
-    publishedTime: "Published Time: Not specified",
     summary:
       "A student visa judicial review case involving a Subclass 500 refusal, GTE requirement, AAT decision-making, and jurisdictional error based on an incorrect factual finding about the applicant’s arrival date.",
     imageSrc: "/images/cases/court-case-review.webp",
-    isLive: true,
-  },
-  {
-    title: "Student Visa Refusal Updates — Ministerial Intervention & Subclass 500 Appeals",
-    practiceArea: "Immigration Law",
-    publishedDate: "Upcoming",
-    publishedTime: "Published Time: Not specified",
-    summary:
-      "Comprehensive analysis of tribunal merits review, Genuine Student criteria, and successful reconsideration pathways following visa refusal notices.",
-    badge: "Coming Soon",
-    isLive: false,
-  },
-  {
-    title: "Visa Cancellation Case Updates — Section 501 & Section 116 Character Decisions",
-    practiceArea: "Migration Litigation",
-    publishedDate: "Upcoming",
-    publishedTime: "Published Time: Not specified",
-    summary:
-      "Judicial review precedents examining natural justice, mandatory cancellations, and revocation submissions before the Federal Court of Australia.",
-    badge: "Coming Soon",
-    isLive: false,
-  },
-  {
-    title: "ART Appeal Updates — Administrative Review Tribunal Jurisdictional Procedures",
-    practiceArea: "Administrative Law",
-    publishedDate: "Upcoming",
-    publishedTime: "Published Time: Not specified",
-    summary:
-      "Case law summaries and transition guidelines navigating new evidentiary thresholds under the Administrative Review Tribunal (ART).",
-    badge: "Coming Soon",
-    isLive: false,
-  },
-  {
-    title: "Judicial Review Updates — Federal Circuit & Family Court Error Analyses",
-    practiceArea: "Federal Court",
-    publishedDate: "Upcoming",
-    publishedTime: "Published Time: Not specified",
-    summary:
-      "Detailed reviews of material factual errors, procedural unfairness, and legally unreasonable decisions in Australian migration jurisprudence.",
-    badge: "Coming Soon",
-    isLive: false,
-  },
-  {
-    title: "Family Law Updates — Financial Settlements & Parenting Orders in Dispute",
-    practiceArea: "Family Law",
-    publishedDate: "Upcoming",
-    publishedTime: "Published Time: Not specified",
-    summary:
-      "Recent court decisions evaluating asset pool contributions, spousal maintenance disputes, and best interests of children in separated families.",
-    badge: "Coming Soon",
-    isLive: false,
   },
 ];
 
@@ -210,24 +156,18 @@ export default function RecentCasesPage() {
           <div className="recent-cases-grid">
             {recentCases.map((item) => (
               <article key={item.title} className="case-card">
-                {/* Header row: Practice Area Tag & Badge */}
+                {/* Header row: Practice Area Tag */}
                 <div className="case-card__header">
                   <span className="case-card__tag">
                     {item.practiceArea}
                   </span>
-                  {item.badge && (
-                    <span className="case-card__badge">
-                      {item.badge}
-                    </span>
-                  )}
                 </div>
 
-                {/* Published Date & Timestamp */}
-                <div className="case-card__date" style={{ flexDirection: "column", alignItems: "flex-start", gap: "0.2rem" }}>
+                {/* Published Date */}
+                <div className="case-card__date">
                   <span>
                     <strong>Date:</strong> {item.publishedDate}
                   </span>
-                  <span>{item.publishedTime}</span>
                 </div>
 
                 {/* Case Thumbnail Image */}
@@ -251,13 +191,9 @@ export default function RecentCasesPage() {
 
                 {/* Case Title */}
                 <h2 className="case-card__title">
-                  {item.isLive && item.slug ? (
-                    <Link href={item.slug}>
-                      {item.title}
-                    </Link>
-                  ) : (
-                    item.title
-                  )}
+                  <Link href={item.slug}>
+                    {item.title}
+                  </Link>
                 </h2>
 
                 {/* Short Summary */}
@@ -267,23 +203,9 @@ export default function RecentCasesPage() {
 
                 {/* Action Button */}
                 <div className="case-card__footer">
-                  {item.isLive && item.slug ? (
-                    <ButtonLink href={item.slug} variant="primary" className="button--full">
-                      Read Case Summary
-                    </ButtonLink>
-                  ) : (
-                    <span
-                      style={{
-                        display: "inline-block",
-                        fontSize: "0.85rem",
-                        fontWeight: 600,
-                        color: "var(--ink-secondary)",
-                        fontStyle: "italic",
-                      }}
-                    >
-                      Full summary publishing soon
-                    </span>
-                  )}
+                  <ButtonLink href={item.slug} variant="primary" className="button--full">
+                    Read Case Summary
+                  </ButtonLink>
                 </div>
               </article>
             ))}

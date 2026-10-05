@@ -91,6 +91,11 @@ const nextConfig: NextConfig = {
         destination: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
         permanent: true,
       },
+      {
+        source: "/maazuddin-v-minister-2024-tribunal-decision-overturned",
+        destination: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+        permanent: true,
+      },
     ];
   },
 };

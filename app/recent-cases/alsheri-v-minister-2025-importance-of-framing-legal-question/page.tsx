@@ -538,6 +538,14 @@ export default function AlsheriCaseDetailPage() {
                   </li>
                   <li>
                     <Link
+                      href="/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned"
+                      style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      Tribunal Decision Overturned for &quot;Copy and Paste&quot; Reasoning — Maazuddin v Minister 2024 →
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       href="/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >

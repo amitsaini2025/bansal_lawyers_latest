@@ -64,6 +64,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: "monthly",

@@ -65,31 +65,31 @@ const relatedServices = [
   },
 ];
 
-const relatedRecentCasesPlaceholders = [
+const otherRecentCases = [
   {
-    title: "More immigration case updates coming soon",
-    category: "Immigration Law",
-    status: "Upcoming Analysis",
+    title: "Tribunal Decision Overturned for \"Copy and Paste\" Reasoning — Maazuddin v Minister 2024",
+    category: "Student Visa Cancellation",
+    href: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
   },
   {
-    title: "Student visa refusal updates",
-    category: "Student Visas (Subclass 500)",
-    status: "Upcoming Analysis",
+    title: "The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister 2025",
+    category: "Skilled Independent (Subclass 189)",
+    href: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
   },
   {
-    title: "Visa cancellation case updates",
-    category: "Section 501 / 116 Cancellations",
-    status: "Upcoming Analysis",
+    title: "Khanal Migration Case Study: English Language Requirements & COVID-19 Flexibility",
+    category: "Temporary Graduate (Subclass 485)",
+    href: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
   },
   {
-    title: "ART appeal updates",
-    category: "Administrative Review Tribunal",
-    status: "Upcoming Analysis",
+    title: "When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case",
+    category: "Federal Court Judicial Review",
+    href: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
   },
   {
-    title: "Judicial review updates",
-    category: "Federal Circuit & Family Court",
-    status: "Upcoming Analysis",
+    title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
+    category: "Subclass 500 Judicial Review",
+    href: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
   },
 ];
 
@@ -190,9 +190,6 @@ export default function ThakurCaseDetailPage() {
             >
               <span>
                 <strong>Published:</strong> Aug 23, 2025
-              </span>
-              <span>
-                <strong>Published Time:</strong> Not specified
               </span>
               <span>
                 <strong>Jurisdiction:</strong> Federal Circuit and Family Court of Australia
@@ -626,9 +623,10 @@ export default function ThakurCaseDetailPage() {
                 gap: "1rem",
               }}
             >
-              {relatedRecentCasesPlaceholders.map((item) => (
-                <div
+              {otherRecentCases.map((item) => (
+                <Link
                   key={item.title}
+                  href={item.href}
                   style={{
                     padding: "1.25rem",
                     background: "var(--white)",
@@ -637,6 +635,8 @@ export default function ThakurCaseDetailPage() {
                     display: "flex",
                     flexDirection: "column",
                     justifyContent: "space-between",
+                    textDecoration: "none",
+                    transition: "border-color 0.2s ease, box-shadow 0.2s ease",
                   }}
                 >
                   <div>
@@ -667,14 +667,14 @@ export default function ThakurCaseDetailPage() {
                   <span
                     style={{
                       marginTop: "1rem",
-                      fontSize: "0.78rem",
-                      color: "var(--ink-secondary)",
-                      fontStyle: "italic",
+                      fontSize: "0.85rem",
+                      color: "var(--brand-blue)",
+                      fontWeight: 600,
                     }}
                   >
-                    {item.status}
+                    Read Summary →
                   </span>
-                </div>
+                </Link>
               ))}
             </div>
           </div>
