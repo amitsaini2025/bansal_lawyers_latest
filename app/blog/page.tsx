@@ -127,6 +127,14 @@ export default function BlogPage() {
               imageSrc="/images/blog/commercial-contracts.webp"
               imageAlt="Closing Loopholes Reforms for Independent Contractors"
             />
+            <BlogCard
+              title="How to Build a Strong Brand: Legal Considerations for Your Business Identity"
+              eyebrow="Commercial Law"
+              description="A guide to choosing the right business structure in Australia: sole trader, partnership, and company structures, tax implications, personal liability, and key differences."
+              href="/blog/how-to-build-strong-brand-legal-considerations-for-your-business-identity-in-australia"
+              imageSrc="/images/blog/commercial-contracts.webp"
+              imageAlt="How to Build a Strong Brand and Business Structure Guide"
+            />
           </div>
         </Container>
       </Section>
