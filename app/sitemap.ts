@@ -190,6 +190,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/blog/important-changes-to-student-visa-processing-ministerial-direction`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/recent-cases`,
       lastModified: currentDate,
       changeFrequency: "weekly",

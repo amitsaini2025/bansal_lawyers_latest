@@ -405,6 +405,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Dec 31, 2024",
     readTime: "4 min read",
   },
+  {
+    id: "important-changes-to-student-visa-processing-ministerial-direction",
+    title:
+      "Key Changes to Student Visa Processing Under the Latest Ministerial Direction",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "A timely analysis by Bansal Lawyers on the revocation of MD107 and introduction of Ministerial Direction 111 (MD111) for Australian Student visa (Subclass 500) processing.",
+    href: "/blog/important-changes-to-student-visa-processing-ministerial-direction",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt: "Student Visa Processing Ministerial Direction 111",
+    publishedDate: "Dec 22, 2024",
+    readTime: "3 min read",
+  },
 ];
 
 export default function BlogPage() {
