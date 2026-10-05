@@ -9,7 +9,6 @@ import {
 } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema } from "@/lib/schema";
-import { articleSlugs, placeholderCards } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
   title: "Legal Insights & Updates | Bansal Lawyers Melbourne",
@@ -28,8 +27,6 @@ export const metadata: Metadata = createMetadata({
     "Bansal Lawyers Blog",
   ],
 });
-
-const cards = [...placeholderCards, ...placeholderCards];
 
 export default function BlogPage() {
   const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Blog" }];
@@ -205,45 +202,30 @@ export default function BlogPage() {
       </section>
       <Section tone="warm">
         <SectionHeader
-          eyebrow="[Articles label]"
-          title="[Articles heading goes here]"
+          eyebrow="Legal Publications"
+          title="Latest Articles & Legal Guides"
         />
-        <div className="filter-bar" role="group" aria-label="[Category filter label]">
-          <button type="button" aria-pressed="true">[All categories]</button>
-          <button type="button" aria-pressed="false">[Category]</button>
-          <button type="button" aria-pressed="false">[Category]</button>
+        <div className="filter-bar" role="group" aria-label="Article category filter">
+          <button type="button" aria-pressed="true">All Articles</button>
+          <button type="button" aria-pressed="false">Family Law</button>
+          <button type="button" aria-pressed="false">Immigration Law</button>
+          <button type="button" aria-pressed="false">Commercial Law</button>
         </div>
         <div className="card-grid">
-          {cards.map((card, index) => {
-            const blogImages = [
-              "/images/cases/court-case-review.webp",
-              "/images/blog/commercial-contracts.webp",
-              "/images/melbourne-legal-chambers.webp",
-              "/images/collins-street-office.webp",
-            ];
-            return (
-              <BlogCard
-                {...card}
-                title={`[Article ${index + 1} title goes here]`}
-                eyebrow="[Article category]"
-                href={`/blog/${articleSlugs[index % articleSlugs.length]}`}
-                imageSrc={blogImages[index % blogImages.length]}
-                imageAlt={`Featured legal topic ${index + 1}`}
-                key={index}
-              />
-            );
-          })}
+          <BlogCard
+            title="Divorce Lawyers in Melbourne Australia — Complete Guide for Couple"
+            eyebrow="Family Law"
+            description="A complete guide to navigating divorce in Australia under the Family Law Act 1975: legal requirements, required documents, joint vs sole applications, filing fees, and court procedures."
+            href="/blog/divorce-lawyers-in-melbourne-australia-complete-guide-for-couple"
+            imageSrc="/images/legal-consultation-clarity.webp"
+            imageAlt="Divorce Lawyers in Melbourne Australia Guide"
+          />
         </div>
-        <nav className="pagination" aria-label="Pagination">
-          <Link href="/blog" aria-current="page">1</Link>
-          <Link href="/blog?page=2">2</Link>
-          <Link href="/blog?page=2">[Next page]</Link>
-        </nav>
       </Section>
       <CtaSection
-        title="[Blog page CTA heading goes here]"
-        text="[Blog page CTA text goes here]"
-        action={{ label: "[Blog page CTA button]", href: "/contact" }}
+        title="Need Advice on a Family or Commercial Law Matter?"
+        text="Contact Bansal Lawyers today for confidential advice at our Melbourne CBD office, by phone, or via secure video consultation."
+        action={{ label: "Book a Consultation", href: "/contact" }}
       />
     </>
   );
