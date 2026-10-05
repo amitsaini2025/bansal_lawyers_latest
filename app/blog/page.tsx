@@ -434,6 +434,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Dec 19, 2024",
     readTime: "5 min read",
   },
+  {
+    id: "dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
+    title:
+      "Don't Miss Out: Why the New Subclass 482 SID Visa Is the Fastest Way to Work and Stay in Australia",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "From TSS to SID: How the new Subclass 482 Skills in Demand visa revolutionizes Australian careers with 4-year validity, reduced work experience, 7-21 day processing, and PR pathways.",
+    href: "/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt: "Subclass 482 Skills in Demand SID Visa Australia",
+    publishedDate: "Dec 11, 2024",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
