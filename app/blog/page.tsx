@@ -204,6 +204,19 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 16, 2025",
     readTime: "5 min read",
   },
+  {
+    id: "step-by-step-guide-applying-divorce",
+    title: "Step-by-Step Guide to Applying for Divorce in Australia",
+    eyebrow: "Family Law",
+    category: "Family Law",
+    description:
+      "A step-by-step guide to applying for divorce in Australia by Bansal Lawyers: sole vs joint applications, eligibility criteria, required documents, filing fees, and court process.",
+    href: "/blog/step-by-step-guide-applying-divorce-in-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt: "Step-by-Step Guide to Applying for Divorce in Australia",
+    publishedDate: "Jan 15, 2025",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
