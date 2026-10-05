@@ -347,6 +347,19 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 04, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "human-rights-legal-recourse-australia",
+    title: "Human Rights and Legal Recourse in Australia: A Brief Guide",
+    eyebrow: "Civil & Estate Law",
+    category: "Civil & Estate Law",
+    description:
+      "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, AHRC complaints, and civil liberties defense.",
+    href: "/blog/human-rights-legal-recourse-australia",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt: "Human Rights and Legal Recourse in Australia",
+    publishedDate: "Jan 03, 2025",
+    readTime: "3 min read",
+  },
 ];
 
 export default function BlogPage() {
