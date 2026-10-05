@@ -14,7 +14,8 @@ export function MainContent({ children }: { children: ReactNode }) {
     pathname === "/thakur-v-minister-for-immigration-2025-student-visa" ||
     pathname === "/student-visa-refusal-bias-jaggi-v-minister-2024" ||
     pathname === "/chikweu-v-minister-2024-federal-court-visa-refusal-overturn" ||
-    pathname === "/khanal-migration-english-language-requirements-covid-19-case-study";
+    pathname === "/khanal-migration-english-language-requirements-covid-19-case-study" ||
+    pathname === "/alsheri-v-minister-2025-importance-of-framing-legal-question";
   const page = deferred ? "deferred" : pathname === "/" ? "home" :
     pathname === "/about" ? "about" : pathname === "/contact" ? "contact" : "service";
 

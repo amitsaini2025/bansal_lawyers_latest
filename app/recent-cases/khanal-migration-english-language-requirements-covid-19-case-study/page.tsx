@@ -624,6 +624,14 @@ export default function KhanalCaseDetailPage() {
                   </li>
                   <li>
                     <Link
+                      href="/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question"
+                      style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister 2025 →
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       href="/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >

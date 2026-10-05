@@ -58,6 +58,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: "monthly",

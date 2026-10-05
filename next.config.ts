@@ -86,6 +86,11 @@ const nextConfig: NextConfig = {
         destination: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
         permanent: true,
       },
+      {
+        source: "/alsheri-v-minister-2025-importance-of-framing-legal-question",
+        destination: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
+        permanent: true,
+      },
     ];
   },
 };

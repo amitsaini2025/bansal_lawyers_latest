@@ -44,6 +44,17 @@ interface CaseCardItem {
 
 const recentCases: CaseCardItem[] = [
   {
+    title: "The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister for Immigration 2025",
+    slug: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
+    practiceArea: "Immigration Law",
+    publishedDate: "Apr 11, 2025",
+    publishedTime: "Published Time: Not specified",
+    summary:
+      "Federal Circuit and Family Court decision examining why a tribunal's failure to correctly identify and apply the statutory test for employment under Schedule 6D constitutes jurisdictional error.",
+    imageSrc: "/images/cases/court-case-review.webp",
+    isLive: true,
+  },
+  {
     title: "Khanal Migration Case Study: English Language Requirements and Flexibility During COVID-19",
     slug: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
     practiceArea: "Immigration Law",
