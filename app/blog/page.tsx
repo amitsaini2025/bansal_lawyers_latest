@@ -217,6 +217,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 15, 2025",
     readTime: "5 min read",
   },
+  {
+    id: "understanding-administrative-law-bansal-lawyers",
+    title:
+      "Understanding Administrative Law Insights from Bansal Lawyers",
+    eyebrow: "Administrative Law",
+    category: "Administrative Law",
+    description:
+      "An expert guide to administrative law in Australia: statutory functions, merits review, tribunal appeals at the ART, judicial review, and government accountability.",
+    href: "/blog/understanding-administrative-law-bansal-lawyers",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt: "Understanding Administrative Law Insights from Bansal Lawyers",
+    publishedDate: "Jan 14, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
