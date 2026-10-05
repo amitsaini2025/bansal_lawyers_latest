@@ -287,6 +287,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 09, 2025",
     readTime: "5 min read",
   },
+  {
+    id: "understanding-de-facto-relationship-vs-marriage",
+    title:
+      "Understanding the Differences Between a De Facto Relationship and Marriage in Australia",
+    eyebrow: "Family Law",
+    category: "Family Law",
+    description:
+      "Insights from Bansal Lawyers on legal differences between marriage and de facto relationships in Australia: proving cohabitation, the 2-year rule, property rights, and financial agreements.",
+    href: "/blog/understanding-de-facto-relationship-vs-marriage-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt:
+      "Understanding the Differences Between a De Facto Relationship and Marriage in Australia",
+    publishedDate: "Jan 08, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
