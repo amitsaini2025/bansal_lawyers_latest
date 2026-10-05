@@ -462,6 +462,19 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Dec 27, 2024",
     readTime: "5 min read",
   },
+  {
+    id: "navigating-corporate-litigation",
+    title: "Navigating Corporate Litigation",
+    eyebrow: "Commercial Law",
+    category: "Commercial Law",
+    description:
+      "A guide by Bansal Lawyers to commercial and corporate litigation in Melbourne: contract breaches, shareholder conflicts, director duties, and dispute resolution.",
+    href: "/blog/navigating-corporate-litigation",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt: "Corporate Litigation Lawyers Melbourne - Bansal Lawyers",
+    publishedDate: "Dec 05, 2024",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
