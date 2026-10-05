@@ -161,6 +161,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 20, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "parenting-arrangements-after-divorce",
+    title:
+      "Parenting Arrangements After Divorce in Australia Insights from Bansal Lawyers",
+    eyebrow: "Family Law",
+    category: "Family Law",
+    description:
+      "A comprehensive guide to parenting arrangements after divorce in Australia: child's best interests under the Family Law Act 1975, parenting plans, consent orders, and mediation.",
+    href: "/blog/parenting-arrangements-after-divorce-in-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt: "Parenting Arrangements After Divorce in Australia Guide",
+    publishedDate: "Jan 18, 2025",
+    readTime: "7 min read",
+  },
 ];
 
 export default function BlogPage() {
