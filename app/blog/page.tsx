@@ -231,6 +231,19 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 14, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "why-you-need-power-of-attorney-today",
+    title: "The Importance of Having a Power of Attorney Today",
+    eyebrow: "Civil & Estate Law",
+    category: "Civil & Estate Law",
+    description:
+      "A complete guide to Powers of Attorney in Australia: General POA, Enduring Power of Attorney (EPOA), Supportive POA, fiduciary duties, and safeguarding your future.",
+    href: "/blog/why-you-need-power-of-attorney-today",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt: "The Importance of Having a Power of Attorney Today",
+    publishedDate: "Jan 13, 2025",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
