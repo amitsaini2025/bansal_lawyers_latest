@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import "@fontsource/inter/400.css";
 import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
@@ -9,6 +9,13 @@ import { MainContent } from "@/components/layout/MainContent";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 import "./refinements.css";
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#0b1a36",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
