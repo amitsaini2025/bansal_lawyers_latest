@@ -45,7 +45,7 @@ interface CaseCardItem {
 const recentCases: CaseCardItem[] = [
   {
     title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
-    slug: "/student-visa-refusal-bias-jaggi-v-minister-2024",
+    slug: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
     publishedTime: "Published Time: Not specified",
@@ -56,7 +56,7 @@ const recentCases: CaseCardItem[] = [
   },
   {
     title: "Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review",
-    slug: "/thakur-v-minister-for-immigration-2025-student-visa",
+    slug: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
     practiceArea: "Immigration Law",
     publishedDate: "Aug 23, 2025",
     publishedTime: "Published Time: Not specified",

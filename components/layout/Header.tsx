@@ -629,7 +629,7 @@ export function Header() {
               {/* 4. Recent Cases */}
               <Link
                 href="/recent-cases"
-                className={`mobile-nav-link ${pathname.startsWith("/recent-cases") || pathname.includes("thakur-v-minister") ? "mobile-nav-link--active" : ""}`}
+                className={`mobile-nav-link ${pathname.startsWith("/recent-cases") || pathname.includes("thakur-v-minister") || pathname.includes("jaggi-v-minister") ? "mobile-nav-link--active" : ""}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span>Recent Cases</span>

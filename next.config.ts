@@ -66,6 +66,16 @@ const nextConfig: NextConfig = {
         destination: "/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne",
         permanent: true,
       },
+      {
+        source: "/thakur-v-minister-for-immigration-2025-student-visa",
+        destination: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
+        permanent: true,
+      },
+      {
+        source: "/student-visa-refusal-bias-jaggi-v-minister-2024",
+        destination: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
+        permanent: true,
+      },
     ];
   },
 };

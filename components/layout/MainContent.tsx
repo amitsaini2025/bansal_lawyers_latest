@@ -8,8 +8,11 @@ export function MainContent({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const deferred =
     pathname === "/blog" || pathname.startsWith("/blog/") ||
-    pathname.startsWith("/legal/") || pathname === "/recent-cases" ||
-    pathname === "/thakur-v-minister-for-immigration-2025-student-visa";
+    pathname.startsWith("/legal/") ||
+    pathname === "/recent-cases" ||
+    pathname.startsWith("/recent-cases/") ||
+    pathname === "/thakur-v-minister-for-immigration-2025-student-visa" ||
+    pathname === "/student-visa-refusal-bias-jaggi-v-minister-2024";
   const page = deferred ? "deferred" : pathname === "/" ? "home" :
     pathname === "/about" ? "about" : pathname === "/contact" ? "contact" : "service";
 
