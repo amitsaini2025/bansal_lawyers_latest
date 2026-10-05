@@ -390,6 +390,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 01, 2025",
     readTime: "5 min read",
   },
+  {
+    id: "exciting-changes-to-australias-administrative-review-system",
+    title:
+      "Exciting Changes to Australia's Administrative Review System: What You Need to Know",
+    eyebrow: "Administrative Law",
+    category: "Administrative Law",
+    description:
+      "An expert breakdown of the Administrative Review Tribunal Act 2024 (ART Act): tougher member qualifications, merit-based appointments, specialized areas, and accountability.",
+    href: "/blog/exciting-changes-to-australias-administrative-review-system",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt:
+      "Exciting Changes to Australia's Administrative Review System - ART Act 2024",
+    publishedDate: "Dec 31, 2024",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
