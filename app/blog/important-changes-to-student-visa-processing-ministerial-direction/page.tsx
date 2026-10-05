@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { StructuredData } from "@/components/seo";
+import { DynamicArticleMeta } from "@/components/blog/DynamicArticleMeta";
+import { RecommendedArticles } from "@/components/blog/RecommendedArticles";
+
 import {
   Breadcrumbs,
   ButtonLink,
@@ -141,38 +144,12 @@ export default function StudentVisaMinisterialDirectionPage() {
               effective December 19, 2024.
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.25rem",
-                fontSize: "0.9375rem",
-                color: "#94a3b8",
-                borderTop: "1px solid rgba(255,255,255,0.12)",
-                paddingTop: "1.25rem",
-              }}
-            >
-              <span>
-                Published:{" "}
-                <strong style={{ color: "#f8fafc" }}>Dec 22, 2024</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Read Time:{" "}
-                <strong style={{ color: "#f8fafc" }}>3 min read</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Category:{" "}
-                <strong style={{ color: "#f8fafc" }}>Immigration Law</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Length:{" "}
-                <strong style={{ color: "#f8fafc" }}>497 words</strong>
-              </span>
-            </div>
+            <DynamicArticleMeta
+              publishedDate="Dec 22, 2024"
+              category="Immigration Law"
+              initialWords={497}
+              initialReadTime="3 min read"
+            />
           </div>
         </Container>
       </section>
@@ -796,6 +773,9 @@ export default function StudentVisaMinisterialDirectionPage() {
                 </div>
               </div>
             </div>
+
+            {/* Recommended Articles Grid */}
+            <RecommendedArticles currentHref="/blog/important-changes-to-student-visa-processing-ministerial-direction" />
           </div>
         </Container>
       </Section>

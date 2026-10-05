@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { StructuredData } from "@/components/seo";
+import { DynamicArticleMeta } from "@/components/blog/DynamicArticleMeta";
+import { RecommendedArticles } from "@/components/blog/RecommendedArticles";
+
 import {
   Breadcrumbs,
   ButtonLink,
@@ -183,38 +186,12 @@ export default function HowToAppealVisaRefusalArtPage() {
               Administrative Review Tribunal (ART).
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.25rem",
-                fontSize: "0.9375rem",
-                color: "#94a3b8",
-                borderTop: "1px solid rgba(255,255,255,0.12)",
-                paddingTop: "1.25rem",
-              }}
-            >
-              <span>
-                Published:{" "}
-                <strong style={{ color: "#f8fafc" }}>Jan 02, 2025</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Read Time:{" "}
-                <strong style={{ color: "#f8fafc" }}>5 min read</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Category:{" "}
-                <strong style={{ color: "#f8fafc" }}>Immigration Law</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Length:{" "}
-                <strong style={{ color: "#f8fafc" }}>997 words</strong>
-              </span>
-            </div>
+            <DynamicArticleMeta
+              publishedDate="Jan 02, 2025"
+              category="Immigration Law"
+              initialWords={997}
+              initialReadTime="5 min read"
+            />
           </div>
         </Container>
       </section>
@@ -1555,6 +1532,9 @@ export default function HowToAppealVisaRefusalArtPage() {
                 </div>
               </div>
             </div>
+
+            {/* Recommended Articles Grid */}
+            <RecommendedArticles currentHref="/blog/how-to-appeal-visa-refusal-administrative-review-tribunal" />
           </div>
         </Container>
       </Section>

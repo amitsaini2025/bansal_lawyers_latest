@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { StructuredData } from "@/components/seo";
+import { DynamicArticleMeta } from "@/components/blog/DynamicArticleMeta";
+import { RecommendedArticles } from "@/components/blog/RecommendedArticles";
+
 import {
   Breadcrumbs,
   ButtonLink,
@@ -186,38 +189,12 @@ export default function NavigatingCorporateLitigationPage() {
               clarity, confidence, and strategy.
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.25rem",
-                fontSize: "0.9375rem",
-                color: "#94a3b8",
-                borderTop: "1px solid rgba(255,255,255,0.12)",
-                paddingTop: "1.25rem",
-              }}
-            >
-              <span>
-                Published:{" "}
-                <strong style={{ color: "#f8fafc" }}>Dec 05, 2024</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Read Time:{" "}
-                <strong style={{ color: "#f8fafc" }}>4 min read</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Category:{" "}
-                <strong style={{ color: "#f8fafc" }}>Commercial Law</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Length:{" "}
-                <strong style={{ color: "#f8fafc" }}>602 words</strong>
-              </span>
-            </div>
+            <DynamicArticleMeta
+              publishedDate="Dec 05, 2024"
+              category="Commercial Law"
+              initialWords={602}
+              initialReadTime="4 min read"
+            />
           </div>
         </Container>
       </section>
@@ -681,6 +658,9 @@ export default function NavigatingCorporateLitigationPage() {
                 </div>
               </div>
             </div>
+
+            {/* Recommended Articles Grid */}
+            <RecommendedArticles currentHref="/blog/navigating-corporate-litigation" />
           </div>
         </Container>
       </Section>

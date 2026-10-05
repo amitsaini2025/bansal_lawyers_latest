@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { StructuredData } from "@/components/seo";
+import { DynamicArticleMeta } from "@/components/blog/DynamicArticleMeta";
+import { RecommendedArticles } from "@/components/blog/RecommendedArticles";
+
 import {
   Breadcrumbs,
   ButtonLink,
@@ -188,38 +191,12 @@ export default function Subclass482SidVisaPage() {
               permanent residency.
             </p>
 
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                alignItems: "center",
-                gap: "1.25rem",
-                fontSize: "0.9375rem",
-                color: "#94a3b8",
-                borderTop: "1px solid rgba(255,255,255,0.12)",
-                paddingTop: "1.25rem",
-              }}
-            >
-              <span>
-                Published:{" "}
-                <strong style={{ color: "#f8fafc" }}>Dec 11, 2024</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Read Time:{" "}
-                <strong style={{ color: "#f8fafc" }}>5 min read</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Category:{" "}
-                <strong style={{ color: "#f8fafc" }}>Immigration Law</strong>
-              </span>
-              <span>•</span>
-              <span>
-                Length:{" "}
-                <strong style={{ color: "#f8fafc" }}>949 words</strong>
-              </span>
-            </div>
+            <DynamicArticleMeta
+              publishedDate="Dec 11, 2024"
+              category="Immigration Law"
+              initialWords={949}
+              initialReadTime="5 min read"
+            />
           </div>
         </Container>
       </section>
@@ -1168,6 +1145,9 @@ export default function Subclass482SidVisaPage() {
                 </div>
               </div>
             </div>
+
+            {/* Recommended Articles Grid */}
+            <RecommendedArticles currentHref="/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia" />
           </div>
         </Container>
       </Section>
