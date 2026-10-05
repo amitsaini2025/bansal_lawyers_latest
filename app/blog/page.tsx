@@ -302,6 +302,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 08, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "understanding-affidavits-statutory-declarations",
+    title:
+      "Understanding Affidavit, Statutory Declarations, and Statements of Evidence",
+    eyebrow: "Civil & Estate Law",
+    category: "Civil & Estate Law",
+    description:
+      "A complete guide to legal evidence documents in Australia: affidavits, statutory declarations, witness statements, authorized witnessing, and court admissibility.",
+    href: "/blog/understanding-affidavits-statutory-declarations-statements-of-evidence",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt:
+      "Understanding Affidavit, Statutory Declarations, and Statements of Evidence",
+    publishedDate: "Jan 07, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
