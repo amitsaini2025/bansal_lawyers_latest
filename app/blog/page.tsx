@@ -244,6 +244,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 13, 2025",
     readTime: "5 min read",
   },
+  {
+    id: "noicc-visa-cancellation-australia",
+    title:
+      "What You Need to Know About NOICC Visa Cancellations in Australia",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "A complete guide to Notice of Intention to Consider Cancellation (NOICC) in Australia: cancellation grounds, 5-day response deadlines, and protecting your visa status.",
+    href: "/blog/noicc-visa-cancellation-australia",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt:
+      "What You Need to Know About NOICC Visa Cancellations in Australia",
+    publishedDate: "Jan 11, 2025",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
