@@ -44,6 +44,17 @@ interface CaseCardItem {
 
 const recentCases: CaseCardItem[] = [
   {
+    title: "When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case",
+    slug: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+    practiceArea: "Immigration Law",
+    publishedDate: "Apr 11, 2025",
+    publishedTime: "Published Time: Not specified",
+    summary:
+      "Federal Court of Australia decision examining when tribunal errors matter enough to overturn a visa refusal, focusing on materiality, jurisdictional error, and reasonable adjournment.",
+    imageSrc: "/images/cases/court-case-review.webp",
+    isLive: true,
+  },
+  {
     title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
     slug: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
     practiceArea: "Immigration Law",

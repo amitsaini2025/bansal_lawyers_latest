@@ -437,6 +437,12 @@ export default function ThakurCaseDetailPage() {
                 </p>
                 <p style={{ marginTop: "0.75rem", marginBottom: 0 }}>
                   <Link
+                    href="/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
+                    style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600, display: "block", marginBottom: "0.4rem" }}
+                  >
+                    When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case →
+                  </Link>
+                  <Link
                     href="/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024"
                     style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600, display: "block", marginBottom: "0.4rem" }}
                   >

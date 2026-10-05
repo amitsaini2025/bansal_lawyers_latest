@@ -46,6 +46,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/contact`,
       lastModified: currentDate,
       changeFrequency: "monthly",

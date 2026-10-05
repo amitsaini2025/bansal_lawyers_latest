@@ -76,6 +76,11 @@ const nextConfig: NextConfig = {
         destination: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
         permanent: true,
       },
+      {
+        source: "/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+        destination: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+        permanent: true,
+      },
     ];
   },
 };
