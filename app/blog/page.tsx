@@ -448,6 +448,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Dec 11, 2024",
     readTime: "5 min read",
   },
+  {
+    id: "breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
+    title:
+      "Breaking: Australia's National Innovation Visa Set to Revolutionize Immigration in 2024",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "National Innovation Visa (Subclass 858) overview: replacing the Global Talent visa from 6 December 2024 with mandatory ministerial invitations, Form 47NI, and direct permanent residency.",
+    href: "/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt: "Australia National Innovation Visa Subclass 858",
+    publishedDate: "Dec 27, 2024",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {

@@ -208,6 +208,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/recent-cases`,
       lastModified: currentDate,
       changeFrequency: "weekly",
