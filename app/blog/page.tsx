@@ -360,6 +360,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 03, 2025",
     readTime: "3 min read",
   },
+  {
+    id: "how-to-appeal-visa-refusal-administrative-review-tribunal",
+    title:
+      "How to Appeal Your Visa Refusal: A Simple Guide to the Administrative Review Tribunal (ART)",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "A simple guide by Bansal Lawyers on how to appeal a visa refusal to the Administrative Review Tribunal (ART): merits review, 28-day time limits, fees, hearing process, and potential decisions.",
+    href: "/blog/how-to-appeal-visa-refusal-administrative-review-tribunal",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt:
+      "How to Appeal Your Visa Refusal to the Administrative Review Tribunal",
+    publishedDate: "Jan 02, 2025",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
