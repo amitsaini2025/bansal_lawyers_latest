@@ -159,6 +159,14 @@ export default function BlogPage() {
               imageSrc="/images/melbourne-legal-chambers.webp"
               imageAlt="Why Having a Power of Attorney in Australia is Crucial"
             />
+            <BlogCard
+              title="Guide to Successful Co-Parenting After Divorce: Building a Positive Future for Your Family"
+              eyebrow="Family Law"
+              description="Practical advice on successful co-parenting following divorce in Australia: parenting plans, consent orders, family mediation, and putting children's best interests first."
+              href="/blog/guide-to-successful-co-parenting-after-divorce"
+              imageSrc="/images/legal-consultation-clarity.webp"
+              imageAlt="Guide to Successful Co-Parenting After Divorce"
+            />
           </div>
         </Container>
       </Section>
