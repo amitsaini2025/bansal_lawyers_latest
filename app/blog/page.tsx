@@ -317,6 +317,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 07, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "how-to-appeal-visa-refusal-cancellation-art",
+    title:
+      "How to Appeal a Visa Refusal or Cancellation to the Administrative Review Tribunal (ART)",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "A complete guide to Administrative Review Tribunal (ART) visa appeals: 28-day statutory deadlines, fresh evidentiary reviews, hearing procedures, fees, and appeal outcomes.",
+    href: "/blog/how-to-appeal-visa-refusal-cancellation-art",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt:
+      "How to Appeal a Visa Refusal or Cancellation to the Administrative Review Tribunal (ART)",
+    publishedDate: "Jan 06, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
