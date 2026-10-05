@@ -189,6 +189,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 17, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "how-to-divide-finances-and-property",
+    title:
+      "Dividing Finances and Property After Separation in Australia: A Complete Guide",
+    eyebrow: "Family Law",
+    category: "Family Law",
+    description:
+      "A complete guide by Bansal Lawyers on how to divide finances, assets, debts, superannuation, and spousal maintenance after separation or divorce in Australia.",
+    href: "/blog/how-to-divide-finances-and-property-after-separation-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt:
+      "Dividing Finances and Property After Separation in Australia Guide",
+    publishedDate: "Jan 16, 2025",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
