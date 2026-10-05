@@ -151,7 +151,6 @@ const blogArticles: BlogArticleItem[] = [
 
 export default function BlogPage() {
   const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Blog" }];
-  const uniqueCategoriesCount = new Set(blogArticles.map((a) => a.category)).size;
 
   return (
     <>
@@ -175,37 +174,8 @@ export default function BlogPage() {
         </div>
       </section>
 
-      {/* Stats Bar directly below Hero */}
-      <section className="blog-stats-bar">
-        <div className="blog-stats-inner">
-          <div>
-            <div className="blog-stat-value">{blogArticles.length}</div>
-            <div className="blog-stat-label">TOTAL ARTICLES</div>
-          </div>
-
-          <div>
-            <div className="blog-stat-value">{uniqueCategoriesCount}</div>
-            <div className="blog-stat-label">PRACTICE CATEGORIES</div>
-          </div>
-
-          <div>
-            <div className="blog-stat-value">100%</div>
-            <div className="blog-stat-label">EXPERT CONTENT</div>
-          </div>
-        </div>
-      </section>
-
-      <Section tone="warm">
-        <Container>
-          <SectionHeader
-            eyebrow="Legal Publications"
-            title="Latest Articles &amp; Legal Guides"
-          />
-
-          {/* Interactive Client-Side Search, Category Filter, and Pagination */}
-          <BlogListClient articles={blogArticles} />
-        </Container>
-      </Section>
+      {/* Dynamic Stats Bar, Interactive Search, Category Filters, Cards & Pagination */}
+      <BlogListClient articles={blogArticles} />
 
       <CtaSection
         title="Need Advice on a Family or Commercial Law Matter?"
