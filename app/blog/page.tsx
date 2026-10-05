@@ -151,6 +151,14 @@ export default function BlogPage() {
               imageSrc="/images/cases/court-case-review.webp"
               imageAlt="Easy Guide to Administrative Law in Australia"
             />
+            <BlogCard
+              title="Why Having a Power of Attorney in Australia is Crucial"
+              eyebrow="Civil & Estate Law"
+              description="A guide to Powers of Attorney in Australia: General POA, Enduring Power of Attorney (EPOA), Supportive POA, fiduciary duties, and safeguarding your future."
+              href="/blog/why-you-need-power-of-attorney-bansal-lawyers-australia"
+              imageSrc="/images/melbourne-legal-chambers.webp"
+              imageAlt="Why Having a Power of Attorney in Australia is Crucial"
+            />
           </div>
         </Container>
       </Section>
