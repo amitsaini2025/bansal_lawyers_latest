@@ -259,6 +259,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 11, 2025",
     readTime: "5 min read",
   },
+  {
+    id: "top-legal-risks-for-small-businesses",
+    title:
+      "Top 8 Legal Risks for Small Businesses: How Bansal Lawyers Can Help",
+    eyebrow: "Commercial Law",
+    category: "Commercial Law",
+    description:
+      "Understand and manage the top 8 legal risks facing Australian small businesses: tax compliance, consumer disputes, permits, employment, IP, structures, funding, and website terms.",
+    href: "/blog/top-legal-risks-for-small-businesses",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt: "Top 8 Legal Risks for Small Businesses",
+    publishedDate: "Jan 10, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
