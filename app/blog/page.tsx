@@ -111,6 +111,14 @@ export default function BlogPage() {
               imageSrc="/images/melbourne-legal-chambers.webp"
               imageAlt="Top 10 Legal Services in Australia Guide"
             />
+            <BlogCard
+              title="What is the Civil Dispute Resolution Act 2011 A Guide to Settling Disputes Without Court in Australia"
+              eyebrow="Civil Law"
+              description="Learn how the Civil Dispute Resolution Act 2011 (Cth) helps individuals and businesses resolve disputes through genuine steps and mediation before filing in court."
+              href="/blog/what-is-the-civil-dispute-resolution-act-2011-australia"
+              imageSrc="/images/blog/commercial-contracts.webp"
+              imageAlt="Civil Dispute Resolution Act 2011 Guide"
+            />
           </div>
         </Container>
       </Section>
