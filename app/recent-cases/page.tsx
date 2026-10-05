@@ -44,6 +44,17 @@ interface CaseCardItem {
 
 const recentCases: CaseCardItem[] = [
   {
+    title: "Khanal Migration Case Study: English Language Requirements and Flexibility During COVID-19",
+    slug: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+    practiceArea: "Immigration Law",
+    publishedDate: "Apr 11, 2025",
+    publishedTime: "Published Time: Not specified",
+    summary:
+      "Administrative Review Tribunal (ART) decision examining Subclass 485 Temporary Graduate English requirements, Department pandemic flexibility, and substantive compliance during exceptional circumstances.",
+    imageSrc: "/images/cases/court-case-review.webp",
+    isLive: true,
+  },
+  {
     title: "When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case",
     slug: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
     practiceArea: "Immigration Law",

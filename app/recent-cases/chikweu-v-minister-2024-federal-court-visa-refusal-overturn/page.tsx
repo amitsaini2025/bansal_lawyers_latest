@@ -682,6 +682,14 @@ export default function ChikweuCaseDetailPage() {
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   <li>
                     <Link
+                      href="/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study"
+                      style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      Khanal Migration Case Study: English Language Requirements and COVID-19 Flexibility →
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
                       href="/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >

@@ -81,6 +81,11 @@ const nextConfig: NextConfig = {
         destination: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
         permanent: true,
       },
+      {
+        source: "/khanal-migration-english-language-requirements-covid-19-case-study",
+        destination: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+        permanent: true,
+      },
     ];
   },
 };
