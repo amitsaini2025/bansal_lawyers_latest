@@ -175,6 +175,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 18, 2025",
     readTime: "7 min read",
   },
+  {
+    id: "understanding-family-law-court-fees",
+    title:
+      "Understanding Family Law Court Fees in Australia by Bansal Lawyers",
+    eyebrow: "Family Law",
+    category: "Family Law",
+    description:
+      "A guide by Bansal Lawyers to Federal Circuit and Family Court fees in Australia: divorce filing fees, consent orders, conciliation conferences, hearing fees, and hardship exemptions.",
+    href: "/blog/understanding-family-law-court-fees-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt: "Understanding Family Law Court Fees in Australia Guide",
+    publishedDate: "Jan 17, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
