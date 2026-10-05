@@ -119,6 +119,14 @@ export default function BlogPage() {
               imageSrc="/images/blog/commercial-contracts.webp"
               imageAlt="Civil Dispute Resolution Act 2011 Guide"
             />
+            <BlogCard
+              title="Understanding the Closing Loopholes Reforms: Changes for Independent Contractors"
+              eyebrow="Commercial Law"
+              description="A guide to Australia's Fair Work Closing Loopholes No. 2 reforms, contractor vs employee tests, gig worker protections, and the landmark Amita Gupta Uber Eats decision."
+              href="/blog/closing-loopholes-reforms-independent-contractors"
+              imageSrc="/images/blog/commercial-contracts.webp"
+              imageAlt="Closing Loopholes Reforms for Independent Contractors"
+            />
           </div>
         </Container>
       </Section>
