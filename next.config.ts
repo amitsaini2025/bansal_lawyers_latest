@@ -96,6 +96,11 @@ const nextConfig: NextConfig = {
         destination: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
         permanent: true,
       },
+      {
+        source: "/blog/judicial-review-of-migration-decisions-in-australia",
+        destination: "/blog/understanding-judicial-review-of-migration-decisions-in-australia",
+        permanent: true,
+      },
     ];
   },
 };

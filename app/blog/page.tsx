@@ -419,6 +419,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Dec 22, 2024",
     readTime: "3 min read",
   },
+  {
+    id: "understanding-judicial-review-of-migration-decisions-in-australia",
+    title:
+      "Understanding Judicial Review of Migration Decisions in Australia",
+    eyebrow: "Immigration Law",
+    category: "Immigration Law",
+    description:
+      "A comprehensive guide by Bansal Lawyers to judicial review in the Federal Circuit and Family Court of Australia: jurisdictional error, 35-day time limits, affidavit requirements, and hearings.",
+    href: "/blog/understanding-judicial-review-of-migration-decisions-in-australia",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt:
+      "Judicial Review of Migration Decisions in Australia Federal Court",
+    publishedDate: "Dec 19, 2024",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
