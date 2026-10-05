@@ -143,6 +143,14 @@ export default function BlogPage() {
               imageSrc="/images/legal-consultation-clarity.webp"
               imageAlt="Hiding Assets During Divorce in Australia Guide"
             />
+            <BlogCard
+              title="Easy Guide to Administrative Law in Australia by Bansal Lawyers"
+              eyebrow="Administrative Law"
+              description="An introductory guide to administrative law in Australia: statutory functions, merits review, tribunal appeals at the ART, judicial review, and government accountability."
+              href="/blog/administrative-law-explained-expert-guidance-bansal-lawyers"
+              imageSrc="/images/cases/court-case-review.webp"
+              imageAlt="Easy Guide to Administrative Law in Australia"
+            />
           </div>
         </Container>
       </Section>
