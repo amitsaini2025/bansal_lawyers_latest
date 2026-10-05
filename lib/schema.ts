@@ -273,3 +273,47 @@ export function createAboutPageSchema() {
   };
 }
 
+export function createLawyerPersonSchema({
+  name = "Ajay Bansal",
+  jobTitle = "Director & Principal Lawyer",
+  path = "/about/ajay-bansal",
+  image = "/images/team/ajay-bansal-director.webp",
+  description = "Profile of Ajay Bansal, founding Director & Principal Lawyer at Bansal Lawyers Melbourne. Admitted Australian Legal Practitioner with over 15 years of practice.",
+}: {
+  name?: string;
+  jobTitle?: string;
+  path?: string;
+  image?: string;
+  description?: string;
+} = {}) {
+  const url = new URL(path, siteUrl).toString();
+  const imageUrl = new URL(image, siteUrl).toString();
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${url}#person`,
+    name,
+    jobTitle,
+    description,
+    url,
+    image: imageUrl,
+    worksFor: {
+      "@type": "LawFirm",
+      name: "Bansal Lawyers",
+      url: siteUrl,
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Level 8, 278 Collins Street",
+        addressLocality: "Melbourne",
+        addressRegion: "VIC",
+        postalCode: "3000",
+        addressCountry: "AU",
+      },
+      telephone: "0422 905 860",
+    },
+    knowsLanguage: ["English", "Hindi", "Punjabi"],
+    alumniOf: "Supreme Court of Victoria",
+  };
+}
+
