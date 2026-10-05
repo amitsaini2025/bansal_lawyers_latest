@@ -34,6 +34,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/blog/top-10-legal-services-australia-bansal-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/recent-cases`,
       lastModified: currentDate,
       changeFrequency: "weekly",

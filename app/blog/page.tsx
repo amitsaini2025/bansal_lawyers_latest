@@ -103,6 +103,14 @@ export default function BlogPage() {
               imageSrc="/images/legal-consultation-clarity.webp"
               imageAlt="Divorce Lawyers in Melbourne Australia Guide"
             />
+            <BlogCard
+              title="Top 10 Legal Services in Australia"
+              eyebrow="Legal Practice"
+              description="An overview of 10 common legal services in Australia including immigration, family law, criminal defence, employment, property, business law, and civil disputes."
+              href="/blog/top-10-legal-services-australia-bansal-lawyers-melbourne"
+              imageSrc="/images/melbourne-legal-chambers.webp"
+              imageAlt="Top 10 Legal Services in Australia Guide"
+            />
           </div>
         </Container>
       </Section>
