@@ -44,6 +44,17 @@ interface CaseCardItem {
 
 const recentCases: CaseCardItem[] = [
   {
+    title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
+    slug: "/student-visa-refusal-bias-jaggi-v-minister-2024",
+    practiceArea: "Immigration Law",
+    publishedDate: "Apr 11, 2025",
+    publishedTime: "Published Time: Not specified",
+    summary:
+      "Federal Circuit and Family Court decision upholding judicial review of an AAT student visa refusal where member comments and conduct created an apprehension of bias constituting jurisdictional error.",
+    imageSrc: "/images/cases/court-case-review.webp",
+    isLive: true,
+  },
+  {
     title: "Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review",
     slug: "/thakur-v-minister-for-immigration-2025-student-visa",
     practiceArea: "Immigration Law",
