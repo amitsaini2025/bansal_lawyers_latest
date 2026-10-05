@@ -37,6 +37,7 @@ export function BlogListClient({ articles }: BlogListClientProps) {
       "Commercial Law",
       "Civil & Estate Law",
       "Administrative Law",
+      "Property Law",
       "Legal Practice",
     ];
     const presentCategories = new Set(articles.map((a) => a.category));

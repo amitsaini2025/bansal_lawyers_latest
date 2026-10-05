@@ -147,6 +147,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 21, 2025",
     readTime: "3 min read",
   },
+  {
+    id: "breaking-rental-agreement-early",
+    title:
+      "Breaking a Rental Agreement Early in Australia: Your Legal Rights Explained by Bansal Lawyers",
+    eyebrow: "Property Law",
+    category: "Property Law",
+    description:
+      "Understand tenant rights when breaking a rental agreement early in Australia: lease break costs, compensation rules, VCAT severe hardship applications, and notice periods.",
+    href: "/blog/breaking-rental-agreement-early-in-australia",
+    imageSrc: "/images/melbourne-legal-chambers.webp",
+    imageAlt: "Breaking a Rental Agreement Early in Australia Guide",
+    publishedDate: "Jan 20, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {
