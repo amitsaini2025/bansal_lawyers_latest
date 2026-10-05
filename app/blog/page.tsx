@@ -332,6 +332,21 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 06, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "difference-between-courts-and-administrative-review-tribunal",
+    title:
+      "Understanding the Difference Between the Courts and the Administrative Review Tribunal (ART)",
+    eyebrow: "Administrative Law",
+    category: "Administrative Law",
+    description:
+      "Understand the key differences between the Courts (Judicial Review) and the Administrative Review Tribunal (Merits Review) when challenging government decisions in Australia.",
+    href: "/blog/difference-between-courts-and-administrative-review-tribunal",
+    imageSrc: "/images/cases/court-case-review.webp",
+    imageAlt:
+      "Understanding the Difference Between the Courts and the Administrative Review Tribunal",
+    publishedDate: "Jan 04, 2025",
+    readTime: "4 min read",
+  },
 ];
 
 export default function BlogPage() {

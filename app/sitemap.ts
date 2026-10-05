@@ -160,6 +160,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/blog/difference-between-courts-and-administrative-review-tribunal`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/recent-cases`,
       lastModified: currentDate,
       changeFrequency: "weekly",
