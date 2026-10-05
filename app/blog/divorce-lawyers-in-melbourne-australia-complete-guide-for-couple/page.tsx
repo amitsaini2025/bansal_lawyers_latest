@@ -105,43 +105,6 @@ export default function DivorceGuideArticlePage() {
       >
         <Container>
           <div style={{ maxWidth: "56rem", margin: "0 auto" }}>
-            <div
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: "0.5rem",
-                marginBottom: "1.25rem",
-                flexWrap: "wrap",
-              }}
-            >
-              <Link
-                href="/blog"
-                style={{
-                  display: "inline-block",
-                  fontSize: "0.82rem",
-                  fontWeight: 700,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.08em",
-                  color: "#93c5fd",
-                  background: "rgba(147, 197, 253, 0.12)",
-                  padding: "0.3rem 0.75rem",
-                  borderRadius: "3px",
-                  border: "1px solid rgba(147, 197, 253, 0.25)",
-                  textDecoration: "none",
-                }}
-              >
-                Blog
-              </Link>
-              <span
-                style={{
-                  fontSize: "0.82rem",
-                  color: "rgba(255, 255, 255, 0.75)",
-                  letterSpacing: "0.04em",
-                }}
-              >
-                Family Law Legal Guide
-              </span>
-            </div>
 
             <h1
               style={{

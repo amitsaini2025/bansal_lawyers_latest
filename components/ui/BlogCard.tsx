@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ButtonLink } from "@/components/ui/Button";
 import type { CardContent } from "@/types/content";
 
@@ -37,12 +38,17 @@ export function BlogCard({
         )}
       </div>
       <div className="blog-card__content">
-        {eyebrow && <span className="eyebrow">{eyebrow}</span>}
-        <h3>{title}</h3>
-        <p>{description}</p>
-        <ButtonLink href={href} variant="text">
-          Read Article
-        </ButtonLink>
+        {eyebrow && <span className="blog-card__tag">{eyebrow}</span>}
+        <h3 className="blog-card__title">
+          <Link href={href} style={{ color: "inherit", textDecoration: "none" }}>
+            {title}
+          </Link>
+        </h3>
+        <div style={{ marginTop: "1.25rem" }}>
+          <ButtonLink href={href} variant="primary" className="button--full">
+            Read Guide
+          </ButtonLink>
+        </div>
       </div>
     </article>
   );
