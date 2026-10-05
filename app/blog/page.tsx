@@ -273,6 +273,20 @@ const blogArticles: BlogArticleItem[] = [
     publishedDate: "Jan 10, 2025",
     readTime: "4 min read",
   },
+  {
+    id: "divorce-laws-india-vs-australia",
+    title:
+      "Understanding the Divorce Process in India and Australia: Key Differences Explained",
+    eyebrow: "Family Law",
+    category: "Family Law",
+    description:
+      "A comprehensive comparison of divorce laws in India and Australia: fault vs no-fault grounds, religious vs secular courts, mutual consent timelines, child custody, and jurisdiction.",
+    href: "/blog/divorce-laws-india-vs-australia",
+    imageSrc: "/images/legal-consultation-clarity.webp",
+    imageAlt: "Understanding the Divorce Process in India and Australia",
+    publishedDate: "Jan 09, 2025",
+    readTime: "5 min read",
+  },
 ];
 
 export default function BlogPage() {
