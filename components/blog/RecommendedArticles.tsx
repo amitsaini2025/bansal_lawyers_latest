@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import {
@@ -26,14 +26,6 @@ export function RecommendedArticles({
   const [articles, setArticles] = useState<BlogArticle[]>(() =>
     getRecommendedArticles(currentHref, count)
   );
-
-  // Randomize suggestions on client mount to offer varied reading topics
-  useEffect(() => {
-    const random = getRandomRecommendedArticles(currentHref, count);
-    if (random && random.length > 0) {
-      setArticles(random);
-    }
-  }, [currentHref, count]);
 
   const handleShuffle = () => {
     const random = getRandomRecommendedArticles(currentHref, count);

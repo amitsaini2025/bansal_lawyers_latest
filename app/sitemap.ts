@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import {
-  articleSlugs,
   policySlugs,
   siteUrl,
 } from "@/lib/site";
@@ -557,12 +556,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
-    url: `${siteUrl}/blog/${slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // These routes were added after the initial sitemap. Keeping them in a compact
+  // list makes omissions obvious when a new public service page is introduced.
+  const additionalPublicRoutes = [
+    "/about/ajay-bansal",
+    "/about/michael-saleh",
+    "/civil-lawyers-melbourne/business-related-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/civil-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/civil-litigation-lawyer-melbourne",
+    "/civil-lawyers-melbourne/contract-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/court-document-preparation-lawyer-melbourne",
+    "/civil-lawyers-melbourne/debt-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/document-preparation-lawyer-melbourne",
+    "/civil-lawyers-melbourne/legal-notice-lawyer-melbourne",
+    "/civil-lawyers-melbourne/negotiation-support-lawyer-melbourne",
+    "/civil-lawyers-melbourne/property-related-dispute-lawyer-melbourne",
+    "/commercial-lawyers-melbourne/business-legal-advice-lawyer-melbourne",
+    "/commercial-lawyers-melbourne/commercial-agreement-lawyer-melbourne",
+    "/commercial-lawyers-melbourne/negotiations-settlements-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/assault-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/bail-application-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/court-representation-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/criminal-defence-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/drink-driving-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/drug-offence-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/family-violence-criminal-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/fraud-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/intervention-order-breach-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/police-interview-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/theft-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/traffic-offence-lawyer-melbourne",
+  ] as const;
+
+  const additionalRoutes: MetadataRoute.Sitemap = additionalPublicRoutes.map(
+    (path) => ({
+      url: `${siteUrl}${path}`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })
+  );
 
   const policyRoutes: MetadataRoute.Sitemap = policySlugs.map((slug) => ({
     url: `${siteUrl}/legal/${slug}`,
@@ -571,5 +604,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.3,
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...policyRoutes];
+  return [...staticRoutes, ...additionalRoutes, ...policyRoutes];
 }

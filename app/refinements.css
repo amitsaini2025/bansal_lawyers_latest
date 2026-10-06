@@ -64,6 +64,7 @@ html { scroll-padding-top: 8.5rem; }
 .site-main--refined .section-header p { max-width: 65ch; line-height: 1.7; }
 .site-main--refined .section-header--center p { margin-inline: auto; }
 .site-main--refined .hero__content > p { font-size: clamp(1rem, 1.35vw, 1.1rem); }
+.site-main--refined .policy-meta { display: flex; flex-wrap: wrap; gap: .5rem 1.25rem; }
 .site-main--refined .hero__content a:not(.button) { color: #bcd5f5 !important; }
 .site-main--refined .hero__actions .button { box-shadow: none; }
 .site-main--refined .hero-typing-dynamic-line {
@@ -310,6 +311,113 @@ html { scroll-padding-top: 8.5rem; }
 .site-main--refined .contact-intro-card { border-radius: var(--modern-radius); }
 .site-main--refined .office-map-frame { border-radius: var(--modern-radius); }
 
+/* Practitioner profiles use one calm, responsive layout instead of page-specific overlays. */
+.site-main--refined .practitioner-hero {
+  color: #fff;
+  background: linear-gradient(135deg, #081a32 0%, #123862 100%);
+}
+.site-main--refined .practitioner-hero__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(18rem, .75fr);
+  align-items: center;
+  gap: clamp(2rem, 6vw, 5.5rem);
+  padding-block: clamp(3.5rem, 7vw, 6rem);
+}
+.site-main--refined .practitioner-hero__content { max-width: 44rem; }
+.site-main--refined .practitioner-hero__label,
+.site-main--refined .practitioner-profile__label {
+  margin: 0 0 .75rem;
+  color: #bcd5f5;
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.site-main--refined .practitioner-hero h1 {
+  margin: 0;
+  color: #fff;
+  font-size: clamp(2.6rem, 5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -.035em;
+}
+.site-main--refined .practitioner-hero__role {
+  margin: .8rem 0 1.15rem;
+  color: #bcd5f5;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  font-weight: 600;
+}
+.site-main--refined .practitioner-hero__summary {
+  max-width: 42rem;
+  margin: 0;
+  color: rgb(255 255 255 / 82%);
+  font-size: 1.05rem;
+  line-height: 1.75;
+}
+.site-main--refined .practitioner-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .85rem;
+  margin-top: 2rem;
+}
+.site-main--refined .practitioner-hero__actions .button { min-width: 12.5rem; justify-content: center; }
+.site-main--refined .practitioner-hero__portrait {
+  position: relative;
+  width: min(100%, 25rem);
+  aspect-ratio: 4 / 5;
+  margin-inline: auto;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 22%);
+  border-radius: var(--modern-radius);
+  background: #0b203d;
+  box-shadow: 0 18px 44px rgb(1 10 23 / 28%);
+}
+.site-main--refined .practitioner-hero__portrait img { object-fit: cover; object-position: top center; }
+.site-main--refined .practitioner-profile__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(16rem, 21rem);
+  align-items: start;
+  gap: clamp(2rem, 6vw, 6rem);
+}
+.site-main--refined .practitioner-profile__biography > h2,
+.site-main--refined .practitioner-profile__focus > h2,
+.site-main--refined .practitioner-profile__details h2 {
+  margin: 0 0 1.25rem;
+  color: var(--navy-950);
+  font-size: clamp(1.7rem, 3vw, 2.35rem);
+  line-height: 1.2;
+}
+.site-main--refined .practitioner-profile__label { color: var(--brand-blue); }
+.site-main--refined .practitioner-profile__prose { display: grid; gap: 1rem; max-width: 68ch; }
+.site-main--refined .practitioner-profile__prose p { margin: 0; color: var(--ink-secondary); font-size: 1.03rem; line-height: 1.8; }
+.site-main--refined .practitioner-profile__focus { margin-top: clamp(2.75rem, 5vw, 4rem); }
+.site-main--refined .practitioner-profile__focus > h2 { font-size: clamp(1.45rem, 2.4vw, 1.85rem); }
+.site-main--refined .practitioner-profile__focus-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; }
+.site-main--refined .practitioner-focus-card {
+  min-height: 100%;
+  padding: 1.35rem;
+  border: 1px solid var(--modern-line);
+  border-radius: 12px;
+  background: var(--modern-muted);
+}
+.site-main--refined .practitioner-focus-card h3 { margin: 0 0 .55rem; color: var(--navy-950); font-size: 1.05rem; line-height: 1.35; }
+.site-main--refined .practitioner-focus-card p { margin: 0; color: var(--ink-secondary); font-size: .94rem; line-height: 1.65; }
+.site-main--refined .practitioner-profile__details {
+  position: sticky;
+  top: 6.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--modern-line);
+  border-radius: var(--modern-radius);
+  background: #fff;
+  box-shadow: var(--modern-shadow);
+}
+.site-main--refined .practitioner-profile__details h2 { font-size: 1.35rem; }
+.site-main--refined .practitioner-profile__details dl { display: grid; gap: 1rem; margin: 0 0 1.5rem; }
+.site-main--refined .practitioner-profile__details dl > div { padding-bottom: 1rem; border-bottom: 1px solid var(--modern-line); }
+.site-main--refined .practitioner-profile__details dl > div:last-child { padding-bottom: 0; border-bottom: 0; }
+.site-main--refined .practitioner-profile__details dt { color: var(--muted); font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+.site-main--refined .practitioner-profile__details dd { margin: .28rem 0 0; color: var(--navy-950); font-size: .95rem; font-weight: 600; line-height: 1.45; }
+.site-main--refined .practitioner-profile__details .button { width: 100%; justify-content: center; }
+
 @media (max-width: 640px) {
   .site-main--refined .section { padding-block: 3.25rem; }
   .site-main--refined .section-header { margin-bottom: 1.75rem; }
@@ -320,6 +428,13 @@ html { scroll-padding-top: 8.5rem; }
   .site-main--refined .trust-bar li { min-height: 3.75rem; }
   .site-main--refined .practice-card,
   .site-main--refined .process-card { padding: 1.35rem; }
+  .site-main--refined .practitioner-hero__grid,
+  .site-main--refined .practitioner-profile__grid { grid-template-columns: 1fr; }
+  .site-main--refined .practitioner-hero__grid { padding-block: 3.25rem; }
+  .site-main--refined .practitioner-hero__portrait { width: min(100%, 22rem); order: -1; }
+  .site-main--refined .practitioner-hero__actions .button { width: 100%; }
+  .site-main--refined .practitioner-profile__focus-grid { grid-template-columns: 1fr; }
+  .site-main--refined .practitioner-profile__details { position: static; }
 }
 
 @media (max-width: 1080px) {

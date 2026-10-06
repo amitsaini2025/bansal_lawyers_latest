@@ -49,9 +49,13 @@ export function DynamicArticleMeta({
       const counted = cleaned.split(" ").filter((w) => w.length > 0).length;
 
       if (counted > 40) {
-        setWords(counted);
-        const minutes = Math.max(1, Math.ceil(counted / 200));
-        setReadTime(`${minutes} min read`);
+        const animationFrame = window.requestAnimationFrame(() => {
+          setWords(counted);
+          const minutes = Math.max(1, Math.ceil(counted / 200));
+          setReadTime(`${minutes} min read`);
+        });
+
+        return () => window.cancelAnimationFrame(animationFrame);
       }
     }
   }, [contentSelector]);
