@@ -133,6 +133,29 @@ const practiceClusters = [
   },
 ];
 
+const legalTeamMembers = [
+  {
+    name: "Ajay Bansal",
+    role: "Director & Principal Lawyer",
+    email: "info@bansallawyers.com.au",
+    phone: "0422 905 860",
+    phoneHref: "tel:+61422905860",
+    profileHref: "/about/ajay-bansal",
+    image: "/images/team/ajay-bansal-director.webp",
+    alt: "Ajay Bansal - Director & Principal Lawyer at Bansal Lawyers Melbourne",
+  },
+  {
+    name: "Michael Saleh",
+    role: "Solicitor",
+    email: "info@bansallawyers.com.au",
+    phone: "0422 905 860",
+    phoneHref: "tel:+61422905860",
+    profileHref: "/about/michael-saleh",
+    image: "/images/team/michael-saleh-solicitor.png",
+    alt: "Michael Saleh - Solicitor at Bansal Lawyers Melbourne",
+  },
+];
+
 export default function AboutPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
@@ -213,123 +236,93 @@ export default function AboutPage() {
         </div>
       </Section>
 
-      {/* 3. Meet Our Team Section (Side-by-Side in a Single Section) */}
-      <Section tone="warm" id="our-team">
+      {/* 3. Meet Our Team Section (Clean Showcase Matching Design Spec) */}
+      <Section tone="white" id="our-team">
         <Container>
-          <SectionHeader
-            eyebrow="Legal Leadership & Practitioners"
-            title="Meet Our Legal Team"
-            intro="Experienced Melbourne legal professionals committed to clear communication, thorough preparation, and practical advice."
-          />
+          <div className="team-clean-header">
+            <div className="team-clean-eyebrow">
+              <span className="team-clean-eyebrow__line" aria-hidden="true" />
+              <span>LEGAL PRACTITIONERS</span>
+              <span className="team-clean-eyebrow__line" aria-hidden="true" />
+            </div>
+            <h2 className="team-clean-title">
+              Meet Our <span className="team-clean-title__serif">Legal Team</span>
+            </h2>
+            <p className="team-clean-intro">
+              Experienced Melbourne legal professionals committed to clear communication, thorough preparation, and practical advice.
+            </p>
+          </div>
 
-          <div className="about-team-grid">
-            {/* Person 1: Ajay Bansal */}
-            <article className="team-card-compact">
-              <div className="team-card-compact__media">
-                <Image
-                  src="/images/team/ajay-bansal-director.webp"
-                  alt="Ajay Bansal - Director & Principal Lawyer at Bansal Lawyers Melbourne"
-                  width={768}
-                  height={1024}
-                  sizes="(max-width: 860px) 100vw, 540px"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "top center",
-                    display: "block",
-                  }}
-                />
-              </div>
+          <div className="team-clean-grid">
+            {legalTeamMembers.map((member) => (
+              <article key={member.name} className="team-clean-card">
+                <Link
+                  href={member.profileHref}
+                  className="team-clean-card__media-link"
+                  title={`View ${member.name}'s profile`}
+                >
+                  <Image
+                    src={member.image}
+                    alt={member.alt}
+                    fill
+                    sizes="(max-width: 580px) 100vw, (max-width: 1080px) 50vw, 25vw"
+                    className="team-clean-card__img"
+                  />
+                </Link>
 
-              <div className="team-card-compact__body">
-                <div className="team-card-compact__header">
-                  <div>
-                    <h3 className="team-card-compact__name">Ajay Bansal</h3>
-                    <span className="team-card-compact__role">Director & Principal Lawyer</span>
+                <div className="team-clean-card__content">
+                  <h3 className="team-clean-card__name">
+                    <Link href={member.profileHref}>
+                      {member.name}
+                    </Link>
+                  </h3>
+                  <a
+                    href={`mailto:${member.email}`}
+                    className="team-clean-card__email"
+                    title={`Email ${member.name}`}
+                  >
+                    {member.email}
+                  </a>
+                  <p className="team-clean-card__role">{member.role}</p>
+
+                  <div className="team-clean-card__socials">
+                    <a
+                      href={member.phoneHref}
+                      className="team-clean-card__icon-link"
+                      title={`Call ${member.name}: ${member.phone}`}
+                      aria-label={`Call ${member.name}`}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+                      </svg>
+                    </a>
+                    <a
+                      href={`mailto:${member.email}`}
+                      className="team-clean-card__icon-link"
+                      title={`Send email to ${member.name}`}
+                      aria-label={`Send email to ${member.name}`}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+                        <polyline points="22,6 12,13 2,6" />
+                      </svg>
+                    </a>
+                    <Link
+                      href={member.profileHref}
+                      className="team-clean-card__icon-link"
+                      title={`View ${member.name}'s profile`}
+                      aria-label={`View ${member.name}'s profile`}
+                    >
+                      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+                        <circle cx="8.5" cy="7" r="4" />
+                        <polyline points="17 11 19 13 23 9" />
+                      </svg>
+                    </Link>
                   </div>
-                  <span className="team-member-badge">15+ Years Legal Experience</span>
                 </div>
-
-                <div className="team-card-compact__bio">
-                  <p>
-                    Ajay Bansal is the founding Director of Bansal Lawyers. He brings over 15 years of legal experience to the firm and has worked with clients across a wide range of legal matters in Australia.
-                  </p>
-                  <p>
-                    His work covers immigration law, family law, property law, commercial law, criminal law, and civil matters. Over the years, he has assisted hundreds of clients with legal issues involving visas, family disputes, business matters, property transactions, criminal charges, and other legal concerns.
-                  </p>
-                  <p>
-                    Ajay’s approach is straightforward. He focuses on understanding the client’s situation, explaining the legal position clearly, and helping the client make informed decisions.
-                  </p>
-                  <p>
-                    He believes clients should not be left confused by legal language or unclear processes. His focus is on practical advice, careful preparation, and professional support at each stage of the matter.
-                  </p>
-                </div>
-
-                <div className="team-card-compact__meta">
-                  <div className="team-card-compact__languages">
-                    <strong>Languages Spoken:</strong> English, Hindi, Punjabi
-                  </div>
-                  <Link href="/contact" className="button button--primary button--compact" style={{ width: "100%", justifyContent: "center" }}>
-                    Schedule Consultation With Ajay Bansal →
-                  </Link>
-                </div>
-              </div>
-            </article>
-
-            {/* Person 2: Michael Saleh */}
-            <article className="team-card-compact">
-              <div className="team-card-compact__media">
-                <Image
-                  src="/images/team/michael-saleh-solicitor.png"
-                  alt="Michael Saleh - Solicitor at Bansal Lawyers Melbourne"
-                  width={822}
-                  height={1024}
-                  sizes="(max-width: 860px) 100vw, 540px"
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    objectFit: "cover",
-                    objectPosition: "top center",
-                    display: "block",
-                  }}
-                />
-              </div>
-
-              <div className="team-card-compact__body">
-                <div className="team-card-compact__header">
-                  <div>
-                    <h3 className="team-card-compact__name">Michael Saleh</h3>
-                    <span className="team-card-compact__role">Solicitor</span>
-                  </div>
-                  <span className="team-member-badge">Supreme Court of Victoria</span>
-                </div>
-
-                <div className="team-card-compact__bio">
-                  <p>
-                    Michael Saleh is a solicitor at Bansal Lawyers. He is admitted to the Supreme Court of Victoria and holds a Bachelor of Laws and a Graduate Diploma of Legal Practice.
-                  </p>
-                  <p>
-                    Michael has experience across criminal law, family law, civil litigation, and commercial matters. He has appeared in the Magistrates’ Court, the Federal Circuit and Family Court of Australia, and VCAT.
-                  </p>
-                  <p>
-                    His work involves helping clients understand legal documents, court processes, dispute issues, and practical next steps. Michael takes a clear and measured approach when advising clients, especially in matters that involve stress, urgency, or uncertainty.
-                  </p>
-                  <p>
-                    He works closely with clients to review evidentiary requirements, formulate dispute strategies, and represent their rights vigorously before Victorian courts and tribunals.
-                  </p>
-                </div>
-
-                <div className="team-card-compact__meta">
-                  <div className="team-card-compact__languages">
-                    <strong>Languages Spoken:</strong> English, Arabic
-                  </div>
-                  <Link href="/contact" className="button button--primary button--compact" style={{ width: "100%", justifyContent: "center" }}>
-                    Schedule Consultation With Michael Saleh →
-                  </Link>
-                </div>
-              </div>
-            </article>
+              </article>
+            ))}
           </div>
         </Container>
       </Section>

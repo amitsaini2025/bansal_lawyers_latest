@@ -1,6 +1,5 @@
 import type { MetadataRoute } from "next";
 import {
-  articleSlugs,
   policySlugs,
   siteUrl,
 } from "@/lib/site";
@@ -25,6 +24,240 @@ export default function sitemap(): MetadataRoute.Sitemap {
       url: `${siteUrl}/blog`,
       lastModified: currentDate,
       changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/divorce-lawyers-in-melbourne-australia-complete-guide-for-couple`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/top-10-legal-services-australia-bansal-lawyers-melbourne`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/what-is-the-civil-dispute-resolution-act-2011-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/closing-loopholes-reforms-independent-contractors`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/how-to-build-strong-brand-legal-considerations-for-your-business-identity-in-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/hiding-assets-during-divorce-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/administrative-law-explained-expert-guidance-bansal-lawyers`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/why-you-need-power-of-attorney-bansal-lawyers-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/guide-to-successful-co-parenting-after-divorce`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/breaking-rental-agreement-early-in-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/parenting-arrangements-after-divorce-in-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/understanding-family-law-court-fees-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/how-to-divide-finances-and-property-after-separation-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/step-by-step-guide-applying-divorce-in-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/understanding-administrative-law-bansal-lawyers`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/why-you-need-power-of-attorney-today`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/noicc-visa-cancellation-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/top-legal-risks-for-small-businesses`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/divorce-laws-india-vs-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/understanding-de-facto-relationship-vs-marriage-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/understanding-affidavits-statutory-declarations-statements-of-evidence`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/how-to-appeal-visa-refusal-cancellation-art`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/difference-between-courts-and-administrative-review-tribunal`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/human-rights-legal-recourse-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/how-to-appeal-visa-refusal-administrative-review-tribunal`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/visa-refusal-australia-review-appeal-bansal-lawyers`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/exciting-changes-to-australias-administrative-review-system`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/important-changes-to-student-visa-processing-ministerial-direction`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/understanding-judicial-review-of-migration-decisions-in-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/blog/navigating-corporate-litigation`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/recent-cases`,
+      lastModified: currentDate,
+      changeFrequency: "weekly",
+      priority: 0.85,
+    },
+    {
+      url: `${siteUrl}/recent-cases/thakur-v-minister-for-immigration-2025-student-visa`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
+      url: `${siteUrl}/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
       priority: 0.8,
     },
     {
@@ -323,12 +556,46 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
   ];
 
-  const blogRoutes: MetadataRoute.Sitemap = articleSlugs.map((slug) => ({
-    url: `${siteUrl}/blog/${slug}`,
-    lastModified: currentDate,
-    changeFrequency: "monthly",
-    priority: 0.7,
-  }));
+  // These routes were added after the initial sitemap. Keeping them in a compact
+  // list makes omissions obvious when a new public service page is introduced.
+  const additionalPublicRoutes = [
+    "/about/ajay-bansal",
+    "/about/michael-saleh",
+    "/civil-lawyers-melbourne/business-related-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/civil-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/civil-litigation-lawyer-melbourne",
+    "/civil-lawyers-melbourne/contract-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/court-document-preparation-lawyer-melbourne",
+    "/civil-lawyers-melbourne/debt-dispute-lawyer-melbourne",
+    "/civil-lawyers-melbourne/document-preparation-lawyer-melbourne",
+    "/civil-lawyers-melbourne/legal-notice-lawyer-melbourne",
+    "/civil-lawyers-melbourne/negotiation-support-lawyer-melbourne",
+    "/civil-lawyers-melbourne/property-related-dispute-lawyer-melbourne",
+    "/commercial-lawyers-melbourne/business-legal-advice-lawyer-melbourne",
+    "/commercial-lawyers-melbourne/commercial-agreement-lawyer-melbourne",
+    "/commercial-lawyers-melbourne/negotiations-settlements-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/assault-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/bail-application-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/court-representation-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/criminal-defence-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/drink-driving-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/drug-offence-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/family-violence-criminal-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/fraud-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/intervention-order-breach-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/police-interview-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/theft-lawyer-melbourne",
+    "/criminal-lawyers-melbourne/traffic-offence-lawyer-melbourne",
+  ] as const;
+
+  const additionalRoutes: MetadataRoute.Sitemap = additionalPublicRoutes.map(
+    (path) => ({
+      url: `${siteUrl}${path}`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    })
+  );
 
   const policyRoutes: MetadataRoute.Sitemap = policySlugs.map((slug) => ({
     url: `${siteUrl}/legal/${slug}`,
@@ -337,5 +604,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.3,
   }));
 
-  return [...staticRoutes, ...blogRoutes, ...policyRoutes];
+  return [...staticRoutes, ...additionalRoutes, ...policyRoutes];
 }

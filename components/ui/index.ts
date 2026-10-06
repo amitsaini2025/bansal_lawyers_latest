@@ -10,7 +10,7 @@ export type { BlogCardProps } from "./BlogCard";
 export { ProcessSteps } from "./ProcessSteps";
 export { Faq } from "./Faq";
 export { TypingHeroTitle } from "./TypingHeroTitle";
-export { HeroBookingPlaceholder } from "./HeroBookingPlaceholder";
+export { HeroBookingPlaceholder, HeroContactForm } from "./HeroBookingPlaceholder";
 
 // Layout & Section component re-exports for unified import ergonomics
 export { Container } from "@/components/layout/Container";

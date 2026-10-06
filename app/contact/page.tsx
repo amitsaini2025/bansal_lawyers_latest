@@ -321,14 +321,7 @@ export default function ContactPage() {
 
       {/* Section 7: FAQ Section */}
       <Section tone="white" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Frequently Asked Questions"
-            title="Contact Bansal Lawyers FAQs"
-            intro="Common questions regarding contacting our office, scheduling legal consultations, and discussing your matter."
-          />
-          <Faq items={contactFaqs} />
-        </Container>
+        <Faq items={contactFaqs} subtitle="Common questions regarding contacting our office, scheduling legal consultations, and discussing your matter." />
       </Section>
 
       {/* Section 8: Final CTA */}

@@ -450,14 +450,7 @@ export default function ConsentOrdersLawyerMelbournePage() {
 
       {/* 10. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Clear answers to common questions about consent orders, property settlements, and parenting agreements in Victoria."
-          />
-          <Faq items={consentOrdersFaqs} />
-        </Container>
+        <Faq items={consentOrdersFaqs} subtitle="Clear answers to common questions about consent orders, property settlements, and parenting agreements in Victoria." />
       </Section>
     </>
   );

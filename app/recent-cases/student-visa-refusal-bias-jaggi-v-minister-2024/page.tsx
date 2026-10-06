@@ -17,18 +17,19 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Thakur v Minister for Immigration 2025 | Student Visa Judicial Review",
+  title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
   description:
-    "Case summary of Thakur v Minister for Immigration and Citizenship 2025 involving Student Visa Subclass 500 refusal, GTE concerns, AAT review and jurisdictional error.",
-  path: "/thakur-v-minister-for-immigration-2025-student-visa",
+    "Case summary of Jaggi v Minister for Immigration [2024] FedCFamC2G 1267 involving student visa Subclass 500 refusal, GTE criteria, AAT hearing conduct, and apprehended bias.",
+  path: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
   keywords: [
-    "Thakur v Minister for Immigration 2025",
+    "Jaggi v Minister 2024",
+    "Apprehended Bias Student Visa Refusal",
+    "Jaggi v Minister for Immigration",
     "Student Visa Judicial Review",
-    "Student Visa Refusal Australia",
-    "GTE Requirement Student Visa",
-    "Subclass 500 Refusal",
-    "Immigration Judicial Review Australia",
-    "Jurisdictional Error Migration Decision",
+    "AAT Apprehended Bias",
+    "GTE Criterion Student Visa",
+    "Subclass 500 Refusal Judicial Review",
+    "Immigration Lawyer Melbourne",
   ],
 });
 
@@ -65,39 +66,11 @@ const relatedServices = [
   },
 ];
 
-const relatedRecentCasesPlaceholders = [
-  {
-    title: "More immigration case updates coming soon",
-    category: "Immigration Law",
-    status: "Upcoming Analysis",
-  },
-  {
-    title: "Student visa refusal updates",
-    category: "Student Visas (Subclass 500)",
-    status: "Upcoming Analysis",
-  },
-  {
-    title: "Visa cancellation case updates",
-    category: "Section 501 / 116 Cancellations",
-    status: "Upcoming Analysis",
-  },
-  {
-    title: "ART appeal updates",
-    category: "Administrative Review Tribunal",
-    status: "Upcoming Analysis",
-  },
-  {
-    title: "Judicial review updates",
-    category: "Federal Circuit & Family Court",
-    status: "Upcoming Analysis",
-  },
-];
-
-export default function ThakurCaseDetailPage() {
+export default function JaggiCaseDetailPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Recent Cases", href: "/recent-cases" },
-    { label: "Thakur v Minister for Immigration and Citizenship 2025" },
+    { label: "Jaggi v Minister for Immigration [2024]" },
   ];
 
   return (
@@ -106,12 +79,12 @@ export default function ThakurCaseDetailPage() {
       <StructuredData
         data={createCaseUpdateSchema({
           headline:
-            "Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review",
+            "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
           description:
-            "Case summary of Thakur v Minister for Immigration and Citizenship 2025 involving Student Visa Subclass 500 refusal, GTE concerns, AAT review and jurisdictional error.",
-          path: "/thakur-v-minister-for-immigration-2025-student-visa",
-          datePublished: "2025-08-23",
-          dateModified: "2025-08-23",
+            "Case summary of Jaggi v Minister for Immigration, Citizenship and Multicultural Affairs [2024] FedCFamC2G 1267 involving student visa Subclass 500 refusal, GTE criteria, and apprehended bias.",
+          path: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
+          datePublished: "2025-04-11",
+          dateModified: "2025-04-11",
           articleSection: "Immigration Law",
         })}
       />
@@ -160,7 +133,7 @@ export default function ThakurCaseDetailPage() {
                   letterSpacing: "0.04em",
                 }}
               >
-                Case Summary & Legal Update
+                Case Summary &amp; Legal Update
               </span>
             </div>
 
@@ -173,7 +146,7 @@ export default function ThakurCaseDetailPage() {
                 margin: "0 0 1.25rem",
               }}
             >
-              Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review
+              Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained
             </h1>
 
             <div
@@ -189,10 +162,10 @@ export default function ThakurCaseDetailPage() {
               }}
             >
               <span>
-                <strong>Published:</strong> Aug 23, 2025
+                <strong>Published:</strong> Apr 11, 2025
               </span>
               <span>
-                <strong>Published Time:</strong> Not specified
+                <strong>Citation:</strong> [2024] FedCFamC2G 1267
               </span>
               <span>
                 <strong>Jurisdiction:</strong> Federal Circuit and Family Court of Australia
@@ -206,7 +179,7 @@ export default function ThakurCaseDetailPage() {
         items={[
           "Federal Circuit & Family Court Decision",
           "Student Visa (Subclass 500) Judicial Review",
-          "AAT Jurisdictional Error Analysis",
+          "Apprehended Bias Jurisdictional Error",
           "Independent Legal Commentary",
         ]}
       />
@@ -241,10 +214,18 @@ export default function ThakurCaseDetailPage() {
             </div>
 
             {/* Featured Legal Brief Visual */}
-            <div style={{ marginBottom: "2rem", borderRadius: "var(--radius-md)", overflow: "hidden", border: "1px solid var(--line)", boxShadow: "var(--shadow)" }}>
+            <div
+              style={{
+                marginBottom: "2rem",
+                borderRadius: "var(--radius-md)",
+                overflow: "hidden",
+                border: "1px solid var(--line)",
+                boxShadow: "var(--shadow)",
+              }}
+            >
               <Image
                 src="/images/cases/court-case-review.webp"
-                alt="Federal Court of Australia Legal Brief - Thakur v Minister for Immigration 2025"
+                alt="Federal Court of Australia Legal Brief - Jaggi v Minister 2024"
                 width={1200}
                 height={675}
                 sizes="(max-width: 900px) 100vw, 860px"
@@ -261,168 +242,201 @@ export default function ThakurCaseDetailPage() {
             <article className="case-content" style={{ color: "var(--ink)", fontSize: "1.05rem", lineHeight: "1.8" }}>
               <div style={{ marginBottom: "1.5rem" }}>
                 <h2 style={{ fontSize: "1.5rem", color: "var(--brand-blue)", marginBottom: "0.5rem" }}>
-                  Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review
+                  Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained
                 </h2>
                 <p style={{ color: "var(--ink-secondary)", fontSize: "0.95rem", marginBottom: "0.5rem" }}>
-                  Aug 23,2025
+                  Apr 11,2025
                 </p>
-                <p style={{ fontWeight: 600, color: "var(--ink)", fontSize: "1.1rem", marginBottom: "1.5rem" }}>
-                  Legal Update: Judicial Review in Student Visa Refusals
+                <p style={{ fontWeight: 600, color: "var(--ink)", fontSize: "1.1rem", marginBottom: "0.5rem" }}>
+                  Legal Update: Apprehended Bias in Migration Decisions
+                </p>
+                <p style={{ fontStyle: "italic", color: "var(--ink-secondary)", fontSize: "1rem", marginBottom: "1.5rem" }}>
+                  Jaggi v Minister for Immigration, Citizenship and Multicultural Affairs [2024] FedCFamC2G 1267
                 </p>
               </div>
 
+              {/* Case Summary */}
               <section style={{ marginBottom: "2rem" }}>
                 <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
                   Case Summary
                 </h3>
                 <p>
-                  On 12 June 2025, the Federal Circuit and Family Court of Australia (Division 2), presided over
-                  by Judge Fary, delivered judgment in a judicial review application concerning refusal of a
-                  Student Visa (Subclass 500). The case involved Ms Ritika Thakur, her husband Anand Singh
-                  Cheema, and their child Viraaj Singh Cheema. The Department had refused the application under
-                  clause 500.212 (GTE requirement), and the Administrative Appeals Tribunal (AAT) affirmed the
-                  refusal. Ms Thakur sought review under section 476 of the Migration Act 1958.
+                  In a significant Federal Circuit and Family Court decision handed down on 22 November 2024, the Court upheld an application for judicial review of an Administrative Appeals Tribunal (AAT) decision that had refused a student visa (Subclass 500) application. The case was heard by Judge D Humphreys in Perth.
                 </p>
+                <p>
+                  The decision provides a detailed examination of apprehended bias in migration tribunals, particularly in the context of GTE (Genuine Temporary Entrant) assessments for student visa applicants. This case is especially notable for its thorough analysis of how a tribunal member&apos;s comments and conduct during a hearing can create a reasonable apprehension of bias.
+                </p>
+                <p>
+                  The Court&apos;s reasoning reinforces the principle that apprehended bias constitutes jurisdictional error without requiring proof of materiality - an important consideration for practitioners handling judicial review applications.
+                </p>
+              </section>
+
+              {/* Key Facts */}
+              <section style={{ marginBottom: "2rem" }}>
+                <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
+                  Key Facts
+                </h3>
+                <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The applicant, a 22-year-old Indian citizen named Anmol Jaggi, applied for a student visa (subclass 500) to undertake a Certificate III in Commercial Cookery after arriving in Australia on a visitor visa on 27 April 2023
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    His student visa application was lodged on 30 August 2023 and refused by a delegate on 15 November 2023
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The refusal was primarily based on the applicant failing to satisfy clause 500.212A of schedule 2 to the Migration Regulations 1994 (Cth) - the Genuine Temporary Entrant (GTE) criterion
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    Despite being enrolled in his course since 7 October 2023 with six months of documented good attendance and progress, the delegate was not satisfied he was a genuine student
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    A significant issue was that the applicant&apos;s migration agent had mistakenly uploaded another person&apos;s GTE statement with the application
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The AAT affirmed the delegate&apos;s decision on 8 May 2024 (with written reasons provided on 29 May 2024), but the Federal Circuit Court found the Tribunal&apos;s process was affected by apprehended bias
+                  </li>
+                </ul>
+              </section>
+
+              {/* Detailed Analysis of the Tribunal Hearing */}
+              <section style={{ marginBottom: "2rem" }}>
+                <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
+                  Detailed Analysis of the Tribunal Hearing
+                </h3>
+                <p>
+                  The Federal Circuit Court had access to the complete transcript and audio recording of the Tribunal hearing, which revealed several problematic aspects of the proceedings:
+                </p>
+                <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    At the very beginning of the hearing, before hearing any substantive evidence from the applicant, the Tribunal member stated he was &ldquo;highly likely to affirm&rdquo; the previous decision
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The member made concerning generalizations, stating that &ldquo;99% of the cooks in India don&apos;t come here [to Australia] and study,&rdquo; suggesting prejudgment of the applicant&apos;s case
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The member told the applicant&apos;s migration agent: &ldquo;I know how it works... I do nine of these a week, predominantly in exactly the same situation. I can see through it&rdquo;
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The member threatened to refer the migration agent to the Office of the Migration Agents Registration Authority (OMARA) for alleged malpractice
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    The member made statements suggesting he believed the applicant had &ldquo;misled the Department of Home Affairs in the application for a visitor visa&rdquo; and that the applicant had &ldquo;someone who&apos;s been coaching him on a pathway&rdquo;
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    Throughout the hearing, the member appeared to hold the absence of a formal GTE statement against the applicant, despite having the opportunity to assess GTE through oral evidence
+                  </li>
+                </ul>
                 <p style={{ marginTop: "1rem" }}>
-                  The Court considered whether the Tribunal had committed jurisdictional error, particularly by
-                  recording her arrival date incorrectly and by failing to consider material evidence about her
-                  ties to India and family circumstances.
+                  The Court found that while the Tribunal member&apos;s concerns about the migration agent&apos;s conduct were legitimate, these criticisms &ldquo;spilled over into the assessment of the applicant&rdquo; in a way that suggested apprehended bias.
                 </p>
               </section>
 
+              {/* Key Legal Principles and Their Application */}
               <section style={{ marginBottom: "2rem" }}>
                 <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
-                  Key Issues
+                  Key Legal Principles and Their Application
                 </h3>
+                <p>The case provides an excellent illustration of several important legal principles:</p>
                 <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Failure to properly assess Ms Thakur’s GTE statement and evidence of ties to India.
+                    <strong>The &ldquo;double might&rdquo; test for apprehended bias:</strong> The Court applied the established test from <em>CNY17 v Minister for Immigration and Border Protection</em> (2019) 268 CLR 76, which asks &ldquo;whether a hypothetical fair-minded observer with knowledge of the statutory framework and factual context might reasonably apprehend that the administrator might not bring an impartial mind to the resolution of the question to be decided&rdquo;
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Excessive reliance on immigration history instead of present circumstances.
+                    <strong>Stereotyping as a form of bias:</strong> The Court recognized that making generalizations about applicants from particular countries or backgrounds can constitute apprehended bias
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Procedural unfairness by not allowing her to address adverse concerns.
+                    <strong>Materiality of bias:</strong> Citing the recent High Court decision in <em>LPDT v Minister for Immigration</em> [2024] HCA 12, the Court confirmed that were apprehended bias is established, it constitutes jurisdictional error without the need to prove materiality - meaning the applicant did not need to demonstrate that the outcome would have been different without the bias
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Failure to consider the best interests of the child (s.60CC Family Law Act 1975).
+                    <strong>Inquisitorial role versus prejudgment:</strong> The Court drew a distinction between legitimate vigorous questioning (appropriate for the Tribunal&apos;s inquisitorial role) and prejudgment of a case before hearing all evidence
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Critical factual error: recording her arrival as 2008 instead of 2014.
+                    <strong>Separation of criticisms:</strong> The Court noted that while criticism of a migration agent may be warranted, decision-makers must not allow these concerns to affect their assessment of the applicant&apos;s case on its merits
                   </li>
                 </ul>
               </section>
 
+              {/* Outcome and Court Orders */}
               <section style={{ marginBottom: "2rem" }}>
                 <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
-                  Applicant’s Arguments
+                  Outcome and Court Orders
                 </h3>
+                <p>The Court made the following orders:</p>
                 <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Strong family, social and financial ties to India, including ancestral property and care responsibilities for her mother.
+                    Upheld the application for judicial review
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Course choice explained by family circumstances (death of brother, mother’s ill health).
+                    Issued a writ of certiorari quashing the decision of the Administrative Appeals Tribunal made on 15 November 2023
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Hospitality course intended to support business plans in India.
+                    Issued a writ of mandamus directed to the Administrative Review Tribunal requiring it to determine the applicant&apos;s case according to law
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Tribunal placed undue emphasis on past visa history without considering explanations.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Incorrect arrival date unfairly suggested 10+ years in Australia.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Impact on her young child overlooked.
+                    Ordered the First Respondent (Minister) to pay the Applicant&apos;s costs fixed in the sum of $8,371.30
                   </li>
                 </ul>
+                <p style={{ marginTop: "1rem" }}>
+                  It&apos;s worth noting that the Court referred to the &ldquo;Administrative Review Tribunal&rdquo; rather than the &ldquo;Administrative Appeals Tribunal&rdquo; in its orders, reflecting the recent transition between these tribunals.
+                </p>
               </section>
 
+              {/* Implications for Migration Practice */}
               <section style={{ marginBottom: "2rem" }}>
                 <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
-                  Minister’s Response
+                  Implications for Migration Practice
                 </h3>
+                <p>
+                  This case offers several important lessons for visa applicants, migration agents, and immigration lawyers:
+                </p>
                 <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Tribunal considered all relevant evidence including immigration history.
+                    <strong>Procedural fairness is fundamental:</strong> Even where substantive issues exist in an application (such as a missing GTE statement), applicants are entitled to have their cases considered on their merits without prejudgment
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Arrival date error not material to outcome.
+                    <strong>The importance of complete applications:</strong> While the bias issue was determinative in this case, the initial problems arose from incomplete documentation - specifically the absence of a proper GTE statement
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Child welfare provisions under Family Law Act not applicable to migration review.
+                    <strong>Review options for procedural failures:</strong> Applicants who believe their cases were not considered fairly have grounds for judicial review, even if their underlying visa applications had potential weaknesses
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Procedural fairness requirements were met.
+                    <strong>Transcripts and recordings as evidence:</strong> The Court&apos;s access to both written transcripts and audio recordings of the Tribunal hearing was crucial in establishing the apprehended bias claim - highlighting the importance of these records
+                  </li>
+                  <li style={{ marginBottom: "0.5rem" }}>
+                    <strong>Financial implications:</strong> The costs awarded ($8,371.30) demonstrate that successful judicial review can lead to recovery of legal expenses
                   </li>
                 </ul>
+                <p style={{ marginTop: "1rem" }}>
+                  For visa applicants who believe procedural fairness has been compromised in their case, this decision supports the availability of judicial review as a remedy.
+                </p>
               </section>
 
+              {/* Other Grounds of Review */}
               <section style={{ marginBottom: "2rem" }}>
                 <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
-                  Court’s Findings
+                  Other Grounds of Review
                 </h3>
+                <p>
+                  While the Court&apos;s finding on apprehended bias was sufficient to resolve the case, the applicant had also raised two other grounds of review:
+                </p>
                 <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    Most complaints went to weight of evidence — not reviewable.
+                    <strong>Failure to consider discretionary visa conditions:</strong> The applicant argued that the Tribunal failed to consider an argument about potentially imposing condition 8534 (which would limit the holder from being granted certain substantive visas while in Australia) as a way to address concerns about the applicant&apos;s genuine temporary intentions
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    A jurisdictional error was established because the Tribunal relied on the wrong arrival date (2008 vs 2014).
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    This error was material — it shaped reasoning about her length of stay in Australia.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Other grounds (Direction 69 misapplication, fairness, unreasonableness) dismissed.
+                    <strong>Misapplication of GTE requirements:</strong> The applicant contended that the Tribunal erroneously treated the provision of a written &ldquo;genuine temporary entrant statement&rdquo; as a mandatory requirement for the grant of a student visa, rather than considering all available evidence including oral testimony
                   </li>
                 </ul>
+                <p style={{ marginTop: "1rem" }}>
+                  The Court did not need to determine these grounds given its finding on apprehended bias, but they represent interesting additional arguments that could be relevant in other student visa cases.
+                </p>
               </section>
 
-              <section style={{ marginBottom: "2rem" }}>
-                <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
-                  Decision and Orders
-                </h3>
-                <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    The Tribunal’s 2019 decision was set aside.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Matter remitted for reconsideration according to law.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    A writ of mandamus issued requiring the Tribunal to review afresh.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Minister ordered to pay applicants’ costs.
-                  </li>
-                </ul>
-              </section>
-
-              <section style={{ marginBottom: "2rem" }}>
-                <h3 style={{ fontSize: "1.3rem", color: "var(--ink)", borderBottom: "1px solid var(--line)", paddingBottom: "0.4rem", marginBottom: "0.85rem" }}>
-                  Significance
-                </h3>
-                <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Migration review decisions must rest on accurate factual findings.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Even “small” errors (arrival dates) may amount to jurisdictional error.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Courts do not reassess merits but ensure legal errors are corrected.
-                  </li>
-                  <li style={{ marginBottom: "0.5rem" }}>
-                    Applicants must clearly present and emphasise critical factual evidence before the Tribunal.
-                  </li>
-                </ul>
-              </section>
-
+              {/* Informational Disclaimer & Links */}
               <div
                 style={{
-                  marginTop: "2rem",
-                  padding: "1.25rem",
+                  marginTop: "2.5rem",
+                  padding: "1.5rem",
                   background: "var(--sand-50)",
                   border: "1px solid var(--line)",
                   borderRadius: "var(--radius-sm)",
@@ -430,19 +444,35 @@ export default function ThakurCaseDetailPage() {
                   color: "var(--ink-secondary)",
                 }}
               >
-                <p style={{ margin: 0 }}>
-                  This case summary is for general information purposes only and is based on publicly available
-                  court findings. It does not constitute legal advice. For tailored advice, please contact Bansal
-                  Lawyers – best lawyers in Melbourne.
+                <p style={{ margin: 0, lineHeight: "1.7" }}>
+                  This case summary is provided for informational purposes only and does not constitute legal advice. For personalized assistance with your migration matter, please contact Bansal Lawyers Melbourne for a consultation.
                 </p>
-                <p style={{ marginTop: "0.75rem", marginBottom: 0 }}>
-                  <a
-                    href="https://www.bansallawyers.com.au/thakur-v-minister-for-immigration-2025-student-visa"
-                    style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
-                  >
-                    Thakur v Minister for Immigration 2025 – Student Visa Case
-                  </a>
-                </p>
+                <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
+                  <li>
+                    <a
+                      href="https://www.bansallawyers.com.au/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia"
+                      style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      Why the new Subclass 482 SID visa is the fastest way to work and stay in Australia →
+                    </a>
+                  </li>
+                  <li>
+                    <Link
+                      href="/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
+                      style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case →
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/recent-cases/thakur-v-minister-for-immigration-2025-student-visa"
+                      style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
+                    >
+                      Thakur v Minister for Immigration 2025 — Student Visa Case →
+                    </Link>
+                  </li>
+                </ul>
               </div>
             </article>
           </div>
@@ -571,99 +601,6 @@ export default function ThakurCaseDetailPage() {
               >
                 Speak With Our Immigration Team
               </ButtonLink>
-            </div>
-          </div>
-        </Container>
-      </Section>
-
-      {/* Related Recent Cases (Placeholder section) */}
-      <Section tone="warm">
-        <Container>
-          <div style={{ maxWidth: "54rem", margin: "0 auto" }}>
-            <div
-              style={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "flex-end",
-                marginBottom: "1.5rem",
-                flexWrap: "wrap",
-                gap: "1rem",
-              }}
-            >
-              <div>
-                <span className="eyebrow">Case Library</span>
-                <h2>Related Recent Cases</h2>
-              </div>
-              <Link
-                href="/recent-cases"
-                style={{
-                  color: "var(--brand-blue)",
-                  fontWeight: 600,
-                  fontSize: "0.95rem",
-                  textDecoration: "underline",
-                }}
-              >
-                View All Recent Cases →
-              </Link>
-            </div>
-
-            <div
-              style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 15rem), 1fr))",
-                gap: "1rem",
-              }}
-            >
-              {relatedRecentCasesPlaceholders.map((item) => (
-                <div
-                  key={item.title}
-                  style={{
-                    padding: "1.25rem",
-                    background: "var(--white)",
-                    border: "1px solid var(--line)",
-                    borderRadius: "var(--radius-md)",
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div>
-                    <span
-                      style={{
-                        display: "inline-block",
-                        fontSize: "0.75rem",
-                        fontWeight: 700,
-                        color: "var(--brand-blue)",
-                        textTransform: "uppercase",
-                        letterSpacing: "0.05em",
-                        marginBottom: "0.5rem",
-                      }}
-                    >
-                      {item.category}
-                    </span>
-                    <h3
-                      style={{
-                        fontSize: "0.98rem",
-                        lineHeight: "1.4",
-                        color: "var(--ink)",
-                        margin: 0,
-                      }}
-                    >
-                      {item.title}
-                    </h3>
-                  </div>
-                  <span
-                    style={{
-                      marginTop: "1rem",
-                      fontSize: "0.78rem",
-                      color: "var(--ink-secondary)",
-                      fontStyle: "italic",
-                    }}
-                  >
-                    {item.status}
-                  </span>
-                </div>
-              ))}
             </div>
           </div>
         </Container>

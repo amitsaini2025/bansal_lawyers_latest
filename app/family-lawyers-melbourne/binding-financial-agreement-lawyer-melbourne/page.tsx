@@ -500,14 +500,7 @@ export default function BindingFinancialAgreementLawyerMelbournePage() {
 
       {/* 12. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Common questions regarding binding financial agreements, prenups, and separation settlements in Victoria."
-          />
-          <Faq items={bfaFaqs} />
-        </Container>
+        <Faq items={bfaFaqs} subtitle="Common questions regarding binding financial agreements, prenups, and separation settlements in Victoria." />
       </Section>
     </>
   );

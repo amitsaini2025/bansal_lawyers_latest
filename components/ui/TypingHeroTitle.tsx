@@ -14,10 +14,10 @@ const getServerMotionPreference = () => false;
 const services = [
   "Immigration Law",
   "Family Law",
-  "Criminal Defence",
+  "Criminal Law",
   "Commercial Law",
   "Property Law",
-  "Civil Litigation",
+  "Civil Law",
 ];
 
 export function TypingHeroTitle({
@@ -83,7 +83,7 @@ export function TypingHeroTitle({
     <span className="hero-typing-title">
       {/* Screen reader & SEO accessible text for search engine indexing */}
       <span className="sr-only">
-        {fullConstant} {items.join(", ")}
+        Lawyers in Melbourne for Immigration Law, Family Law, Criminal Law, Commercial Law, Property Law and Civil Law
       </span>
 
       {/* Visual Typing Animation */}

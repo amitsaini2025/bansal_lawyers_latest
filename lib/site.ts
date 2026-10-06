@@ -1,7 +1,7 @@
 import type { LinkItem } from "@/types/content";
 
 export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.example.com.au";
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bansallawyers.com.au";
 
 export const businessDetails = {
   name: "Bansal Lawyers",
@@ -14,10 +14,18 @@ export const businessDetails = {
   phone: "0422 905 860",
   phoneTel: "tel:+61422905860",
   nationalLine: "1300 226 725",
-  nationalLineDisplay: "1300 BANSAL / 1300 226 725",
+  nationalLineDisplay: "1300 BANSAL (1300 226 725)",
   nationalLineTel: "tel:1300226725",
-  email: "Info@bansallawyers.com.au",
-  emailMailto: "mailto:Info@bansallawyers.com.au",
+  email: "info@bansallawyers.com.au",
+  emailMailto: "mailto:info@bansallawyers.com.au",
+};
+
+export const socialLinks = {
+  facebook: "https://www.facebook.com/profile.php?id=61562008576642",
+  instagram: "https://www.instagram.com/bansallawyers?igsh=N21ubnVkeDhibjVw",
+  linkedin: "https://www.linkedin.com/company/bansallawyers",
+  twitter: "https://twitter.com/BansalLawyers",
+  youtube: "https://www.youtube.com/@BansalLawyers",
 };
 
 export const navigation: LinkItem[] = [

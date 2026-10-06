@@ -255,14 +255,7 @@ export default function InterventionOrderLawyerMelbournePage() {
 
       {/* 6. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <SectionHeader
-            eyebrow="Helpful Answers"
-            title="Frequently Asked Questions"
-            intro="Common questions regarding intervention order applications, Magistrates' Court mentions, and order conditions in Victoria."
-          />
-          <Faq items={ivoFaqs} />
-        </Container>
+        <Faq items={ivoFaqs} subtitle="Common questions regarding intervention order applications, Magistrates" />
       </Section>
     </>
   );

@@ -371,30 +371,7 @@ export default function VisaRefusalLawyerMelbournePage() {
 
       {/* 9. Frequently Asked Questions [H2] */}
       <Section tone="warm" id="faqs">
-        <Container>
-          <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-            <span className="eyebrow">Clear Answers</span>
-            <h2 style={{ marginBottom: "2rem" }}>Frequently Asked Questions</h2>
-            <Faq items={refusalFaqs} />
-            <div
-              style={{
-                marginTop: "2.5rem",
-                textAlign: "center",
-                padding: "2rem",
-                background: "var(--white)",
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius-md)",
-              }}
-            >
-              <p style={{ margin: "0 0 1rem", color: "var(--ink-secondary)", fontSize: "0.98rem" }}>
-                Received a Department refusal notice and need rapid advice before the deadline?
-              </p>
-              <ButtonLink href="/contact/" variant="primary">
-                Submit Your Refusal Letter for Review
-              </ButtonLink>
-            </div>
-          </div>
-        </Container>
+        <Faq items={refusalFaqs} />
       </Section>
     </>
   );

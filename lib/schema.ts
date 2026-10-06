@@ -68,6 +68,13 @@ export function createLegalServiceSchema() {
         closes: "17:30",
       },
     ],
+    sameAs: [
+      "https://www.facebook.com/profile.php?id=61562008576642",
+      "https://www.instagram.com/bansallawyers",
+      "https://www.linkedin.com/company/bansallawyers",
+      "https://twitter.com/BansalLawyers",
+      "https://www.youtube.com/@BansalLawyers",
+    ],
   };
 }
 

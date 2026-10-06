@@ -1,25 +1,30 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { BlogListClient, type BlogArticleItem } from "@/components/blog/BlogListClient";
 import { StructuredData } from "@/components/seo";
-import {
-  BlogCard,
-  Breadcrumbs,
-  CtaSection,
-  Hero,
-  Section,
-  SectionHeader,
-} from "@/components/ui";
+import { Container, CtaSection, Section, SectionHeader } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema } from "@/lib/schema";
-import { articleSlugs, placeholderCards } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
-  title: "[Blog page title goes here]",
-  description: "[Blog page meta description goes here]",
+  title: "Legal Insights & Updates | Bansal Lawyers Melbourne",
+  description:
+    "Stay informed with our expert articles on legal trends, industry news, and professional insights. Our Melbourne lawyers publish practical guidance on family law, migration and visa matters, criminal defence, commercial disputes, and property law.",
   path: "/blog",
+  keywords: [
+    "Legal Insights Melbourne",
+    "Australian Legal Updates",
+    "Melbourne Law Blog",
+    "Family Law Melbourne Articles",
+    "Migration Law Updates Australia",
+    "Criminal Defence Advice Melbourne",
+    "Commercial Law Insights Melbourne",
+    "Property Law Guidance Victoria",
+    "Bansal Lawyers Blog",
+  ],
 });
 
-const cards = [...placeholderCards, ...placeholderCards];
+import { blogArticles } from "@/lib/blog-data";
 
 export default function BlogPage() {
   const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Blog" }];
@@ -27,55 +32,32 @@ export default function BlogPage() {
   return (
     <>
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
-      <Breadcrumbs items={breadcrumbs} />
-      <Hero
-        compact
-        eyebrow="[Blog page label]"
-        title="[Blog page H1 goes here]"
-        intro="[Blog page introduction goes here]"
-        aside={null}
-      />
-      <Section tone="warm">
-        <SectionHeader
-          eyebrow="[Articles label]"
-          title="[Articles heading goes here]"
-        />
-        <div className="filter-bar" role="group" aria-label="[Category filter label]">
-          <button type="button" aria-pressed="true">[All categories]</button>
-          <button type="button" aria-pressed="false">[Category]</button>
-          <button type="button" aria-pressed="false">[Category]</button>
+
+      {/* Hero Section matching exact design */}
+      <section className="blog-hero-section">
+        <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
+          <h1>Legal Insights &amp; Updates</h1>
+          <p>
+            Stay informed with our expert articles on legal trends, industry news, and
+            professional insights. Our Melbourne lawyers publish practical guidance on
+            family law, migration and visa matters, criminal defence, commercial disputes,
+            and property law so you can understand your options before taking the next step.
+          </p>
+          <p>
+            Whether you are dealing with a visa refusal, separation, business contract, or
+            property transaction, browse articles written by the team at Bansal Lawyers — or{" "}
+            <Link href="/contact">contact us</Link> for advice tailored to your situation.
+          </p>
         </div>
-        <div className="card-grid">
-          {cards.map((card, index) => {
-            const blogImages = [
-              "/images/cases/court-case-review.webp",
-              "/images/blog/commercial-contracts.webp",
-              "/images/melbourne-legal-chambers.webp",
-              "/images/collins-street-office.webp",
-            ];
-            return (
-              <BlogCard
-                {...card}
-                title={`[Article ${index + 1} title goes here]`}
-                eyebrow="[Article category]"
-                href={`/blog/${articleSlugs[index % articleSlugs.length]}`}
-                imageSrc={blogImages[index % blogImages.length]}
-                imageAlt={`Featured legal topic ${index + 1}`}
-                key={index}
-              />
-            );
-          })}
-        </div>
-        <nav className="pagination" aria-label="Pagination">
-          <Link href="/blog" aria-current="page">1</Link>
-          <Link href="/blog?page=2">2</Link>
-          <Link href="/blog?page=2">[Next page]</Link>
-        </nav>
-      </Section>
+      </section>
+
+      {/* Dynamic Stats Bar, Interactive Search, Category Filters, Cards & Pagination */}
+      <BlogListClient articles={blogArticles} />
+
       <CtaSection
-        title="[Blog page CTA heading goes here]"
-        text="[Blog page CTA text goes here]"
-        action={{ label: "[Blog page CTA button]", href: "/contact" }}
+        title="Need Advice on a Family or Commercial Law Matter?"
+        text="Contact Bansal Lawyers today for confidential advice at our Melbourne CBD office, by phone, or via secure video consultation."
+        action={{ label: "Book a Consultation", href: "/contact" }}
       />
     </>
   );

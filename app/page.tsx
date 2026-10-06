@@ -3,10 +3,10 @@ import Image from "next/image";
 import { StructuredData } from "@/components/seo";
 import {
   ButtonLink,
-  Container,
   CtaSection,
   Faq,
   Hero,
+  HeroBookingPlaceholder,
   ImageTextSection,
   PracticeAreaCard,
   ProcessSteps,
@@ -40,54 +40,54 @@ const corePracticeAreas = [
   {
     title: "Immigration Law",
     description:
-      "Our immigration lawyers in Melbourne help with visa applications, visa refusals, visa cancellations, Administrative Review Tribunal (ART) appeals, partner visas, student visas, skilled migration, permanent residency, and citizenship matters.",
+      "Our immigration lawyers in Melbourne help with visa applications, refusals and cancellations, and with reviews at the Administrative Review Tribunal (ART). We also handle partner visas, student visas, skilled migration, permanent residency and citizenship.",
     href: "/immigration-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Family Law",
     description:
-      "Our family lawyers in Melbourne advise on divorce, separation, parenting arrangements, property settlement, consent orders, family violence matters, and intervention orders.",
+      "Our family lawyers in Melbourne advise on divorce, separation, parenting arrangements, property settlement and consent orders. We also help with family violence matters, including applying for or responding to intervention orders.",
     href: "/family-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Criminal Law",
     description:
-      "Our criminal lawyers in Melbourne provide legal support for criminal charges, traffic offences, police matters, bail applications, intervention order breaches, and court representation.",
+      "Our criminal lawyers in Melbourne act for people facing criminal charges, traffic offences and police matters. That includes bail applications, intervention order breaches and representation in court.",
     href: "/criminal-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Commercial Law",
     description:
-      "Our commercial lawyers in Melbourne assist with business contracts, commercial agreements, loan agreements, shareholder matters, business transactions, disputes, and debt recovery.",
+      "Our commercial lawyers in Melbourne help business owners with contracts, commercial and loan agreements, shareholder matters, and buying or selling a business. The aim is to get agreements right before problems start.",
     href: "/commercial-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Property Law",
     description:
-      "Our property lawyers in Melbourne give legal advice for buying, selling, leasing, contract review, conveyancing support, property disputes, and settlement-related matters.",
+      "Our property lawyers in Melbourne advise on buying, selling and leasing property, contract review and conveyancing. We also help with property disputes and with sale and purchase settlements.",
     href: "/property-lawyers-melbourne",
     ctaText: "Learn More",
   },
   {
     title: "Civil Law",
     description:
-      "Our civil lawyers in Melbourne support clients with civil disputes, legal notices, debt disputes, contract disputes, negotiation, document preparation, and court-related processes.",
+      "Our civil lawyers in Melbourne act in civil disputes, including contract disputes, debt recovery and debt disputes, legal notices and negotiation. We prepare the documents, and we guide you through court processes if a matter goes that far.",
     href: "/civil-lawyers-melbourne",
     ctaText: "Learn More",
   },
 ];
 
 const whyChoosePoints = [
-  "Clear and practical legal advice",
-  "Support across multiple areas of law",
-  "Careful review of documents and deadlines",
-  "Honest explanation of legal options",
-  "Professional handling of sensitive matters",
-  "Melbourne-based legal support",
+  "Clear, practical advice",
+  "Six areas of law under one roof",
+  "Careful checks of documents and deadlines",
+  "Honest explanations of your options",
+  "Sensitive matters handled with care",
+  "A Melbourne-based team",
 ];
 
 const whoWeHelpClients = [
@@ -107,22 +107,22 @@ const processSteps = [
   {
     title: "1. Contact Our Team",
     description:
-      "Share a short summary of your legal matter by phone, email, or enquiry form.",
+      "Tell us briefly what's happening, by phone, email or the enquiry form.",
   },
   {
     title: "2. Consultation and Review",
     description:
-      "We review your situation, documents, deadlines, and key legal concerns.",
+      "We go through your situation, your documents and any deadlines.",
   },
   {
     title: "3. Clear Legal Advice",
     description:
-      "You receive practical advice about your options and possible next steps.",
+      "We explain your options and what could happen next.",
   },
   {
     title: "4. Preparation and Support",
     description:
-      "Where required, we assist with applications, responses, contracts, notices, negotiations, or court documents.",
+      "If you go ahead, we help with applications, responses, contracts, notices, negotiations or court documents.",
   },
 ];
 
@@ -130,42 +130,42 @@ const homepageFaqs = [
   {
     question: "How much does a legal consultation cost?",
     answer:
-      "Fees depend on the type of matter and how much work is involved. When you book, our team can tell you the consultation fee up front. If you go ahead with the matter, we explain how costs are likely to work before any work begins, so nothing comes as a surprise.",
+      "It depends on the type of matter and how much work is involved. When you book, our team will tell you the consultation fee up front. If you decide to go ahead, we'll explain how costs are likely to work before we start, so there are no surprises.",
   },
   {
     question: "Can I have a consultation online or by phone?",
     answer:
-      "Yes. If you can't come to the office, or you are interstate or overseas, you can book a phone or video consultation. Just let us know your preference when you enquire.",
+      "Yes. If you can't get to the office, or you're interstate or overseas, you can book a phone or video consultation. Just tell us which you'd prefer when you get in touch.",
   },
   {
     question: "What happens during the first consultation?",
     answer:
-      "We ask you to explain what has happened and go through any documents you have. We then outline your options, any time limits that apply, and what the next steps could be. You leave knowing where you stand, and you can decide whether to proceed with us.",
+      "You tell us what's happened, and we go through any documents you have. Then we set out your options, any time limits that apply and what the next steps could be. You'll leave knowing where you stand, and it's up to you whether to go ahead with us.",
   },
   {
     question: "What documents should I bring?",
     answer:
-      "It depends on the matter, but bring anything related to it. That could be letters or notices, visa decision records, court or police paperwork, contracts, agreements, or identification. If you are unsure, bring what you have. We can tell you what else is needed.",
+      "It depends on the matter, but bring anything connected to it. That might be letters or notices, visa decision records, court or police paperwork, contracts, agreements or ID. If you're not sure, bring what you have and we'll tell you what else we need.",
   },
   {
     question: "How long will my legal matter take?",
     answer:
-      "Timeframes vary a lot. A contract review may take days, while a court matter, a property settlement, or an appeal can take months. We give you a realistic estimate once we have reviewed your situation, and we update you if anything changes.",
+      "It varies a lot. A contract review might take a few days, while a court matter, a property settlement or an ART review can take months. Once we've looked at your situation we'll give you a realistic estimate, and we'll tell you if anything changes.",
   },
   {
     question: "Are there deadlines I need to worry about?",
     answer:
-      "Often, yes. Time limits can apply to ART reviews, court dates, responding to notices, and other legal steps. Some are very short, so it is worth seeking advice as soon as you receive a decision or document.",
+      "Often, yes. Time limits can apply to ART reviews, court dates, notices and other legal steps, and some are short. If you've just received a decision or a document, it's worth getting advice straight away.",
   },
   {
     question: "What if my matter involves more than one area of law?",
     answer:
-      "This is common. A separation can affect a visa, and a business dispute can involve property. Because our team works across several areas of law, we can look at the whole picture rather than one issue at a time.",
+      "That happens a lot. A separation can affect a visa, and a business dispute can involve property. Because our team works across several areas of law, we can look at the whole picture instead of one issue at a time.",
   },
   {
     question: "What if I'm not sure which type of lawyer I need?",
     answer:
-      "That's fine. Tell us briefly what has happened when you contact us, and we'll point you to the right person on our team. You don't need to work out the legal category before you call.",
+      "That's fine. Tell us briefly what's happened when you get in touch, and we'll point you to the right person on our team. You don't need to work out the legal category before you call.",
   },
 ];
 
@@ -181,10 +181,10 @@ export default function HomePage() {
         intro={
           <>
             <p>
-              Bansal Lawyers is a Melbourne law firm helping individuals, families, migrants, professionals, and businesses with clear legal advice across a wide range of personal, family, and business matters.
+              Bansal Lawyers is a Melbourne law firm that helps people and businesses with legal matters, from visas and separations to contracts and court dates.
             </p>
             <p style={{ marginTop: "0.75rem" }}>
-              We explain your options in plain language and guide you through the next steps with care and attention.
+              We&apos;ll talk through your options in words you can follow, and stay with you at every step.
             </p>
           </>
         }
@@ -193,14 +193,15 @@ export default function HomePage() {
           label: "Speak With Our Legal Team",
           href: "/contact",
         }}
+        aside={<HeroBookingPlaceholder />}
       />
 
       {/* Trust Highlights Bar */}
       <TrustBar
         items={[
           "Melbourne Legal Practice",
-          "Clear Plain-English Advice",
-          "Multidisciplinary Team",
+          "Plain-English Advice",
+          "Multi-Practice Team",
           "Direct Solicitor Contact",
         ]}
       />
@@ -209,13 +210,12 @@ export default function HomePage() {
       <Section tone="white" id="trust-clarity">
         <div className="trust-clarity-grid">
           <div className="trust-clarity-content">
-            <span className="eyebrow">Trust & Clarity</span>
             <h2>Legal Help That Starts With Clear Advice</h2>
             <p style={{ fontSize: "1.12rem", lineHeight: "1.75", color: "var(--ink)" }}>
-              When you are dealing with a legal matter, the first thing you need is clarity. Bansal Lawyers helps clients understand their position, their options, and the next steps before making important decisions.
+              When you&apos;re dealing with a legal problem, the first thing you need is a straight answer. We help you understand where you stand, what your options are and what could happen next, before you commit to anything.
             </p>
             <p style={{ marginTop: "1rem", color: "var(--ink-secondary)", fontSize: "1.05rem", lineHeight: "1.7" }}>
-              We provide legal services in Melbourne for personal, family, and business matters. Each matter is handled with proper attention, clear communication, and practical legal guidance.
+              We act for people in Melbourne on personal, family and business matters. Every matter gets proper attention, and we keep you updated in plain terms.
             </p>
             <div style={{ marginTop: "1.75rem", display: "flex", gap: "1rem", flexWrap: "wrap" }}>
               <ButtonLink href="/contact" variant="primary">
@@ -250,9 +250,8 @@ export default function HomePage() {
       {/* 3. Practice Areas Section */}
       <Section tone="warm" id="practice-areas">
         <SectionHeader
-          eyebrow="Key Practice Areas"
           title="Our Legal Services"
-          intro="Bansal Lawyers provides legal support across key areas of law for individuals, families, migrants, professionals, and business owners."
+          intro="We work across six areas of law for individuals, families, migrants, professionals and business owners."
         />
         <div className="card-grid">
           {corePracticeAreas.map((card) => (
@@ -264,14 +263,13 @@ export default function HomePage() {
       {/* 4. Why Choose Section */}
       <Section tone="white" id="why-choose">
         <ImageTextSection
-          eyebrow="Why Choose Bansal Lawyers"
-          title="Why Clients Choose Bansal Lawyers"
+          title="Why Clients Choose Us"
           imageSrc="/images/melbourne-legal-chambers.webp"
           imageAlt="Bansal Lawyers Executive Legal Consultation Suite in Melbourne CBD"
           body={
             <>
               <p>
-                Clients choose Bansal Lawyers because we explain legal issues in a way that is easy to understand. We do not overcomplicate the process. We review the facts, explain the risks, and help you decide what needs to be done next.
+                People come to us because we explain things simply. We look at the facts, tell you about the risks, and help you decide what to do next. No jargon and no pressure.
               </p>
               <ul className="points-list">
                 {whyChoosePoints.map((point) => (
@@ -286,74 +284,45 @@ export default function HomePage() {
 
       {/* 5. Who We Help Section */}
       <Section tone="warm" id="who-we-help">
-        <Container>
-          <SectionHeader
-            eyebrow="Client Representation"
-            title="Who We Help"
-            intro="We work with individuals, families, migrants, students, professionals, business owners, property buyers, landlords, tenants, and people involved in legal disputes."
-          />
-          <div className="who-we-help-grid">
-            {whoWeHelpClients.map((client) => (
-              <div key={client} className="who-we-help-card">
-                <div className="who-we-help-card__icon" aria-hidden="true">
-                  <svg viewBox="0 0 20 20" fill="currentColor">
-                    <path fillRule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clipRule="evenodd" />
-                  </svg>
-                </div>
-                <h3 className="who-we-help-card__title">{client}</h3>
-              </div>
-            ))}
-          </div>
-          <p style={{ color: "var(--ink-secondary)", marginTop: "2rem", fontSize: "1.02rem", maxWidth: "48rem", lineHeight: "1.7" }}>
-            Whether the matter is personal, business-related, or urgent, we help clients understand the process and take the right next step.
-          </p>
-        </Container>
+        <SectionHeader
+          title="Who We Help"
+          intro="Our clients range from students and young families to professionals and business owners. Some come to us with a routine matter and others with something urgent. Either way, we'll explain how the process works and what to do first."
+        />
+        <ul className="who-we-help-chips" aria-label="Client Groups We Help">
+          {whoWeHelpClients.map((client) => (
+            <li key={client} className="who-we-help-chip">
+              {client}
+            </li>
+          ))}
+        </ul>
       </Section>
 
       {/* 6. Process Section */}
       <Section tone="white">
         <SectionHeader
-          eyebrow="Transparent Legal Journey"
           title="How the Process Works"
-          intro="We believe in simple, step-by-step guidance so you always know where your legal matter stands."
+          intro="It's a simple process, and you'll know where your matter stands at each step."
         />
         <ProcessSteps items={processSteps} />
       </Section>
 
       {/* 7. Urgent Advice CTA Section */}
       <CtaSection
-        eyebrow="Time-Critical Advice"
         title="Need Legal Advice Before Taking the Next Step?"
-        text={
-          <>
-            <p>
-              Some legal matters have strict time limits. Visa refusals, court dates, police matters, family violence issues, contract disputes, and property settlements should not be delayed.
-            </p>
-            <p style={{ marginTop: "0.75rem" }}>
-              If you are unsure what to do next, speak with Bansal Lawyers early and get clear advice before making important decisions.
-            </p>
-          </>
-        }
+        text="Some legal matters run on strict time limits. Visa refusals, court dates, police matters, family violence issues, contract disputes and property settlement dates shouldn't wait. If you're not sure what to do, talk to us early. It's far easier to deal with a problem before a deadline than after one."
         action={{ label: "Book a Consultation", href: "/contact" }}
-        secondaryAction={{ label: "Speak With Our Legal Team", href: "tel:+61422905860" }}
       />
 
       {/* 8. FAQ Section */}
       <Section tone="warm" id="faq">
-        <SectionHeader
-          eyebrow="Common Questions"
+        <Faq
+          items={homepageFaqs}
           title="Frequently Asked Questions"
-          intro="Find answers to common questions about our legal services, practice areas, and consultation process in Melbourne."
+          subtitle="Quick answers to what people usually ask before they book."
+          contactTitle="Have a specific question about your legal matter?"
+          contactButtonLabel="Speak With Our Team"
+          contactHref="/contact"
         />
-        <Faq items={homepageFaqs} />
-        <div style={{ marginTop: "2.5rem" }}>
-          <p style={{ marginBottom: "1rem", color: "var(--muted)", fontSize: "0.95rem" }}>
-            Have a specific question about your legal matter?
-          </p>
-          <ButtonLink href="/contact" variant="primary">
-            Speak With Our Team
-          </ButtonLink>
-        </div>
       </Section>
     </>
   );
