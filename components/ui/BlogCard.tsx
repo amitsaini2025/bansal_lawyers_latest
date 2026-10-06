@@ -13,7 +13,7 @@ export interface BlogCardProps extends CardContent {
 export function BlogCard({
   title,
   description,
-  href = "/blog/article-placeholder",
+  href = "/blog",
   eyebrow,
   imageSrc,
   imageAlt,
