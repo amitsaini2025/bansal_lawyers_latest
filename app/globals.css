@@ -1299,9 +1299,18 @@ h3 {
 
 .hero-booking-card__subtitle {
   font-size: 0.82rem;
-  color: #475569;
+  color: #475569 !important;
   line-height: 1.4;
   margin: 0;
+}
+
+/* Override .hero p white color rule so it doesn't bleed into the card */
+.hero-booking-card p,
+.hero-booking-card__form p {
+  color: #475569 !important;
+  font-size: inherit;
+  line-height: inherit;
+  max-width: none;
 }
 
 .hero-booking-card__form {
