@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Breaking a Rental Agreement Early in Australia: Legal Rights | Bansal Lawyers",
+    "Breaking a Rental Agreement Early in Australia | Bansal Lawyers",
   description:
     "Understand your legal rights when breaking a rental agreement early in Australia: lease break fees, VCAT severe hardship applications, minimum rental standards, and notice periods.",
   path: "/blog/breaking-rental-agreement-early-in-australia",
@@ -528,7 +528,7 @@ export default function BreakingRentalAgreementEarlyPage() {
                   Our tenancy and property lawyers provide strategic advice on mitigating lease break compensation, drafting formal notices, and VCAT representation.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/book-an-appointment" variant="primary">
+                  <ButtonLink href="/contact" variant="primary">
                     Book a Property Consultation
                   </ButtonLink>
                   <ButtonLink href="/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne" variant="secondary">

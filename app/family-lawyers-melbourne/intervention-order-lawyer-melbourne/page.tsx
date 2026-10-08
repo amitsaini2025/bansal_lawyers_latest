@@ -226,7 +226,7 @@ export default function InterventionOrderLawyerMelbournePage() {
               >
                 Child Custody Lawyer Melbourne
               </Link>{" "}
-              specialists, or learn more about our broader{" "}
+              lawyers, or learn more about our broader{" "}
               <Link
                 href="/family-lawyers-melbourne/family-violence-lawyer-melbourne/"
                 style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}

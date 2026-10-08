@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Understanding Affidavit, Statutory Declarations, and Statements of Evidence | Bansal Lawyers",
+    "Affidavits, Statutory Declarations & Evidence | Bansal Lawyers",
   description:
     "A guide by Bansal Lawyers explaining the differences between affidavits, statutory declarations, and statements of evidence in Australian law: sworn facts, authorized witnesses, and court admissibility.",
   path: "/blog/understanding-affidavits-statutory-declarations-statements-of-evidence",

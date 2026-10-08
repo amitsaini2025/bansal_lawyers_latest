@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Guide to Successful Co-Parenting After Divorce | Bansal Lawyers Melbourne",
+    "Guide to Co-Parenting After Divorce | Bansal Lawyers",
   description:
     "Practical legal and parental advice on building a successful co-parenting relationship after divorce in Australia: parenting plans, consent orders, mediation, and child well-being.",
   path: "/blog/guide-to-successful-co-parenting-after-divorce",
@@ -563,7 +563,7 @@ export default function CoParentingAfterDivorcePage() {
                   Speak with our compassionate Melbourne family law team for guidance on drafting formal parenting plans, negotiating consent orders, or navigating mediation.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/book-an-appointment" variant="primary">
+                  <ButtonLink href="/contact" variant="primary">
                     Book a Family Consultation
                   </ButtonLink>
                   <ButtonLink href="/family-lawyers-melbourne/child-custody-lawyer-melbourne" variant="secondary">

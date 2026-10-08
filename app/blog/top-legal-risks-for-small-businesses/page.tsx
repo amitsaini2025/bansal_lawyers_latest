@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Top 8 Legal Risks for Small Businesses: How Bansal Lawyers Can Help | Melbourne",
+    "Top 8 Legal Risks for Small Businesses | Bansal Lawyers",
   description:
     "Discover the top 8 legal risks for small businesses in Australia: tax declarations, consumer disputes, licensing, employment law, IP protection, business structure, capital raising, and website compliance.",
   path: "/blog/top-legal-risks-for-small-businesses",

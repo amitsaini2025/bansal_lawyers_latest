@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Why Having a Power of Attorney in Australia is Crucial | Bansal Lawyers",
+    "Why You Need a Power of Attorney in Australia | Bansal Lawyers",
   description:
     "Understand why having a Power of Attorney in Australia is crucial: General POA, Enduring Power of Attorney (EPOA), Supportive POA, attorney duties, and legal execution.",
   path: "/blog/why-you-need-power-of-attorney-bansal-lawyers-australia",
@@ -628,7 +628,7 @@ export default function PowerOfAttorneyGuidePage() {
                   Our experienced Melbourne solicitors assist with draftsmanship, professional witnessing, capacity assessments, and secure certified copies of General, Enduring, and Supportive Powers of Attorney.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/book-an-appointment" variant="primary">
+                  <ButtonLink href="/contact" variant="primary">
                     Book an Appointment
                   </ButtonLink>
                   <ButtonLink href="/contact" variant="secondary">

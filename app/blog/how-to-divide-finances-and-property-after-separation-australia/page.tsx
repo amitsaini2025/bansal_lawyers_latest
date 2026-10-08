@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Dividing Finances and Property After Separation in Australia | Bansal Lawyers",
+    "Dividing Finances & Property After Separation | Bansal Lawyers",
   description:
     "A complete guide by Bansal Lawyers on how to divide finances, assets, debts, superannuation, and spousal maintenance after separation or divorce in Australia.",
   path: "/blog/how-to-divide-finances-and-property-after-separation-australia",

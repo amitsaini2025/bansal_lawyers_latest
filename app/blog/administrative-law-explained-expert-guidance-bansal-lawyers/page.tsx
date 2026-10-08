@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Easy Guide to Administrative Law in Australia by Bansal Lawyers | Melbourne",
+    "Administrative Law in Australia Explained | Bansal Lawyers",
   description:
     "An expert guide to administrative law in Australia by Bansal Lawyers: what administrative law regulates, merits review, judicial review, ART appeals, and government accountability.",
   path: "/blog/administrative-law-explained-expert-guidance-bansal-lawyers",
@@ -453,7 +453,7 @@ export default function AdministrativeLawGuidePage() {
                   <p style={{ margin: 0 }}>
                     At{" "}
                     <Link
-                      href="/book-an-appointment"
+                      href="/contact"
                       style={{ color: "var(--navy-900)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Bansal Lawyers
@@ -495,7 +495,7 @@ export default function AdministrativeLawGuidePage() {
                   Whether you are appealing a visa refusal before the Administrative Review Tribunal (ART), seeking judicial review in federal court, or navigating government statutory decisions, Bansal Lawyers provides authoritative legal guidance.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/book-an-appointment" variant="primary">
+                  <ButtonLink href="/contact" variant="primary">
                     Schedule a Consultation
                   </ButtonLink>
                   <ButtonLink href="/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne" variant="secondary">

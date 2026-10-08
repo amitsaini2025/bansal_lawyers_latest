@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Why the Subclass 482 SID Visa Is the Fastest Route to Australia | Bansal Lawyers",
+    "Subclass 482 SID Visa Guide Australia | Bansal Lawyers",
   description:
     "An expert guide by Bansal Lawyers to the Subclass 482 Skills in Demand (SID) visa: 4-year validity, 1-year experience requirement, PR pathways, CSOL, and fast processing.",
   path: "/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
@@ -204,7 +204,7 @@ export default function Subclass482SidVisaPage() {
       {/* Trust bar */}
       <TrustBar
         items={[
-          "Subclass 482 Skills in Demand Specialists",
+          "Subclass 482 Skills in Demand Legal Advisors",
           "Core Skills Occupation List (CSOL) Strategy",
           "Subclass 186 Permanent Residency Pathways",
           "Sponsor & Employer Trailing Fee Guidance",

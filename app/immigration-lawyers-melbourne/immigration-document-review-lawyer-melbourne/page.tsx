@@ -246,7 +246,7 @@ export default function ImmigrationDocumentReviewLawyerMelbournePage() {
               >
                 Visa Application Lawyer Melbourne
               </Link>{" "}
-              specialists, or speak with our{" "}
+              solicitors, or speak with our{" "}
               <Link
                 href="/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne/"
                 style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}

@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Divorce Process in India vs Australia: Key Differences Explained | Bansal Lawyers",
+    "Divorce in India vs Australia Differences | Bansal Lawyers",
   description:
     "Compare divorce laws in India and Australia: fault vs no-fault divorce, religious vs secular systems, mutual consent options, child custody, and jurisdiction.",
   path: "/blog/divorce-laws-india-vs-australia",

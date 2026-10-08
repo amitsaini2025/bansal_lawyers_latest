@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "How to Appeal Your Visa Refusal: A Simple Guide to the ART | Bansal Lawyers",
+    "How to Appeal a Visa Refusal at the ART | Bansal Lawyers",
   description:
     "A guide by Bansal Lawyers on appealing a visa refusal to the Administrative Review Tribunal (ART): merits review, 28-day deadlines, fees, hearing expectations, and decisions.",
   path: "/blog/how-to-appeal-visa-refusal-administrative-review-tribunal",

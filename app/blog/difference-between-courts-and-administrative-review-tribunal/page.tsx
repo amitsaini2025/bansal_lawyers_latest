@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Difference Between Courts and the Administrative Review Tribunal (ART) | Bansal Lawyers",
+    "Courts vs Administrative Review Tribunal (ART) | Bansal Lawyers",
   description:
     "Understand the key differences between the Courts (Judicial Review) and the Administrative Review Tribunal (Merits Review) in Australia when challenging Home Affairs decisions.",
   path: "/blog/difference-between-courts-and-administrative-review-tribunal",

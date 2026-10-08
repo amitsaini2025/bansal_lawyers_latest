@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "De Facto Relationship vs Marriage in Australia: Differences Explained | Bansal Lawyers",
+    "De Facto vs Marriage in Australia Explained | Bansal Lawyers",
   description:
     "Understand the legal differences between marriage and de facto relationships in Australia: proving cohabitation, the 2-year rule, property rights under the Family Law Act, and financial agreements.",
   path: "/blog/understanding-de-facto-relationship-vs-marriage-australia",

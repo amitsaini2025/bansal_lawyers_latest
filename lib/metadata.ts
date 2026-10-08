@@ -11,8 +11,14 @@ export function createMetadata({
 }: PageSeo): Metadata {
   const canonical = new URL(path, siteUrl).toString();
 
+  // If the page title already includes the firm name (e.g. "... | Bansal Lawyers"),
+  // treat it as an absolute title to prevent the RootLayout template (%s | Bansal Lawyers)
+  // from appending "Bansal Lawyers" a second time.
+  const hasBranding = /Bansal Lawyers/i.test(title);
+  const metadataTitle = hasBranding ? { absolute: title } : title;
+
   return {
-    title,
+    title: metadataTitle,
     description,
     keywords,
     alternates: { canonical },

@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "How to Build a Strong Brand: Legal Considerations for Your Business Identity | Bansal Lawyers",
+    "Building a Strong Brand: Legal Considerations | Bansal Lawyers",
   description:
     "A guide to choosing the right business structure in Australia: sole trader, partnership, and company structures, tax implications, personal liability, and key differences.",
   path: "/blog/how-to-build-strong-brand-legal-considerations-for-your-business-identity-in-australia",

@@ -508,7 +508,7 @@ export default function FamilyLawCourtFeesGuidePage() {
                   Our Melbourne family law team provides transparent fee estimates, advice on fee waiver exemptions, and strategic dispute resolution to minimize litigation expenses.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/book-an-appointment" variant="primary">
+                  <ButtonLink href="/contact" variant="primary">
                     Book a Family Consultation
                   </ButtonLink>
                   <ButtonLink href="/family-lawyers-melbourne/consent-orders-lawyer-melbourne" variant="secondary">

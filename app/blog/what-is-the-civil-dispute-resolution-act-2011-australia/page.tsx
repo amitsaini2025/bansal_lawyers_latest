@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "What is the Civil Dispute Resolution Act 2011 A Guide to Settling Disputes Without Court in Australia | Bansal Lawyers",
+    "Civil Dispute Resolution Act 2011 Guide | Bansal Lawyers",
   description:
     "A practical guide to the Civil Dispute Resolution Act 2011 (Cth), genuine steps statements, ADR and mediation, cost penalties, and settling disputes before court in Australia.",
   path: "/blog/what-is-the-civil-dispute-resolution-act-2011-australia",

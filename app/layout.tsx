@@ -23,7 +23,8 @@ export const metadata: Metadata = {
     default: "Bansal Lawyers | Melbourne Law Firm",
     template: "%s | Bansal Lawyers",
   },
-  description: "[Default meta description goes here]",
+  description:
+    "Bansal Lawyers is a Melbourne law firm providing strategic legal counsel in immigration, family, commercial, criminal, property and civil law.",
   formatDetection: {
     telephone: false,
     email: false,

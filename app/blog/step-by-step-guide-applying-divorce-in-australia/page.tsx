@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Step-by-Step Guide to Applying for Divorce in Australia | Bansal Lawyers",
+    "Guide to Applying for Divorce in Australia | Bansal Lawyers",
   description:
     "A comprehensive step-by-step guide to applying for divorce in Australia by Bansal Lawyers: eligibility, sole vs joint applications, required documents, fees, and court process.",
   path: "/blog/step-by-step-guide-applying-divorce-in-australia",

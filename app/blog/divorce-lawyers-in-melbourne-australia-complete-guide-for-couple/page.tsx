@@ -21,7 +21,7 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couple | Bansal Lawyers",
+  title: "Divorce Lawyers Melbourne: Guide for Couples | Bansal Lawyers",
   description:
     "Complete guide by Bansal Lawyers on getting a divorce in Melbourne Australia under the Family Law Act 1975, covering requirements, documents, joint vs sole applications, fees, hearings, and property settlements.",
   path: "/blog/divorce-lawyers-in-melbourne-australia-complete-guide-for-couple",

@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Understanding Administrative Law Insights from Bansal Lawyers | Melbourne",
+    "Understanding Administrative Law | Bansal Lawyers",
   description:
     "An expert guide to administrative law in Australia by Bansal Lawyers: statutory functions, government accountability, merits review at the ART, and judicial review.",
   path: "/blog/understanding-administrative-law-bansal-lawyers",

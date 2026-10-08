@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Hiding Assets During Divorce in Australia: Legal Risks & Asset Protection | Bansal Lawyers",
+    "Hiding Assets During Divorce in Australia | Bansal Lawyers",
   description:
     "Learn about the legal risks of hiding assets during divorce in Australia, court penalties, loss of credibility, criminal charges, and legitimate asset protection strategies.",
   path: "/blog/hiding-assets-during-divorce-australia",
@@ -667,7 +667,7 @@ export default function HidingAssetsDuringDivorcePage() {
                   Whether you need to draft a robust Binding Financial Agreement, ensure full compliance with the Family Court duty of disclosure, or protect your financial future during separation, Bansal Lawyers provides strategic, confidential, and compassionate guidance.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/book-an-appointment" variant="primary">
+                  <ButtonLink href="/contact" variant="primary">
                     Book a Confidential Consultation
                   </ButtonLink>
                   <ButtonLink href="/family-lawyers-melbourne/property-settlement-lawyer-melbourne" variant="secondary">

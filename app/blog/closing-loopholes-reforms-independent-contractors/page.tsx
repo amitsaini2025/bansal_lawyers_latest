@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Understanding the Closing Loopholes Reforms: Changes for Independent Contractors | Bansal Lawyers",
+    "Closing Loopholes Reforms for Contractors | Bansal Lawyers",
   description:
     "Detailed guide to the Fair Work Closing Loopholes No. 2 reforms in Australia: Section 15AA, independent contractor vs employee classification, gig economy protections, and the Amita Gupta Uber Eats case study.",
   path: "/blog/closing-loopholes-reforms-independent-contractors",

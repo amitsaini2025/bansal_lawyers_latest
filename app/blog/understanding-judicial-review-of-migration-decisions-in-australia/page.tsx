@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Understanding Judicial Review of Migration Decisions in Australia | Bansal Lawyers",
+    "Judicial Review of Migration Decisions Guide | Bansal Lawyers",
   description:
     "A guide by Bansal Lawyers to judicial review of migration decisions in the Federal Circuit and Family Court of Australia: jurisdictional error, 35-day limits, and processes.",
   path: "/blog/understanding-judicial-review-of-migration-decisions-in-australia",

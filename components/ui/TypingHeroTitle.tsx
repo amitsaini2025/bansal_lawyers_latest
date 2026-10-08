@@ -30,9 +30,10 @@ export function TypingHeroTitle({
   items?: string[];
 }) {
   const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
+  const [subIndex, setSubIndex] = useState(items[0]?.length ?? 0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [blink, setBlink] = useState(true);
+  const [isMounted, setIsMounted] = useState(false);
   const reducedMotion = useSyncExternalStore(
     subscribeToMotionPreference, getMotionPreference, getServerMotionPreference
   );
@@ -40,9 +41,13 @@ export function TypingHeroTitle({
 
   const fullConstant = connector ? `${constantPrefix} ${connector}` : constantPrefix;
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   // Typing logic
   useEffect(() => {
-    if (reducedMotion || items.length === 0) return;
+    if (!isMounted || reducedMotion || items.length === 0) return;
     if (subIndex === item.length + 1 && !isDeleting) {
       // Pause at full word
       const timeout = setTimeout(() => {
@@ -66,18 +71,18 @@ export function TypingHeroTitle({
     }, typingSpeed);
 
     return () => clearTimeout(timeout);
-  }, [subIndex, isDeleting, index, items, item, reducedMotion]);
+  }, [subIndex, isDeleting, index, items, item, reducedMotion, isMounted]);
 
   // Cursor blink
   useEffect(() => {
-    if (reducedMotion) return;
+    if (reducedMotion || !isMounted) return;
     const blinkInterval = setInterval(() => {
       setBlink((prev) => !prev);
     }, 530);
     return () => clearInterval(blinkInterval);
-  }, [reducedMotion]);
+  }, [reducedMotion, isMounted]);
 
-  const currentWord = reducedMotion ? (items[0] ?? "") : item.substring(0, subIndex);
+  const currentWord = !isMounted || reducedMotion ? (items[0] ?? "") : item.substring(0, subIndex);
 
   return (
     <span className="hero-typing-title">
@@ -91,13 +96,15 @@ export function TypingHeroTitle({
         <span className="hero-typing-constant-line">{fullConstant}</span>
         <span className="hero-typing-dynamic-line">
           <span className="hero-typing-word">{currentWord}</span>
-          <span
-            className={`hero-typing-cursor ${
-              blink ? "hero-typing-cursor--visible" : "hero-typing-cursor--hidden"
-            }`}
-          >
-            |
-          </span>
+          {isMounted && (
+            <span
+              className={`hero-typing-cursor ${
+                blink ? "hero-typing-cursor--visible" : "hero-typing-cursor--hidden"
+              }`}
+            >
+              |
+            </span>
+          )}
         </span>
       </span>
     </span>

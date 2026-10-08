@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Human Rights and Legal Recourse in Australia: A Brief Guide | Bansal Lawyers",
+    "Human Rights & Legal Recourse in Australia | Bansal Lawyers",
   description:
     "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, Australian Human Rights Commission (AHRC) complaints, and civil liberties defense.",
   path: "/blog/human-rights-legal-recourse-australia",
