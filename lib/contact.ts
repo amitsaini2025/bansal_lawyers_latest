@@ -14,6 +14,12 @@ export interface ContactEnquiry {
   consent: true;
 }
 
+function honeypotTriggered(value: unknown): boolean {
+  if (value === null || value === undefined || value === "") return false;
+  if (typeof value !== "string") return true;
+  return value.trim().length > 0;
+}
+
 export function validateEnquiry(input: unknown): ContactEnquiry | null {
   if (!input || typeof input !== "object" || Array.isArray(input)) return null;
   const data = input as Record<string, unknown>;
@@ -30,7 +36,7 @@ export function validateEnquiry(input: unknown): ContactEnquiry | null {
   const digits = values.phone.replace(/\D/g, "").length;
   if (digits < 8 || digits > 15 || /[\r\n]/.test(values.email + values.subject)) return null;
   if (typeof data.matterType !== "string" || !MATTER_TYPES.has(data.matterType)) return null;
-  if (data.consent !== true || (data.website !== undefined && data.website !== "")) return null;
+  if (data.consent !== true || honeypotTriggered(data.website)) return null;
   return {
     name: values.name, email: values.email, phone: values.phone,
     subject: values.subject, message: values.message, matterType: data.matterType, consent: true,

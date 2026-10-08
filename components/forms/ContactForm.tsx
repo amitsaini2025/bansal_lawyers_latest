@@ -4,6 +4,21 @@ import { FormEvent, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { businessDetails } from "@/lib/site";
 
+const HONEYPOT_INPUT_NAME = "bl_hp_field";
+
+function formValue(values: FormData, key: string): string {
+  const value = values.get(key);
+  return typeof value === "string" ? value : "";
+}
+
+function honeypotValue(values: FormData, email: string): string {
+  const raw = formValue(values, HONEYPOT_INPUT_NAME);
+  if (!raw) return "";
+  // Browsers sometimes autofill trap fields with the email address.
+  if (raw.trim().toLowerCase() === email.trim().toLowerCase()) return "";
+  return raw;
+}
+
 export function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -24,6 +39,7 @@ export function ContactForm() {
     setLoading(true);
     setError(null);
     const values = new FormData(event.currentTarget);
+    const email = formValue(values, "email");
     const controller = new AbortController();
     requestRef.current = controller;
     const timeout = setTimeout(() => controller.abort(), 12000);
@@ -33,10 +49,14 @@ export function ContactForm() {
         headers: { "Content-Type": "application/json" },
         signal: controller.signal,
         body: JSON.stringify({
-          name: values.get("name"), email: values.get("email"), phone: values.get("phone"),
-          subject: values.get("subject"), matterType: values.get("matterType"),
-          message: values.get("message"), consent: values.get("consent") === "on",
-          website: values.get("website"),
+          name: formValue(values, "name"),
+          email,
+          phone: formValue(values, "phone"),
+          subject: formValue(values, "subject"),
+          matterType: formValue(values, "matterType"),
+          message: formValue(values, "message"),
+          consent: values.get("consent") === "on",
+          website: honeypotValue(values, email),
         }),
       });
       if (response.ok) {
@@ -85,9 +105,6 @@ export function ContactForm() {
           <a href={businessDetails.emailMailto}>{businessDetails.email}</a>
         </div>
       )}
-      <div className="form-honeypot" aria-hidden="true">
-        <label>Website<input name="website" tabIndex={-1} autoComplete="off" /></label>
-      </div>
       <div className="form-grid">
         <label>
           <span>Full Name *</span>
@@ -165,6 +182,19 @@ export function ContactForm() {
             By submitting this form, you agree to be contacted by Bansal Lawyers about your enquiry.
           </span>
         </label>
+      </div>
+      <div className="form-honeypot" aria-hidden="true">
+        <input
+          name={HONEYPOT_INPUT_NAME}
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          readOnly
+          onFocus={(event) => event.currentTarget.removeAttribute("readonly")}
+          aria-hidden="true"
+          data-lpignore="true"
+          data-1p-ignore
+        />
       </div>
       <Button variant="primary" type="submit" disabled={loading}>
         {loading ? "Sending..." : "Send Message"}

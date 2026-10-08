@@ -21,6 +21,7 @@ test("requires valid contact details, an allowed matter type and explicit consen
     { ...enquiry, message: "x".repeat(6001) }, null, [],
   ]) assert.equal(validateEnquiry(value), null);
   assert.equal(validateEnquiry(enquiry)?.email, enquiry.email);
+  assert.equal(validateEnquiry({ ...enquiry, website: null })?.email, enquiry.email);
 });
 
 test("rejects cross-origin requests before any data leaves the server", async () => {

@@ -140,8 +140,22 @@ export async function initDatabase(): Promise<{ success: boolean; message: strin
   }
 }
 
+const MATTER_TYPE_LABELS: Record<string, string> = {
+  migration: "Immigration & Visas",
+  "family-law": "Family Law & Divorce",
+  "criminal-law": "Criminal Law Defence",
+  "commercial-law": "Commercial & Business Law",
+  "property-law": "Property & Conveyancing",
+  "civil-law": "Civil Litigation & Disputes",
+  other: "General Legal Enquiry",
+};
+
+function formatMatterType(type: string): string {
+  return MATTER_TYPE_LABELS[type] || type;
+}
+
 /**
- * Saves a validated contact enquiry to the MySQL database.
+ * Saves a validated contact enquiry to the CRM `contacts` table.
  */
 export async function saveEnquiryToDatabase(
   enquiry: ContactEnquiry,
@@ -160,18 +174,18 @@ export async function saveEnquiryToDatabase(
   try {
     connection = await db.getConnection();
     const [result] = await connection.query(
-      `INSERT INTO contact_enquiries 
-        (name, email, phone, subject, matter_type, message, ip_address, user_agent, status)
-       VALUES (?, ?, ?, ?, ?, ?, ?, ?, 'new')`,
+      `INSERT INTO contacts
+        (name, contact_email, contact_phone, department, subject, message, status, created_at, updated_at)
+       VALUES (?, ?, ?, ?, ?, ?, 'unread', NOW(), NOW())`,
       [
-        enquiry.name,
-        enquiry.email,
-        enquiry.phone,
-        enquiry.subject,
-        enquiry.matterType,
-        enquiry.message,
-        metadata?.ipAddress?.slice(0, 45) || null,
-        metadata?.userAgent?.slice(0, 255) || null,
+        enquiry.name.slice(0, 255),
+        enquiry.email.slice(0, 255),
+        enquiry.phone.slice(0, 255),
+        formatMatterType(enquiry.matterType).slice(0, 250),
+        enquiry.subject.slice(0, 250),
+        metadata?.ipAddress
+          ? `${enquiry.message}\n\n[Website enquiry | IP: ${metadata.ipAddress}]`
+          : enquiry.message,
       ]
     );
 

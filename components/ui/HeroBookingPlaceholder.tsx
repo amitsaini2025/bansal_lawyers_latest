@@ -291,7 +291,16 @@ export function HeroBookingPlaceholder({
 
           {/* Hidden Honeypot */}
           <div style={{ display: "none" }} aria-hidden="true">
-            <input name="website" tabIndex={-1} autoComplete="off" />
+            <input
+              name="bl_hp_field"
+              type="text"
+              tabIndex={-1}
+              autoComplete="off"
+              readOnly
+              onFocus={(event) => event.currentTarget.removeAttribute("readonly")}
+              data-lpignore="true"
+              data-1p-ignore
+            />
           </div>
 
           {/* Field 1: Practice Area */}
