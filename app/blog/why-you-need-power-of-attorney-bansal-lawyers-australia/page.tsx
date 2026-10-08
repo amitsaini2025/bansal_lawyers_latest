@@ -628,7 +628,7 @@ export default function PowerOfAttorneyGuidePage() {
                   Our experienced Melbourne solicitors assist with draftsmanship, professional witnessing, capacity assessments, and secure certified copies of General, Enduring, and Supportive Powers of Attorney.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/contact" variant="primary">
+                  <ButtonLink href="/book-an-appointment" variant="primary">
                     Book an Appointment
                   </ButtonLink>
                   <ButtonLink href="/contact" variant="secondary">

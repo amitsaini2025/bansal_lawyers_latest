@@ -495,7 +495,7 @@ export default function AdministrativeLawGuidePage() {
                   Whether you are appealing a visa refusal before the Administrative Review Tribunal (ART), seeking judicial review in federal court, or navigating government statutory decisions, Bansal Lawyers provides authoritative legal guidance.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/contact" variant="primary">
+                  <ButtonLink href="/book-an-appointment" variant="primary">
                     Schedule a Consultation
                   </ButtonLink>
                   <ButtonLink href="/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne" variant="secondary">

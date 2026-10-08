@@ -528,7 +528,7 @@ export default function BreakingRentalAgreementEarlyPage() {
                   Our tenancy and property lawyers provide strategic advice on mitigating lease break compensation, drafting formal notices, and VCAT representation.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/contact" variant="primary">
+                  <ButtonLink href="/book-an-appointment" variant="primary">
                     Book a Property Consultation
                   </ButtonLink>
                   <ButtonLink href="/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne" variant="secondary">

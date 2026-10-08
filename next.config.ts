@@ -107,11 +107,6 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
-        source: "/book-an-appointment",
-        destination: "/contact",
-        permanent: true,
-      },
-      {
         source: "/case",
         destination: "/recent-cases",
         permanent: true,

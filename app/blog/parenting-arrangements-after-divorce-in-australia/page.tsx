@@ -571,7 +571,7 @@ export default function ParentingArrangementsAfterDivorcePage() {
                   Our experienced Melbourne family lawyers assist parents in drafting enforceable parenting plans, formalizing consent orders, and representing families in mediation and court.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/contact" variant="primary">
+                  <ButtonLink href="/book-an-appointment" variant="primary">
                     Book a Family Consultation
                   </ButtonLink>
                   <ButtonLink href="/family-lawyers-melbourne/child-custody-lawyer-melbourne" variant="secondary">

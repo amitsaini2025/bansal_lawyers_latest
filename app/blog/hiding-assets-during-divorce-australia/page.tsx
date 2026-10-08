@@ -667,7 +667,7 @@ export default function HidingAssetsDuringDivorcePage() {
                   Whether you need to draft a robust Binding Financial Agreement, ensure full compliance with the Family Court duty of disclosure, or protect your financial future during separation, Bansal Lawyers provides strategic, confidential, and compassionate guidance.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/contact" variant="primary">
+                  <ButtonLink href="/book-an-appointment" variant="primary">
                     Book a Confidential Consultation
                   </ButtonLink>
                   <ButtonLink href="/family-lawyers-melbourne/property-settlement-lawyer-melbourne" variant="secondary">

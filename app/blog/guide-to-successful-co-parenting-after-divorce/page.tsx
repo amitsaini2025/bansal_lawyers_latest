@@ -563,7 +563,7 @@ export default function CoParentingAfterDivorcePage() {
                   Speak with our compassionate Melbourne family law team for guidance on drafting formal parenting plans, negotiating consent orders, or navigating mediation.
                 </p>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: "1rem" }}>
-                  <ButtonLink href="/contact" variant="primary">
+                  <ButtonLink href="/book-an-appointment" variant="primary">
                     Book a Family Consultation
                   </ButtonLink>
                   <ButtonLink href="/family-lawyers-melbourne/child-custody-lawyer-melbourne" variant="secondary">
