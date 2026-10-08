@@ -58,13 +58,21 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
   // 4. Save to MySQL Database
   let savedId: number | undefined;
+  let dbSaved = false;
+  let dbError: string | undefined;
   try {
     const dbResult = await saveEnquiryToDatabase(enquiry, { ipAddress, userAgent });
     if (dbResult.success && dbResult.id) {
       savedId = dbResult.id;
+      dbSaved = true;
+      console.info(`[API Contact] Enquiry saved to MySQL. enquiryId=${savedId}`);
+    } else {
+      dbError = dbResult.error ?? "Unknown database error";
+      console.error("[API Contact] Database save failed:", dbError);
     }
   } catch (error) {
-    console.error("[API Contact] Error saving enquiry to MySQL:", error);
+    dbError = error instanceof Error ? error.message : "Unknown database error";
+    console.error("[API Contact] Error saving enquiry to MySQL:", dbError, error);
     // Don't fail the client if DB write encounters an issue; proceed with email
   }
 
@@ -104,7 +112,9 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     {
       ok: true,
       message: "Thank you. Your enquiry has been received by Bansal Lawyers Melbourne.",
-      enquiryId: savedId,
+      enquiryId: savedId ?? null,
+      dbSaved,
+      ...(dbSaved ? {} : { dbError }),
     },
     {
       status: 200,
