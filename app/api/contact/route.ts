@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse, after } from "next/server";
 import { validateEnquiry, type ContactEnquiry } from "@/lib/contact";
 import { saveEnquiryToDatabase } from "@/lib/db";
 import { sendEnquiryNotificationToFirm, sendClientAcknowledgement } from "@/lib/mail";
@@ -77,15 +77,20 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   }
 
   // 5. Send Notification Email to Law Firm & Confirmation to Client
-  try {
-    // Run both emails concurrently
-    await Promise.allSettled([
-      sendEnquiryNotificationToFirm(enquiry, savedId),
-      sendClientAcknowledgement(enquiry),
-    ]);
-  } catch (error) {
-    console.error("[API Contact] Email dispatch error:", error);
-  }
+  // SMTP can take longer than the form's client-side timeout, so send after responding.
+  after(async () => {
+    try {
+      const [firm, client] = await Promise.allSettled([
+        sendEnquiryNotificationToFirm(enquiry, savedId),
+        sendClientAcknowledgement(enquiry),
+      ]);
+      console.info(
+        `[API Contact] Emails dispatched. firm=${firm.status === "fulfilled" && firm.value.success} client=${client.status === "fulfilled" && client.value.success}`
+      );
+    } catch (error) {
+      console.error("[API Contact] Email dispatch error:", error);
+    }
+  });
 
   // 6. Optional Legacy Webhook support if configured
   const webhookUrl = process.env.CONTACT_FORM_WEBHOOK_URL;
