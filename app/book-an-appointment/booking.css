@@ -1,0 +1,664 @@
+/* Book an Appointment page. Every selector is prefixed with .appt to stay isolated from site-wide styles. */
+
+.appt-hero {
+  background: linear-gradient(135deg, var(--navy-950) 0%, var(--navy-800) 100%);
+  color: var(--white);
+  padding: clamp(2.5rem, 6vw, 4rem) var(--gutter) clamp(5rem, 9vw, 6.5rem);
+  text-align: center;
+}
+
+.appt-hero__inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+
+.appt-hero h1 {
+  color: var(--white);
+  margin: 0.5rem 0 0.75rem;
+}
+
+.appt-hero p {
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 1.05rem;
+  line-height: 1.65;
+  margin: 0 auto;
+}
+
+.appt-hero__price {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-top: 1.5rem;
+  padding: 0.75rem 1.4rem;
+  border: 1px solid var(--line-dark);
+  border-radius: var(--radius-lg);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.appt-hero__price strong {
+  font-size: 1.15rem;
+}
+
+.appt-hero__price span {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.appt-shell {
+  max-width: 960px;
+  margin: clamp(-4rem, -6vw, -3rem) auto 0;
+  padding: 0 var(--gutter) var(--section-space);
+  position: relative;
+}
+
+.appt-shell__help {
+  text-align: center;
+  color: var(--ink-secondary);
+  margin-top: 1.25rem;
+  font-size: 0.92rem;
+}
+
+.appt-shell__help a {
+  color: var(--brand-blue);
+  font-weight: 700;
+}
+
+.appt-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  overflow: hidden;
+}
+
+.appt-icon {
+  width: 1.1em;
+  height: 1.1em;
+  flex-shrink: 0;
+}
+
+/* Step progress */
+.appt-steps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  padding: 1rem;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface-alt);
+}
+
+.appt-step {
+  flex: 1 1 auto;
+  min-width: 120px;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 0.85rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--white);
+  color: var(--muted);
+  font: inherit;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.appt-step .appt-icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.appt-step:hover:not(:disabled):not(.appt-step--active) {
+  border-color: var(--brand-blue);
+  color: var(--brand-blue);
+}
+
+.appt-step:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+}
+
+.appt-step--done {
+  color: var(--brand-blue);
+}
+
+.appt-step--active {
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: var(--white);
+}
+
+/* Panels */
+.appt-panel-wrap {
+  padding: 1.5rem;
+  scroll-margin-top: 6rem;
+}
+
+.appt-panel__title {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-body), system-ui, sans-serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--brand-blue);
+  margin: 0 0 0.5rem;
+}
+
+.appt-panel__subtitle,
+.appt-muted {
+  color: var(--muted);
+  margin: 0 0 1.25rem;
+  line-height: 1.55;
+}
+
+.appt-error-list {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 1.25rem;
+  font-size: 0.9rem;
+}
+
+.appt-error-list ul {
+  margin: 0.35rem 0 0;
+  padding-left: 1.2rem;
+}
+
+/* Option cards */
+.appt-option-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.appt-option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: 100%;
+  text-align: left;
+  padding: 1rem;
+  border: 2px solid var(--line);
+  border-radius: var(--radius-lg);
+  background: var(--white);
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: border-color var(--transition), box-shadow var(--transition), background var(--transition);
+}
+
+.appt-option:hover {
+  border-color: #94a3b8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+}
+
+.appt-option--selected,
+.appt-option--selected:hover {
+  border-color: var(--brand-blue);
+  background: #f0f7ff;
+}
+
+.appt-option__header {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.appt-option__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 0.75rem;
+  background: linear-gradient(135deg, #ffaf02, #ff8c00);
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.appt-option__icon .appt-icon {
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.appt-option__title {
+  display: block;
+  font-weight: 700;
+  color: var(--brand-blue);
+  font-size: 1rem;
+  margin: 0;
+}
+
+.appt-option__badge {
+  display: inline-block;
+  margin-top: 0.25rem;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--brand-blue);
+  background: #dbeafe;
+  border-radius: 999px;
+  padding: 0.15rem 0.5rem;
+}
+
+.appt-option__price {
+  margin-left: auto;
+  font-weight: 700;
+  color: var(--brand-blue);
+  white-space: nowrap;
+}
+
+.appt-option__desc {
+  color: var(--muted);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+/* Calendar & slots */
+.appt-calendar-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+  align-items: start;
+}
+
+.appt-calendar {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem;
+}
+
+.appt-calendar__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 700;
+  color: var(--navy-950);
+  margin-bottom: 0.6rem;
+}
+
+.appt-calendar__head button {
+  width: 2rem;
+  height: 2rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--navy-900);
+}
+
+.appt-calendar__head button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.appt-calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 0.25rem;
+}
+
+.appt-calendar__weekday {
+  text-align: center;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: var(--muted);
+  padding: 0.3rem 0;
+}
+
+.appt-calendar__day {
+  aspect-ratio: 1;
+  border: 0;
+  border-radius: var(--radius-md);
+  background: var(--blue-50);
+  color: var(--navy-950);
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+
+.appt-calendar__day:hover:not(:disabled) {
+  background: var(--blue-100);
+}
+
+.appt-calendar__day:disabled {
+  background: transparent;
+  color: var(--line-strong);
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+
+.appt-calendar__day--selected,
+.appt-calendar__day--selected:hover:not(:disabled) {
+  background: var(--brand-blue);
+  color: var(--white);
+}
+
+.appt-slots .appt-option__title {
+  margin-bottom: 0.9rem;
+}
+
+.appt-slots__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 0.55rem;
+}
+
+.appt-slot {
+  padding: 0.6rem 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  background: var(--white);
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink);
+  cursor: pointer;
+  transition: border-color var(--transition), background var(--transition);
+}
+
+.appt-slot:hover:not(:disabled) {
+  border-color: var(--brand-blue);
+}
+
+.appt-slot:disabled {
+  opacity: 0.4;
+  text-decoration: line-through;
+  cursor: not-allowed;
+}
+
+.appt-slot--selected {
+  background: var(--brand-blue);
+  border-color: var(--brand-blue);
+  color: var(--white);
+}
+
+/* Form fields */
+.appt-field {
+  margin-bottom: 1rem;
+}
+
+.appt-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.appt-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--navy-950);
+  margin-bottom: 0.35rem;
+}
+
+.appt-input {
+  width: 100%;
+  padding: 0.7rem 0.85rem;
+  border: 1.5px solid var(--line-strong);
+  border-radius: var(--radius-md);
+  background: var(--surface);
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--ink);
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.appt-input:focus {
+  outline: none;
+  border-color: var(--brand-blue);
+  box-shadow: 0 0 0 3px rgba(27, 76, 137, 0.15);
+}
+
+.appt-textarea {
+  resize: vertical;
+  min-height: 7rem;
+}
+
+.appt-field--error .appt-input {
+  border-color: #dc2626;
+}
+
+.appt-field-error {
+  color: #b91c1c;
+  font-size: 0.82rem;
+  margin: 0.35rem 0 0;
+}
+
+.appt-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 0.6rem 1.25rem;
+  margin: 0 0 1.5rem;
+  padding: 1rem 1.15rem;
+  background: var(--surface-alt);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.appt-summary__row dt {
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--muted);
+}
+
+.appt-summary__row dd {
+  margin: 0.15rem 0 0;
+  font-weight: 600;
+  color: var(--navy-950);
+  word-break: break-word;
+}
+
+.appt-legal {
+  font-size: 0.8rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin: 0.5rem 0 1rem;
+}
+
+/* Promo & payment */
+.appt-promo {
+  margin-bottom: 1.25rem;
+}
+
+.appt-promo .appt-option__title {
+  margin-bottom: 0.6rem;
+}
+
+.appt-promo__row {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+}
+
+.appt-promo__row .appt-input {
+  flex: 1 1 200px;
+}
+
+.appt-promo__msg--success {
+  color: var(--success);
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin: 0.4rem 0 0;
+}
+
+.appt-payment {
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.15rem;
+  margin-bottom: 1rem;
+}
+
+.appt-payment > div {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.3rem 0;
+  color: var(--ink-secondary);
+}
+
+.appt-payment__total {
+  border-top: 1px solid var(--line);
+  margin-top: 0.35rem;
+  padding-top: 0.6rem !important;
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--navy-950) !important;
+}
+
+.appt-notice {
+  background: #fffbeb;
+  border: 1px solid #fde68a;
+  color: #92400e;
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  font-size: 0.88rem;
+  line-height: 1.5;
+  margin-bottom: 1rem;
+}
+
+.appt-notice a {
+  color: inherit;
+  font-weight: 700;
+}
+
+.appt-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-top: 1.5rem;
+}
+
+.appt-actions .button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* Floating nav (mobile only) */
+.appt-floating-nav {
+  display: none;
+}
+
+/* Free consultation modal */
+.appt-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(10, 27, 50, 0.6);
+}
+
+.appt-modal {
+  max-width: 520px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  padding: 1.6rem;
+}
+
+.appt-modal h3 {
+  margin: 0 0 0.5rem;
+  color: var(--navy-950);
+}
+
+.appt-modal p,
+.appt-modal li {
+  color: var(--ink-secondary);
+  line-height: 1.55;
+  font-size: 0.92rem;
+}
+
+.appt-modal ul {
+  padding-left: 1.2rem;
+  margin: 0.5rem 0 1rem;
+}
+
+.appt-ack {
+  display: flex;
+  gap: 0.6rem;
+  align-items: flex-start;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--navy-950);
+  cursor: pointer;
+}
+
+.appt-ack input {
+  margin-top: 0.2rem;
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+@media (max-width: 1100px) {
+  .appt-step {
+    min-width: 0;
+    flex: 1 1 0;
+    justify-content: center;
+    padding: 0.6rem 0.5rem;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .appt-steps {
+    padding: 0.75rem;
+    gap: 0.35rem;
+  }
+
+  .appt-step:not(.appt-step--active) span {
+    display: none;
+  }
+
+  .appt-step--active {
+    flex-grow: 2.5;
+  }
+}
+
+@media (max-width: 760px) {
+
+  .appt-calendar-layout,
+  .appt-field-row {
+    grid-template-columns: 1fr;
+  }
+
+  .appt-calendar {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+  }
+
+  .appt-panel-wrap {
+    padding-bottom: 5rem;
+  }
+
+  .appt-floating-nav {
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 900;
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.7rem var(--gutter);
+    background: var(--surface);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -6px 18px rgba(10, 27, 50, 0.08);
+  }
+}

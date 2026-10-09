@@ -267,6 +267,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.9,
     },
     {
+      url: `${siteUrl}/book-an-appointment`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${siteUrl}/immigration-lawyers-melbourne`,
       lastModified: currentDate,
       changeFrequency: "weekly",

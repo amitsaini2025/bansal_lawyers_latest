@@ -479,7 +479,7 @@ export function Header() {
                               </span>
                             </div>
                             <Link
-                              href="/contact"
+                              href="/book-an-appointment"
                               className="button button--primary button--compact"
                               onClick={() => setIsMegaOpen(false)}
                             >
@@ -657,7 +657,7 @@ export function Header() {
             {/* 6. Consultation CTA Button */}
             <div className="mobile-drawer-cta">
               <Link
-                href="/contact"
+                href="/book-an-appointment"
                 className="button button--primary button--full"
                 onClick={() => setMobileMenuOpen(false)}
               >
@@ -672,7 +672,7 @@ export function Header() {
           {/* Desktop Consultation Button */}
           <Link
             className="button button--primary button--compact header-cta-desktop"
-            href="/contact"
+            href="/book-an-appointment"
           >
             Book Consultation
           </Link>
