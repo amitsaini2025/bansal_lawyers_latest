@@ -126,7 +126,7 @@ export default function ContactPage() {
           <div className="contact-form-container">
             <SectionHeader
               eyebrow="Online Message Form"
-              title="Send Us a Message11"
+              title="Send Us a Message"
               intro="Send your details below, and our Melbourne team will review your matter and respond during business hours."
               align="center"
             />
