@@ -44,7 +44,7 @@ export function HeroBookingPlaceholder({
   const statusRef = useRef<HTMLDivElement>(null);
 
   const formatLabels: Record<"office" | "phone" | "video", string> = {
-    office: "Melbourne CBD Office (278 Collins St)",
+    office: "Melbourne CBD Office (530 Little Collins St)",
     phone: "Telephone Consultation",
     video: "Secure Video Conference",
   };

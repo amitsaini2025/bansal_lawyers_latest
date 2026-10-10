@@ -64,8 +64,8 @@ export function createLegalServiceSchema() {
           "Thursday",
           "Friday",
         ],
-        opens: "08:30",
-        closes: "17:30",
+        opens: "10:00",
+        closes: "18:00",
       },
     ],
     sameAs: [
@@ -269,7 +269,7 @@ export function createAboutPageSchema() {
       ],
       address: {
         "@type": "PostalAddress",
-        streetAddress: "Level 8, 278 Collins Street",
+        streetAddress: businessDetails.streetAddress,
         addressLocality: "Melbourne",
         addressRegion: "VIC",
         postalCode: "3000",

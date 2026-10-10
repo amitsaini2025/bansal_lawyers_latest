@@ -211,7 +211,7 @@ export function Footer() {
               <strong>Email:</strong> {businessDetails.email}
             </a>
             <span style={{ fontSize: "0.85rem", color: "rgba(255, 255, 255, 0.65)", marginTop: "0.25rem" }}>
-              Mon–Fri: 8:30 AM – 5:30 PM (Melbourne time)
+              Mon–Fri: 10 AM to 6 PM (Melbourne time)
             </span>
           </address>
         </div>

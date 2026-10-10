@@ -177,7 +177,7 @@ export function Header() {
             </span>
             <span className="utility-badge">Melbourne CBD</span>
             <span className="utility-sep" aria-hidden="true">|</span>
-            <span className="utility-address">Level 8/278 Collins St, Melbourne VIC 3000</span>
+            <span className="utility-address">Level 1, 530 Little Collins Street, Melbourne VIC 3000</span>
             <span className="utility-sep" aria-hidden="true">|</span>
             <a
               href="tel:+61422905860"

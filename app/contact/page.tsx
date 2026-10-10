@@ -50,7 +50,7 @@ const contactFaqs = [
   {
     question: "Where is Bansal Lawyers located?",
     answer:
-      "Our office is situated at Level 8/278 Collins St, Melbourne VIC 3000, Australia. We are located in the heart of the Melbourne CBD between Swanston and Elizabeth Streets, close to public transport.",
+      "Our office is situated at Level 1, 530 Little Collins Street, Melbourne VIC 3000, Australia. We are located in the heart of the Melbourne CBD, close to public transport.",
   },
   {
     question: "Can I book a consultation online?",
@@ -215,7 +215,7 @@ export default function ContactPage() {
               </div>
               <h3>Visit Our Office</h3>
               <address>
-                Level 8/278 Collins St,<br />
+                Level 1, 530 Little Collins Street,<br />
                 Melbourne VIC 3000,<br />
                 Australia
               </address>
@@ -276,20 +276,20 @@ export default function ContactPage() {
         <Container>
           <div className="location-grid">
             <div>
-              <span className="eyebrow">Collins Street Location</span>
+              <span className="eyebrow">Little Collins Street Location</span>
               <h2>Our Melbourne CBD Office</h2>
               <p style={{ fontSize: "1.05rem", lineHeight: "1.7", color: "var(--ink)" }}>
-                Bansal Lawyers is located on Collins Street in the heart of Melbourne CBD, making it accessible for city professionals, suburban residents, and interstate clients visiting the city.
+                Bansal Lawyers is located on Little Collins Street in the heart of Melbourne CBD, making it accessible for city professionals, suburban residents, and interstate clients visiting the city.
               </p>
               <p style={{ color: "var(--ink-secondary)", lineHeight: "1.7", marginTop: "1rem" }}>
-                Our building is conveniently situated between Swanston and Elizabeth Streets. It is just a short walk from Flinders Street Station and Melbourne Central Station, with tram routes 11, 12, 48, and 109 stopping directly on Collins Street outside.
+                Our office is easily reached by train and tram, with several tram routes running along nearby Collins Street and Bourke Street.
               </p>
               <address style={{ fontStyle: "normal", margin: "1.5rem 0", color: "var(--navy-950)", fontWeight: 600 }}>
-                Level 8/278 Collins St,<br />
+                Level 1, 530 Little Collins Street,<br />
                 Melbourne VIC 3000, Australia
               </address>
               <ButtonLink
-                href="https://www.google.com/maps/dir/?api=1&destination=Level+8%2F278+Collins+St+Melbourne+VIC+3000"
+                href="https://www.google.com/maps/dir/?api=1&destination=Level+1%2C+530+Little+Collins+Street+Melbourne+VIC+3000"
                 variant="primary"
               >
                 Get Directions
@@ -299,7 +299,7 @@ export default function ContactPage() {
             <div className="office-map-frame" aria-label="Google Map Embed Location">
               <iframe
                 title="Bansal Lawyers Melbourne Office Location"
-                src="https://maps.google.com/maps?q=Level%208%2F278%20Collins%20St,%20Melbourne%20VIC%203000&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Level%201%2C%20530%20Little%20Collins%20Street,%20Melbourne%20VIC%203000&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

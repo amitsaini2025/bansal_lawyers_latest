@@ -5,8 +5,8 @@ export const siteUrl =
 
 export const businessDetails = {
   name: "Bansal Lawyers",
-  address: "Level 8/278 Collins St, Melbourne VIC 3000, Australia",
-  streetAddress: "Level 8/278 Collins St",
+  address: "Level 1, 530 Little Collins Street, Melbourne VIC 3000",
+  streetAddress: "Level 1, 530 Little Collins Street",
   addressLocality: "Melbourne",
   addressRegion: "VIC",
   postalCode: "3000",
