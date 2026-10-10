@@ -11,6 +11,7 @@ import {
   Section,
   SectionHeader,
 } from "@/components/ui";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -131,7 +132,7 @@ export default function ContactPage() {
               align="center"
             />
             <div className="contact-form-wrapper contact-form-wrapper--centered">
-              <ContactForm />
+              <ContactForm turnstileSiteKey={getTurnstileSiteKey()} />
             </div>
           </div>
         </Container>

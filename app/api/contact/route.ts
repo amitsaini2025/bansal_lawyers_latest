@@ -1,7 +1,9 @@
 import { NextRequest, NextResponse, after } from "next/server";
 import { validateEnquiry, type ContactEnquiry } from "@/lib/contact";
+import { verifyTurnstile } from "@/lib/booking/turnstile";
 import { saveEnquiryToDatabase } from "@/lib/db";
-import { sendEnquiryNotificationToFirm, sendClientAcknowledgement } from "@/lib/mail";
+import { sendEnquiryNotificationToFirm } from "@/lib/mail";
+// import { sendClientAcknowledgement } from "@/lib/mail";
 
 export const runtime = "nodejs";
 
@@ -48,6 +50,18 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     return NextResponse.json({ error: "Invalid JSON payload" }, { status: 400 });
   }
 
+  const turnstileToken =
+    body && typeof body === "object" && !Array.isArray(body) && typeof (body as Record<string, unknown>).turnstileToken === "string"
+      ? (body as Record<string, unknown>).turnstileToken as string
+      : "";
+
+  if (!(await verifyTurnstile(turnstileToken, ipAddress))) {
+    return NextResponse.json(
+      { error: "Security verification failed. Please complete the check and try again." },
+      { status: 422, headers: { "Cache-Control": "no-store, max-age=0" } }
+    );
+  }
+
   const enquiry: ContactEnquiry | null = validateEnquiry(body);
   if (!enquiry) {
     return NextResponse.json(
@@ -76,17 +90,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     // Don't fail the client if DB write encounters an issue; proceed with email
   }
 
-  // 5. Send Notification Email to Law Firm & Confirmation to Client
+  // 5. Send notification email to the law firm (client auto-reply disabled; see sendClientAcknowledgement in lib/mail.ts)
   // SMTP can take longer than the form's client-side timeout, so send after responding.
   after(async () => {
     try {
-      const [firm, client] = await Promise.allSettled([
-        sendEnquiryNotificationToFirm(enquiry, savedId),
-        sendClientAcknowledgement(enquiry),
-      ]);
-      console.info(
-        `[API Contact] Emails dispatched. firm=${firm.status === "fulfilled" && firm.value.success} client=${client.status === "fulfilled" && client.value.success}`
-      );
+      const firm = await sendEnquiryNotificationToFirm(enquiry, savedId);
+      console.info(`[API Contact] Firm notification dispatched. success=${firm.success}`);
+      // await sendClientAcknowledgement(enquiry);
     } catch (error) {
       console.error("[API Contact] Email dispatch error:", error);
     }

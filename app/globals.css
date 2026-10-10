@@ -3125,6 +3125,12 @@ h3 {
   box-shadow: var(--shadow-sm);
 }
 
+.contact-form .appt-turnstile {
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 1.25rem;
+}
+
 /* Contact Detail Blocks & Cards */
 .contact-cards-grid {
   display: grid;

@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useRef, useState } from "react";
+import { TurnstileWidget } from "@/components/booking/TurnstileWidget";
 import { Button } from "@/components/ui/Button";
 import { businessDetails } from "@/lib/site";
 
@@ -19,10 +20,17 @@ function honeypotValue(values: FormData, email: string): string {
   return raw;
 }
 
-export function ContactForm() {
+type ContactFormProps = {
+  /** Cloudflare Turnstile site key; the security check is skipped when null. */
+  turnstileSiteKey?: string | null;
+};
+
+export function ContactForm({ turnstileSiteKey = null }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileKey, setTurnstileKey] = useState(0);
   const statusRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<AbortController | null>(null);
 
@@ -36,6 +44,10 @@ export function ContactForm() {
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (loading || !event.currentTarget.reportValidity()) return;
+    if (turnstileSiteKey && !turnstileToken) {
+      setError("Please wait for the security check to finish, then try again.");
+      return;
+    }
     setLoading(true);
     setError(null);
     const values = new FormData(event.currentTarget);
@@ -57,6 +69,7 @@ export function ContactForm() {
           message: formValue(values, "message"),
           consent: values.get("consent") === "on",
           website: honeypotValue(values, email),
+          turnstileToken,
         }),
       });
       if (response.ok) {
@@ -66,9 +79,11 @@ export function ContactForm() {
           ? "Online enquiries are temporarily unavailable. Please call or email our team."
           : response.status === 429
             ? "Please wait a few minutes before trying again, or call our team."
-            : response.status === 400
-              ? "Please check your details and try again."
-              : "Your message could not be sent. Please try again, or contact our team directly.");
+            : response.status === 422
+              ? "Security verification failed. Please complete the check and try again."
+              : response.status === 400
+                ? "Please check your details and try again."
+                : "Your message could not be sent. Please try again, or contact our team directly.");
       }
     } catch {
       if (requestRef.current === controller) {
@@ -79,6 +94,10 @@ export function ContactForm() {
       if (requestRef.current === controller) {
         requestRef.current = null;
         setLoading(false);
+      }
+      if (turnstileSiteKey) {
+        setTurnstileToken("");
+        setTurnstileKey((key) => key + 1);
       }
     }
   }
@@ -196,6 +215,9 @@ export function ContactForm() {
           data-1p-ignore
         />
       </div>
+      {turnstileSiteKey && (
+        <TurnstileWidget key={turnstileKey} siteKey={turnstileSiteKey} onToken={setTurnstileToken} />
+      )}
       <Button variant="primary" type="submit" disabled={loading}>
         {loading ? "Sending..." : "Send Message"}
       </Button>

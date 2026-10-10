@@ -13,7 +13,7 @@ function turnstileKeys(): { siteKey: string; secretKey: string } | null {
   return useProductionKeys ? { siteKey, secretKey } : { siteKey: TEST_SITE_KEY, secretKey: TEST_SECRET_KEY };
 }
 
-/** Public site key for the booking form, or null when Turnstile is not configured. */
+/** Public site key for protected forms (booking, contact), or null when Turnstile is not configured. */
 export function getTurnstileSiteKey(): string | null {
   return turnstileKeys()?.siteKey ?? null;
 }
