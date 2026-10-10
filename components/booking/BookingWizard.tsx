@@ -1,6 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useRef, useState, type ReactNode } from "react";
+import { TurnstileWidget } from "@/components/booking/TurnstileWidget";
 import {
   CONSULTATION_TYPES,
   formatAud,
@@ -30,6 +32,7 @@ const MONTH_NAMES = [
 const WEEKDAY_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MAX_MONTHS_AHEAD = 12;
 const AUTO_ADVANCE_MS = 400;
+const SUBMIT_TIMEOUT_MS = 30_000;
 
 interface AvailabilityState {
   disabledWeekdays: number[];
@@ -45,8 +48,15 @@ interface FieldErrors {
 export interface BookingWizardProps {
   services: ConsultationService[];
   natureOfEnquiry: NatureOfEnquiry[];
-  /** Booking creation is wired in a later phase; until then the final step explains how to confirm. */
-  submissionEnabled?: boolean;
+  /** Cloudflare Turnstile site key; the security check is skipped when null. */
+  turnstileSiteKey?: string | null;
+  /** Paid bookings need online payment; until it is enabled the final step asks clients to call instead. */
+  paymentEnabled?: boolean;
+}
+
+interface BookingConfirmation {
+  appointmentId: number | null;
+  message: string;
 }
 
 function weekdayOf(iso: string): number {
@@ -67,7 +77,12 @@ function sameSlot(a: string, b: string): boolean {
   return a.trim().replace(/\s+/g, " ").toLowerCase() === b.trim().replace(/\s+/g, " ").toLowerCase();
 }
 
-export function BookingWizard({ services, natureOfEnquiry, submissionEnabled = false }: BookingWizardProps) {
+export function BookingWizard({
+  services,
+  natureOfEnquiry,
+  turnstileSiteKey = null,
+  paymentEnabled = false,
+}: BookingWizardProps) {
   const [step, setStep] = useState<StepId>("duration");
   const [maxReached, setMaxReached] = useState(0);
 
@@ -107,6 +122,13 @@ export function BookingWizard({ services, natureOfEnquiry, submissionEnabled = f
 
   const [fieldErrors, setFieldErrors] = useState<FieldErrors>({});
   const [stepErrors, setStepErrors] = useState<string[]>([]);
+
+  const [honeypot, setHoneypot] = useState("");
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileKey, setTurnstileKey] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
+  const [confirmation, setConfirmation] = useState<BookingConfirmation | null>(null);
 
   const panelRef = useRef<HTMLDivElement>(null);
   const advanceTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -152,6 +174,7 @@ export function BookingWizard({ services, natureOfEnquiry, submissionEnabled = f
     const index = STEPS.findIndex((s) => s.id === target);
     setFieldErrors({});
     setStepErrors([]);
+    setSubmitError(null);
     setStep(target);
     setMaxReached((prev) => Math.max(prev, index));
   }
@@ -340,6 +363,97 @@ export function BookingWizard({ services, natureOfEnquiry, submissionEnabled = f
     }
   }
 
+  function returnToDateStep(message: string, clearDate: boolean) {
+    goTo("datetime");
+    setSelectedTime(null);
+    if (clearDate) {
+      setSelectedDate(null);
+      setUnavailableSlots([]);
+    } else if (selectedDate && serviceId) {
+      void loadSlots(selectedDate, serviceId);
+    }
+    setStepErrors([message]);
+  }
+
+  async function submitBooking() {
+    if (submitting) return;
+
+    const errors = (["duration", "type", "datetime", "info"] as StepId[]).reduce<FieldErrors>(
+      (acc, id) => ({ ...acc, ...validateStep(id) }),
+      {}
+    );
+    const messages = Object.values(errors).filter((m): m is string => Boolean(m));
+    if (messages.length) {
+      setFieldErrors(errors);
+      setStepErrors(messages);
+      return;
+    }
+    if (turnstileSiteKey && !turnstileToken) {
+      setSubmitError("Please wait for the security check to finish, then try again.");
+      return;
+    }
+
+    setSubmitting(true);
+    setSubmitError(null);
+    try {
+      const res = await fetch("/api/booking/create", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        signal: AbortSignal.timeout(SUBMIT_TIMEOUT_MS),
+        body: JSON.stringify({
+          serviceId,
+          consultationType,
+          date: selectedDate,
+          time: selectedTime,
+          noeId: Number(noeId),
+          fullname: fullname.trim(),
+          email: email.trim(),
+          phone: phone.trim(),
+          description: description.trim(),
+          promoCode: promoApplied ? promoCode.trim() : "",
+          freeConsultAcknowledged: service?.isFree ? freeAcknowledged : false,
+          turnstileToken,
+          website_url: honeypot,
+        }),
+      });
+      const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success) {
+        setConfirmation({
+          appointmentId: typeof data.appointmentId === "number" ? data.appointmentId : null,
+          message: typeof data.message === "string" ? data.message : "Your appointment is booked.",
+        });
+        panelRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+        return;
+      }
+
+      const message: string =
+        res.status === 429
+          ? "Too many booking attempts. Please wait a moment before trying again."
+          : data?.errors && typeof data.errors === "object"
+            ? Object.values(data.errors as Record<string, string>).join(" ")
+            : data?.message || "We couldn't complete your booking. Please try again.";
+
+      if (data?.code === "SLOT_TAKEN" || data?.code === "BUSY") {
+        returnToDateStep(message, false);
+      } else if (data?.code === "DATE_UNAVAILABLE") {
+        returnToDateStep(message, true);
+      } else {
+        setSubmitError(message);
+      }
+    } catch {
+      setSubmitError(
+        `We couldn't reach the booking service. Please check your connection and try again, or call ${businessDetails.phone}.`
+      );
+    } finally {
+      setSubmitting(false);
+      if (turnstileSiteKey) {
+        setTurnstileToken("");
+        setTurnstileKey((key) => key + 1);
+      }
+    }
+  }
+
   const calendarDays = useMemo(() => {
     const { year, month } = viewMonth;
     const firstWeekday = new Date(Date.UTC(year, month, 1)).getUTCDay();
@@ -367,6 +481,40 @@ export function BookingWizard({ services, natureOfEnquiry, submissionEnabled = f
   const stepIndex = STEPS.findIndex((s) => s.id === step);
   const showFloatingNav = step !== "duration";
   const floatingNextLabel = step === "info" ? "Review & Confirm" : step === "confirm" ? null : "Next";
+  const canSubmit = finalAmount <= 0 || paymentEnabled;
+
+  if (confirmation) {
+    return (
+      <div className="appt">
+        <div className="appt-card">
+          <div className="appt-panel-wrap" ref={panelRef}>
+            <section className="appt-panel appt-success" role="status">
+              <span className="appt-success__icon"><Icon name="check" /></span>
+              <h2 className="appt-panel__title">Your Appointment Is Booked</h2>
+              <p className="appt-panel__subtitle">{confirmation.message}</p>
+              <Summary rows={[
+                ...(confirmation.appointmentId ? [["Reference", `#${confirmation.appointmentId}`] as [string, string]] : []),
+                ["Duration", durationSummary],
+                ["Type", consultationLabel],
+                ["Date", selectedDateLabel],
+                ["Time", `${selectedTime ?? ""} (Melbourne time)`],
+                ["Name", fullname],
+                ["Email", email],
+              ]} />
+              <p className="appt-legal">
+                A confirmation email is on its way to {email}. Need to change anything? Call{" "}
+                <a href={businessDetails.phoneTel}>{businessDetails.phone}</a> or email{" "}
+                <a href={businessDetails.emailMailto}>{businessDetails.email}</a>.
+              </p>
+              <div className="appt-actions">
+                <Link href="/" className="button button--primary">Back to Home</Link>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="appt">
@@ -608,17 +756,41 @@ export function BookingWizard({ services, natureOfEnquiry, submissionEnabled = f
 
               <LegalNotice />
 
-              {!submissionEnabled && (
+              {!canSubmit && (
                 <div className="appt-notice" role="status">
-                  Online confirmation for this booking form is being finalised. To secure this time now, please call{" "}
+                  Online payment for paid consultations is being finalised. To secure this time now, please call{" "}
                   <a href={businessDetails.phoneTel}>{businessDetails.phone}</a> or email{" "}
                   <a href={businessDetails.emailMailto}>{businessDetails.email}</a> with the details above.
                 </div>
               )}
 
+              {submitError && (
+                <div className="appt-error-list" role="alert">{submitError}</div>
+              )}
+
+              <input
+                type="text"
+                name="website_url"
+                className="appt-hp"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+              />
+
+              {canSubmit && turnstileSiteKey && (
+                <TurnstileWidget key={turnstileKey} siteKey={turnstileSiteKey} onToken={setTurnstileToken} />
+              )}
+
               <Actions onBack={goBack}>
-                <button type="button" className="button button--primary" disabled={!submissionEnabled}>
-                  {finalAmount <= 0 ? "Complete Booking" : `Pay & Submit ${formatAud(finalAmount)}`}
+                <button type="button" className="button button--primary" disabled={!canSubmit || submitting}
+                  onClick={submitBooking} aria-busy={submitting}>
+                  {submitting
+                    ? "Booking..."
+                    : finalAmount <= 0
+                      ? "Complete Booking"
+                      : `Pay & Submit ${formatAud(finalAmount)}`}
                 </button>
               </Actions>
             </Panel>

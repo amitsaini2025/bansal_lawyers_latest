@@ -3,6 +3,7 @@ import { BookingWizard } from "@/components/booking/BookingWizard";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { Breadcrumbs } from "@/components/ui";
 import { getBookableServices, getNatureOfEnquiryOptions } from "@/lib/booking/availability";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema } from "@/lib/schema";
 import { businessDetails } from "@/lib/site";
@@ -55,7 +56,7 @@ export default async function BookAppointmentPage() {
       </section>
 
       <div className="appt-shell">
-        <BookingWizard services={services} natureOfEnquiry={natureOfEnquiry} />
+        <BookingWizard services={services} natureOfEnquiry={natureOfEnquiry} turnstileSiteKey={getTurnstileSiteKey()} />
         <p className="appt-shell__help">
           Urgent deadline or court date? Call <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>.
         </p>
