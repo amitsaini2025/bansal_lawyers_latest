@@ -7,6 +7,7 @@ import {
   slotLabelsToIntervals,
   unavailableSlotLabels,
 } from "@/lib/booking/availability";
+import { releaseStalePendingBookings } from "@/lib/booking/payment";
 import { clientIp, createRateLimiter } from "@/lib/booking/rate-limit";
 import { isIsoDate, isWebsiteServiceId, slotDuration } from "@/lib/booking/services";
 
@@ -37,6 +38,7 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
+    if (!includeCrm) await releaseStalePendingBookings();
     const localBusy = await getLocalBusyIntervals(date);
     if (localBusy === null) {
       return NextResponse.json(

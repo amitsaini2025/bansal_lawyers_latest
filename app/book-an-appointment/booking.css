@@ -567,6 +567,11 @@
   height: 32px;
 }
 
+.appt-success--warning .appt-success__icon {
+  background: #fef3c7;
+  color: #b45309;
+}
+
 .appt-success .appt-panel__title {
   justify-content: center;
 }

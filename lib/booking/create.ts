@@ -14,6 +14,8 @@ import {
 
 /** "Pending appointment with payment success" in the shared appointments table. */
 export const CONFIRMED_FREE_APPOINTMENT_STATUS = 10;
+/** "Pending payment": a paid booking holding its slot until Stripe confirms the payment. */
+export const PENDING_PAYMENT_APPOINTMENT_STATUS = 5;
 
 const NAME_PATTERN = /^[a-zA-Z\s]+$/;
 const PHONE_PATTERN = /^[\d\s\-+()]+$/;
@@ -104,7 +106,7 @@ export function validateBookingRequest(body: Record<string, unknown>): Validatio
 }
 
 /** Current Melbourne wall-clock time, matching how the legacy site writes timestamps. */
-function melbourneNow(now = new Date()) {
+export function melbourneNow(now = new Date()) {
   const parts = Object.fromEntries(
     new Intl.DateTimeFormat("en-GB", {
       timeZone: BOOKING_TIMEZONE,
@@ -145,8 +147,10 @@ export async function hasUsedFreeConsultation(email: string, phone: string): Pro
 
 export interface FreeBookingInput {
   request: BookingRequest;
-  paymentType: "free_consultation" | "promo_free";
+  paymentType: "free_consultation" | "promo_free" | "stripe";
   durationMinutes: number;
+  /** Set for paid bookings: stored as a pending payment and a "pending payment" appointment. */
+  pendingPayment?: { amount: number; orderHash: string; notes: string };
 }
 
 export type CreateBookingResult =
@@ -154,13 +158,15 @@ export type CreateBookingResult =
   | { ok: false; status: number; code: "SLOT_TAKEN" | "FREE_ALREADY_USED" | "BUSY" | "DB_UNAVAILABLE"; message: string };
 
 /**
- * Stores a booking that needs no payment (free tier or a 100% promo) in the shared tables:
- * a completed payment record, the client in `admins`, and the appointment itself.
+ * Stores a booking in the shared tables: a payment record, the client in `admins`, and the appointment.
+ * Free bookings (free tier or a 100% promo) are confirmed straight away; paid bookings are stored as
+ * pending until the Stripe payment completes.
  */
 export async function createFreeBooking({
   request,
   paymentType,
   durationMinutes,
+  pendingPayment,
 }: FreeBookingInput): Promise<CreateBookingResult> {
   const db = getDbPool();
   if (!db) {
@@ -205,24 +211,42 @@ export async function createFreeBooking({
     }
 
     const now = melbourneNow();
-    const orderHash = `booking_${Date.now()}`;
+    const orderHash = pendingPayment?.orderHash ?? `booking_${Date.now()}`;
 
     await connection.beginTransaction();
     try {
-      await connection.query(
-        `INSERT INTO tbl_paid_appointment_payment
-           (order_hash, payer_email, amount, currency, payment_type, order_date, name,
-            stripe_payment_intent_id, payment_status, order_status)
-         VALUES (?, ?, 0, 'aud', ?, ?, ?, ?, 'Paid', 'Completed')`,
-        [
-          orderHash,
-          request.email.slice(0, 100),
-          paymentType,
-          now.dateTime,
-          request.fullname.slice(0, 25),
-          `promo_free_${Math.floor(Date.now() / 1000)}`,
-        ]
-      );
+      if (pendingPayment) {
+        await connection.query(
+          `INSERT INTO tbl_paid_appointment_payment
+             (order_hash, payer_email, amount, currency, payment_type, order_date, name, notes,
+              payment_status, order_status)
+           VALUES (?, ?, ?, 'aud', ?, ?, ?, ?, 'Pending', 'Pending')`,
+          [
+            orderHash,
+            request.email.slice(0, 100),
+            pendingPayment.amount,
+            paymentType,
+            now.dateTime,
+            request.fullname.slice(0, 25),
+            pendingPayment.notes,
+          ]
+        );
+      } else {
+        await connection.query(
+          `INSERT INTO tbl_paid_appointment_payment
+             (order_hash, payer_email, amount, currency, payment_type, order_date, name,
+              stripe_payment_intent_id, payment_status, order_status)
+           VALUES (?, ?, 0, 'aud', ?, ?, ?, ?, 'Paid', 'Completed')`,
+          [
+            orderHash,
+            request.email.slice(0, 100),
+            paymentType,
+            now.dateTime,
+            request.fullname.slice(0, 25),
+            `promo_free_${Math.floor(Date.now() / 1000)}`,
+          ]
+        );
+      }
 
       const [existing] = await connection.query<RowDataPacket[]>(
         "SELECT id, client_id FROM admins WHERE email = ? OR phone = ? ORDER BY id LIMIT 1",
@@ -271,7 +295,7 @@ export async function createFreeBooking({
           request.timeLabel,
           request.consultationType,
           orderHash,
-          CONFIRMED_FREE_APPOINTMENT_STATUS,
+          pendingPayment ? PENDING_PAYMENT_APPOINTMENT_STATUS : CONFIRMED_FREE_APPOINTMENT_STATUS,
           now.dateTime,
           now.dateTime,
         ]

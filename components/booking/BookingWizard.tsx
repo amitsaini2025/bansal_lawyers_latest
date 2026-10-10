@@ -33,6 +33,26 @@ const WEEKDAY_SHORT = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 const MAX_MONTHS_AHEAD = 12;
 const AUTO_ADVANCE_MS = 400;
 const SUBMIT_TIMEOUT_MS = 30_000;
+const PENDING_PAYMENT_KEY = "bansal_booking_pending_payment";
+
+/** Releases the slot held for an online payment the client left without completing (e.g. Back from Stripe). */
+function releaseAbandonedPayment(): boolean {
+  let ref: string | null = null;
+  try {
+    ref = sessionStorage.getItem(PENDING_PAYMENT_KEY);
+    sessionStorage.removeItem(PENDING_PAYMENT_KEY);
+  } catch {
+    return false;
+  }
+  if (!ref) return false;
+  void fetch("/api/booking/cancel-payment", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ ref }),
+    keepalive: true,
+  }).catch(() => {});
+  return true;
+}
 
 export interface AvailabilityState {
   disabledWeekdays: number[];
@@ -169,6 +189,20 @@ export function BookingWizard({
       cancelled = true;
       if (advanceTimer.current) clearTimeout(advanceTimer.current);
     };
+  }, []);
+
+  useEffect(() => {
+    releaseAbandonedPayment();
+    const onPageShow = (event: PageTransitionEvent) => {
+      if (!event.persisted) return;
+      const released = releaseAbandonedPayment();
+      setSubmitting(false);
+      setTurnstileToken("");
+      setTurnstileKey((key) => key + 1);
+      if (released) setSubmitError("Payment was not completed, so your appointment is not booked yet. You can try again below.");
+    };
+    window.addEventListener("pageshow", onPageShow);
+    return () => window.removeEventListener("pageshow", onPageShow);
   }, []);
 
   const hasMounted = useRef(false);
@@ -418,6 +452,7 @@ export function BookingWizard({
 
     setSubmitting(true);
     setSubmitError(null);
+    let redirectingToPayment = false;
     try {
       const res = await fetch("/api/booking/create", {
         method: "POST",
@@ -440,6 +475,23 @@ export function BookingWizard({
         }),
       });
       const data = await res.json().catch(() => null);
+
+      if (res.ok && data?.success && data.requiresPayment) {
+        if (typeof data.checkoutUrl === "string" && data.checkoutUrl.startsWith("https://")) {
+          redirectingToPayment = true;
+          if (typeof data.paymentRef === "string") {
+            try {
+              sessionStorage.setItem(PENDING_PAYMENT_KEY, data.paymentRef);
+            } catch {
+              // storage unavailable; the server releases abandoned payments later
+            }
+          }
+          window.location.assign(data.checkoutUrl);
+        } else {
+          setSubmitError(`We couldn't open the payment page. Please try again or call ${businessDetails.phone}.`);
+        }
+        return;
+      }
 
       if (res.ok && data?.success) {
         setConfirmation({
@@ -469,8 +521,8 @@ export function BookingWizard({
         `We couldn't reach the booking service. Please check your connection and try again, or call ${businessDetails.phone}.`
       );
     } finally {
-      setSubmitting(false);
-      if (turnstileSiteKey) {
+      if (!redirectingToPayment) setSubmitting(false);
+      if (!redirectingToPayment && turnstileSiteKey) {
         setTurnstileToken("");
         setTurnstileKey((key) => key + 1);
       }
@@ -788,6 +840,13 @@ export function BookingWizard({
                 </div>
               )}
 
+              {canSubmit && finalAmount > 0 && (
+                <p className="appt-legal">
+                  You&apos;ll be taken to Stripe&apos;s secure payment page. Your appointment is confirmed once payment is
+                  complete.
+                </p>
+              )}
+
               {submitError && (
                 <div className="appt-error-list" role="alert">{submitError}</div>
               )}
@@ -811,7 +870,7 @@ export function BookingWizard({
                 <button type="button" className="button button--primary" disabled={!canSubmit || submitting}
                   onClick={submitBooking} aria-busy={submitting}>
                   {submitting
-                    ? "Booking..."
+                    ? finalAmount > 0 ? "Opening payment..." : "Booking..."
                     : finalAmount <= 0
                       ? "Complete Booking"
                       : `Pay & Submit ${formatAud(finalAmount)}`}

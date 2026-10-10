@@ -3,6 +3,7 @@ import { BookingWizard } from "@/components/booking/BookingWizard";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { Breadcrumbs } from "@/components/ui";
 import { getAvailabilityConfig, getBookableServices, getNatureOfEnquiryOptions } from "@/lib/booking/availability";
+import { isOnlinePaymentEnabled } from "@/lib/booking/payment";
 import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema } from "@/lib/schema";
@@ -67,6 +68,7 @@ export default async function BookAppointmentPage() {
           services={services}
           natureOfEnquiry={natureOfEnquiry}
           turnstileSiteKey={getTurnstileSiteKey()}
+          paymentEnabled={isOnlinePaymentEnabled()}
           initialAvailability={
             availability
               ? {

@@ -11,6 +11,13 @@ import {
 import { createFreeBooking, validateBookingRequest } from "@/lib/booking/create";
 import { syncAppointmentToCrm } from "@/lib/booking/crm";
 import { sendBookingEmails } from "@/lib/booking/emails";
+import {
+  cancelPendingBooking,
+  createCheckoutSession,
+  encodePaymentNotes,
+  isOnlinePaymentEnabled,
+  newPaidOrderHash,
+} from "@/lib/booking/payment";
 import { clientIp, createRateLimiter } from "@/lib/booking/rate-limit";
 import {
   allowsPromoCode,
@@ -100,7 +107,8 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     const listPrice = service.priceAud;
     const finalAmount = Math.max(0, Math.round((listPrice - discountAmount) * 100) / 100);
 
-    if (finalAmount > 0) {
+    const requiresPayment = finalAmount > 0;
+    if (requiresPayment && !isOnlinePaymentEnabled()) {
       return reply(400, {
         success: false,
         code: "PAYMENT_UNAVAILABLE",
@@ -138,6 +146,50 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
         code: "SLOT_TAKEN",
         message: "This appointment time slot is already booked. Please select a different time slot.",
       });
+    }
+
+    if (requiresPayment) {
+      const orderHash = newPaidOrderHash();
+      const notes = { promoCode: booking.promoCode ? booking.promoCode.toUpperCase() : null, listPrice };
+      const pending = await createFreeBooking({
+        request: booking,
+        paymentType: "stripe",
+        durationMinutes: duration,
+        pendingPayment: { amount: finalAmount, orderHash, notes: encodePaymentNotes(notes) },
+      });
+      if (!pending.ok) {
+        return reply(pending.status, { success: false, code: pending.code, message: pending.message });
+      }
+
+      try {
+        const checkoutUrl = await createCheckoutSession({
+          appointmentId: pending.appointmentId,
+          orderHash,
+          amount: finalAmount,
+          email: booking.email,
+          fullName: booking.fullname,
+          serviceTitle: service.title,
+          isoDate: booking.isoDate,
+          timeLabel: booking.timeLabel,
+          notes,
+        });
+        console.info(`[Booking] Appointment ${pending.appointmentId} awaiting payment for ${booking.isoDate} ${booking.timeLabel}`);
+        return reply(200, {
+          success: true,
+          requiresPayment: true,
+          checkoutUrl,
+          paymentRef: orderHash,
+          appointmentId: pending.appointmentId,
+          message: "Redirecting you to our secure payment page...",
+        });
+      } catch (error) {
+        console.error(`[Booking] Could not start payment for appointment ${pending.appointmentId}:`, error);
+        await cancelPendingBooking(orderHash).catch(() => {});
+        return reply(502, {
+          success: false,
+          message: "We couldn't start the online payment. Please try again or call 0422 905 860.",
+        });
+      }
     }
 
     const paymentType = isFreeTier(booking.serviceId) ? "free_consultation" : "promo_free";
