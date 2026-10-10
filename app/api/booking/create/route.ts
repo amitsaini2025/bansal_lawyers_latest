@@ -5,6 +5,8 @@ import {
   getAvailabilityConfig,
   getBookableService,
   getCrmUnavailableSlots,
+  slotLabelsToIntervals,
+  unavailableSlotLabels,
 } from "@/lib/booking/availability";
 import { createFreeBooking, validateBookingRequest } from "@/lib/booking/create";
 import { syncAppointmentToCrm } from "@/lib/booking/crm";
@@ -17,6 +19,7 @@ import {
   isWebsiteServiceId,
   isoToDdMmYyyy,
   promoDiscountPercentage,
+  slotDuration,
   timeSlotLabels,
 } from "@/lib/booking/services";
 import { verifyTurnstile } from "@/lib/booking/turnstile";
@@ -123,12 +126,13 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     ) {
       return reply(400, { success: false, code: "DATE_UNAVAILABLE", message: "The selected date is not available. Please choose another date." });
     }
-    if (!timeSlotLabels().includes(booking.timeLabel)) {
+    const duration = slotDuration(service.duration);
+    if (!timeSlotLabels(availability.startTime, availability.endTime, duration).includes(booking.timeLabel)) {
       return reply(400, { success: false, message: "Please select a valid time slot." });
     }
 
-    const crmTaken = await getCrmUnavailableSlots(booking.isoDate);
-    if (crmTaken.includes(booking.timeLabel)) {
+    const crmBusy = slotLabelsToIntervals(await getCrmUnavailableSlots(booking.isoDate));
+    if (unavailableSlotLabels([booking.timeLabel], duration, crmBusy).length > 0) {
       return reply(409, {
         success: false,
         code: "SLOT_TAKEN",
@@ -137,7 +141,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
     }
 
     const paymentType = isFreeTier(booking.serviceId) ? "free_consultation" : "promo_free";
-    const result = await createFreeBooking({ request: booking, paymentType });
+    const result = await createFreeBooking({ request: booking, paymentType, durationMinutes: duration });
     if (!result.ok) {
       return reply(result.status, { success: false, code: result.code, message: result.message });
     }

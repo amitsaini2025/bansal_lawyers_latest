@@ -2,6 +2,7 @@ import type { RowDataPacket } from "mysql2/promise";
 import { getDbPool } from "@/lib/db";
 import {
   CANCELLED_APPOINTMENT_STATUS,
+  DEFAULT_SLOT_MINUTES,
   FALLBACK_NATURE_OF_ENQUIRY,
   FALLBACK_SERVICES,
   WEBSITE_SERVICE_IDS,
@@ -9,9 +10,9 @@ import {
   isIsoDate,
   isoToDdMmYyyy,
   melbourneToday,
-  minutesToLabel,
   normalizeSlotLabel,
   parseTimeToMinutes,
+  slotDuration,
   timeSlotLabels,
   type ConsultationService,
   type NatureOfEnquiry,
@@ -78,12 +79,9 @@ function ddMmYyyyToIso(value: string): string | null {
   return isIsoDate(iso) ? iso : null;
 }
 
-/** Returns null when the database is unavailable so callers can fall back to defaults. */
-export async function getAvailabilityConfig(): Promise<AvailabilityConfig | null> {
+async function loadSchedule(): Promise<RowDataPacket | null> {
   const db = getDbPool();
   if (!db) return null;
-
-  const today = melbourneToday();
   const [schedules] = await db.query<RowDataPacket[]>(
     `SELECT id, weekend, disabledates,
             TIME_FORMAT(start_time, '%H:%i') AS start_time,
@@ -93,7 +91,27 @@ export async function getAvailabilityConfig(): Promise<AvailabilityConfig | null
      LIMIT 1`,
     [SCHEDULE_PERSON_ID, SCHEDULE_SERVICE_TYPE]
   );
-  const schedule = schedules[0];
+  return schedules[0] ?? null;
+}
+
+/** Bookable start times for a consultation length, from the schedule's start_time / end_time (or the defaults). */
+export async function getScheduleTimeSlotLabels(durationMinutes?: number | null): Promise<string[]> {
+  try {
+    const schedule = await loadSchedule();
+    return timeSlotLabels(schedule?.start_time, schedule?.end_time, durationMinutes);
+  } catch (error) {
+    console.error("[Booking] Failed to load schedule hours:", error);
+    return timeSlotLabels(null, null, durationMinutes);
+  }
+}
+
+/** Returns null when the database is unavailable so callers can fall back to defaults. */
+export async function getAvailabilityConfig(): Promise<AvailabilityConfig | null> {
+  const db = getDbPool();
+  if (!db) return null;
+
+  const today = melbourneToday();
+  const schedule = await loadSchedule();
   if (!schedule) return null;
 
   const disabledWeekdays = String(schedule.weekend ?? "")
@@ -125,11 +143,27 @@ export async function getAvailabilityConfig(): Promise<AvailabilityConfig | null
     startTime: schedule.start_time ?? null,
     endTime: schedule.end_time ?? null,
     today,
-    timeSlotLabels: timeSlotLabels(),
+    timeSlotLabels: timeSlotLabels(schedule.start_time, schedule.end_time),
   };
 }
 
-function expandBlockedSlots(raw: string): string[] {
+/** A busy period on one day, in minutes past midnight: [start, end). */
+export interface BusyInterval {
+  start: number;
+  end: number;
+}
+
+const WHOLE_DAY: BusyInterval = { start: 0, end: 24 * 60 };
+
+/** Single blocked or CRM-booked times (e.g. "11:00 AM") each cover one standard 30-minute slot. */
+export function slotLabelsToIntervals(labels: string[]): BusyInterval[] {
+  return labels.flatMap((label) => {
+    const start = parseTimeToMinutes(label);
+    return start === null ? [] : [{ start, end: start + DEFAULT_SLOT_MINUTES }];
+  });
+}
+
+function blockedSlotsToIntervals(raw: string): BusyInterval[] {
   const value = raw.trim();
   if (!value) return [];
 
@@ -138,36 +172,47 @@ function expandBlockedSlots(raw: string): string[] {
     const start = parseTimeToMinutes(startRaw);
     const end = parseTimeToMinutes(endRaw);
     if (start === null || end === null || start >= end) return [];
-    const labels: string[] = [];
-    for (let minutes = start; minutes < end; minutes += 30) {
-      labels.push(minutesToLabel(minutes));
-    }
-    return labels;
+    return [{ start, end }];
   }
 
-  return value
-    .split(",")
-    .map((slot) => slot.trim())
-    .filter(Boolean)
-    .map(normalizeSlotLabel);
+  return slotLabelsToIntervals(value.split(",").map((slot) => slot.trim()).filter(Boolean));
 }
 
-/** Slots already taken locally (appointments + admin-blocked slots). Returns null if the DB is unavailable. */
-export async function getLocalUnavailableSlots(isoDate: string): Promise<string[] | null> {
+/** True when an appointment starting at `startMinutes` and lasting `durationMinutes` overlaps any busy interval. */
+export function overlapsBusy(startMinutes: number, durationMinutes: number, busy: BusyInterval[]): boolean {
+  const end = startMinutes + durationMinutes;
+  return busy.some((interval) => startMinutes < interval.end && interval.start < end);
+}
+
+/** The labels from `slots` that cannot be booked for an appointment of `durationMinutes`. */
+export function unavailableSlotLabels(slots: string[], durationMinutes: number, busy: BusyInterval[]): string[] {
+  return slots.filter((label) => {
+    const start = parseTimeToMinutes(label);
+    return start !== null && overlapsBusy(start, durationMinutes, busy);
+  });
+}
+
+/**
+ * Periods already taken locally: existing appointments (for their full length) and admin-blocked slots.
+ * Returns null if the DB is unavailable.
+ */
+export async function getLocalBusyIntervals(isoDate: string): Promise<BusyInterval[] | null> {
   const db = getDbPool();
   if (!db) return null;
 
   const [appointments] = await db.query<RowDataPacket[]>(
-    `SELECT TIME_FORMAT(a.time, '%H:%i') AS slot_time
+    `SELECT TIME_FORMAT(a.time, '%H:%i') AS slot_time, s.duration
      FROM appointments a
      INNER JOIN nature_of_enquiry n ON n.id = a.noe_id AND n.status = 1
+     LEFT JOIN book_services s ON s.id = a.service_id
      WHERE a.status != ? AND a.date = ? AND a.service_id IN (?)`,
     [CANCELLED_APPOINTMENT_STATUS, isoDate, WEBSITE_SERVICE_IDS]
   );
 
-  const unavailable = new Set<string>();
+  const busy: BusyInterval[] = [];
   for (const row of appointments) {
-    if (row.slot_time) unavailable.add(normalizeSlotLabel(String(row.slot_time)));
+    const start = row.slot_time ? parseTimeToMinutes(String(row.slot_time)) : null;
+    if (start !== null) busy.push({ start, end: start + slotDuration(Number(row.duration)) });
   }
 
   const [blockedRows] = await db.query<RowDataPacket[]>(
@@ -177,13 +222,13 @@ export async function getLocalUnavailableSlots(isoDate: string): Promise<string[
   );
   for (const row of blockedRows) {
     if (Number(row.block_all) === 1) {
-      timeSlotLabels().forEach((label) => unavailable.add(label));
+      busy.push(WHOLE_DAY);
       continue;
     }
-    expandBlockedSlots(String(row.slots ?? "")).forEach((label) => unavailable.add(label));
+    busy.push(...blockedSlotsToIntervals(String(row.slots ?? "")));
   }
 
-  return [...unavailable];
+  return busy;
 }
 
 const crmCache = new Map<string, { slots: string[]; expiresAt: number }>();

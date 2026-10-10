@@ -34,11 +34,13 @@ const MAX_MONTHS_AHEAD = 12;
 const AUTO_ADVANCE_MS = 400;
 const SUBMIT_TIMEOUT_MS = 30_000;
 
-interface AvailabilityState {
+export interface AvailabilityState {
   disabledWeekdays: number[];
   disabledDates: string[];
   today: string;
-  timeSlotLabels: string[];
+  /** Schedule opening / closing time ("HH:mm"); defaults apply when null. */
+  startTime: string | null;
+  endTime: string | null;
 }
 
 interface FieldErrors {
@@ -52,6 +54,8 @@ export interface BookingWizardProps {
   turnstileSiteKey?: string | null;
   /** Paid bookings need online payment; until it is enabled the final step asks clients to call instead. */
   paymentEnabled?: boolean;
+  /** Schedule loaded on the server; refreshed from /api/booking/config after mount. */
+  initialAvailability?: AvailabilityState | null;
 }
 
 interface BookingConfirmation {
@@ -82,6 +86,7 @@ export function BookingWizard({
   natureOfEnquiry,
   turnstileSiteKey = null,
   paymentEnabled = false,
+  initialAvailability = null,
 }: BookingWizardProps) {
   const [step, setStep] = useState<StepId>("duration");
   const [maxReached, setMaxReached] = useState(0);
@@ -91,12 +96,16 @@ export function BookingWizard({
   const [freeAcknowledged, setFreeAcknowledged] = useState(false);
   const [consultationType, setConsultationType] = useState<ConsultationType | "">("");
 
-  const [availability, setAvailability] = useState<AvailabilityState>(() => ({
-    disabledWeekdays: [0, 6],
-    disabledDates: [],
-    today: melbourneToday(),
-    timeSlotLabels: timeSlotLabels(),
-  }));
+  const [availability, setAvailability] = useState<AvailabilityState>(
+    () =>
+      initialAvailability ?? {
+        disabledWeekdays: [0, 6],
+        disabledDates: [],
+        today: melbourneToday(),
+        startTime: null,
+        endTime: null,
+      }
+  );
   const [viewMonth, setViewMonth] = useState(() => {
     const [y, m] = melbourneToday().split("-").map(Number);
     return { year: y, month: m - 1 };
@@ -104,6 +113,7 @@ export function BookingWizard({
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [selectedTime, setSelectedTime] = useState<string | null>(null);
   const [unavailableSlots, setUnavailableSlots] = useState<string[]>([]);
+  const [serverSlots, setServerSlots] = useState<string[] | null>(null);
   const [slotsLoading, setSlotsLoading] = useState(false);
   const [slotsError, setSlotsError] = useState<string | null>(null);
   const slotRequestRef = useRef(0);
@@ -150,8 +160,8 @@ export function BookingWizard({
           disabledWeekdays: Array.isArray(data.disabledWeekdays) ? data.disabledWeekdays : [0, 6],
           disabledDates: Array.isArray(data.disabledDates) ? data.disabledDates : [],
           today: typeof data.today === "string" ? data.today : melbourneToday(),
-          timeSlotLabels:
-            Array.isArray(data.timeSlotLabels) && data.timeSlotLabels.length ? data.timeSlotLabels : timeSlotLabels(),
+          startTime: typeof data.startTime === "string" ? data.startTime : null,
+          endTime: typeof data.endTime === "string" ? data.endTime : null,
         });
       })
       .catch(() => {});
@@ -197,6 +207,15 @@ export function BookingWizard({
   }
 
   function selectDuration(next: ConsultationService) {
+    if (next.id !== serviceId) {
+      slotRequestRef.current += 1;
+      setSelectedDate(null);
+      setSelectedTime(null);
+      setUnavailableSlots([]);
+      setServerSlots(null);
+      setSlotsLoading(false);
+      setSlotsError(null);
+    }
     setServiceId(next.id);
     setFreeAcknowledged(false);
     resetPromo();
@@ -248,17 +267,21 @@ export function BookingWizard({
       if (!res.ok || !data?.success || !Array.isArray(data.unavailableSlots)) {
         throw new Error(data?.message || "Unable to load time slots.");
       }
-      return data.unavailableSlots as string[];
+      return {
+        unavailable: data.unavailableSlots as string[],
+        slots: Array.isArray(data.slots) && data.slots.length ? (data.slots as string[]) : null,
+      };
     };
 
     try {
       const local = await fetchSlots(false, 10_000);
       if (requestId !== slotRequestRef.current) return;
-      setUnavailableSlots(local);
+      setUnavailableSlots(local.unavailable);
+      setServerSlots(local.slots);
       setSlotsLoading(false);
 
       fetchSlots(true, 8_000)
-        .then((all) => {
+        .then(({ unavailable: all }) => {
           if (requestId !== slotRequestRef.current) return;
           setUnavailableSlots((prev) => [...new Set([...prev, ...all])]);
           setSelectedTime((current) => (current && all.some((slot) => sameSlot(slot, current)) ? null : current));
@@ -473,7 +496,8 @@ export function BookingWizard({
     });
   }
 
-  const slots = availability.timeSlotLabels.map((label) => ({
+  const slotLabels = serverSlots ?? timeSlotLabels(availability.startTime, availability.endTime, service?.duration);
+  const slots = slotLabels.map((label) => ({
     time: label,
     available: !unavailableSlots.some((slot) => sameSlot(slot, label)),
   }));

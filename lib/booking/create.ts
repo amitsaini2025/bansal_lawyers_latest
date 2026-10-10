@@ -1,6 +1,6 @@
 import type { PoolConnection, ResultSetHeader, RowDataPacket } from "mysql2/promise";
 import { getDbPool } from "@/lib/db";
-import { getLocalUnavailableSlots } from "@/lib/booking/availability";
+import { getLocalBusyIntervals, overlapsBusy } from "@/lib/booking/availability";
 import {
   BOOKING_TIMEZONE,
   CANCELLED_APPOINTMENT_STATUS,
@@ -146,6 +146,7 @@ export async function hasUsedFreeConsultation(email: string, phone: string): Pro
 export interface FreeBookingInput {
   request: BookingRequest;
   paymentType: "free_consultation" | "promo_free";
+  durationMinutes: number;
 }
 
 export type CreateBookingResult =
@@ -156,13 +157,18 @@ export type CreateBookingResult =
  * Stores a booking that needs no payment (free tier or a 100% promo) in the shared tables:
  * a completed payment record, the client in `admins`, and the appointment itself.
  */
-export async function createFreeBooking({ request, paymentType }: FreeBookingInput): Promise<CreateBookingResult> {
+export async function createFreeBooking({
+  request,
+  paymentType,
+  durationMinutes,
+}: FreeBookingInput): Promise<CreateBookingResult> {
   const db = getDbPool();
   if (!db) {
     return { ok: false, status: 503, code: "DB_UNAVAILABLE", message: "Online booking is temporarily unavailable." };
   }
 
-  const lockName = `bansal_booking_${request.isoDate}_${request.time24}`;
+  // One lock per day: consultations of different lengths can overlap without sharing a start time.
+  const lockName = `bansal_booking_${request.isoDate}`;
   let connection: PoolConnection | null = null;
   let lockHeld = false;
 
@@ -177,8 +183,9 @@ export async function createFreeBooking({ request, paymentType }: FreeBookingInp
       return { ok: false, status: 409, code: "BUSY", message: "This time slot is being booked right now. Please try again." };
     }
 
-    const taken = await getLocalUnavailableSlots(request.isoDate);
-    if (taken?.includes(request.timeLabel)) {
+    const busy = await getLocalBusyIntervals(request.isoDate);
+    const startMinutes = parseTimeToMinutes(request.time24);
+    if (busy && startMinutes !== null && overlapsBusy(startMinutes, durationMinutes, busy)) {
       return {
         ok: false,
         status: 409,

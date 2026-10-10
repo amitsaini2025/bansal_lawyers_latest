@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { BookingWizard } from "@/components/booking/BookingWizard";
 import { StructuredData } from "@/components/seo/StructuredData";
 import { Breadcrumbs } from "@/components/ui";
-import { getBookableServices, getNatureOfEnquiryOptions } from "@/lib/booking/availability";
+import { getAvailabilityConfig, getBookableServices, getNatureOfEnquiryOptions } from "@/lib/booking/availability";
 import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema } from "@/lib/schema";
@@ -31,7 +31,14 @@ export default async function BookAppointmentPage() {
     { label: "Book an Appointment" },
   ];
 
-  const [services, natureOfEnquiry] = await Promise.all([getBookableServices(), getNatureOfEnquiryOptions()]);
+  const [services, natureOfEnquiry, availability] = await Promise.all([
+    getBookableServices(),
+    getNatureOfEnquiryOptions(),
+    getAvailabilityConfig().catch((error) => {
+      console.error("[Booking] Failed to load availability:", error);
+      return null;
+    }),
+  ]);
   const paidPrices = services.filter((s) => !s.isFree).map((s) => s.priceAud);
   const fromPrice = paidPrices.length ? Math.min(...paidPrices) : 150;
 
@@ -56,7 +63,22 @@ export default async function BookAppointmentPage() {
       </section>
 
       <div className="appt-shell">
-        <BookingWizard services={services} natureOfEnquiry={natureOfEnquiry} turnstileSiteKey={getTurnstileSiteKey()} />
+        <BookingWizard
+          services={services}
+          natureOfEnquiry={natureOfEnquiry}
+          turnstileSiteKey={getTurnstileSiteKey()}
+          initialAvailability={
+            availability
+              ? {
+                  disabledWeekdays: availability.disabledWeekdays,
+                  disabledDates: availability.disabledDates,
+                  today: availability.today,
+                  startTime: availability.startTime,
+                  endTime: availability.endTime,
+                }
+              : null
+          }
+        />
         <p className="appt-shell__help">
           Urgent deadline or court date? Call <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>.
         </p>

@@ -1,7 +1,14 @@
 import { NextResponse, type NextRequest } from "next/server";
-import { getCrmUnavailableSlots, getLocalUnavailableSlots } from "@/lib/booking/availability";
+import {
+  getBookableService,
+  getCrmUnavailableSlots,
+  getLocalBusyIntervals,
+  getScheduleTimeSlotLabels,
+  slotLabelsToIntervals,
+  unavailableSlotLabels,
+} from "@/lib/booking/availability";
 import { clientIp, createRateLimiter } from "@/lib/booking/rate-limit";
-import { isIsoDate, isWebsiteServiceId } from "@/lib/booking/services";
+import { isIsoDate, isWebsiteServiceId, slotDuration } from "@/lib/booking/services";
 
 export const runtime = "nodejs";
 
@@ -30,17 +37,25 @@ export async function GET(request: NextRequest): Promise<NextResponse> {
   }
 
   try {
-    const local = await getLocalUnavailableSlots(date);
-    if (local === null) {
+    const localBusy = await getLocalBusyIntervals(date);
+    if (localBusy === null) {
       return NextResponse.json(
         { success: false, message: "Booking calendar is temporarily unavailable." },
         { status: 503, headers: noStore }
       );
     }
 
-    const crm = includeCrm ? await getCrmUnavailableSlots(date) : [];
+    const service = await getBookableService(serviceId);
+    const duration = slotDuration(service?.duration);
+    const slots = await getScheduleTimeSlotLabels(duration);
+    const crmBusy = includeCrm ? slotLabelsToIntervals(await getCrmUnavailableSlots(date)) : [];
     return NextResponse.json(
-      { success: true, unavailableSlots: [...new Set([...local, ...crm])], crmIncluded: includeCrm },
+      {
+        success: true,
+        slots,
+        unavailableSlots: unavailableSlotLabels(slots, duration, [...localBusy, ...crmBusy]),
+        crmIncluded: includeCrm,
+      },
       { headers: noStore }
     );
   } catch (error) {

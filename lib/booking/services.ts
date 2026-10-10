@@ -113,10 +113,34 @@ export const FALLBACK_NATURE_OF_ENQUIRY: NatureOfEnquiry[] = [
   { id: 7, title: "Commercial Law" },
 ];
 
-/** Slot labels in "h:mm AM" form, 10:30 AM to 5:00 PM every 30 minutes. */
-export function timeSlotLabels(): string[] {
+export const DEFAULT_SLOT_MINUTES = 30;
+const DEFAULT_OPENING_MINUTES = 10 * 60 + 30;
+const DEFAULT_CLOSING_MINUTES = 17 * 60 + 30;
+
+/** Opening and closing time in minutes past midnight; defaults to 10:30 AM – 5:30 PM when missing or invalid. */
+export function scheduleHours(startTime?: string | null, endTime?: string | null): { open: number; close: number } {
+  const open = startTime ? parseTimeToMinutes(startTime) : null;
+  const close = endTime ? parseTimeToMinutes(endTime) : null;
+  if (open === null || close === null || open >= close) {
+    return { open: DEFAULT_OPENING_MINUTES, close: DEFAULT_CLOSING_MINUTES };
+  }
+  return { open, close };
+}
+
+export function slotDuration(durationMinutes?: number | null): number {
+  const value = Number(durationMinutes);
+  return Number.isInteger(value) && value >= 5 && value <= 8 * 60 ? value : DEFAULT_SLOT_MINUTES;
+}
+
+/**
+ * Start times in "h:mm AM" form, one every `durationMinutes`, from the schedule's start_time
+ * up to the last start that still finishes by end_time.
+ */
+export function timeSlotLabels(startTime?: string | null, endTime?: string | null, durationMinutes?: number | null): string[] {
+  const { open, close } = scheduleHours(startTime, endTime);
+  const step = slotDuration(durationMinutes);
   const labels: string[] = [];
-  for (let minutes = 10 * 60 + 30; minutes <= 17 * 60; minutes += 30) {
+  for (let minutes = open; minutes + step <= close; minutes += step) {
     labels.push(minutesToLabel(minutes));
   }
   return labels;
