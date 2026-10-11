@@ -218,7 +218,7 @@ export function Header() {
             <div className="utility-socials" aria-label="Social media links">
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/company/bansal-lawyers/"
+                href="https://www.linkedin.com/company/bansallawyers"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="utility-social-link"
@@ -231,7 +231,7 @@ export function Header() {
 
               {/* Facebook */}
               <a
-                href="https://www.facebook.com/bansallawyers/"
+                href="https://www.facebook.com/profile.php?id=61562008576642"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="utility-social-link"

@@ -1,7 +1,15 @@
 import type { LinkItem } from "@/types/content";
 
-export const siteUrl =
-  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bansallawyers.com.au";
+const rawSiteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.bansallawyers.com.au"
+)
+  .trim()
+  .replace(/\/+$/, "");
+
+export const siteUrl = rawSiteUrl.replace(
+  /^https?:\/\/bansallawyers\.com\.au$/i,
+  "https://www.bansallawyers.com.au"
+);
 
 export const businessDetails = {
   name: "Bansal Lawyers",

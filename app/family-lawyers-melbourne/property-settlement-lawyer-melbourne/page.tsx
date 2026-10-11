@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Property Settlement Lawyer Melbourne | Family Property & Asset Division",
+    "Property Settlement Lawyer Melbourne | Family Asset Division Advice",
   description:
     "Bansal Lawyers assists with property settlement, asset division, financial agreements, superannuation, debts and family law property matters in Melbourne.",
   path: "/family-lawyers-melbourne/property-settlement-lawyer-melbourne",

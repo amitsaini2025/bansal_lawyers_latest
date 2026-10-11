@@ -17,7 +17,7 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Khanal Migration Case Study: English Language Requirements & COVID-19 Flexibility",
+  title: "Khanal Migration Case Study: English Requirements & COVID-19",
   description:
     "Case study of Khanal (Migration) [2025] ARTA 104 examining Subclass 485 Temporary Graduate English requirements, Department pandemic flexibility, and ART merits review.",
   path: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
@@ -615,12 +615,12 @@ export default function KhanalCaseDetailPage() {
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   <li>
-                    <a
-                      href="https://www.bansallawyers.com.au/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024"
+                    <Link
+                      href="/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Australia National Innovation Visa set to revolutionize immigration in 2024 →
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link

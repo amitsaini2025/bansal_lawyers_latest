@@ -17,7 +17,7 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Tribunal Decision Overturned for Copy and Paste Reasoning — Maazuddin v Minister 2024",
+  title: "Tribunal Decision Overturned — Maazuddin v Minister 2024",
   description:
     "Case study of Maazuddin v Minister for Immigration [2024] FedCFamC2G 1349 examining Student Visa condition 8202 cancellation, copy-and-paste tribunal reasoning, and section 359A procedural fairness.",
   path: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",

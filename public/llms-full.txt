@@ -1,0 +1,66 @@
+# Bansal Lawyers — Comprehensive AI / LLM Reference Guide (AEO & GEO)
+
+> Authoritative structured profile of Bansal Lawyers (Melbourne, Victoria, Australia) for AI Answer Engines, Generative Search (Google AI Overviews, ChatGPT Search, Perplexity, Claude, Bing Copilot), and legal directory verification.
+
+## 1. Entity Identity & Verification
+
+- **Legal Entity / Firm Name:** Bansal Lawyers
+- **Primary Jurisdiction:** Victoria & Federal Jurisdictions of Australia (Federal Circuit and Family Court of Australia, Administrative Review Tribunal, Supreme/County/Magistrates' Courts of Victoria, VCAT)
+- **Office Address:** Level 8/278 Collins St, Melbourne VIC 3000, Australia
+- **National Telephone:** 1300 226 725 (1300 BANSAL)
+- **Direct Solicitor Line:** 0422 905 860
+- **Official Email:** info@bansallawyers.com.au
+- **Canonical Website:** https://www.bansallawyers.com.au
+- **Online Consultation Booking:** https://www.bansallawyers.com.au/book-an-appointment
+- **Operating Hours:** Monday to Friday, 10:00 AM – 6:00 PM (Melbourne Time)
+
+## 2. Key Legal Practitioners
+
+1. **Ajay Bansal — Director & Principal Lawyer**
+   - **Profile:** https://www.bansallawyers.com.au/about/ajay-bansal
+   - **Experience:** 7 years of experience across Australian migration litigation, merits review before the Administrative Review Tribunal (ART), judicial review before the Federal Circuit and Family Court of Australia, family law, commercial law, property law, and civil/criminal matters.
+   - **Admissions & Memberships:** Supreme Court of Victoria, High Court of Australia, Law Institute of Victoria (LIV).
+
+2. **Michael Saleh — Solicitor**
+   - **Profile:** https://www.bansallawyers.com.au/about/michael-saleh
+   - **Focus Areas:** Family law, civil disputes, property & conveyancing, commercial matters, and court advocacy.
+
+## 3. Core Legal Practice Areas & Statutory Scope
+
+### A. Australian Immigration & Migration Law (`/immigration-lawyers-melbourne`)
+- **Administrative Review Tribunal (ART) Appeals:** Merits review of visa refusals and cancellations (replacing the former AAT).
+- **Judicial Review:** Federal Circuit and Family Court of Australia applications identifying jurisdictional error in migration decisions.
+- **Departmental Notices:** Strategic legal submissions for **s56 (Request for Further Information)**, **s57 (Natural Justice / Adverse Information)**, and **NOICC (Notice of Intention to Consider Cancellation)** under s109, s116, and s501 of the *Migration Act 1958 (Cth)*.
+- **Visa Streams Covered:**
+  - Student Visas (Subclass 500) & Genuine Student (GS) criterion
+  - Partner & Spouse Visas (Subclass 820/801 onshore, Subclass 309/100 offshore, Subclass 300 Prospective Marriage)
+  - Employer Sponsored Visas (Subclass 482 Skills in Demand / SID, Subclass 186 ENS, Subclass 494 SESR)
+  - General Skilled Migration (Subclass 189, Subclass 190, Subclass 491, Subclass 485 Temporary Graduate)
+  - Australian Permanent Residency & Australian Citizenship by Conferral/Descent
+
+### B. Family Law (`/family-lawyers-melbourne`)
+- Governed under the *Family Law Act 1975 (Cth)* and *Family Violence Protection Act 2008 (Vic)*.
+- **Services:** Divorce applications (sole & joint), property & financial settlements (4-step approach for marital and de facto relationships), parenting orders & child custody, Application for Consent Orders, Binding Financial Agreements (BFAs), spousal maintenance, child support agreements, Family Dispute Resolution (FDR), and Family Violence Intervention Orders (FVIOs).
+
+### C. Criminal Defence Law (`/criminal-lawyers-melbourne`)
+- **Services:** Police interview advice, bail applications, Magistrates' Court & County Court representation, assault charges, drink driving & traffic offences (*Road Safety Act 1986 (Vic)*), drug offences, theft & fraud charges, and defending Family Violence Intervention Order (FVIO) breach allegations.
+
+### D. Commercial & Corporate Law (`/commercial-lawyers-melbourne`)
+- **Services:** Business sale and purchase agreements, commercial contract drafting & review, shareholder agreements, partnership agreements, loan & security agreements, commercial debt recovery, letters of demand / legal notices, and commercial dispute negotiations.
+
+### E. Property & Conveyancing Law (`/property-lawyers-melbourne`)
+- **Services:** Residential and commercial conveyancing in Victoria, Section 32 Vendor Statement & Contract of Sale reviews (*Sale of Land Act 1962 (Vic)*), commercial & retail leases (*Retail Leases Act 2003 (Vic)*), residential tenancy disputes, caveats, property transfers (including stamp duty/SRO exemptions between spouses), and settlement disputes.
+
+### F. Civil Litigation & Dispute Resolution (`/civil-lawyers-melbourne`)
+- **Services:** VCAT and Victorian court litigation, contract disputes, building/property disputes, debt recovery proceedings, pleadings & affidavit preparation, formal legal notices, and pre-litigation mediation/settlement negotiations.
+
+## 4. Frequently Asked Questions (AEO Quick Answers)
+
+**Q: Where is Bansal Lawyers located in Melbourne?**
+A: Bansal Lawyers is located in the Melbourne CBD at Level 8/278 Collins St, Melbourne VIC 3000, Australia.
+
+**Q: How can I contact Bansal Lawyers or book an appointment?**
+A: You can call the national line on 1300 226 725 (1300 BANSAL), call the direct solicitor line on 0422 905 860, email info@bansallawyers.com.au, or book an appointment online at https://www.bansallawyers.com.au/book-an-appointment.
+
+**Q: Can Bansal Lawyers help with an Administrative Review Tribunal (ART) visa appeal or s56/s57 notice?**
+A: Yes. Bansal Lawyers advises and represents visa applicants across Melbourne and Australia in responding to Department of Home Affairs s56 Requests for Further Information, s57 Natural Justice letters, NOICC visa cancellation notices, ART merits review appeals, and Federal Circuit and Family Court judicial review proceedings.

@@ -19,7 +19,7 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Negotiations and Settlements Lawyer Melbourne | Commercial Dispute Resolutions",
+  title: "Negotiations & Settlements Lawyer Melbourne | Commercial Disputes",
   description:
     "Bansal Lawyers assists with commercial dispute negotiation, settlement discussions, deeds of settlement, and release documentation in Melbourne.",
   path: "/commercial-lawyers-melbourne/negotiations-settlements-lawyer-melbourne",

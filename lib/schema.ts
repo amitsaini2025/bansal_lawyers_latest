@@ -7,11 +7,18 @@ export function createLegalServiceSchema() {
     "@type": ["LegalService", "LawFirm", "LocalBusiness"],
     "@id": `${siteUrl}/#organization`,
     name: businessDetails.name,
+    alternateName: "Bansal Lawyers Melbourne",
+    description:
+      "Melbourne law firm at Level 8/278 Collins St, Melbourne VIC 3000 providing strategic legal representation in Australian immigration law, ART appeals, family law, criminal defence, commercial law, property & conveyancing, and civil litigation.",
     url: siteUrl,
-    telephone: businessDetails.phone,
+    telephone: businessDetails.nationalLine,
     email: businessDetails.email,
     priceRange: "$$",
     image: `${siteUrl}/images/logo.webp`,
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/images/logo.webp`,
+    },
     address: {
       "@type": "PostalAddress",
       streetAddress: businessDetails.streetAddress,
@@ -25,6 +32,8 @@ export function createLegalServiceSchema() {
       latitude: "-37.8164",
       longitude: "144.9650",
     },
+    hasMap:
+      "https://www.google.com/maps/search/?api=1&query=Level+8%2F278+Collins+St+Melbourne+VIC+3000",
     areaServed: [
       {
         "@type": "City",
@@ -39,19 +48,30 @@ export function createLegalServiceSchema() {
         name: "Australia",
       },
     ],
+    knowsAbout: [
+      "Australian Immigration Law",
+      "Administrative Review Tribunal (ART) Appeals",
+      "Visa Refusals and Visa Cancellations (s56, s57, s116, s501)",
+      "Family Law, Divorce, Parenting Orders and Property Settlement",
+      "Criminal Defence and Magistrates' Court Representation",
+      "Commercial Law, Business Contracts and Shareholder Agreements",
+      "Property Law, Conveyancing and Retail/Commercial Leases",
+      "Civil Litigation and VCAT/Court Dispute Resolution",
+    ],
     contactPoint: [
       {
         "@type": "ContactPoint",
-        telephone: businessDetails.phone,
+        telephone: businessDetails.nationalLine,
         contactType: "customer service",
         areaServed: "AU",
         availableLanguage: ["English", "Hindi", "Punjabi"],
       },
       {
         "@type": "ContactPoint",
-        telephone: businessDetails.nationalLine,
-        contactType: "toll-free",
+        telephone: businessDetails.phone,
+        contactType: "Direct Solicitor Line",
         areaServed: "AU",
+        availableLanguage: ["English", "Hindi", "Punjabi"],
       },
     ],
     openingHoursSpecification: [
@@ -84,12 +104,15 @@ export function createContactPageSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "ContactPage",
-    "@id": contactUrl,
+    "@id": `${contactUrl}#webpage`,
     url: contactUrl,
     name: "Contact Bansal Lawyers | Melbourne Lawyers on Collins Street",
     description:
-      "Contact Bansal Lawyers in Melbourne CBD for legal support in migration, family, criminal, commercial, business, property, and conveyancing matters. Call 0422 905 860 or book a consultation.",
-    mainEntity: createLegalServiceSchema(),
+      "Contact Bansal Lawyers at Level 8/278 Collins St, Melbourne VIC 3000 for legal support in migration, family, criminal, commercial, property, and civil matters. Call 1300 226 725 or book a consultation.",
+    inLanguage: "en-AU",
+    mainEntity: {
+      "@id": `${siteUrl}/#organization`,
+    },
   };
 }
 
@@ -127,7 +150,7 @@ export function createArticleSchema({
   path,
   datePublished = "2026-01-01",
   dateModified = "2026-01-01",
-  authorName = "[Author name goes here]",
+  authorName = "Ajay Bansal",
 }: {
   title: string;
   description: string;
@@ -143,6 +166,8 @@ export function createArticleSchema({
     "@type": "Article",
     headline: title,
     description: description,
+    image: `${siteUrl}/images/logo.webp`,
+    inLanguage: "en-AU",
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": url,
@@ -153,11 +178,21 @@ export function createArticleSchema({
     author: {
       "@type": "Person",
       name: authorName,
+      url: `${siteUrl}/about/ajay-bansal`,
     },
     publisher: {
       "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/images/logo.webp`,
+      },
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2"],
     },
   };
 }
@@ -180,10 +215,13 @@ export function createCollectionPageSchema({
     url: url,
     name: title,
     description: description,
+    inLanguage: "en-AU",
     publisher: {
       "@type": "LawFirm",
+      "@id": `${siteUrl}/#organization`,
       name: businessDetails.name,
       url: siteUrl,
+      image: `${siteUrl}/images/logo.webp`,
     },
   };
 }
@@ -210,6 +248,8 @@ export function createCaseUpdateSchema({
     "@type": "Article",
     headline: headline,
     description: description,
+    image: `${siteUrl}/images/logo.webp`,
+    inLanguage: "en-AU",
     datePublished: datePublished,
     dateModified: dateModified,
     articleSection: articleSection,
@@ -220,17 +260,23 @@ export function createCaseUpdateSchema({
     url: url,
     author: {
       "@type": "LawFirm",
+      "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
     },
     publisher: {
       "@type": "LawFirm",
+      "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
       logo: {
         "@type": "ImageObject",
         url: `${siteUrl}/images/logo.webp`,
       },
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2"],
     },
   };
 }
@@ -241,30 +287,39 @@ export function createAboutPageSchema() {
   return {
     "@context": "https://schema.org",
     "@type": "AboutPage",
-    "@id": aboutUrl,
+    "@id": `${aboutUrl}#webpage`,
     url: aboutUrl,
     name: "About Bansal Lawyers | Trusted Law Firm in Melbourne",
     description:
-      "Learn about Bansal Lawyers, a Melbourne law firm led by Ajay Bansal, providing legal services in immigration, family, criminal, commercial and property law.",
+      "Learn about Bansal Lawyers, a Melbourne law firm led by Ajay Bansal at Level 8/278 Collins St, providing legal services in immigration, family, criminal, commercial, property and civil law.",
+    inLanguage: "en-AU",
     mainEntity: {
       "@type": "LawFirm",
+      "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
+      image: `${siteUrl}/images/logo.webp`,
+      priceRange: "$$",
+      telephone: businessDetails.nationalLine,
+      email: businessDetails.email,
       founder: {
         "@type": "Person",
         name: "Ajay Bansal",
         jobTitle: "Director & Principal Lawyer",
+        url: `${siteUrl}/about/ajay-bansal`,
       },
       employee: [
         {
           "@type": "Person",
           name: "Ajay Bansal",
           jobTitle: "Director & Principal Lawyer",
+          url: `${siteUrl}/about/ajay-bansal`,
         },
         {
           "@type": "Person",
           name: "Michael Saleh",
           jobTitle: "Solicitor",
+          url: `${siteUrl}/about/michael-saleh`,
         },
       ],
       address: {
@@ -275,7 +330,6 @@ export function createAboutPageSchema() {
         postalCode: "3000",
         addressCountry: "AU",
       },
-      telephone: "0422 905 860",
     },
   };
 }

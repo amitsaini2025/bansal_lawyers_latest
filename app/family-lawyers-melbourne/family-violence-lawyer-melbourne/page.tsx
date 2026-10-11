@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Family Violence Lawyer Melbourne | Intervention Orders & Family Law Advice",
+    "Family Violence Lawyer Melbourne | Intervention Orders & Legal Advice",
   description:
     "Bansal Lawyers assists with family violence matters, intervention orders, parenting concerns, safety issues and related family law advice in Melbourne.",
   path: "/family-lawyers-melbourne/family-violence-lawyer-melbourne",

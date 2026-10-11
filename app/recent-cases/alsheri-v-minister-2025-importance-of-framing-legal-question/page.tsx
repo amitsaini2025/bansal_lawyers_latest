@@ -17,7 +17,7 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister 2025",
+  title: "Correctly Framing the Legal Question — Alsheri v Minister 2025",
   description:
     "Case study of Alsheri v Minister for Immigration [2025] FedCFamC2G 242 examining Subclass 189 points test, Schedule 6D overseas employment, and jurisdictional error.",
   path: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
@@ -529,12 +529,12 @@ export default function AlsheriCaseDetailPage() {
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   <li>
-                    <a
-                      href="https://www.bansallawyers.com.au/breaking-rental-agreement-early-in-australia"
+                    <Link
+                      href="/blog/breaking-rental-agreement-early-in-australia"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Breaking a Rental Agreement Early in Australia →
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link

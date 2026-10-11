@@ -17,7 +17,7 @@ import {
 } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
+  title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024",
   description:
     "Case summary of Jaggi v Minister for Immigration [2024] FedCFamC2G 1267 involving student visa Subclass 500 refusal, GTE criteria, AAT hearing conduct, and apprehended bias.",
   path: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
@@ -449,12 +449,12 @@ export default function JaggiCaseDetailPage() {
                 </p>
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   <li>
-                    <a
-                      href="https://www.bansallawyers.com.au/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia"
+                    <Link
+                      href="/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Why the new Subclass 482 SID visa is the fastest way to work and stay in Australia →
-                    </a>
+                    </Link>
                   </li>
                   <li>
                     <Link

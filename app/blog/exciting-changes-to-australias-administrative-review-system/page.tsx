@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Exciting Changes to Australia's Administrative Review System | Bansal Lawyers",
+    "Changes to Australia's Administrative Review System | Bansal Lawyers",
   description:
     "An expert breakdown of the Administrative Review Tribunal Act 2024 (ART Act): tougher member qualifications, merit-based appointments, specialized areas, and accountability.",
   path: "/blog/exciting-changes-to-australias-administrative-review-system",

@@ -15,7 +15,7 @@ import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema, createFaqSchema, createLegalServiceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Business Sale and Purchase Lawyer Melbourne | Buying or Selling a Business",
+  title: "Business Sale & Purchase Lawyer Melbourne | Buying or Selling Advice",
   description:
     "Bansal Lawyers assists with buying or selling a business, contract review, due diligence, leases, assets, liabilities and settlement matters.",
   path: "/commercial-lawyers-melbourne/business-sale-purchase-lawyer-melbourne",

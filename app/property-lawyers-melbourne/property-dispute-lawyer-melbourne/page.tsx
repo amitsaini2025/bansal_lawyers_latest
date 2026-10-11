@@ -15,7 +15,7 @@ import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema, createFaqSchema, createLegalServiceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title: "Property Dispute Lawyer Melbourne | Lease, Contract & Settlement Disputes",
+  title: "Property Dispute Lawyer Melbourne | Lease, Contract & Settlement",
   description:
     "Bansal Lawyers assists with property disputes, contract disputes, lease disputes, settlement issues, landlord-tenant disputes and property legal notices.",
   path: "/property-lawyers-melbourne/property-dispute-lawyer-melbourne",

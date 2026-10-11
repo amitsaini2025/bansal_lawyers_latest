@@ -21,7 +21,7 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Employer Sponsored Visa Lawyer Melbourne | Work Visa & Sponsorship Advice",
+    "Employer Sponsored Visa Lawyer Melbourne | Work Visa & Sponsorship",
   description:
     "Bansal Lawyers assists with employer sponsored visas, work visa advice, nomination matters, sponsor documents, 482 visa issues, refusals and migration planning.",
   path: "/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne",

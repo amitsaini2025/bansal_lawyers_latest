@@ -271,6 +271,21 @@ const nextConfig: NextConfig = {
         destination: "/property-lawyers-melbourne/property-dispute-lawyer-melbourne",
         permanent: true,
       },
+      {
+        source: "/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
+        destination: "/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
+        permanent: true,
+      },
+      {
+        source: "/breaking-rental-agreement-early-in-australia",
+        destination: "/blog/breaking-rental-agreement-early-in-australia",
+        permanent: true,
+      },
+      {
+        source: "/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
+        destination: "/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
+        permanent: true,
+      },
     ];
   },
 };

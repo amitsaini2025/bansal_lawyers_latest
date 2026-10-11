@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useId, useMemo, useRef, useState } from "react";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { Container, Section, SectionHeader } from "@/components/ui";
@@ -490,6 +491,17 @@ export function BlogListClient({ articles }: BlogListClientProps) {
                 </span>
               </nav>
             )}
+
+            {/* Crawlable directory of all articles so search & AI bots discover every post within 2 clicks */}
+            <nav aria-label="Complete legal articles directory" className="visually-hidden">
+              <ul>
+                {articles.map((article) => (
+                  <li key={article.href}>
+                    <Link href={article.href}>{article.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </nav>
           </div>
         </Container>
       </Section>

@@ -14,7 +14,7 @@ import "./booking.css";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = createMetadata({
-  title: "Book an Appointment | Schedule a Consultation with Bansal Lawyers Melbourne",
+  title: "Book an Appointment | Consultation with Bansal Lawyers Melbourne",
   description:
     "Book an appointment with Bansal Lawyers, one of the top law firms in Melbourne, Australia. Schedule a consultation for expert legal guidance in divorce, visa matters, property disputes, and more.",
   path: "/book-an-appointment",
