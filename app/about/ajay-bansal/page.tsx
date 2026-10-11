@@ -3,8 +3,8 @@ import { Breadcrumbs } from "@/components/ui";
 import { StructuredData } from "@/components/seo";
 import { PractitionerProfile } from "@/components/team/PractitionerProfile";
 import { createMetadata } from "@/lib/metadata";
-import { createBreadcrumbSchema } from "@/lib/schema";
-import { businessDetails } from "@/lib/site";
+import { createBreadcrumbSchema, createLegalServiceSchema } from "@/lib/schema";
+import { businessDetails, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
   title: "Ajay Bansal | Director & Principal Lawyer | Bansal Lawyers Melbourne",
@@ -18,11 +18,26 @@ export default function AjayBansalProfilePage() {
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${siteUrl}/about/ajay-bansal#person`,
     name: "Ajay Bansal",
+    url: `${siteUrl}/about/ajay-bansal`,
+    image: `${siteUrl}/images/team/ajay-bansal-director.webp`,
     jobTitle: "Director & Principal Lawyer",
-    worksFor: { "@type": "LegalService", name: "Bansal Lawyers", url: "https://www.bansallawyers.com.au" },
-    address: { "@type": "PostalAddress", streetAddress: businessDetails.streetAddress, addressLocality: businessDetails.addressLocality, addressRegion: businessDetails.addressRegion, postalCode: businessDetails.postalCode, addressCountry: "AU" },
-    telephone: businessDetails.phone,
+    worksFor: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Bansal Lawyers",
+      url: siteUrl,
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: businessDetails.streetAddress,
+      addressLocality: businessDetails.addressLocality,
+      addressRegion: businessDetails.addressRegion,
+      postalCode: businessDetails.postalCode,
+      addressCountry: "AU",
+    },
+    telephone: businessDetails.nationalLine,
     email: businessDetails.email,
     knowsLanguage: ["English", "Hindi", "Punjabi"],
     description: "Founding Director with 7 years of experience in Australia across immigration, family, property, commercial, criminal and civil law.",
@@ -30,6 +45,7 @@ export default function AjayBansalProfilePage() {
 
   return (
     <>
+      <StructuredData data={createLegalServiceSchema()} />
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
       <StructuredData data={personSchema} />
       <Breadcrumbs items={breadcrumbs} />

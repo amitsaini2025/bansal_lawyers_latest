@@ -3,7 +3,8 @@ import { Breadcrumbs } from "@/components/ui";
 import { StructuredData } from "@/components/seo";
 import { PractitionerProfile } from "@/components/team/PractitionerProfile";
 import { createMetadata } from "@/lib/metadata";
-import { createBreadcrumbSchema } from "@/lib/schema";
+import { createBreadcrumbSchema, createLegalServiceSchema } from "@/lib/schema";
+import { businessDetails, siteUrl } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
   title: "Michael Saleh | Solicitor | Bansal Lawyers Melbourne",
@@ -14,10 +15,39 @@ export const metadata: Metadata = createMetadata({
 
 export default function MichaelSalehProfilePage() {
   const breadcrumbs = [{ label: "Home", href: "/" }, { label: "About Us", href: "/about" }, { label: "Michael Saleh" }];
+  const personSchema = {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "@id": `${siteUrl}/about/michael-saleh#person`,
+    name: "Michael Saleh",
+    url: `${siteUrl}/about/michael-saleh`,
+    image: `${siteUrl}/images/team/michael-saleh-solicitor.png`,
+    jobTitle: "Solicitor",
+    worksFor: {
+      "@type": "Organization",
+      "@id": `${siteUrl}/#organization`,
+      name: "Bansal Lawyers",
+      url: siteUrl,
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: businessDetails.streetAddress,
+      addressLocality: businessDetails.addressLocality,
+      addressRegion: businessDetails.addressRegion,
+      postalCode: businessDetails.postalCode,
+      addressCountry: "AU",
+    },
+    telephone: businessDetails.nationalLine,
+    email: businessDetails.email,
+    knowsLanguage: ["English", "Arabic"],
+    description: "Solicitor and court advocate at Bansal Lawyers Melbourne with experience across Victorian courts, tribunals, civil litigation, family law, and criminal defence.",
+  };
 
   return (
     <>
+      <StructuredData data={createLegalServiceSchema()} />
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
+      <StructuredData data={personSchema} />
       <Breadcrumbs items={breadcrumbs} />
       <PractitionerProfile
         name="Michael Saleh"

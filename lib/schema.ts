@@ -211,17 +211,20 @@ export function createCollectionPageSchema({
   return {
     "@context": "https://schema.org",
     "@type": "CollectionPage",
-    "@id": url,
+    "@id": `${url}#webpage`,
     url: url,
     name: title,
     description: description,
     inLanguage: "en-AU",
     publisher: {
-      "@type": "LawFirm",
+      "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
       name: businessDetails.name,
       url: siteUrl,
-      image: `${siteUrl}/images/logo.webp`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/images/logo.webp`,
+      },
     },
   };
 }
@@ -259,13 +262,13 @@ export function createCaseUpdateSchema({
     },
     url: url,
     author: {
-      "@type": "LawFirm",
+      "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
     },
     publisher: {
-      "@type": "LawFirm",
+      "@type": "Organization",
       "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
@@ -294,11 +297,15 @@ export function createAboutPageSchema() {
       "Learn about Bansal Lawyers, a Melbourne law firm led by Ajay Bansal at Level 8/278 Collins St, providing legal services in immigration, family, criminal, commercial, property and civil law.",
     inLanguage: "en-AU",
     mainEntity: {
-      "@type": "LawFirm",
+      "@type": ["LegalService", "LawFirm", "LocalBusiness"],
       "@id": `${siteUrl}/#organization`,
       name: "Bansal Lawyers",
       url: siteUrl,
       image: `${siteUrl}/images/logo.webp`,
+      logo: {
+        "@type": "ImageObject",
+        url: `${siteUrl}/images/logo.webp`,
+      },
       priceRange: "$$",
       telephone: businessDetails.nationalLine,
       email: businessDetails.email,
@@ -329,6 +336,11 @@ export function createAboutPageSchema() {
         addressRegion: "VIC",
         postalCode: "3000",
         addressCountry: "AU",
+      },
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: "-37.8164",
+        longitude: "144.9650",
       },
     },
   };
