@@ -364,7 +364,7 @@ export default function VisaRefusalLawyerMelbournePage() {
           label: "Speak With Our Visa Refusal Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Urgent refusal notice assessment", "Review rights & ART appeal preparation", "Melbourne CBD & virtual consultations"]}
       />

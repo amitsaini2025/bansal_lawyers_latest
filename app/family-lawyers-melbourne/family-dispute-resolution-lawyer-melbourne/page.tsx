@@ -285,7 +285,7 @@ export default function FamilyDisputeResolutionLawyerMelbournePage() {
           label: "Speak With Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Pre-court mediation preparation", "Clear negotiation & formalisation", "Melbourne CBD & virtual consultations"]}
       />

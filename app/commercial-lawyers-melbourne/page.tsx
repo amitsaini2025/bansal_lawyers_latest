@@ -310,7 +310,7 @@ export default function CommercialLawyersMelbournePage() {
           label: "Call Our Commercial Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Commercial Solicitor"
         badges={[
           "Commercial contract & agreement reviews",

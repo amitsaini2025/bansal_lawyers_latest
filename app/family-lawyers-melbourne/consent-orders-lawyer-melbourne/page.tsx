@@ -443,7 +443,7 @@ export default function ConsentOrdersLawyerMelbournePage() {
           label: "Speak With Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Drafting consent orders with certainty", "Parenting & property division", "Melbourne CBD & virtual consultations"]}
       />

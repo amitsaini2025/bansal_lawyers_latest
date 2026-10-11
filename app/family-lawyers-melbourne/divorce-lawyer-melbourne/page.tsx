@@ -162,7 +162,7 @@ export default function DivorceLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Level 1, 530 Little Collins St Melbourne & Remote Consultations",
+          "Level 8/278 Collins St Melbourne & Remote Consultations",
           "Sole & Joint Divorce Applications in the FCFCOA",
           "Separation Under One Roof Evidence & Affidavits",
           "Coordinated Parenting & Property Settlement Support",
@@ -403,7 +403,7 @@ export default function DivorceLawyerMelbournePage() {
           label: "Speak With Our Divorce Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Strictly confidential family legal advice", "Prompt response to urgent matters", "Melbourne CBD & virtual consultations"]}
       />

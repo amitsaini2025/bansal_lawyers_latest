@@ -420,7 +420,7 @@ export default function CitizenshipLawyerAustraliaPage() {
           label: "Speak With Our Citizenship Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Character requirement & residence checks", "Citizenship test & appeal support", "Melbourne CBD & virtual consultations"]}
       />

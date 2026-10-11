@@ -493,7 +493,7 @@ export default function BindingFinancialAgreementLawyerMelbournePage() {
           label: "Speak With Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Pre-nuptial, post-nuptial & separation deeds", "Independent legal advice certificates", "Melbourne CBD & virtual consultations"]}
       />

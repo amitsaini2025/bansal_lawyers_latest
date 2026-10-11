@@ -437,7 +437,7 @@ export default function PropertySettlementLawyerMelbournePage() {
           label: "Speak With Our Property Settlement Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Asset division & balance sheet clarity", "Binding financial agreements & consent orders", "Melbourne CBD & virtual consultations"]}
       />

@@ -8,7 +8,7 @@ import { businessDetails } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
   title: "Ajay Bansal | Director & Principal Lawyer | Bansal Lawyers Melbourne",
-  description: "Profile of Ajay Bansal, founding Director & Principal Lawyer at Bansal Lawyers Melbourne. Over 15 years of legal experience in immigration, family, property, commercial, criminal and civil law.",
+  description: "Profile of Ajay Bansal, founding Director & Principal Lawyer at Bansal Lawyers Melbourne. 7 years of experience in immigration, family, property, commercial, criminal and civil law.",
   path: "/about/ajay-bansal",
   keywords: ["Ajay Bansal", "Ajay Bansal Lawyer Melbourne", "Principal Lawyer Bansal Lawyers", "Immigration Lawyer Ajay Bansal", "Melbourne Solicitor Ajay Bansal", "Bansal Lawyers Director"],
 });
@@ -25,7 +25,7 @@ export default function AjayBansalProfilePage() {
     telephone: businessDetails.phone,
     email: businessDetails.email,
     knowsLanguage: ["English", "Hindi", "Punjabi"],
-    description: "Founding Director with over 15 years of comprehensive legal experience in Australia across immigration, family, property, commercial, criminal and civil law.",
+    description: "Founding Director with 7 years of experience in Australia across immigration, family, property, commercial, criminal and civil law.",
   };
 
   return (
@@ -38,16 +38,16 @@ export default function AjayBansalProfilePage() {
         role="Director & Principal Lawyer"
         image="/images/team/ajay-bansal-director.webp"
         imageAlt="Ajay Bansal - Director & Principal Lawyer at Bansal Lawyers Melbourne"
-        summary="Founding Director with over 15 years of legal experience across immigration, family, property, commercial, criminal and civil law."
+        summary="Founding Director with 7 years of experience across immigration, family, property, commercial, criminal and civil law."
         credentials={[
-          { label: "Experience", value: "15+ years legal practice" },
+          { label: "Experience", value: "7 years of experience" },
           { label: "Location", value: "Melbourne CBD" },
           { label: "Languages", value: "English, Hindi, Punjabi" },
           { label: "Consultations", value: "In-person and virtual" },
         ]}
-        trustItems={["15+ Years Legal Practice in Australia", "Victorian & Federal Court Advocacy", "Multidisciplinary Strategic Guidance", "Melbourne CBD & Virtual Consultations"]}
+        trustItems={["7 Years of Experience", "Victorian & Federal Court Advocacy", "Multidisciplinary Strategic Guidance", "Melbourne CBD & Virtual Consultations"]}
         biography={[
-          "Ajay Bansal is the founding Director of Bansal Lawyers. He brings over 15 years of legal experience to the firm and has worked with clients across a wide range of legal matters throughout Australia.",
+          "Ajay Bansal is the founding Director of Bansal Lawyers. He brings 7 years of experience to the firm and has worked with clients across a wide range of legal matters throughout Australia.",
           "His work covers immigration law, family law, property law, commercial law, criminal law, and civil matters. Over the years, he has assisted hundreds of clients with legal issues involving visas, family disputes, business transactions, property settlements, criminal charges, and other critical legal concerns.",
           "Ajay’s approach is straightforward. He focuses on understanding the client’s situation, explaining the legal position clearly, and helping the client make informed decisions without ambiguity or delay.",
         ]}

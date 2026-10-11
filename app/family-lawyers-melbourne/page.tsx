@@ -368,7 +368,7 @@ export default function FamilyLawyersMelbournePage() {
           label: "Call Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Law Line"
         badges={[
           "Strictly confidential family legal advice",

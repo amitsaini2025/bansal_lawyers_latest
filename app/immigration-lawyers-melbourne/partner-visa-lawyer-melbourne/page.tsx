@@ -371,7 +371,7 @@ export default function PartnerVisaLawyerMelbournePage() {
           label: "Speak With Our Partner Visa Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Comprehensive relationship evidence check", "Onshore & offshore visa pathways", "Melbourne CBD & virtual consultations"]}
       />

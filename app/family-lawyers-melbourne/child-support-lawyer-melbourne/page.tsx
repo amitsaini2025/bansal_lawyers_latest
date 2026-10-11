@@ -276,7 +276,7 @@ export default function ChildSupportLawyerMelbournePage() {
           label: "Speak With Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Child support agreements & assessment advice", "Confidential legal consultations", "Melbourne CBD & virtual appointments"]}
       />

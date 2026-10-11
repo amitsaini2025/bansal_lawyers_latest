@@ -479,7 +479,7 @@ export default function EmployerSponsoredVisaLawyerMelbournePage() {
           label: "Speak With Our Sponsorship Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Standard business sponsorship & nominations", "Subclass 482, 186 & DAMA guidance", "Melbourne CBD & virtual consultations"]}
       />

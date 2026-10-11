@@ -230,7 +230,7 @@ export default function NotFound() {
               Need Direct Assistance?
             </h3>
             <p style={{ color: "#64748b", margin: "0 0 1.25rem", fontSize: "0.95rem" }}>
-              Our chambers are located at <strong>Level 1, 530 Little Collins Street, Melbourne VIC 3000</strong>.
+              Our chambers are located at <strong>Level 8/278 Collins St, Melbourne VIC 3000, Australia</strong>.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <ButtonLink href="/about" variant="secondary">

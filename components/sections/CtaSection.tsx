@@ -19,7 +19,7 @@ export function CtaSection({
   text,
   action,
   secondaryAction,
-  phone = "0422 905 860",
+  phone = "1300 226 725",
   phoneLabel = "Direct Solicitor Line",
   badges = [
     "Strictly confidential consultation",
@@ -27,6 +27,8 @@ export function CtaSection({
     "Melbourne CBD & virtual appointments",
   ],
 }: CtaSectionProps) {
+  const telDigits = phone.replace(/[^+\d]/g, "");
+
   return (
     <section className="cta-section">
       <Container>
@@ -47,7 +49,7 @@ export function CtaSection({
 
             <div className="cta-card__phone-block">
               <span className="cta-card__phone-label">{phoneLabel}</span>
-              <a href={`tel:${phone.replace(/\s+/g, "")}`} className="cta-card__phone-link">
+              <a href={`tel:${telDigits}`} className="cta-card__phone-link">
                 <svg
                   width="18"
                   height="18"

@@ -407,7 +407,7 @@ export default function ArtAppealLawyerMelbournePage() {
           label: "Speak With Our Appeals Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Strict tribunal deadline compliance", "Evidence & witness preparation for ART hearings", "Melbourne CBD & virtual consultations"]}
       />

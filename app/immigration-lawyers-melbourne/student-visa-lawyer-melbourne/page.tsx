@@ -174,7 +174,7 @@ export default function StudentVisaLawyerMelbournePage() {
         items={[
           "Collins St Office & Remote Consultations",
           "Genuine Student Assessment & Document Review",
-          "S56 & RFI Strategic Responses",
+          "s56 & s57 Strategic Responses",
           "Administrative Review Tribunal (ART) Appeals",
         ]}
       />
@@ -396,7 +396,7 @@ export default function StudentVisaLawyerMelbournePage() {
           label: "Speak With Our Student Visa Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Genuine Student requirement & financial checks", "Visa refusal & condition compliance advice", "Melbourne CBD & virtual consultations"]}
       />

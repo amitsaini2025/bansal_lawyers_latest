@@ -270,7 +270,7 @@ export default function RequestForFurtherInformationLawyerMelbournePage() {
           label: "Speak With Our Immigration Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Time-critical RFI response strategy", "Substantive legal submissions", "Melbourne CBD & virtual consultations"]}
       />

@@ -415,7 +415,7 @@ export default function ChildCustodyLawyerMelbournePage() {
           label: "Speak With Our Parenting Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Family Solicitor"
         badges={["Child-focused parenting arrangements", "Consent orders & mediation guidance", "Melbourne CBD & virtual consultations"]}
       />

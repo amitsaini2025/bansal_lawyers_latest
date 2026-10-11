@@ -455,7 +455,7 @@ export default function PermanentResidencyLawyerMelbournePage() {
           label: "Speak With Our Immigration Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["PR pathway assessment & criteria review", "Thorough document preparation", "Melbourne CBD & virtual consultations"]}
       />

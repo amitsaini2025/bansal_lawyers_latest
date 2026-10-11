@@ -73,7 +73,7 @@ export function PractitionerProfile({
         text={`Speak with ${name} and the Bansal Lawyers team about your legal matter.`}
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{ label: "Call 0422 905 860", href: "tel:+61422905860" }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Practitioner Contact"
         badges={["Melbourne CBD consultations", "Virtual appointments", "Clear legal advice"]}
       />

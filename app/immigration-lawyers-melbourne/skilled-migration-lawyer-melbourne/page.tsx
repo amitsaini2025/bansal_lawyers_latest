@@ -410,7 +410,7 @@ export default function SkilledMigrationLawyerMelbournePage() {
           label: "Speak With Our Skilled Migration Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Points test & skills assessment advice", "Subclass 189, 190 & 491 guidance", "Melbourne CBD & virtual consultations"]}
       />

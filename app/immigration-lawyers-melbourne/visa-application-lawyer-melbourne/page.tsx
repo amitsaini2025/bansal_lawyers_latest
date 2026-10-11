@@ -310,7 +310,7 @@ export default function VisaApplicationLawyerMelbournePage() {
           label: "Speak With Our Immigration Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["End-to-end visa filing support", "Strategic document & evidence checklist", "Melbourne CBD & virtual consultations"]}
       />

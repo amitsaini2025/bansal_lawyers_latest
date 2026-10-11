@@ -337,7 +337,7 @@ export default function ImmigrationLawyersMelbournePage() {
         title="Speak With Immigration Lawyers in Melbourne"
         text="Need help with a visa application, refusal, cancellation, review or immigration advice? Our team can talk you through the next step."
         action={{ label: "Book a Consultation", href: "/contact" }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Speak With Our Immigration Team"
         badges={[
           "Ready to talk about your visa matter? Get in touch today.",

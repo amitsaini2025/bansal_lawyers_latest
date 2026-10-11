@@ -427,7 +427,7 @@ export default function VisaCancellationLawyerMelbournePage() {
           label: "Speak With Our Cancellation Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Immigration Solicitor"
         badges={["Urgent NOICC response submissions", "Section 501 & 116 cancellation defence", "Melbourne CBD & virtual consultations"]}
       />

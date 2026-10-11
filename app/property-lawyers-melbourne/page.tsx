@@ -236,7 +236,7 @@ export default function PropertyLawyersMelbournePage() {
           label: "Speak With Our Property Law Team",
           href: "tel:+61422905860",
         }}
-        phone="0422 905 860"
+        phone="1300 226 725"
         phoneLabel="Direct Property Solicitor"
         badges={["Contract & Section 32 reviews", "Fast turnaround for auction deadlines", "Melbourne CBD & virtual appointments"]}
       />
