@@ -35,5 +35,6 @@ export type PageSeo = {
   description: string;
   path: string;
   keywords?: string[] | string;
+  image?: string;
   noIndex?: boolean;
 };

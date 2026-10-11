@@ -7,10 +7,13 @@ export function createMetadata({
   description,
   path,
   keywords,
+  image,
   noIndex = false,
 }: PageSeo): Metadata {
   const canonical = new URL(path, siteUrl).toString();
-  const defaultOgImage = `${siteUrl}/images/hero-melbourne.webp`;
+  const shareImageUrl = image
+    ? new URL(image, siteUrl).toString()
+    : `${siteUrl}/images/collins-street-office.webp`;
 
   // If the page title already includes the firm name (e.g. "... | Bansal Lawyers"),
   // or if appending " | Bansal Lawyers" (+17 chars) would push the rendered <title>
@@ -38,9 +41,10 @@ export function createMetadata({
       locale: "en_AU",
       images: [
         {
-          url: defaultOgImage,
-          width: 1200,
-          height: 630,
+          url: shareImageUrl,
+          width: 1376,
+          height: 768,
+          type: "image/webp",
           alt: title,
         },
       ],
@@ -49,7 +53,7 @@ export function createMetadata({
       card: "summary_large_image",
       title,
       description,
-      images: [defaultOgImage],
+      images: [shareImageUrl],
     },
   };
 }

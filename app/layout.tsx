@@ -25,6 +25,31 @@ export const metadata: Metadata = {
   },
   description:
     "Bansal Lawyers is a Melbourne law firm providing strategic legal counsel in immigration, family, commercial, criminal, property and civil law.",
+  openGraph: {
+    title: "Bansal Lawyers | Melbourne Law Firm",
+    description:
+      "Bansal Lawyers is a Melbourne law firm providing strategic legal counsel in immigration, family, commercial, criminal, property and civil law.",
+    url: siteUrl,
+    siteName: "Bansal Lawyers",
+    type: "website",
+    locale: "en_AU",
+    images: [
+      {
+        url: `${siteUrl}/images/collins-street-office.webp`,
+        width: 1376,
+        height: 768,
+        type: "image/webp",
+        alt: "Bansal Lawyers — Melbourne Law Firm on Collins Street",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Bansal Lawyers | Melbourne Law Firm",
+    description:
+      "Bansal Lawyers is a Melbourne law firm providing strategic legal counsel in immigration, family, commercial, criminal, property and civil law.",
+    images: [`${siteUrl}/images/collins-street-office.webp`],
+  },
   formatDetection: {
     telephone: false,
     email: false,

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useId, useMemo, useRef, useState } from "react";
+import { useEffect, useId, useMemo, useRef, useState } from "react";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { Container, Section, SectionHeader } from "@/components/ui";
 
@@ -30,6 +30,15 @@ export function BlogListClient({ articles }: BlogListClientProps) {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const containerRef = useRef<HTMLDivElement>(null);
   const searchInputId = useId();
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const params = new URLSearchParams(window.location.search);
+    const pageParam = Number(params.get("page"));
+    if (Number.isInteger(pageParam) && pageParam >= 1) {
+      setCurrentPage(pageParam);
+    }
+  }, []);
 
   // Extract unique categories preserving logical order
   const categories = useMemo(() => {
@@ -102,8 +111,14 @@ export function BlogListClient({ articles }: BlogListClientProps) {
     setCurrentPage(1);
   };
 
+  const getPageHref = (pageNumber: number) =>
+    pageNumber <= 1 ? "/blog" : `/blog?page=${pageNumber}`;
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
+    if (typeof window !== "undefined") {
+      window.history.replaceState(null, "", getPageHref(page));
+    }
     if (containerRef.current) {
       containerRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
     }
@@ -444,20 +459,24 @@ export function BlogListClient({ articles }: BlogListClientProps) {
                     <span>Prev</span>
                   </button>
 
-                  {/* Page Number Buttons */}
+                  {/* Page Number Links (Crawlable for SEO & Instant Client Switching) */}
                   {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNumber) => {
                     const isCurrent = pageNumber === safeCurrentPage;
                     return (
-                      <button
+                      <a
                         key={pageNumber}
-                        type="button"
+                        href={getPageHref(pageNumber)}
                         className="blog-pagination-btn"
+                        style={{ textDecoration: "none" }}
                         aria-current={isCurrent ? "page" : undefined}
                         aria-label={`Page ${pageNumber}`}
-                        onClick={() => handlePageChange(pageNumber)}
+                        onClick={(event) => {
+                          event.preventDefault();
+                          handlePageChange(pageNumber);
+                        }}
                       >
                         {pageNumber}
-                      </button>
+                      </a>
                     );
                   })}
 
@@ -493,7 +512,7 @@ export function BlogListClient({ articles }: BlogListClientProps) {
             )}
 
             {/* Crawlable directory of all articles so search & AI bots discover every post within 2 clicks */}
-            <nav aria-label="Complete legal articles directory" className="visually-hidden">
+            <nav aria-label="Complete legal articles directory" className="sr-only">
               <ul>
                 {articles.map((article) => (
                   <li key={article.href}>
