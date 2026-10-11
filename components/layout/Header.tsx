@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { megaMenuModules } from "@/lib/megaMenuData";
-import { navigation } from "@/lib/site";
+import { navigation, socialLinks } from "@/lib/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -218,7 +218,7 @@ export function Header() {
             <div className="utility-socials" aria-label="Social media links">
               {/* LinkedIn */}
               <a
-                href="https://www.linkedin.com/company/bansallawyers"
+                href={socialLinks.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="utility-social-link"
@@ -231,7 +231,7 @@ export function Header() {
 
               {/* Facebook */}
               <a
-                href="https://www.facebook.com/profile.php?id=61562008576642"
+                href={socialLinks.facebook}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="utility-social-link"
@@ -244,7 +244,7 @@ export function Header() {
 
               {/* Instagram */}
               <a
-                href="https://www.instagram.com/bansallawyers/"
+                href={socialLinks.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="utility-social-link"
