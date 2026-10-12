@@ -112,7 +112,7 @@ export default function CriminalLawyersMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Urgent Legal Consultations",
+          "Collins Street Office & Urgent Legal Consultations",
           "Magistrates' Court Representation across Victoria",
           "Police Interview & Bail Application Support",
           "Clear Defence Advice & Realistic Assessments",

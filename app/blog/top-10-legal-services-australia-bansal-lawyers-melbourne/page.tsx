@@ -132,7 +132,7 @@ export default function Top10LegalServicesPage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Immigration, Family & Commercial Law",
           "Administrative Review Tribunal (ART) Matters",
           "Direct Solicitor Communication",

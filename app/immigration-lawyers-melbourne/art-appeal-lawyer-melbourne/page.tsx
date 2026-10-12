@@ -176,7 +176,7 @@ export default function ArtAppealLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Merits Review & Tribunal Submissions",
           "Urgent Decision Letter Assessment",
           "Direct Solicitor Representation",

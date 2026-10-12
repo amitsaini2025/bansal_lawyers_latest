@@ -159,7 +159,7 @@ export default function VisaRefusalLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Administrative Review Tribunal (ART) Practice",
           "Urgent Refusal Letter Review",
           "Prompt Matter Assessment",

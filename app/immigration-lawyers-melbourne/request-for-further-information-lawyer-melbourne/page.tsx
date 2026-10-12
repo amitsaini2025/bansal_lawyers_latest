@@ -150,7 +150,7 @@ export default function RequestForFurtherInformationLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Australia-Wide Consultations",
+          "Collins Street Office & Australia-Wide Consultations",
           "Urgent RFI Deadline Management & Response Drafting",
           "Genuine Student, PIC 4020 & Sponsor Audit Support",
           "Clear Legal Submissions Directly Addressing Department Concerns",

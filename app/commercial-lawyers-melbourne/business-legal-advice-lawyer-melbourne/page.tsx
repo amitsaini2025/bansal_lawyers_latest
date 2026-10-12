@@ -115,7 +115,7 @@ export default function BusinessLegalAdviceLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Advice",
+          "Collins Street Office & Remote Advice",
           "Plain-English Strategic Guidance",
           "Focus on Practical Commercial Outcomes",
           "Comprehensive Business Support",

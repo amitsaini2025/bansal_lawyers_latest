@@ -176,7 +176,7 @@ export default function SkilledMigrationLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Skills Assessment & Points Test Reviews",
           "GSM Subclass 189, 190 & 491 Advice",
           "Employer & State Nomination Strategic Pathways",

@@ -50,7 +50,7 @@ const contactFaqs = [
   {
     question: "Where is Bansal Lawyers located?",
     answer:
-      "Our office is situated at Level 8/278 Collins St, Melbourne VIC 3000, Australia. We are located in the heart of the Melbourne CBD between Swanston and Elizabeth Streets, close to public transport.",
+      "Our office is situated at Level 8, 278 Collins Street, Melbourne VIC 3000. We are located in the heart of the Melbourne CBD between Swanston and Elizabeth Streets, close to public transport.",
   },
   {
     question: "Can I book a consultation online?",
@@ -215,9 +215,8 @@ export default function ContactPage() {
               </div>
               <h3>Visit Our Office</h3>
               <address>
-                Level 8/278 Collins St,<br />
-                Melbourne VIC 3000,<br />
-                Australia
+                Level 8, 278 Collins Street,<br />
+                Melbourne VIC 3000
               </address>
               <a
                 href="https://g.co/kgs/Hw16bN8"
@@ -285,11 +284,11 @@ export default function ContactPage() {
                 Our building is conveniently situated between Swanston and Elizabeth Streets. It is just a short walk from Flinders Street Station and Melbourne Central Station, with tram routes 11, 12, 48, and 109 stopping directly on Collins Street outside.
               </p>
               <address style={{ fontStyle: "normal", margin: "1.5rem 0", color: "var(--navy-950)", fontWeight: 600 }}>
-                Level 8/278 Collins St,<br />
-                Melbourne VIC 3000, Australia
+                Level 8, 278 Collins Street,<br />
+                Melbourne VIC 3000
               </address>
               <ButtonLink
-                href="https://www.google.com/maps/dir/?api=1&destination=Level+8%2F278+Collins+St+Melbourne+VIC+3000"
+                href="https://www.google.com/maps/dir/?api=1&destination=Level+8,+278+Collins+Street+Melbourne+VIC+3000"
                 variant="primary"
               >
                 Get Directions
@@ -299,7 +298,7 @@ export default function ContactPage() {
             <div className="office-map-frame" aria-label="Google Map Embed Location">
               <iframe
                 title="Bansal Lawyers Melbourne Office Location"
-                src="https://maps.google.com/maps?q=Level%208%2F278%20Collins%20St,%20Melbourne%20VIC%203000&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                src="https://maps.google.com/maps?q=Level%208,%20278%20Collins%20Street,%20Melbourne%20VIC%203000&t=&z=15&ie=UTF8&iwloc=&output=embed"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
               />

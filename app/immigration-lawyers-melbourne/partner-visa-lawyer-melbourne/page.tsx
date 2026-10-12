@@ -165,7 +165,7 @@ export default function PartnerVisaLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Comprehensive Relationship Proof Review",
           "RFI & Refusal Strategic Advice",
           "Direct Solicitor Management",

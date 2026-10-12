@@ -139,7 +139,7 @@ export default function ClosingLoopholesReformsPage() {
           "Fair Work Legislation Amendment Act",
           "Section 15AA Ordinary Meaning of Employee",
           "Contract Review & Sham Contracting Audits",
-          "Collins St Office & Virtual Consultations",
+          "Collins Street Office & Virtual Consultations",
         ]}
       />
 

@@ -139,7 +139,7 @@ export default function CivilDisputeResolutionActPage() {
           "Civil Dispute Resolution Act 2011 (Cth)",
           "Pre-Action Genuine Steps Statements",
           "Alternative Dispute Resolution & Mediation",
-          "Collins St Office & Virtual Consultations",
+          "Collins Street Office & Virtual Consultations",
         ]}
       />
 

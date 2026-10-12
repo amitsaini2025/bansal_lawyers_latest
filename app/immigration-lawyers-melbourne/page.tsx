@@ -156,7 +156,7 @@ export default function ImmigrationLawyersMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St office and remote consultations",
+          "Collins Street office and remote consultations",
           "Merits review and Administrative Review Tribunal (ART) experience",
           "Plain-English legal advice",
           "Prompt matter assessment",
