@@ -56,7 +56,7 @@ jobs:
             ./node_modules/.bin/next build --webpack
 
             echo \"Restarting PM2 application...\"
-            pm2 restart bansalla --update-env
+            ./node_modules/.bin/pm2 restart bansalla --update-env
 
             echo \"Deployment completed successfully.\"
           '"
