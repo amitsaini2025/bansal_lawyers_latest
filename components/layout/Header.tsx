@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { megaMenuModules } from "@/lib/megaMenuData";
-import { navigation, socialLinks } from "@/lib/site";
+import { businessDetails, navigation, socialLinks } from "@/lib/site";
 
 export function Header() {
   const pathname = usePathname();
@@ -180,9 +180,9 @@ export function Header() {
             <span className="utility-address">Level 8, 278 Collins Street, Melbourne VIC 3000</span>
             <span className="utility-sep" aria-hidden="true">|</span>
             <a
-              href="tel:+61422905860"
+              href={businessDetails.nationalLineTel}
               className="utility-phone"
-              aria-label="Call Bansal Lawyers"
+              aria-label="Call Bansal Lawyers on 1300 226 725"
             >
               <svg
                 className="utility-icon"
@@ -192,14 +192,22 @@ export function Header() {
               >
                 <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z" />
               </svg>
-              <span>0422 905 860</span>
+              <span>{businessDetails.nationalLine}</span>
+            </a>
+            <span className="utility-sep" aria-hidden="true">|</span>
+            <a
+              href={businessDetails.phoneTel}
+              className="utility-phone"
+              aria-label="Call Bansal Lawyers mobile on 0422 905 860"
+            >
+              <span>Mobile {businessDetails.phone}</span>
             </a>
           </div>
 
           {/* Right: Email & Social Media Links */}
           <div className="utility-bar__right">
             <a
-              href="mailto:Info@bansallawyers.com.au"
+              href={businessDetails.emailMailto}
               className="utility-email"
               aria-label="Email Bansal Lawyers"
             >
@@ -212,7 +220,7 @@ export function Header() {
                 <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
                 <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z" />
               </svg>
-              <span>Info@bansallawyers.com.au</span>
+              <span>{businessDetails.email}</span>
             </a>
 
             <div className="utility-socials" aria-label="Social media links">
@@ -472,9 +480,13 @@ export function Header() {
                             <div className="mega-menu__footer-left">
                               <span className="mega-menu__footer-dot" aria-hidden="true" />
                               <span>
-                                Need immediate assistance? Call our Melbourne CBD team directly on{" "}
-                                <a href="tel:+61422905860" className="mega-menu__footer-tel">
-                                  0422 905 860
+                                Need immediate assistance? Call{" "}
+                                <a href={businessDetails.nationalLineTel} className="mega-menu__footer-tel">
+                                  {businessDetails.nationalLine}
+                                </a>
+                                {" "}or mobile{" "}
+                                <a href={businessDetails.phoneTel} className="mega-menu__footer-tel">
+                                  {businessDetails.phone}
                                 </a>
                               </span>
                             </div>
@@ -679,9 +691,9 @@ export function Header() {
 
           {/* Mobile Quick Call Button */}
           <a
-            href="tel:+61422905860"
+            href={businessDetails.nationalLineTel}
             className="header-mobile-call-btn"
-            aria-label="Call Bansal Lawyers"
+            aria-label="Call Bansal Lawyers on 1300 226 725"
           >
             <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
               <path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 4V3z" />

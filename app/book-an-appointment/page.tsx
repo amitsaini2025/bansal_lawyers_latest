@@ -6,7 +6,7 @@ import { getAvailabilityConfig, getBookableServices, getNatureOfEnquiryOptions }
 import { isOnlinePaymentEnabled } from "@/lib/booking/payment";
 import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
-import { createBreadcrumbSchema } from "@/lib/schema";
+import { createBreadcrumbSchema, createLegalServiceSchema } from "@/lib/schema";
 import { businessDetails } from "@/lib/site";
 import "./booking.css";
 
@@ -45,6 +45,7 @@ export default async function BookAppointmentPage() {
 
   return (
     <>
+      <StructuredData data={createLegalServiceSchema()} />
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
       <Breadcrumbs items={breadcrumbs} />
 
@@ -82,7 +83,7 @@ export default async function BookAppointmentPage() {
           }
         />
         <p className="appt-shell__help">
-          Urgent deadline or court date? Call <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>.
+          Urgent deadline or court date? Call <a href={businessDetails.nationalLineTel}>{businessDetails.nationalLine}</a> or mobile <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>.
         </p>
       </div>
     </>

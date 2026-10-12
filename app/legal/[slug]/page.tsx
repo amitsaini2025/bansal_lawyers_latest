@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { StructuredData } from "@/components/seo";
 import { Breadcrumbs, CtaSection, Hero, Section } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
-import { createBreadcrumbSchema } from "@/lib/schema";
+import { createBreadcrumbSchema, createLegalServiceSchema } from "@/lib/schema";
 import { businessDetails, policySlugs } from "@/lib/site";
 
 type PolicySection = {
@@ -148,6 +148,7 @@ export default async function LegalPolicyPage({ params }: LegalPageProps) {
   const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Legal information" }, { label: policy.title }];
 
   return <>
+    <StructuredData data={createLegalServiceSchema()} />
     <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
     <Breadcrumbs items={breadcrumbs} />
     <Hero compact eyebrow={policy.eyebrow} title={policy.title} intro={policy.intro} aside={<div className="policy-meta"><span>Australia</span><time dateTime="2026-10-05">Last updated: {lastUpdated}</time></div>} />
@@ -157,8 +158,8 @@ export default async function LegalPolicyPage({ params }: LegalPageProps) {
         {section.paragraphs?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         {section.items ? <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul> : null}
       </section>)}
-      <p>You can contact us by phone on <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>, by email at <a href={businessDetails.emailMailto}>{businessDetails.email}</a>, or through our <Link href="/contact">contact page</Link>.</p>
+      <p>You can contact us on <a href={businessDetails.nationalLineTel}>{businessDetails.nationalLine}</a>, by mobile on <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>, by email at <a href={businessDetails.emailMailto}>{businessDetails.email}</a>, or through our <Link href="/contact">contact page</Link>.</p>
     </article></Section>
-    <CtaSection title="Need advice about a legal matter?" text="Contact Bansal Lawyers to discuss your circumstances with our Melbourne legal team." action={{ label: "Contact Bansal Lawyers", href: "/contact" }} secondaryAction={{ label: `Call ${businessDetails.phone}`, href: businessDetails.phoneTel }} />
+    <CtaSection title="Need advice about a legal matter?" text="Contact Bansal Lawyers to discuss your circumstances with our Melbourne legal team." action={{ label: "Contact Bansal Lawyers", href: "/contact" }} secondaryAction={{ label: `Call ${businessDetails.nationalLine}`, href: businessDetails.nationalLineTel }} />
   </>;
 }
