@@ -4,6 +4,7 @@ import { siteUrl } from "@/lib/site";
 export default function robots(): MetadataRoute.Robots {
   const disallowedPaths = [
     "/api/",
+    "/admin",
     "/book-an-appointment/payment-complete",
     "/book-an-appointment/payment-cancelled",
   ];
