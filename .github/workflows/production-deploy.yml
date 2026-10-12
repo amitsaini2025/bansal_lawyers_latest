@@ -51,7 +51,8 @@ jobs:
             set -e
             export PATH=\"/opt/nvm/versions/node/v24.21.0/bin:\$PATH\"
             cd /home/bansalla/public_html
-
+            /opt/nvm/versions/node/v24.21.0/bin/npm install
+            
             echo \"Building Next.js application...\"
             ./node_modules/.bin/next build --webpack
 
