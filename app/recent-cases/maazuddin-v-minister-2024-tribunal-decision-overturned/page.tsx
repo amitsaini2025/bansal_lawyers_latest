@@ -662,7 +662,7 @@ export default function MaazuddinCaseDetailPage() {
                 Book a Consultation
               </ButtonLink>
               <ButtonLink
-                href="tel:+61422905860"
+                href="tel:1300226725"
                 variant="white-outline"
               >
                 Speak With Our Immigration Team

@@ -12,7 +12,8 @@ import {
   TrustBar,
 } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
-import { createBreadcrumbSchema, createCollectionPageSchema } from "@/lib/schema";
+import { createBreadcrumbSchema, createCollectionPageSchema, createLegalServiceSchema } from "@/lib/schema";
+import { businessDetails } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
   title: "Recent Cases | Bansal Lawyers Melbourne",
@@ -112,6 +113,7 @@ export default function RecentCasesPage() {
           path: "/recent-cases",
         })}
       />
+      <StructuredData data={createLegalServiceSchema()} />
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
 
       <Breadcrumbs items={breadcrumbs} />
@@ -132,7 +134,7 @@ export default function RecentCasesPage() {
             </p>
           </>
         }
-        primaryAction={{ label: "Speak With Our Legal Team", href: "tel:+61422905860" }}
+        primaryAction={{ label: "Call 1300 226 725", href: businessDetails.nationalLineTel }}
         secondaryAction={{ label: "Book a Consultation", href: "/contact/" }}
       />
 
@@ -245,8 +247,8 @@ export default function RecentCasesPage() {
               <ButtonLink href="/contact/" variant="primary">
                 Book a Consultation
               </ButtonLink>
-              <ButtonLink href="tel:+61422905860" variant="secondary">
-                Call 0422 905 860
+              <ButtonLink href={businessDetails.nationalLineTel} variant="secondary">
+                Call {businessDetails.nationalLine}
               </ButtonLink>
             </div>
           </div>

@@ -17,7 +17,7 @@ const nextConfig: NextConfig = {
           { key: "X-Frame-Options", value: "SAMEORIGIN" },
           {
             key: "Content-Security-Policy",
-            value: "base-uri 'self'; object-src 'none'; form-action 'self'; frame-ancestors 'self'; script-src-attr 'none'",
+            value: "base-uri 'self'; object-src 'none'; form-action 'self' https://checkout.stripe.com; frame-ancestors 'self'; script-src-attr 'none'",
           },
           { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
         ],

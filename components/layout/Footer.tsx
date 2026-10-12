@@ -201,11 +201,11 @@ export function Footer() {
           <h2 className="footer-heading">Melbourne Office</h2>
           <address className="footer-contact">
             <span>{businessDetails.address}</span>
-            <a href={businessDetails.phoneTel}>
-              <strong>Direct:</strong> {businessDetails.phone}
-            </a>
             <a href={businessDetails.nationalLineTel}>
-              <strong>National:</strong> {businessDetails.nationalLineDisplay}
+              <strong>Call:</strong> {businessDetails.nationalLineDisplay}
+            </a>
+            <a href={businessDetails.phoneTel}>
+              <strong>Mobile:</strong> {businessDetails.phone}
             </a>
             <a href={businessDetails.emailMailto}>
               <strong>Email:</strong> {businessDetails.email}

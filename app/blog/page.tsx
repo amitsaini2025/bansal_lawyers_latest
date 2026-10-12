@@ -4,7 +4,7 @@ import { BlogListClient, type BlogArticleItem } from "@/components/blog/BlogList
 import { StructuredData } from "@/components/seo";
 import { Container, CtaSection, Section, SectionHeader } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
-import { createBreadcrumbSchema } from "@/lib/schema";
+import { createBreadcrumbSchema, createCollectionPageSchema, createLegalServiceSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
   title: "Legal Insights & Updates | Bansal Lawyers Melbourne",
@@ -31,6 +31,15 @@ export default function BlogPage() {
 
   return (
     <>
+      <StructuredData data={createLegalServiceSchema()} />
+      <StructuredData
+        data={createCollectionPageSchema({
+          title: "Legal Insights & Updates | Bansal Lawyers Melbourne",
+          description:
+            "Expert articles from Bansal Lawyers on family law, migration, criminal defence, commercial disputes, and property law.",
+          path: "/blog",
+        })}
+      />
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
 
       {/* Hero Section matching exact design */}

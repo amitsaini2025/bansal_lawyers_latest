@@ -21,6 +21,9 @@ import {
 } from "@/lib/schema";
 import { businessDetails } from "@/lib/site";
 
+// Turnstile site key is read at request time so a runtime env change is not baked into static HTML.
+export const dynamic = "force-dynamic";
+
 export const metadata: Metadata = createMetadata({
   title: "Contact Bansal Lawyers | Melbourne Lawyers on Collins Street",
   description:
@@ -45,7 +48,7 @@ const contactFaqs = [
   {
     question: "How can I contact Bansal Lawyers?",
     answer:
-      "You can contact our Melbourne office by calling 0422 905 860, calling our national line on 1300 226 725, emailing Info@bansallawyers.com.au, or submitting the message form on this page.",
+      "You can contact our Melbourne office by calling 1300 226 725, calling our mobile on 0422 905 860, emailing info@bansallawyers.com.au, or submitting the message form on this page.",
   },
   {
     question: "Where is Bansal Lawyers located?",
@@ -169,16 +172,16 @@ export default function ContactPage() {
                 </p>
 
                 <div className="contact-channel-row">
-                  <span className="contact-channel-row__label">Direct Solicitor Mobile</span>
-                  <a href="tel:0422905860" className="contact-channel-row__value">
-                    0422 905 860
+                  <span className="contact-channel-row__label">Public Line</span>
+                  <a href={businessDetails.nationalLineTel} className="contact-channel-row__value">
+                    {businessDetails.nationalLineDisplay}
                   </a>
                 </div>
 
                 <div className="contact-channel-row">
-                  <span className="contact-channel-row__label">National Hotline</span>
-                  <a href="tel:1300226725" className="contact-channel-row__value">
-                    1300 BANSAL (1300 226 725)
+                  <span className="contact-channel-row__label">Mobile</span>
+                  <a href={businessDetails.phoneTel} className="contact-channel-row__value">
+                    {businessDetails.phone}
                   </a>
                 </div>
 
@@ -235,10 +238,10 @@ export default function ContactPage() {
               </div>
               <h3>Call Us Now</h3>
               <p>
-                Mobile: <a href="tel:0422905860">(+61) 0422 905 860</a><br />
-                National: <a href="tel:1300226725">1300 BANSAL (1300 226 725)</a>
+                Call: <a href={businessDetails.nationalLineTel}>{businessDetails.nationalLineDisplay}</a><br />
+                Mobile: <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>
               </p>
-              <a href="tel:0422905860">Call Direct Now →</a>
+              <a href={businessDetails.nationalLineTel}>Call 1300 226 725 →</a>
             </div>
 
             {/* Card 3: Email Us */}
@@ -251,7 +254,7 @@ export default function ContactPage() {
               <p>
                 Send questions or initial documents directly to our team inbox.
               </p>
-              <a href="mailto:Info@bansallawyers.com.au">Info@bansallawyers.com.au</a>
+              <a href={businessDetails.emailMailto}>{businessDetails.email}</a>
             </div>
 
             {/* Card 4: Book a Consultation */}

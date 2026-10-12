@@ -1,11 +1,61 @@
 import type { MetadataRoute } from "next";
+import { blogArticles } from "@/lib/blog-data";
 import {
   policySlugs,
   siteUrl,
 } from "@/lib/site";
 
+const STATIC_LAST_MODIFIED = "2026-10-12";
+const POLICY_LAST_MODIFIED = "2026-10-05";
+
+const MONTHS: Record<string, string> = {
+  Jan: "01",
+  Feb: "02",
+  Mar: "03",
+  Apr: "04",
+  May: "05",
+  Jun: "06",
+  Jul: "07",
+  Aug: "08",
+  Sep: "09",
+  Oct: "10",
+  Nov: "11",
+  Dec: "12",
+};
+
+function publishedLabelToIso(label: string): string {
+  const match = label.match(/^([A-Za-z]{3})\s+(\d{1,2}),\s+(\d{4})$/);
+  if (!match) return STATIC_LAST_MODIFIED;
+  const month = MONTHS[match[1]];
+  if (!month) return STATIC_LAST_MODIFIED;
+  return `${match[3]}-${month}-${match[2].padStart(2, "0")}`;
+}
+
+const contentLastModified = new Map<string, string>([
+  ["/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned", "2025-04-11"],
+  ["/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question", "2025-04-11"],
+  ["/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study", "2025-04-11"],
+  ["/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn", "2025-04-11"],
+  ["/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024", "2025-04-11"],
+  ["/recent-cases/thakur-v-minister-for-immigration-2025-student-visa", "2025-08-23"],
+]);
+
+let newestBlogDate = STATIC_LAST_MODIFIED;
+for (const article of blogArticles) {
+  const iso = publishedLabelToIso(article.publishedDate);
+  contentLastModified.set(article.href, iso);
+  if (iso > newestBlogDate) newestBlogDate = iso;
+}
+contentLastModified.set("/blog", newestBlogDate);
+
+function lastModifiedFor(url: string): string {
+  const path = url.startsWith(siteUrl) ? url.slice(siteUrl.length) || "/" : url;
+  if (path.startsWith("/legal/")) return POLICY_LAST_MODIFIED;
+  return contentLastModified.get(path) ?? STATIC_LAST_MODIFIED;
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  const currentDate = new Date().toISOString();
+  const currentDate = STATIC_LAST_MODIFIED;
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {
@@ -610,5 +660,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.3,
   }));
 
-  return [...staticRoutes, ...additionalRoutes, ...policyRoutes];
+  return [...staticRoutes, ...additionalRoutes, ...policyRoutes].map((entry) => ({
+    ...entry,
+    lastModified: lastModifiedFor(entry.url),
+  }));
 }
