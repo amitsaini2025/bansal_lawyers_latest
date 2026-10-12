@@ -89,8 +89,8 @@ export function getDbPool(): Pool | null {
 }
 
 /**
- * Automatically initializes database tables if they do not exist.
- * Safe to run on every startup or health check.
+ * Verifies the MySQL connection. Contact and booking use existing CRM tables
+ * (`contacts`, `appointments`, etc.), so no schema is created here.
  */
 export async function initDatabase(): Promise<{ success: boolean; message: string }> {
   const db = getDbPool();
@@ -104,51 +104,8 @@ export async function initDatabase(): Promise<{ success: boolean; message: strin
   let connection: PoolConnection | null = null;
   try {
     connection = await db.getConnection();
-
-    // 1. Contact Enquiries Table
-    await connection.query(`
-      CREATE TABLE IF NOT EXISTS contact_enquiries (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        name VARCHAR(120) NOT NULL,
-        email VARCHAR(255) NOT NULL,
-        phone VARCHAR(50) NOT NULL,
-        subject VARCHAR(200) NOT NULL,
-        matter_type VARCHAR(60) NOT NULL,
-        message TEXT NOT NULL,
-        ip_address VARCHAR(45) DEFAULT NULL,
-        user_agent VARCHAR(255) DEFAULT NULL,
-        status ENUM('new', 'in_review', 'contacted', 'closed') DEFAULT 'new',
-        notes TEXT DEFAULT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        INDEX idx_created_at (created_at),
-        INDEX idx_status (status),
-        INDEX idx_matter_type (matter_type),
-        INDEX idx_email (email)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-    `);
-
-    // 2. Consultation Bookings Table (for future calendar/booking workflows)
-    await connection.query(`
-      CREATE TABLE IF NOT EXISTS consultation_bookings (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        enquiry_id INT DEFAULT NULL,
-        client_name VARCHAR(120) NOT NULL,
-        client_email VARCHAR(255) NOT NULL,
-        client_phone VARCHAR(50) NOT NULL,
-        matter_category VARCHAR(60) NOT NULL,
-        preferred_date DATE DEFAULT NULL,
-        preferred_time VARCHAR(30) DEFAULT NULL,
-        appointment_type ENUM('in_person', 'phone', 'video') DEFAULT 'in_person',
-        status ENUM('pending', 'confirmed', 'completed', 'cancelled') DEFAULT 'pending',
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (enquiry_id) REFERENCES contact_enquiries(id) ON DELETE SET NULL,
-        INDEX idx_booking_date (preferred_date),
-        INDEX idx_booking_status (status)
-      ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
-    `);
-
-    return { success: true, message: "MySQL database tables verified and initialized successfully." };
+    await connection.query("SELECT 1");
+    return { success: true, message: "MySQL connection verified." };
   } catch (error) {
     console.error("[Database] Error during schema initialization:", error);
     return {
