@@ -14,7 +14,7 @@ export const APPOINTMENT_STATUSES: { value: number; label: string; tone: string 
   { value: 11, label: "Payment Failed", tone: "rejected" },
 ];
 
-export const CONTACT_STATUSES = ["unread", "read", "forwarded", "resolved", "archived"] as const;
+export const CONTACT_STATUSES = ["unread", "read", "resolved", "archived"] as const;
 
 export function appointmentStatus(value: number | null | undefined) {
   return APPOINTMENT_STATUSES.find((status) => status.value === Number(value)) ?? {
@@ -80,6 +80,14 @@ export function formatWhen(value: unknown): string {
     hour: "numeric",
     minute: "2-digit",
   }).format(date);
+}
+
+export function displayName(first: unknown, last: unknown, fallback = "Staff") {
+  const clean = (value: unknown) => {
+    const text = String(value ?? "").trim();
+    return /^\.+$/.test(text) ? "" : text;
+  };
+  return [clean(first), clean(last)].filter(Boolean).join(" ") || fallback;
 }
 
 export function formatDate(value: unknown): string {

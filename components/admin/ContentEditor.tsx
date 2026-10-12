@@ -56,19 +56,17 @@ export function ContentEditor({
           </select>
         </label>
       ) : null}
-      {kind !== "case" ? (
-        <label>
-          Status
-          <select name="status" defaultValue={String(record?.status ?? 0) === "1" ? "1" : "0"}>
-            <option value="1">Published</option>
-            <option value="0">Draft</option>
-          </select>
-        </label>
-      ) : null}
-      {kind === "blog" || kind === "page" ? (
+      <label>
+        Status
+        <select name="status" defaultValue={Number(record?.status) === 1 ? "1" : "0"}>
+          <option value="1">Published</option>
+          <option value="0">Draft</option>
+        </select>
+      </label>
+      {kind === "blog" || kind === "case" ? (
         <label>
           Short description
-          <textarea name="description" rows={3} defaultValue={String(record?.description ?? "")} maxLength={2000} />
+          <textarea name="short_description" rows={3} defaultValue={String(record?.short_description ?? "")} maxLength={255} />
         </label>
       ) : null}
       {kind === "page" ? (
@@ -86,7 +84,7 @@ export function ContentEditor({
       {kind !== "category" ? (
         <label>
           Content
-          <textarea name="content" rows={16} defaultValue={String(record?.content ?? "")} />
+          <textarea name="body" rows={16} defaultValue={String((kind === "page" ? record?.content : record?.description) ?? "")} />
         </label>
       ) : null}
       <button type="submit">{record ? "Save changes" : "Create"}</button>

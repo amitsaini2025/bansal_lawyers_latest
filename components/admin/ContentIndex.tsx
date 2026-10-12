@@ -53,18 +53,18 @@ export async function ContentIndex({
             <tr>
               <th>Title</th>
               <th>Slug</th>
-              {kind === "cases" ? null : <th>Status</th>}
+              <th>Status</th>
               <th>Updated</th>
             </tr>
           </thead>
           <tbody>
             {result.rows.length === 0 ? (
-              <tr><td colSpan={kind === "cases" ? 3 : 4}>Nothing found.</td></tr>
+              <tr><td colSpan={4}>Nothing found.</td></tr>
             ) : result.rows.map((row) => (
               <tr key={String(row.id)}>
                 <td><Link href={`${path}/${row.id}`}>{String(row.title || row.name || "Untitled")}</Link></td>
                 <td>{String(row.slug || row.alias || "—")}</td>
-                {kind === "cases" ? null : <td>{publishLabel(Number(row.status))}</td>}
+                <td>{row.status == null || row.status === "" ? "—" : publishLabel(Number(row.status))}</td>
                 <td>{formatWhen(row.updated_at || row.created_at)}</td>
               </tr>
             ))}

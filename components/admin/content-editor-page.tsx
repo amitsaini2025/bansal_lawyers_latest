@@ -6,10 +6,10 @@ import { categoryOptions, getRecord } from "@/lib/admin/data";
 import { positiveId } from "@/lib/admin/labels";
 
 const editors = {
-  blog: { table: "blogs", kind: "blog", list: "/admin/blogs", title: "Blog post" },
-  category: { table: "blog_categories", kind: "category", list: "/admin/blog-categories", title: "Blog category" },
-  page: { table: "cms_pages", kind: "page", list: "/admin/pages", title: "CMS page" },
-  case: { table: "recent_cases", kind: "case", list: "/admin/cases", title: "Case study" },
+  blog: { table: "blogs", kind: "blog", list: "/admin/blogs", title: "Blog post", back: "blog posts" },
+  category: { table: "blog_categories", kind: "category", list: "/admin/blog-categories", title: "Blog category", back: "blog categories" },
+  page: { table: "cms_pages", kind: "page", list: "/admin/pages", title: "CMS page", back: "CMS pages" },
+  case: { table: "recent_cases", kind: "case", list: "/admin/cases", title: "Case study", back: "case studies" },
 } as const;
 
 export function contentEditorPage(section: keyof typeof editors, mode: "new" | "edit") {
@@ -34,7 +34,7 @@ export function contentEditorPage(section: keyof typeof editors, mode: "new" | "
 
     return (
       <>
-        <p><Link href={config.list}>Back to {config.title.toLowerCase()}s</Link></p>
+        <p><Link href={config.list}>Back to {config.back}</Link></p>
         <h1>{record ? `Edit ${config.title.toLowerCase()}` : `New ${config.title.toLowerCase()}`}</h1>
         <Flash notice={messageOf(query.notice)} error={messageOf(query.error)} />
         <ContentEditor table={config.table} kind={config.kind} record={record} categories={categories} />

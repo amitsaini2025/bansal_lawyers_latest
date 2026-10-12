@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Flash, messageOf, Pager, queryHref } from "@/components/admin/AdminBits";
 import { listStaff } from "@/lib/admin/data";
-import { formatWhen, pageNumber, searchTerm } from "@/lib/admin/labels";
+import { displayName, formatWhen, pageNumber, searchTerm } from "@/lib/admin/labels";
 
 export default async function StaffPage({
   searchParams,
@@ -40,7 +40,7 @@ export default async function StaffPage({
               <tr><td colSpan={4}>No staff accounts found.</td></tr>
             ) : result.rows.map((row) => (
               <tr key={String(row.id)}>
-                <td><Link href={`/admin/staff/${row.id}`}>{[row.first_name, row.last_name].filter(Boolean).join(" ") || "Unnamed"}</Link></td>
+                <td><Link href={`/admin/staff/${row.id}`}>{displayName(row.first_name, row.last_name, String(row.email || "Staff"))}</Link></td>
                 <td>{String(row.email || "")}</td>
                 <td>{Number(row.status) === 0 ? "Disabled" : "Active"}</td>
                 <td>{formatWhen(row.created_at)}</td>

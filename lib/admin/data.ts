@@ -1,6 +1,6 @@
 import type { RowDataPacket } from "mysql2/promise";
 import { adminExecute, adminRows, columnsOf, tableReady } from "@/lib/admin/db";
-import { likePattern, melbourneToday } from "@/lib/admin/labels";
+import { CONTACT_STATUSES, likePattern, melbourneToday } from "@/lib/admin/labels";
 
 const PAGE_SIZE = 20;
 
@@ -27,14 +27,14 @@ export async function dashboardSnapshot() {
       `SELECT
          COUNT(*) AS total,
          SUM(date = ?) AS today_count,
-         SUM(date >= ? AND status <> 7) AS upcoming
+         SUM(date >= ? AND status NOT IN (2, 3, 6, 7, 8, 11)) AS upcoming
        FROM appointments`,
       [today, today]
     ),
     adminRows<RowDataPacket>(
       `SELECT
          COUNT(*) AS total,
-         SUM(status IS NULL OR status = 'unread') AS unread_count,
+         SUM(status IS NULL OR status = '' OR status = 'unread') AS unread_count,
          SUM(DATE(created_at) = ?) AS today_count
        FROM contacts`,
       [today]
@@ -169,8 +169,9 @@ export async function exportContacts(search: string, status: string) {
     );
     params.push(pattern, pattern, pattern, pattern);
   }
-  if (status === "unread") clauses.push("(status IS NULL OR status = 'unread')");
-  else if (status) {
+  if (status === "unread") clauses.push("(status IS NULL OR status = '' OR status = 'unread')");
+  else if (status === "forwarded") clauses.push("forwarded_at IS NOT NULL");
+  else if (status && CONTACT_STATUSES.includes(status as (typeof CONTACT_STATUSES)[number])) {
     clauses.push("status = ?");
     params.push(status);
   }
@@ -192,15 +193,16 @@ export async function listContacts(search: string, status: string, page: number)
     );
     params.push(pattern, pattern, pattern, pattern, pattern);
   }
-  if (status === "unread") clauses.push("(status IS NULL OR status = 'unread')");
-  else if (status) {
+  if (status === "unread") clauses.push("(status IS NULL OR status = '' OR status = 'unread')");
+  else if (status === "forwarded") clauses.push("forwarded_at IS NOT NULL");
+  else if (status && CONTACT_STATUSES.includes(status as (typeof CONTACT_STATUSES)[number])) {
     clauses.push("status = ?");
     params.push(status);
   }
   const where = clauses.length ? `WHERE ${clauses.join(" AND ")}` : "";
   const totalRows = await adminRows<RowDataPacket>(`SELECT COUNT(*) AS total FROM contacts ${where}`, params);
   const rows = await adminRows<RowDataPacket>(
-    `SELECT id, name, contact_email, contact_phone, department, subject, status, created_at
+    `SELECT id, name, contact_email, contact_phone, department, subject, status, forwarded_at, created_at
      FROM contacts ${where} ORDER BY created_at DESC LIMIT ? OFFSET ?`,
     [...params, PAGE_SIZE, offset(page)]
   );
@@ -211,8 +213,8 @@ export async function contactStats() {
   const today = melbourneToday();
   const rows = await adminRows<RowDataPacket>(
     `SELECT COUNT(*) AS total,
-            SUM(status IS NULL OR status = 'unread') AS unread_count,
-            SUM(status = 'forwarded') AS forwarded,
+            SUM(status IS NULL OR status = '' OR status = 'unread') AS unread_count,
+            SUM(forwarded_at IS NOT NULL) AS forwarded,
             SUM(DATE(created_at) = ?) AS today_count
      FROM contacts`,
     [today]
@@ -234,7 +236,7 @@ export async function markContactRead(id: number) {
   const columns = await columnsOf("contacts");
   if (!columns.has("status")) return;
   await adminExecute(
-    "UPDATE contacts SET status = 'read', updated_at = NOW() WHERE id = ? AND (status IS NULL OR status = 'unread')",
+    "UPDATE contacts SET status = 'read', updated_at = NOW() WHERE id = ? AND (status IS NULL OR status = '' OR status = 'unread')",
     [id]
   );
 }
@@ -245,8 +247,11 @@ export async function setContactStatus(id: number, status: string) {
 
 export async function markContactForwarded(id: number, inbox: string) {
   const columns = await columnsOf("contacts");
-  const sets = ["status = 'forwarded'", "updated_at = NOW()"];
+  const sets = ["updated_at = NOW()"];
   const params: unknown[] = [];
+  if (columns.has("status")) {
+    sets.push("status = CASE WHEN status IS NULL OR status = '' OR status = 'unread' THEN 'read' ELSE status END");
+  }
   if (columns.has("forwarded_at")) sets.push("forwarded_at = NOW()");
   if (columns.has("forwarded_to")) {
     sets.push("forwarded_to = ?");
@@ -313,7 +318,13 @@ export function listPages(search: string, page: number) {
 }
 
 export function listCases(search: string, page: number) {
-  return listContent("recent_cases", ["title", "alias"], ["title", "alias", "created_at", "updated_at"], search, page);
+  return listContent(
+    "recent_cases",
+    ["title", "slug"],
+    ["title", "slug", "status", "created_at", "updated_at"],
+    search,
+    page
+  );
 }
 
 export async function getRecord(table: string, id: number) {

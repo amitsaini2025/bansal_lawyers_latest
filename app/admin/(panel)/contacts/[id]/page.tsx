@@ -17,7 +17,7 @@ export default async function ContactPage({
   if (!id) notFound();
   const contact = await getContact(id);
   if (!contact) notFound();
-  if (contact.status == null || contact.status === "unread") await markContactRead(id);
+  if (contact.status == null || contact.status === "" || contact.status === "unread") await markContactRead(id);
   const query = await searchParams;
 
   return (

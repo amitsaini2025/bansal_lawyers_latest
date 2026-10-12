@@ -36,6 +36,7 @@ export default async function ContactsPage({
           <select name="status" defaultValue={status}>
             <option value="">All</option>
             {CONTACT_STATUSES.map((item) => <option key={item} value={item}>{item}</option>)}
+            <option value="forwarded">forwarded</option>
           </select>
         </label>
         <button type="submit">Filter</button>
@@ -57,7 +58,7 @@ export default async function ContactsPage({
                 </td>
                 <td>{String(row.subject || "—")}</td>
                 <td>{String(row.department || "—")}</td>
-                <td>{String(row.status || "unread")}</td>
+                <td>{String(row.status || "unread")}{row.forwarded_at ? " · forwarded" : ""}</td>
                 <td>{formatWhen(row.created_at)}</td>
               </tr>
             ))}

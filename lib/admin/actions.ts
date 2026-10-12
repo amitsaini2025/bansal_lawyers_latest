@@ -9,6 +9,7 @@ import {
   deleteRecord,
   emailTaken,
   getContact,
+  getStaff,
   markContactForwarded,
   saveRecord,
   setAppointmentStatus,
@@ -152,11 +153,13 @@ export async function forwardContactAction(formData: FormData) {
     const mailer = getMailTransporter();
     if (!config || !mailer) bounce(path, "Email is not configured, so this enquiry could not be forwarded.");
     const inbox = config.receiverEmail;
+    const replyTo = String(contact.contact_email ?? "").replace(/[\r\n]/g, "").trim();
+    const subject = `Contact enquiry: ${String(contact.subject ?? "No subject").replace(/[\r\n]/g, " ")} — ${String(contact.name ?? "").replace(/[\r\n]/g, " ")}`.slice(0, 180);
     await mailer.sendMail({
       from: config.fromEmail,
       to: inbox,
-      replyTo: String(contact.contact_email ?? ""),
-      subject: `Contact enquiry: ${String(contact.subject ?? "No subject")} — ${String(contact.name ?? "")}`,
+      ...(replyTo.includes("@") ? { replyTo } : {}),
+      subject,
       text: [
         `Name: ${contact.name ?? ""}`,
         `Email: ${contact.contact_email ?? ""}`,
@@ -178,7 +181,7 @@ const CONTENT = {
   blogs: { slug: "slug", list: "/admin/blogs" },
   blog_categories: { slug: "slug", list: "/admin/blog-categories" },
   cms_pages: { slug: "slug", list: "/admin/pages" },
-  recent_cases: { slug: "alias", list: "/admin/cases" },
+  recent_cases: { slug: "slug", list: "/admin/cases" },
 } as const;
 
 type ContentTable = keyof typeof CONTENT;
@@ -205,10 +208,13 @@ export async function saveContentAction(formData: FormData) {
     title,
     name: title,
     [slugColumn]: slug,
-    alias: slug,
   };
-  if (formData.has("description")) values.description = text(formData, "description", 2000);
-  if (formData.has("content")) values.content = text(formData, "content", 500_000);
+  if (formData.has("short_description")) values.short_description = text(formData, "short_description", 255);
+  if (formData.has("body")) {
+    const body = text(formData, "body", 500_000);
+    if (table === "cms_pages") values.content = body;
+    else values.description = body;
+  }
   if (formData.has("meta_title")) values.meta_title = text(formData, "meta_title", 250);
   if (formData.has("meta_description")) values.meta_description = text(formData, "meta_description", 500);
   if (formData.has("status")) values.status = text(formData, "status", 1) === "1" ? 1 : 0;
@@ -263,7 +269,7 @@ export async function saveProfileAction(formData: FormData) {
 }
 
 export async function saveStaffAction(formData: FormData) {
-  await requireAdmin();
+  const admin = await requireAdmin();
   const rawId = text(formData, "id", 12);
   const id = rawId ? positiveId(rawId) : null;
   const path = id ? `/admin/staff/${id}` : "/admin/staff/new";
@@ -276,11 +282,13 @@ export async function saveStaffAction(formData: FormData) {
   const password = String(formData.get("password") ?? "");
   const confirm = String(formData.get("password_confirmation") ?? "");
   if (!firstName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bounce(path, "First name and a valid email are required.");
+  if (id === admin.id && status === 0) bounce(path, "You cannot disable the account you are signed in with.");
   if (!id && password.length < 8) bounce(path, "A new staff account needs a password of at least 8 characters.");
   if (password && (password.length < 8 || password !== confirm)) {
     bounce(path, "Password must be at least 8 characters and match the confirmation.");
   }
   try {
+    if (id && !(await getStaff(id))) bounce(path, "That staff account could not be found.");
     if (await emailTaken(email, id)) bounce(path, "That email is already used.");
     const values: Record<string, string | number | null> = {
       first_name: firstName,
