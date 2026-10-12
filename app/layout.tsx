@@ -5,7 +5,7 @@ import "@fontsource/inter/700.css";
 import "@fontsource/libre-baskerville/400.css";
 import "@fontsource/libre-baskerville/700.css";
 import { Footer, Header } from "@/components/layout";
-import { MainContent } from "@/components/layout/MainContent";
+import { SiteChrome } from "@/components/layout/SiteChrome";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 import "./refinements.css";
@@ -76,12 +76,9 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <body>
-        <a className="skip-link" href="#main-content">
-          Skip to main content
-        </a>
-        <Header />
-        <MainContent>{children}</MainContent>
-        <Footer />
+        <SiteChrome header={<Header />} footer={<Footer />}>
+          {children}
+        </SiteChrome>
       </body>
     </html>
   );
