@@ -11,6 +11,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -177,7 +178,7 @@ export default function FamilyLawyersMelbournePage() {
           label: "Call Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        aside={<HeroBookingPlaceholder defaultPracticeArea="family" />}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="family" turnstileSiteKey={getTurnstileSiteKey()} />}
       />
 
       <TrustBar

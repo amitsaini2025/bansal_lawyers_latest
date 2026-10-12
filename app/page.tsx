@@ -14,6 +14,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import { createFaqSchema, createLegalServiceSchema } from "@/lib/schema";
 import { TypingHeroTitle } from "@/components/ui/TypingHeroTitle";
@@ -193,7 +194,7 @@ export default function HomePage() {
           label: "Speak With Our Legal Team",
           href: "/contact",
         }}
-        aside={<HeroBookingPlaceholder />}
+        aside={<HeroBookingPlaceholder turnstileSiteKey={getTurnstileSiteKey()} />}
       />
 
       {/* Trust Highlights Bar */}

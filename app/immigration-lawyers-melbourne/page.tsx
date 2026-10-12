@@ -11,6 +11,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -151,7 +152,7 @@ export default function ImmigrationLawyersMelbournePage() {
           </>
         }
         primaryAction={{ label: "Book a Consultation", href: "/contact" }}
-        aside={<HeroBookingPlaceholder defaultPracticeArea="immigration" />}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="immigration" turnstileSiteKey={getTurnstileSiteKey()} />}
       />
 
       <TrustBar

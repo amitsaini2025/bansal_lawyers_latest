@@ -11,6 +11,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -155,7 +156,7 @@ export default function CommercialLawyersMelbournePage() {
           label: "Call Our Commercial Law Team",
           href: "tel:+61422905860",
         }}
-        aside={<HeroBookingPlaceholder defaultPracticeArea="commercial" />}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="commercial" turnstileSiteKey={getTurnstileSiteKey()} />}
       />
 
       <TrustBar

@@ -1,14 +1,18 @@
 "use client";
 
 import { FormEvent, useRef, useState } from "react";
+import { TurnstileWidget } from "@/components/booking/TurnstileWidget";
 import { businessDetails } from "@/lib/site";
 
 interface HeroBookingFormProps {
   defaultPracticeArea?: string;
+  /** Cloudflare Turnstile site key; the security check is skipped when null. */
+  turnstileSiteKey?: string | null;
 }
 
 export function HeroBookingPlaceholder({
   defaultPracticeArea = "migration",
+  turnstileSiteKey = null,
 }: HeroBookingFormProps) {
   // Normalize practice area slug to match /api/contact validation
   const normalizedDefault = (() => {
@@ -40,6 +44,8 @@ export function HeroBookingPlaceholder({
   const [loading, setLoading] = useState<boolean>(false);
   const [submitted, setSubmitted] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
+  const [turnstileToken, setTurnstileToken] = useState("");
+  const [turnstileKey, setTurnstileKey] = useState(0);
 
   const statusRef = useRef<HTMLDivElement>(null);
 
@@ -62,6 +68,10 @@ export function HeroBookingPlaceholder({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (loading) return;
+    if (turnstileSiteKey && !turnstileToken) {
+      setError("Please wait for the security check to finish, then try again.");
+      return;
+    }
 
     setLoading(true);
     setError(null);
@@ -90,6 +100,7 @@ export function HeroBookingPlaceholder({
           message: finalMessage,
           consent: true,
           website: "", // Honeypot
+          turnstileToken,
         }),
       });
 
@@ -102,6 +113,8 @@ export function HeroBookingPlaceholder({
         const errorData = await response.json().catch(() => null);
         if (response.status === 429) {
           setError("Too many requests. Please wait a few moments or call 0422 905 860.");
+        } else if (response.status === 422) {
+          setError("Security verification failed. Please complete the check and try again.");
         } else if (response.status === 400 && errorData?.error) {
           setError(errorData.error);
         } else {
@@ -112,6 +125,10 @@ export function HeroBookingPlaceholder({
       setError("Network connection issue. Please call 0422 905 860 or email info@bansallawyers.com.au.");
     } finally {
       setLoading(false);
+      if (turnstileSiteKey) {
+        setTurnstileToken("");
+        setTurnstileKey((key) => key + 1);
+      }
     }
   }
 
@@ -445,6 +462,10 @@ export function HeroBookingPlaceholder({
               style={{ resize: "vertical", minHeight: "2.6rem" }}
             />
           </div>
+
+          {turnstileSiteKey && (
+            <TurnstileWidget key={turnstileKey} siteKey={turnstileSiteKey} onToken={setTurnstileToken} />
+          )}
 
           {/* Submit Button */}
           <button type="submit" className="booking-submit-btn" disabled={loading}>
