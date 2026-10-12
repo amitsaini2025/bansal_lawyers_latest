@@ -13,6 +13,26 @@ export interface DatabaseConfig {
   ssl?: boolean | object;
 }
 
+/** Resolves the configured schema name (same rules as `getDbPool`). */
+function getConfiguredDatabaseName(): string | undefined {
+  if (process.env.MYSQL_DATABASE || process.env.DB_NAME) {
+    return process.env.MYSQL_DATABASE || process.env.DB_NAME;
+  }
+  if (process.env.DATABASE_URL) {
+    try {
+      const parsed = new URL(process.env.DATABASE_URL);
+      const path = decodeURIComponent(parsed.pathname.replace(/^\/+/, ""));
+      if (path) return path;
+    } catch {
+      /* ignore malformed DATABASE_URL */
+    }
+    return undefined;
+  }
+  const user = process.env.MYSQL_USER || process.env.DB_USER;
+  if (user) return "bansal_lawyers_db";
+  return undefined;
+}
+
 /**
  * Initializes and returns a cached MySQL Connection Pool.
  * If credentials are not configured in environment variables, returns null.
@@ -208,14 +228,17 @@ export async function saveEnquiryToDatabase(
 export async function checkDatabaseHealth(): Promise<{
   connected: boolean;
   configured: boolean;
+  name?: string;
   latencyMs?: number;
   message?: string;
 }> {
+  const configuredName = getConfiguredDatabaseName();
   const db = getDbPool();
   if (!db) {
     return {
       connected: false,
       configured: false,
+      ...(configuredName ? { name: configuredName } : {}),
       message: "MySQL environment variables not configured yet.",
     };
   }
@@ -224,11 +247,14 @@ export async function checkDatabaseHealth(): Promise<{
   let connection: PoolConnection | null = null;
   try {
     connection = await db.getConnection();
-    await connection.query("SELECT 1 AS health");
+    const [rows] = await connection.query("SELECT 1 AS health, DATABASE() AS name");
+    const row = (rows as { name?: string | null }[])[0];
+    const activeName = row?.name ?? configuredName;
     const latencyMs = Date.now() - start;
     return {
       connected: true,
       configured: true,
+      ...(activeName ? { name: activeName } : {}),
       latencyMs,
       message: `MySQL connected (${latencyMs}ms)`,
     };
@@ -236,6 +262,7 @@ export async function checkDatabaseHealth(): Promise<{
     return {
       connected: false,
       configured: true,
+      ...(configuredName ? { name: configuredName } : {}),
       message: error instanceof Error ? error.message : "Database connection failed",
     };
   } finally {
