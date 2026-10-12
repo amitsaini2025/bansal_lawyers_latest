@@ -201,7 +201,7 @@ export default function ConsentOrdersLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Melbourne Consultations",
+          "Collins Street Office & Remote Melbourne Consultations",
           "Binding Parenting & Property Consent Orders",
           "No Court Appearance Required in Most Cases",
           "Legal Certainty Under the Family Law Act",

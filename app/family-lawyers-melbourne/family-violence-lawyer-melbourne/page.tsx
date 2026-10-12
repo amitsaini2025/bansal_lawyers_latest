@@ -174,7 +174,7 @@ export default function FamilyViolenceLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Confidential Virtual Consultations",
+          "Collins Street Office & Confidential Virtual Consultations",
           "Intervention Orders (FVIO) in the Magistrates' Court",
           "Protective Parenting & Safety Condition Coordination",
           "Federal Circuit and Family Court Representation",

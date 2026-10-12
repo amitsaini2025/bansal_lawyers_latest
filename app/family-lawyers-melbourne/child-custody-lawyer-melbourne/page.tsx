@@ -175,7 +175,7 @@ export default function ChildCustodyLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Child-Focused Best Interests Representation",
           "Parenting Plans & Consent Orders Filing",
           "Urgent Recovery Orders & Family Violence Advocacy",

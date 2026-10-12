@@ -157,7 +157,7 @@ export default function CivilLawyersMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "VCAT & Victorian Courts Practice",
           "Negotiation & Genuine Steps Guidance",
           "Prompt Matter Assessment",

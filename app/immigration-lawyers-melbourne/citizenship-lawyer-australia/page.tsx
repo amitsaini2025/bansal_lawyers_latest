@@ -187,7 +187,7 @@ export default function CitizenshipLawyerAustraliaPage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Nationwide Consultations",
+          "Collins Street Office & Nationwide Consultations",
           "Residence Calculator & Travel History Audits",
           "Good Character Requirement & Police History Review",
           "AAT / ART Citizenship Refusal Appeals",

@@ -9,7 +9,7 @@ export function createLegalServiceSchema() {
     name: businessDetails.name,
     alternateName: "Bansal Lawyers Melbourne",
     description:
-      "Melbourne law firm at Level 8/278 Collins St, Melbourne VIC 3000 providing strategic legal representation in Australian immigration law, ART appeals, family law, criminal defence, commercial law, property & conveyancing, and civil litigation.",
+      "Melbourne law firm at Level 8, 278 Collins Street, Melbourne VIC 3000 providing strategic legal representation in Australian immigration law, ART appeals, family law, criminal defence, commercial law, property & conveyancing, and civil litigation.",
     url: siteUrl,
     telephone: businessDetails.nationalLine,
     email: businessDetails.email,
@@ -33,7 +33,7 @@ export function createLegalServiceSchema() {
       longitude: "144.9650",
     },
     hasMap:
-      "https://www.google.com/maps/search/?api=1&query=Level+8%2F278+Collins+St+Melbourne+VIC+3000",
+      "https://www.google.com/maps/search/?api=1&query=Level+8,+278+Collins+Street+Melbourne+VIC+3000",
     areaServed: [
       {
         "@type": "City",
@@ -108,7 +108,7 @@ export function createContactPageSchema() {
     url: contactUrl,
     name: "Contact Bansal Lawyers | Melbourne Lawyers on Collins Street",
     description:
-      "Contact Bansal Lawyers at Level 8/278 Collins St, Melbourne VIC 3000 for legal support in migration, family, criminal, commercial, property, and civil matters. Call 1300 226 725 or book a consultation.",
+      "Contact Bansal Lawyers at Level 8, 278 Collins Street, Melbourne VIC 3000 for legal support in migration, family, criminal, commercial, property, and civil matters. Call 1300 226 725 or book a consultation.",
     inLanguage: "en-AU",
     mainEntity: {
       "@id": `${siteUrl}/#organization`,
@@ -294,7 +294,7 @@ export function createAboutPageSchema() {
     url: aboutUrl,
     name: "About Bansal Lawyers | Trusted Law Firm in Melbourne",
     description:
-      "Learn about Bansal Lawyers, a Melbourne law firm led by Ajay Bansal at Level 8/278 Collins St, providing legal services in immigration, family, criminal, commercial, property and civil law.",
+      "Learn about Bansal Lawyers, a Melbourne law firm led by Ajay Bansal at Level 8, 278 Collins Street, providing legal services in immigration, family, criminal, commercial, property and civil law.",
     inLanguage: "en-AU",
     mainEntity: {
       "@type": ["LegalService", "LawFirm", "LocalBusiness"],

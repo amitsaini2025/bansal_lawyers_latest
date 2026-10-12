@@ -115,7 +115,7 @@ export default function NegotiationsSettlementsLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Binding Deeds of Settlement & Release",
           "Principled Commercial Negotiation",
           "Confidentiality & Reputation Safeguards",

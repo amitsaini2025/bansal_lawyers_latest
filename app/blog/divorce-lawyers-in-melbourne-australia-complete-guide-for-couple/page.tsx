@@ -134,7 +134,7 @@ export default function DivorceGuideArticlePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Family Law Act 1975 Guidance",
           "Sole & Joint Divorce Applications",
           "Consent Orders & Property Settlements",

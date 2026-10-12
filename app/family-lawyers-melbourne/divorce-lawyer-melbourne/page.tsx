@@ -162,7 +162,7 @@ export default function DivorceLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Level 8/278 Collins St Melbourne & Remote Consultations",
+          "Level 8, 278 Collins Street Melbourne & Remote Consultations",
           "Sole & Joint Divorce Applications in the FCFCOA",
           "Separation Under One Roof Evidence & Affidavits",
           "Coordinated Parenting & Property Settlement Support",

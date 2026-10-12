@@ -38,7 +38,7 @@ const differentPoints = [
   "Multidisciplinary support across commercial, family, immigration, criminal, property, and civil law",
   "Professional, confidential handling of sensitive, high-stakes, and urgent matters",
   "Multilingual legal advice in English, Hindi, Punjabi, and Arabic",
-  "Melbourne-based legal practice centrally located at Level 8/278 Collins St",
+  "Melbourne-based legal practice centrally located at Level 8, 278 Collins Street",
   "Unwavering focus on proactive client communication, transparency, and preparation",
 ];
 

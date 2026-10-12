@@ -182,7 +182,7 @@ export default function FamilyLawyersMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office and Remote Consultations",
+          "Collins Street Office and Remote Consultations",
           "Consent Orders and Court Representation",
           "Plain-English Legal Guidance",
           "Prompt Matter Assessment",

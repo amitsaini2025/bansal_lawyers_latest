@@ -152,7 +152,7 @@ export default function VisaApplicationLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Australia-Wide Consultations",
+          "Collins Street Office & Australia-Wide Consultations",
           "Comprehensive Eligibility & Document Audits",
           "Partner, Skilled, Student & Work Visa Pathways",
           "Refusal Risk Mitigation & Lodgement Support",

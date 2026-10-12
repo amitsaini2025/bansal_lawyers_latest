@@ -207,7 +207,7 @@ export default function BindingFinancialAgreementLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Melbourne Consultations",
+          "Collins Street Office & Remote Melbourne Consultations",
           "Independent Legal Advice & S90G/90UJ Certificates",
           "Prenuptial, Postnuptial & Separation Agreements",
           "Protection for Property, Businesses & Superannuation",

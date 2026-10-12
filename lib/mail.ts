@@ -186,7 +186,7 @@ export async function sendEnquiryNotificationToFirm(
           </div>
         </div>
         <div class="footer">
-          Bansal Lawyers Melbourne Website Notification System · Level 8/278 Collins St, Melbourne VIC 3000, Australia
+          Bansal Lawyers Melbourne Website Notification System · Level 8, 278 Collins Street, Melbourne VIC 3000
         </div>
       </div>
     </body>
@@ -265,7 +265,7 @@ export async function sendClientAcknowledgement(
           <p style="font-size: 16px;">
             <strong>Phone:</strong> <a href="tel:+61422905860" style="color: #1d4ed8; font-weight: 600;">0422 905 860</a><br>
             <strong>Email:</strong> <a href="mailto:info@bansallawyers.com.au" style="color: #1d4ed8;">info@bansallawyers.com.au</a><br>
-            <strong>Office:</strong> Level 8/278 Collins St, Melbourne VIC 3000, Australia
+            <strong>Office:</strong> Level 8, 278 Collins Street, Melbourne VIC 3000
           </p>
 
           <p style="margin-top: 24px; color: #64748b; font-size: 13px;">

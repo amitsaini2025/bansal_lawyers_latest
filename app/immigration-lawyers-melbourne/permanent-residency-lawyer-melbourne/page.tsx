@@ -189,7 +189,7 @@ export default function PermanentResidencyLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "GSM, Employer Sponsored & Partner PR Pathways",
           "Comprehensive Eligibility & Document Audits",
           "Section 56 RFI & Adverse Decision Support",

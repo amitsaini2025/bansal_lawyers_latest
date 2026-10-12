@@ -154,7 +154,7 @@ export default function ImmigrationDocumentReviewLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Australia-Wide Document Audits",
+          "Collins Street Office & Australia-Wide Document Audits",
           "Comprehensive Evidentiary Review Before Lodgement",
           "Partner, Skilled, Employer & Student Visa Checks",
           "Identification of Gaps, Inconsistencies & PIC 4020 Risks",

@@ -183,7 +183,7 @@ export default function PropertySettlementLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Melbourne Office & Remote Consultations",
+          "Collins Street Melbourne Office & Remote Consultations",
           "Comprehensive Asset Pool & Contribution Assessments",
           "Consent Orders & Binding Financial Agreements (BFAs)",
           "FCFCOA Complex Asset & Business Valuation Litigation",

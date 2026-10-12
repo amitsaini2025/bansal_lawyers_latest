@@ -172,7 +172,7 @@ export default function StudentVisaLawyerMelbournePage() {
 
       <TrustBar
         items={[
-          "Collins St Office & Remote Consultations",
+          "Collins Street Office & Remote Consultations",
           "Genuine Student Assessment & Document Review",
           "s56 & s57 Strategic Responses",
           "Administrative Review Tribunal (ART) Appeals",
