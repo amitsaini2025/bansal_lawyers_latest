@@ -150,6 +150,7 @@ const familyFaqs = [
 ];
 
 export default function FamilyLawyersMelbournePage() {
+  const turnstileSiteKey = getTurnstileSiteKey();
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Family Lawyers Melbourne" },
@@ -178,7 +179,7 @@ export default function FamilyLawyersMelbournePage() {
           label: "Call Our Family Law Team",
           href: "tel:+61422905860",
         }}
-        aside={<HeroBookingPlaceholder defaultPracticeArea="family" turnstileSiteKey={getTurnstileSiteKey()} />}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="family" turnstileSiteKey={turnstileSiteKey} />}
       />
 
       <TrustBar

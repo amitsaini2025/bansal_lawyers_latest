@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse, after } from "next/server";
 import { validateEnquiry, type ContactEnquiry } from "@/lib/contact";
 import { verifyTurnstile } from "@/lib/booking/turnstile";
+import { syncEnquiryToCrmLead } from "@/lib/contact/crm-lead";
 import { saveEnquiryToDatabase } from "@/lib/db";
 import { sendEnquiryNotificationToFirm } from "@/lib/mail";
 // import { sendClientAcknowledgement } from "@/lib/mail";
@@ -94,11 +95,12 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
   // SMTP can take longer than the form's client-side timeout, so send after responding.
   after(async () => {
     try {
+      await syncEnquiryToCrmLead(enquiry, savedId);
       const firm = await sendEnquiryNotificationToFirm(enquiry, savedId);
       console.info(`[API Contact] Firm notification dispatched. success=${firm.success}`);
       // await sendClientAcknowledgement(enquiry);
     } catch (error) {
-      console.error("[API Contact] Email dispatch error:", error);
+      console.error("[API Contact] Background contact tasks error:", error);
     }
   });
 

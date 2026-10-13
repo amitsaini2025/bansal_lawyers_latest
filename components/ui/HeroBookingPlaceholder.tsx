@@ -1,8 +1,11 @@
 "use client";
 
-import { FormEvent, useRef, useState } from "react";
+import { FormEvent, useEffect, useRef, useState } from "react";
 import { TurnstileWidget } from "@/components/booking/TurnstileWidget";
 import { businessDetails } from "@/lib/site";
+
+const HONEYPOT_INPUT_NAME = "bl_hp_field";
+const SUBMIT_TIMEOUT_MS = 12_000;
 
 interface HeroBookingFormProps {
   defaultPracticeArea?: string;
@@ -46,8 +49,18 @@ export function HeroBookingPlaceholder({
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileKey, setTurnstileKey] = useState(0);
+  const [savedEnquiryId, setSavedEnquiryId] = useState<number | null>(null);
 
   const statusRef = useRef<HTMLDivElement>(null);
+  const requestRef = useRef<AbortController | null>(null);
+
+  useEffect(
+    () => () => {
+      requestRef.current?.abort();
+      requestRef.current = null;
+    },
+    []
+  );
 
   const formatLabels: Record<"office" | "phone" | "video", string> = {
     office: "Melbourne CBD Office (278 Collins Street)",
@@ -68,6 +81,7 @@ export function HeroBookingPlaceholder({
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (loading) return;
+    if (!event.currentTarget.reportValidity()) return;
     if (turnstileSiteKey && !turnstileToken) {
       setError("Please wait for the security check to finish, then try again.");
       return;
@@ -75,6 +89,13 @@ export function HeroBookingPlaceholder({
 
     setLoading(true);
     setError(null);
+
+    const values = new FormData(event.currentTarget);
+    const honeypotRaw = values.get(HONEYPOT_INPUT_NAME);
+    const honeypot =
+      typeof honeypotRaw === "string" && honeypotRaw.trim().toLowerCase() !== email.trim().toLowerCase()
+        ? honeypotRaw.trim()
+        : "";
 
     // Format clean subject and detailed message for legal intake
     const subject = `Consultation Request: ${matterLabels[matterType] || matterType} (${
@@ -87,10 +108,15 @@ export function HeroBookingPlaceholder({
           matterLabels[matterType] || matterType
         }.`;
 
+    const controller = new AbortController();
+    requestRef.current = controller;
+    const timeout = setTimeout(() => controller.abort(), SUBMIT_TIMEOUT_MS);
+
     try {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
+        signal: controller.signal,
         body: JSON.stringify({
           name: name.trim(),
           email: email.trim(),
@@ -98,33 +124,47 @@ export function HeroBookingPlaceholder({
           subject,
           matterType,
           message: finalMessage,
-          consent: true,
-          website: "", // Honeypot
+          consent: values.get("consent") === "on",
+          website: honeypot,
           turnstileToken,
         }),
       });
 
+      const data = (await response.json().catch(() => null)) as {
+        error?: string;
+        dbSaved?: boolean;
+        enquiryId?: number | null;
+      } | null;
+
       if (response.ok) {
+        if (data?.dbSaved === false) {
+          setError(
+            "We received your details but could not save them right now. Please call 0422 905 860 or email info@bansallawyers.com.au."
+          );
+          return;
+        }
+        setSavedEnquiryId(typeof data?.enquiryId === "number" ? data.enquiryId : null);
         setSubmitted(true);
-        if (statusRef.current) {
-          statusRef.current.focus();
-        }
+        statusRef.current?.focus();
+      } else if (response.status === 429) {
+        setError("Too many requests. Please wait a few moments or call 0422 905 860.");
+      } else if (response.status === 422) {
+        setError("Security verification failed. Please try again.");
+      } else if (response.status === 400 && data?.error) {
+        setError(data.error);
       } else {
-        const errorData = await response.json().catch(() => null);
-        if (response.status === 429) {
-          setError("Too many requests. Please wait a few moments or call 0422 905 860.");
-        } else if (response.status === 422) {
-          setError("Security verification failed. Please complete the check and try again.");
-        } else if (response.status === 400 && errorData?.error) {
-          setError(errorData.error);
-        } else {
-          setError("Your enquiry could not be submitted. Please call our team directly.");
-        }
+        setError("Your enquiry could not be submitted. Please call our team directly.");
       }
     } catch {
-      setError("Network connection issue. Please call 0422 905 860 or email info@bansallawyers.com.au.");
+      if (requestRef.current === controller) {
+        setError("Network connection issue. Please call 0422 905 860 or email info@bansallawyers.com.au.");
+      }
     } finally {
-      setLoading(false);
+      clearTimeout(timeout);
+      if (requestRef.current === controller) {
+        requestRef.current = null;
+        setLoading(false);
+      }
       if (turnstileSiteKey) {
         setTurnstileToken("");
         setTurnstileKey((key) => key + 1);
@@ -135,6 +175,7 @@ export function HeroBookingPlaceholder({
   const handleReset = () => {
     setSubmitted(false);
     setError(null);
+    setSavedEnquiryId(null);
     setName("");
     setPhone("");
     setEmail("");
@@ -241,6 +282,11 @@ export function HeroBookingPlaceholder({
             <div style={{ marginTop: "0.2rem" }}>
               <strong>Format:</strong> {formatLabels[selectedFormat]}
             </div>
+            {savedEnquiryId !== null && (
+              <div style={{ marginTop: "0.2rem" }}>
+                <strong>Reference:</strong> #{savedEnquiryId}
+              </div>
+            )}
           </div>
 
           <div style={{ display: "flex", gap: "0.5rem", width: "100%", marginTop: "0.5rem" }}>
@@ -309,7 +355,7 @@ export function HeroBookingPlaceholder({
           {/* Hidden Honeypot */}
           <div style={{ display: "none" }} aria-hidden="true">
             <input
-              name="bl_hp_field"
+              name={HONEYPOT_INPUT_NAME}
               type="text"
               tabIndex={-1}
               autoComplete="off"
@@ -463,9 +509,24 @@ export function HeroBookingPlaceholder({
             />
           </div>
 
-          {turnstileSiteKey && (
+          <label
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "0.45rem",
+              fontSize: "0.72rem",
+              color: "var(--ink-secondary)",
+              lineHeight: 1.4,
+              cursor: "pointer",
+            }}
+          >
+            <input type="checkbox" name="consent" required defaultChecked style={{ marginTop: "0.15rem" }} />
+            <span>I agree to be contacted by Bansal Lawyers about this enquiry.</span>
+          </label>
+
+          {turnstileSiteKey ? (
             <TurnstileWidget key={turnstileKey} siteKey={turnstileSiteKey} onToken={setTurnstileToken} />
-          )}
+          ) : null}
 
           {/* Submit Button */}
           <button type="submit" className="booking-submit-btn" disabled={loading}>

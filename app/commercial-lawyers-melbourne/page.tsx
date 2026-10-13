@@ -125,6 +125,7 @@ const commercialFaqs = [
 ];
 
 export default function CommercialLawyersMelbournePage() {
+  const turnstileSiteKey = getTurnstileSiteKey();
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Commercial Lawyers Melbourne" },
@@ -156,7 +157,7 @@ export default function CommercialLawyersMelbournePage() {
           label: "Call Our Commercial Law Team",
           href: "tel:+61422905860",
         }}
-        aside={<HeroBookingPlaceholder defaultPracticeArea="commercial" turnstileSiteKey={getTurnstileSiteKey()} />}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="commercial" turnstileSiteKey={turnstileSiteKey} />}
       />
 
       <TrustBar

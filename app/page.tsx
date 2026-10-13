@@ -171,6 +171,7 @@ const homepageFaqs = [
 ];
 
 export default function HomePage() {
+  const turnstileSiteKey = getTurnstileSiteKey();
   return (
     <>
       <StructuredData data={createLegalServiceSchema()} />
@@ -194,7 +195,7 @@ export default function HomePage() {
           label: "Speak With Our Legal Team",
           href: "/contact",
         }}
-        aside={<HeroBookingPlaceholder turnstileSiteKey={getTurnstileSiteKey()} />}
+        aside={<HeroBookingPlaceholder turnstileSiteKey={turnstileSiteKey} />}
       />
 
       {/* Trust Highlights Bar */}

@@ -125,6 +125,7 @@ const immigrationFaqs = [
 ];
 
 export default function ImmigrationLawyersMelbournePage() {
+  const turnstileSiteKey = getTurnstileSiteKey();
   const breadcrumbs = [
     { label: "Home", href: "/" },
     { label: "Immigration Lawyers Melbourne" },
@@ -152,7 +153,7 @@ export default function ImmigrationLawyersMelbournePage() {
           </>
         }
         primaryAction={{ label: "Book a Consultation", href: "/contact" }}
-        aside={<HeroBookingPlaceholder defaultPracticeArea="immigration" turnstileSiteKey={getTurnstileSiteKey()} />}
+        aside={<HeroBookingPlaceholder defaultPracticeArea="immigration" turnstileSiteKey={turnstileSiteKey} />}
       />
 
       <TrustBar

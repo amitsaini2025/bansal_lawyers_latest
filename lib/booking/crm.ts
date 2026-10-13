@@ -94,12 +94,19 @@ async function createOrResolveLeadId(appointment: CrmAppointment): Promise<numbe
       console.warn(`[Booking CRM] /api/leads returned ${response.status} for appointment ${appointment.id}`);
       return null;
     }
-    const json = (await response.json().catch(() => null)) as
-      | { lead_id?: unknown; data?: { lead_id?: unknown; id?: unknown } }
-      | null;
-    const leadId = positiveInt(json?.lead_id) ?? positiveInt(json?.data?.lead_id) ?? positiveInt(json?.data?.id);
+    const json = (await response.json().catch(() => null)) as Record<string, unknown> | null;
+    const data = json?.data;
+    const dataObj = data && typeof data === "object" && !Array.isArray(data) ? (data as Record<string, unknown>) : null;
+    const leadId =
+      positiveInt(json?.lead_id) ??
+      positiveInt(json?.client_id) ??
+      positiveInt(dataObj?.lead_id) ??
+      positiveInt(dataObj?.client_id) ??
+      positiveInt(dataObj?.id);
     if (leadId === null) {
-      console.warn(`[Booking CRM] lead_id missing in /api/leads response for appointment ${appointment.id}`);
+      console.warn(
+        `[Booking CRM] lead_id missing in /api/leads response for appointment ${appointment.id}; booking sync will continue without client_id`
+      );
     }
     return leadId;
   } catch (error) {
@@ -111,7 +118,7 @@ async function createOrResolveLeadId(appointment: CrmAppointment): Promise<numbe
 export async function syncAppointmentToCrm(appointment: CrmAppointment, payment: CrmPayment): Promise<void> {
   const leadId = await createOrResolveLeadId(appointment);
   const bookingUrl = env("CRM_BOOKING_POST_URL").replace(/\/+$/, "");
-  if (leadId === null || !bookingUrl) return;
+  if (!bookingUrl) return;
 
   const [countryCode, nationalPhone] = splitCountryAndPhone(appointment.phone, env("CRM_LEAD_COUNTRY_CODE", "+61"));
   const crmServiceId = positiveInt(env("CRM_BOOKING_CRM_SERVICE_ID"));
@@ -129,7 +136,6 @@ export async function syncAppointmentToCrm(appointment: CrmAppointment, payment:
     duration: appointment.durationMinutes || Number(env("CRM_BOOKING_DEFAULT_DURATION", "30")),
     noe_id: appointment.noeId,
     timezone: appointment.timezone || env("CRM_BOOKING_TIMEZONE", "Australia/Sydney"),
-    client_id: leadId,
     meeting_type: meetingTypeForCrm(appointment.consultationType),
     enquiry_details: enquiryDetails.trim(),
     status: payment.status,
@@ -144,6 +150,7 @@ export async function syncAppointmentToCrm(appointment: CrmAppointment, payment:
     paid_at: payment.paidAt,
     confirmed_at: payment.confirmedAt,
   };
+  if (leadId !== null) payload.client_id = leadId;
   if (appointment.orderHash) payload.order_hash = appointment.orderHash;
   if (consultantId !== null) payload.consultant_id = consultantId;
 
@@ -159,7 +166,9 @@ export async function syncAppointmentToCrm(appointment: CrmAppointment, payment:
       console.warn(`[Booking CRM] booking-appointments returned ${response.status} for appointment ${appointment.id}`);
       return;
     }
-    console.info(`[Booking CRM] Booking synced. appointment=${appointment.id} lead=${leadId}`);
+    console.info(
+      `[Booking CRM] Booking synced. appointment=${appointment.id}${leadId !== null ? ` lead=${leadId}` : " (no client_id)"}`
+    );
   } catch (error) {
     console.error(`[Booking CRM] booking-appointments request failed for appointment ${appointment.id}:`, error);
   }
