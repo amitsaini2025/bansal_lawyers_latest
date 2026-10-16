@@ -13,7 +13,19 @@ html { scroll-padding-top: 8.5rem; }
 .utility-badge, .utility-icon { color: #fff; }
 .utility-phone:hover, .utility-email:hover { color: #bcd5f5; }
 .utility-social-link:hover { background: #1b4c89; color: #fff; }
-.mega-menu__footer-tel { color: #bcd5f5; }
+.mega-menu__footer-tel { color: #fff; }
+.mega-menu__footer-tel:hover,
+.mega-menu__footer-tel:focus-visible { color: #bcd5f5; }
+.mega-menu__footer .button--primary {
+  color: #fff;
+  background: #2563eb;
+  border-color: #2563eb;
+}
+.mega-menu__footer .button--primary:hover {
+  color: #fff;
+  background: #3b82f6;
+  border-color: #3b82f6;
+}
 .mega-menu {
   max-height: calc(100dvh - 8.25rem);
   overflow-y: auto;

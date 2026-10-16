@@ -42,6 +42,7 @@ const propertyMatters = [
   { title: "Property disputes", href: "/property-lawyers-melbourne/property-dispute-lawyer-melbourne/" },
   { title: "Settlement issues", href: "/property-lawyers-melbourne/property-settlement-lawyer-melbourne/" },
   { title: "Property transfers", href: "/property-lawyers-melbourne/property-transfer-lawyer-melbourne/" },
+  { title: "Indian power of attorney", href: "/property-lawyers-melbourne/indian-power-of-attorney-lawyer-melbourne/" },
   { title: "Landlord and tenant matters", href: "/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne/" },
   { title: "Property-related legal notices", href: "/property-lawyers-melbourne/property-legal-notice-lawyer-melbourne/" },
 ];

@@ -195,6 +195,17 @@ export default function ExcitingChangesAdminReviewSystemPage() {
               Tribunal (AAT) system with something new, improved, and more
               efficient.
             </p>
+            <p
+              style={{
+                fontSize: "1rem",
+                lineHeight: 1.65,
+                color: "#e2e8f0",
+                marginBottom: "1.75rem",
+                maxWidth: "760px",
+              }}
+            >
+              The Administrative Review Tribunal commenced on 14 October 2024.
+            </p>
 
             <DynamicArticleMeta
               publishedDate="Dec 31, 2024"

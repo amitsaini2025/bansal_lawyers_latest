@@ -254,6 +254,11 @@ export const megaMenuModules: CorePracticeModule[] = [
         description: "Ownership changes, transfer documents and title details",
       },
       {
+        title: "Indian Power of Attorney",
+        href: "/property-lawyers-melbourne/indian-power-of-attorney-lawyer-melbourne/",
+        description: "POA drafted in Melbourne for property and other matters in India",
+      },
+      {
         title: "Landlord & Tenant",
         href: "/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne/",
         description: "Lease obligations, unpaid rent, repairs and bond disputes",

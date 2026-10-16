@@ -23,7 +23,7 @@ export const metadata: Metadata = createMetadata({
   title:
     "Facing a Visa Refusal? Review & Appeal Guide | Bansal Lawyers",
   description:
-    "Facing a visa refusal or cancellation? Bansal Lawyers guides you through tribunal reviews, strict appeal deadlines, evidence preparation, and winning strategies.",
+    "Facing a visa refusal or cancellation? Bansal Lawyers guides you through tribunal reviews, strict appeal deadlines, and evidence preparation.",
   path: "/blog/visa-refusal-australia-review-appeal-bansal-lawyers",
   keywords: [
     "Visa Refusal Australia Review Appeal",
@@ -42,7 +42,7 @@ const breadcrumbs = [
   { label: "Blog", href: "/blog" },
   {
     label:
-      "Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your Decision Reviewed and Win!",
+      "Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your Decision Reviewed",
   },
 ];
 
@@ -131,9 +131,9 @@ export default function VisaRefusalReviewAppealPage() {
       <StructuredData
         data={createArticleSchema({
           title:
-            "Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your Decision Reviewed and Win!",
+            "Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your Decision Reviewed",
           description:
-            "Facing a visa refusal or cancellation? Bansal Lawyers guides you through tribunal reviews, strict appeal deadlines, evidence preparation, and winning strategies.",
+            "Facing a visa refusal or cancellation? Bansal Lawyers guides you through tribunal reviews, strict appeal deadlines, and evidence preparation.",
           path: "/blog/visa-refusal-australia-review-appeal-bansal-lawyers",
           datePublished: "2025-01-01",
           dateModified: "2025-01-01",
@@ -166,7 +166,7 @@ export default function VisaRefusalReviewAppealPage() {
               }}
             >
               Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your
-              Decision Reviewed and Win!
+              Decision Reviewed
             </h1>
 
             <p

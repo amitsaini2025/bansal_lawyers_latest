@@ -383,11 +383,11 @@ export const blogArticles: BlogArticle[] = [
   {
     id: "visa-refusal-australia-review-appeal-bansal-lawyers",
     title:
-      "Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your Decision Reviewed and Win!",
+      "Facing a Visa Refusal? Bansal Lawyers Can Help You Get Your Decision Reviewed",
     eyebrow: "Immigration Law",
     category: "Immigration Law",
     description:
-      "Facing a visa refusal or cancellation? Bansal Lawyers guides you through tribunal reviews, strict appeal deadlines, evidence preparation, and winning strategies.",
+      "Facing a visa refusal or cancellation? Bansal Lawyers guides you through tribunal reviews, strict appeal deadlines, and evidence preparation.",
     href: "/blog/visa-refusal-australia-review-appeal-bansal-lawyers",
     imageSrc: "/images/legal-consultation-clarity.webp",
     imageAlt:

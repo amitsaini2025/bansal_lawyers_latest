@@ -105,9 +105,9 @@ const keyFeatures = [
     icon: "💼",
   },
   {
-    title: "Faster Visa Processing",
+    title: "Current Visa Processing Times",
     description:
-      "Specialist Skills Stream: 7 days (median processing time). Core Skills Stream: 21 days (median processing time).",
+      "Department of Home Affairs global processing times, published 29 September 2026: Specialist Skills, 50% within 37 days and 90% within 78 days. Core Skills, 50% within 4 months and 90% within 9 months. These are times for recently decided applications, not a guaranteed outcome.",
     icon: "⚡",
   },
   {
@@ -701,7 +701,11 @@ export default function Subclass482SidVisaPage() {
                         workers and labourers.
                       </li>
                       <li>No age limit and no cap on the number of visas issued.</li>
-                      <li>Processing time: 7 days for quick approval.</li>
+                      <li>
+                        Processing time: as at 29 September 2026, 50% of
+                        Specialist Skills applications were decided within 37
+                        days and 90% within 78 days.
+                      </li>
                     </ul>
                   </div>
 
@@ -741,7 +745,11 @@ export default function Subclass482SidVisaPage() {
                         Trades workers, machinery operators, and drivers can
                         apply here too if listed.
                       </li>
-                      <li>Processing time: 21 days for approval.</li>
+                      <li>
+                        Processing time: as at 29 September 2026, 50% of Core
+                        Skills applications were decided within 4 months and
+                        90% within 9 months.
+                      </li>
                     </ul>
                   </div>
                 </div>
@@ -783,8 +791,8 @@ export default function Subclass482SidVisaPage() {
                       text: "Employers now pay fees regularly instead of upfront, making it easier for small businesses to participate.",
                     },
                     {
-                      title: "Faster Visa Processing:",
-                      text: "Visa approval times are 7 days for the Specialist Skills stream and 21 days for the Core Skills stream.",
+                      title: "Current Processing Times:",
+                      text: "As at 29 September 2026, Department of Home Affairs figures show 50% of Specialist Skills applications decided within 37 days (90% within 78 days) and 50% of Core Skills applications within 4 months (90% within 9 months). These are recent decision times, not a guarantee.",
                     },
                     {
                       title: "Public Register of Sponsors:",

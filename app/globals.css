@@ -829,6 +829,7 @@ h3 {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 1rem;
   padding: 0.75rem 2rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
@@ -838,7 +839,7 @@ h3 {
   align-items: center;
   gap: 0.6rem;
   font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.92);
 }
 
 .mega-menu__footer-dot {
@@ -848,12 +849,31 @@ h3 {
   background: #10b981;
   display: inline-block;
   box-shadow: 0 0 8px #10b981;
+  flex-shrink: 0;
 }
 
 .mega-menu__footer-tel {
-  color: var(--gold);
+  color: #ffffff;
   font-weight: 700;
   text-decoration: underline;
+  text-underline-offset: 0.15em;
+}
+
+.mega-menu__footer-tel:hover,
+.mega-menu__footer-tel:focus-visible {
+  color: #bcd5f5;
+}
+
+.mega-menu__footer .button--primary {
+  color: #ffffff;
+  background: var(--brand-blue-light);
+  border-color: var(--brand-blue-light);
+}
+
+.mega-menu__footer .button--primary:hover {
+  color: #ffffff;
+  background: #3b82f6;
+  border-color: #3b82f6;
 }
 
 /* Mobile Accordion Styles */

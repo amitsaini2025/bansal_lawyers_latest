@@ -619,7 +619,7 @@ export default function KhanalCaseDetailPage() {
                       href="/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
-                      Australia National Innovation Visa set to revolutionize immigration in 2024 →
+                      Australia&apos;s National Innovation Visa (Subclass 858) →
                     </Link>
                   </li>
                   <li>
