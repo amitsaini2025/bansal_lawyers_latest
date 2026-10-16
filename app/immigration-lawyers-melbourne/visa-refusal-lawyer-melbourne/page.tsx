@@ -312,21 +312,21 @@ export default function VisaRefusalLawyerMelbournePage() {
             ))}
           </div>
           <p style={{ textAlign: "center", marginTop: "2rem", color: "var(--navy-950)", fontWeight: 600 }}>
-            Whether dealing with a spouse visa challenge alongside a{" "}
+            If the tribunal has already decided the refusal, our{" "}
             <Link
-              href="/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/"
+              href="/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/"
               style={{ color: "var(--brand-blue)", textDecoration: "underline" }}
             >
-              Partner Visa Lawyer Melbourne
+              judicial review lawyers
             </Link>
-            , or addressing Genuine Student criteria with a{" "}
+            {" "}can assess whether the decision can go to court. Character refusals are handled by our{" "}
             <Link
-              href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+              href="/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/"
               style={{ color: "var(--brand-blue)", textDecoration: "underline" }}
             >
-              Student Visa Lawyer Melbourne
+              section 501 lawyers
             </Link>
-            , get advice before deciding what to do next.
+            . Get advice before deciding what to do next.
           </p>
         </Container>
       </Section>

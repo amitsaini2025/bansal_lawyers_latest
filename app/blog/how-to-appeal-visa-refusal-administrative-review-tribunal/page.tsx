@@ -31,7 +31,7 @@ export const metadata: Metadata = createMetadata({
     "AAT Replacement ART Australia",
     "Visa Refusal Appeal Melbourne",
     "ART Merits Review Process",
-    "ART Application Fee $3496",
+    "ART Application Fee $3727",
     "28 Day Appeal Deadline ART",
     "Immigration Lawyers Melbourne",
     "Bansal Lawyers Blog",
@@ -67,16 +67,16 @@ const relatedImmigrationServices = [
       "Urgent legal defense for character cancellations (s 501), bogus documents (s 109), and breach of conditions (s 116).",
   },
   {
-    title: "Partner Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Partner visa refusals, genuine relationship statements, schedule 3 criteria waivers, and tribunal representation.",
+      "Court challenges after an ART decision, including jurisdictional error.",
   },
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
+    title: "Ministerial Intervention Lawyer",
+    href: "/immigration-lawyers-melbourne/ministerial-intervention-lawyer-melbourne/",
     description:
-      "Overcoming genuine student test (GST) refusals, enrollment cancellations, and financial capacity challenges.",
+      "Section 351 and 501J requests after tribunal and court options are finished.",
   },
   {
     title: "Immigration Lawyers Melbourne",
@@ -408,7 +408,7 @@ export default function HowToAppealVisaRefusalArtPage() {
                     },
                     {
                       title: "Insufficient Documentation",
-                      desc: "Incomplete proof of genuine temporary stay, funds, ties, or employment verification.",
+                      desc: "Incomplete proof of genuine intention, funds, ties, or employment verification.",
                       icon: "📄",
                     },
                     {
@@ -730,11 +730,11 @@ export default function HowToAppealVisaRefusalArtPage() {
                   }}
                 >
                   Most ART applications require an upfront application fee, which
-                  is currently $3,496. However, applicants who are experiencing
+                  is $3,727 from 1 July 2026. Applicants who are experiencing
                   financial hardship may be eligible for a 50% fee reduction.
                   Additionally, if your appeal is successful, you may be
                   refunded part of the application fee. For protection visa
-                  reviews, no upfront fee is required, but a fee of $2,151 applies
+                  reviews, no upfront fee is required, but a fee of $2,293 applies
                   if the appeal is unsuccessful.
                 </p>
 
@@ -772,7 +772,7 @@ export default function HowToAppealVisaRefusalArtPage() {
                         margin: "0.25rem 0 0.5rem",
                       }}
                     >
-                      $3,496
+                      $3,727
                     </h3>
                     <p
                       style={{
@@ -824,7 +824,7 @@ export default function HowToAppealVisaRefusalArtPage() {
                         margin: 0,
                       }}
                     >
-                      No upfront application fee. A post-decision fee of $2,151
+                      No upfront application fee. A post-decision fee of $2,293
                       only becomes payable if the review application is
                       unsuccessful.
                     </p>

@@ -41,35 +41,34 @@ const breadcrumbs = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
   {
-    label:
-      "Breaking: Australia's National Innovation Visa Set to Revolutionize Immigration in 2024",
+    label: "Australia's National Innovation Visa (Subclass 858)",
   },
 ];
 
 const relatedImmigrationServices = [
   {
-    title: "Permanent Residency Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/",
+    title: "Visa Refusal Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/",
     description:
-      "Specialist guidance on direct permanent residency, Subclass 858, and skilled migration pathways.",
+      "Advice after a National Innovation Visa or other visa application is refused.",
   },
   {
-    title: "Skilled Migration Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/",
+    title: "ART Appeal Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/",
     description:
-      "General skilled migration, state nominations, and talent assessments for global leaders.",
+      "Merits review in the Administrative Review Tribunal where a review right exists.",
   },
   {
-    title: "Employer Sponsored Visa Lawyer",
-    href: "/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Specialist talent and high-earner visa solutions for corporate sponsors and international executives.",
+      "Court challenges after the tribunal has decided the matter.",
   },
   {
-    title: "Immigration Document Review",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
+    title: "Ministerial Intervention Lawyer",
+    href: "/immigration-lawyers-melbourne/ministerial-intervention-lawyer-melbourne/",
     description:
-      "Comprehensive vetting of international records of achievement, patents, publications, and citations.",
+      "Requests to the Minister after tribunal and court options are finished.",
   },
 ];
 
@@ -112,8 +111,7 @@ export default function NationalInnovationVisaPage() {
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
       <StructuredData
         data={createArticleSchema({
-          title:
-            "Breaking: Australia's National Innovation Visa Set to Revolutionize Immigration in 2024",
+          title: "Australia's National Innovation Visa (Subclass 858)",
           description:
             "National Innovation Visa (Subclass 858) overview: replacing the Global Talent visa from 6 December 2024 with mandatory ministerial invitations, Form 47NI, and direct permanent residency.",
           path: "/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
@@ -147,8 +145,7 @@ export default function NationalInnovationVisaPage() {
                 marginBottom: "1rem",
               }}
             >
-              Breaking: Australia&apos;s National Innovation Visa Set to
-              Revolutionize Immigration in 2024
+              Australia&apos;s National Innovation Visa (Subclass 858)
             </h1>
 
             <p
@@ -172,10 +169,9 @@ export default function NationalInnovationVisaPage() {
                 maxWidth: "760px",
               }}
             >
-              Starting 6 December 2024, Australia will launch a new migration
-              pathway with the National Innovation Visa (Subclass 858) replacing
-              the Global Talent Visa. This visa aims to attract talented
-              individuals from around the world who can make a significant
+              On 6 December 2024, Australia launched the National Innovation
+              Visa (Subclass 858), replacing the Global Talent Visa. This visa
+              is for talented individuals who can make a significant
               contribution to Australia&apos;s economy and innovation ecosystem.
             </p>
 
@@ -255,14 +251,12 @@ export default function NationalInnovationVisaPage() {
                     fontWeight: 500,
                   }}
                 >
-                  Starting 6 December 2024, Australia will launch a new migration
-                  pathway with the National Innovation Visa (Subclass 858)
-                  replacing the Global Talent Visa. This visa aims to attract
-                  talented individuals from around the world who can make a
-                  significant contribution to Australia economy and innovation
-                  ecosystem. As these changes take effect, there are several key
-                  aspects to consider. Lets explore the amendments and what they
-                  mean for your visa application.
+                  On 6 December 2024, Australia launched the National Innovation
+                  Visa (Subclass 858), replacing the Global Talent Visa. This visa
+                  is for talented individuals who can make a significant
+                  contribution to Australia&apos;s economy and innovation
+                  ecosystem. These are the key changes and what they
+                  mean for a visa application.
                 </p>
               </div>
 
@@ -671,10 +665,10 @@ export default function NationalInnovationVisaPage() {
                       Book A Consultation
                     </ButtonLink>
                     <ButtonLink
-                      href="/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/"
+                      href="/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/"
                       variant="secondary"
                     >
-                      Permanent Residency Pathways
+                      Refusal and Appeal Advice
                     </ButtonLink>
                   </div>
                 </div>

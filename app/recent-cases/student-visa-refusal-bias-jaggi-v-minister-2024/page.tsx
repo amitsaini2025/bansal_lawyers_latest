@@ -35,9 +35,9 @@ export const metadata: Metadata = createMetadata({
 
 const relatedServices = [
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
-    description: "Subclass 500 visa applications, genuine student criteria, and compliance advice.",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
+    description: "Court challenges to migration decisions in the Federal Circuit and Family Court.",
   },
   {
     title: "Visa Refusal Lawyer Melbourne",
@@ -55,14 +55,14 @@ const relatedServices = [
     description: "Comprehensive Australian immigration law counsel and strategic visa advice.",
   },
   {
-    title: "Immigration Document Review Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
-    description: "Pre-lodgement statement scrutiny, GTE audit, and evidence verification.",
+    title: "Character and Section 501 Lawyer",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
+    description: "Character refusals, mandatory cancellation, and revocation requests.",
   },
   {
-    title: "Request for Further Information Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne/",
-    description: "Responding to s56 RFIs and Natural Justice notifications from the Department.",
+    title: "Detention and Removal Lawyer",
+    href: "/immigration-lawyers-melbourne/detention-removal-lawyer-melbourne/",
+    description: "Urgent advice where a person is detained or facing removal.",
   },
 ];
 
@@ -264,7 +264,7 @@ export default function JaggiCaseDetailPage() {
                   In a significant Federal Circuit and Family Court decision handed down on 22 November 2024, the Court upheld an application for judicial review of an Administrative Appeals Tribunal (AAT) decision that had refused a student visa (Subclass 500) application. The case was heard by Judge D Humphreys in Perth.
                 </p>
                 <p>
-                  The decision provides a detailed examination of apprehended bias in migration tribunals, particularly in the context of GTE (Genuine Temporary Entrant) assessments for student visa applicants. This case is especially notable for its thorough analysis of how a tribunal member&apos;s comments and conduct during a hearing can create a reasonable apprehension of bias.
+                  The decision examines apprehended bias in a student visa review. The refusal was assessed under the Genuine Temporary Entrant (GTE) criterion because the application was lodged on 30 August 2023. For student visa applications made on or after 23 March 2024, the Genuine Student requirement replaced that criterion.
                 </p>
                 <p>
                   The Court&apos;s reasoning reinforces the principle that apprehended bias constitutes jurisdictional error without requiring proof of materiality - an important consideration for practitioners handling judicial review applications.
@@ -284,7 +284,7 @@ export default function JaggiCaseDetailPage() {
                     His student visa application was lodged on 30 August 2023 and refused by a delegate on 15 November 2023
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    The refusal was primarily based on the applicant failing to satisfy clause 500.212A of schedule 2 to the Migration Regulations 1994 (Cth) - the Genuine Temporary Entrant (GTE) criterion
+                    The refusal was primarily based on the applicant failing to satisfy clause 500.212A of Schedule 2 to the Migration Regulations 1994 (Cth), the Genuine Temporary Entrant criterion that applied to this application. The Genuine Student requirement replaced that criterion for applications made on or after 23 March 2024
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
                     Despite being enrolled in his course since 7 October 2023 with six months of documented good attendance and progress, the delegate was not satisfied he was a genuine student
@@ -293,7 +293,7 @@ export default function JaggiCaseDetailPage() {
                     A significant issue was that the applicant&apos;s migration agent had mistakenly uploaded another person&apos;s GTE statement with the application
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    The AAT affirmed the delegate&apos;s decision on 8 May 2024 (with written reasons provided on 29 May 2024), but the Federal Circuit Court found the Tribunal&apos;s process was affected by apprehended bias
+                    The AAT affirmed the delegate&apos;s decision on 8 May 2024 (with written reasons provided on 29 May 2024), but the Federal Circuit and Family Court of Australia found the Tribunal&apos;s process was affected by apprehended bias
                   </li>
                 </ul>
               </section>
@@ -304,7 +304,7 @@ export default function JaggiCaseDetailPage() {
                   Detailed Analysis of the Tribunal Hearing
                 </h3>
                 <p>
-                  The Federal Circuit Court had access to the complete transcript and audio recording of the Tribunal hearing, which revealed several problematic aspects of the proceedings:
+                  The Federal Circuit and Family Court of Australia had access to the complete transcript and audio recording of the Tribunal hearing, which revealed several problematic aspects of the proceedings:
                 </p>
                 <ul style={{ paddingLeft: "1.5rem", marginTop: "0.5rem" }}>
                   <li style={{ marginBottom: "0.5rem" }}>
@@ -424,7 +424,7 @@ export default function JaggiCaseDetailPage() {
                     <strong>Failure to consider discretionary visa conditions:</strong> The applicant argued that the Tribunal failed to consider an argument about potentially imposing condition 8534 (which would limit the holder from being granted certain substantive visas while in Australia) as a way to address concerns about the applicant&apos;s genuine temporary intentions
                   </li>
                   <li style={{ marginBottom: "0.5rem" }}>
-                    <strong>Misapplication of GTE requirements:</strong> The applicant contended that the Tribunal erroneously treated the provision of a written &ldquo;genuine temporary entrant statement&rdquo; as a mandatory requirement for the grant of a student visa, rather than considering all available evidence including oral testimony
+                    <strong>Misapplication of the GTE requirements:</strong> The applicant contended that the Tribunal erroneously treated a written statement as a mandatory requirement for the grant of a student visa, rather than considering all available evidence including oral testimony
                   </li>
                 </ul>
                 <p style={{ marginTop: "1rem" }}>

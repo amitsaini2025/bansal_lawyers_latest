@@ -34,9 +34,9 @@ export const metadata: Metadata = createMetadata({
 
 const relatedServices = [
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
-    description: "Subclass 500 visa applications, genuine student criteria, and compliance advice.",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
+    description: "Court challenges to migration decisions in the Federal Circuit and Family Court.",
   },
   {
     title: "Visa Refusal Lawyer Melbourne",
@@ -54,14 +54,14 @@ const relatedServices = [
     description: "Comprehensive Australian immigration law counsel and strategic visa advice.",
   },
   {
-    title: "Immigration Document Review Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
-    description: "Pre-lodgement statement scrutiny, GTE audit, and evidence verification.",
+    title: "Character and Section 501 Lawyer",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
+    description: "Character refusals, mandatory cancellation, and revocation requests.",
   },
   {
-    title: "Request for Further Information Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne/",
-    description: "Responding to s56 RFIs and Natural Justice notifications from the Department.",
+    title: "Detention and Removal Lawyer",
+    href: "/immigration-lawyers-melbourne/detention-removal-lawyer-melbourne/",
+    description: "Urgent advice where a person is detained or facing removal.",
   },
 ];
 

@@ -21,7 +21,7 @@ type PolicyPage = {
   sections: PolicySection[];
 };
 
-const lastUpdated = "5 October 2026";
+const lastUpdated = "16 October 2026";
 
 const policyPages: Record<(typeof policySlugs)[number], PolicyPage> = {
   privacy: {
@@ -34,29 +34,36 @@ const policyPages: Record<(typeof policySlugs)[number], PolicyPage> = {
         "Bansal Lawyers respects the privacy of people who contact us, use our website or engage us for legal services. This policy explains our usual approach to handling personal information in connection with our legal practice and website.",
         "We aim to handle personal information in accordance with applicable Australian privacy law, including the Privacy Act 1988 (Cth) where it applies. This policy does not limit any obligations of confidentiality owed to a client under professional rules or an engagement agreement.",
       ] },
-      { title: "Personal information we may collect", paragraphs: ["The information we collect depends on how you interact with us and the legal matter involved. We collect information directly from you where practicable, including when you call, email, attend our office, submit an enquiry or provide documents during a legal matter."], items: [
+      { title: "Personal information we may collect", paragraphs: ["The information we collect depends on how you interact with us and the legal matter involved. We collect information directly from you where practicable, including when you call, email, attend our office, submit an enquiry or provide documents during a legal matter. When you use this website, we may also collect limited technical and usage information as described below."], items: [
         "contact details, such as your name, email address, telephone number and address;",
         "information about your enquiry, legal matter, relevant dates and documents you choose to provide;",
-        "identity, financial, employment, family, health, immigration, criminal-history or other sensitive information where it is relevant to legal services and you provide it or authorise its collection; and",
-        "limited technical information associated with an online enquiry, such as the request IP address and browser information, used to protect the website and prevent misuse.",
+        "identity, financial, employment, family, health, immigration, criminal-history or other sensitive information where it is relevant to legal services and you provide it or authorise its collection;",
+        "limited technical information associated with an online enquiry, such as the request IP address and browser information, used to protect the website and prevent misuse; and",
+        "website usage information, such as pages viewed, clicks, scrolling, mouse movement, device and browser type, approximate location derived from IP address, referral source, and session duration, collected through cookies and similar technologies so we can understand how the website is used and improve it.",
       ] },
       { title: "Why we collect and use information", items: [
         "responding to enquiries and arranging consultations;",
         "assessing whether and how we may assist with a legal matter, including conflict checks where appropriate;",
         "providing legal services, communicating with clients and maintaining matter records;",
         "meeting legal, regulatory, professional, accounting and risk-management obligations;",
-        "protecting the security and integrity of our systems and website; and",
+        "protecting the security and integrity of our systems and website;",
+        "understanding how visitors use this website, identifying usability issues and improving content, navigation and conversion paths; and",
         "otherwise with your consent or as permitted or required by law.",
+      ] },
+      { title: "Website analytics, cookies and Microsoft Clarity", paragraphs: [
+        "We partner with Microsoft Clarity and Microsoft Advertising to capture how you use and interact with our website through behavioural metrics, heatmaps and session replay, so we can improve the website and our online services. Website usage data is captured using first-party and third-party cookies and other tracking technologies. We may also use this information for site optimisation and fraud or security purposes.",
+        "Microsoft Clarity may record a replay of how a visitor moves through public pages of this website. We configure Clarity to mask information typed into form fields, including names, email addresses, telephone numbers and other numbers, so that text entered into enquiry, booking or similar forms is not visible in recordings. Please do not type confidential matter details into any part of the website other than the forms we provide for that purpose.",
+        "We aim to limit Clarity on public marketing pages. We do not intentionally use Clarity to collect the substantive details of a legal matter, payment card details, or information submitted through admin systems. For more information about how Microsoft collects and uses data, see the Microsoft Privacy Statement at https://privacy.microsoft.com/privacystatement.",
       ] },
       { title: "Disclosure of information", paragraphs: ["We do not sell personal information. We may disclose information where reasonably necessary for the purposes described above, with your authority, or where required or permitted by law."], items: [
         "courts, tribunals, government agencies, regulators, opposing parties or their representatives where necessary for your matter;",
         "professional advisers, expert witnesses, barristers, interpreters, service providers and other parties engaged for a legal matter;",
-        "technology, communications, document-management, accounting and payment providers that help us operate our practice; and",
+        "technology, communications, document-management, accounting, payment and website analytics providers that help us operate our practice and website, including Microsoft in connection with Microsoft Clarity; and",
         "law-enforcement bodies or other parties where disclosure is required or authorised by law, or is necessary to address a serious risk.",
       ] },
       { title: "Storage, security and overseas handling", paragraphs: [
         "We take reasonable steps to protect personal information from misuse, interference, loss and unauthorised access, modification or disclosure. Safeguards include access controls, secure systems and procedures appropriate to the nature of the information we hold.",
-        "Some service providers that support our communications or technology may store or process information outside Australia. Where this occurs, we take reasonable steps to use providers and arrangements appropriate to the information and applicable law. We cannot guarantee the security of information transmitted over the internet; please avoid sending highly sensitive documents through an unprotected channel unless we have asked you to do so securely.",
+        "Some service providers that support our communications, technology or website analytics may store or process information outside Australia. Microsoft Clarity data is stored in Microsoft data centres in the United States. Where overseas handling occurs, we take reasonable steps to use providers and arrangements appropriate to the information and applicable law. We cannot guarantee the security of information transmitted over the internet; please avoid sending highly sensitive documents through an unprotected channel unless we have asked you to do so securely.",
       ] },
       { title: "Access, correction and complaints", paragraphs: [
         "You may ask us for access to, or correction of, personal information we hold about you. We may need to verify your identity and may decline a request where the law permits. We will explain the reason if we cannot provide access or make a requested correction.",
@@ -151,7 +158,7 @@ export default async function LegalPolicyPage({ params }: LegalPageProps) {
     <StructuredData data={createLegalServiceSchema()} />
     <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
     <Breadcrumbs items={breadcrumbs} />
-    <Hero compact eyebrow={policy.eyebrow} title={policy.title} intro={policy.intro} aside={<div className="policy-meta"><span>Australia</span><time dateTime="2026-10-05">Last updated: {lastUpdated}</time></div>} />
+    <Hero compact eyebrow={policy.eyebrow} title={policy.title} intro={policy.intro} aside={<div className="policy-meta"><span>Australia</span><time dateTime="2026-10-16">Last updated: {lastUpdated}</time></div>} />
     <Section tone="warm"><article className="prose" aria-label={policy.title}>
       {policy.sections.map((section) => <section key={section.title}>
         <h2>{section.title}</h2>

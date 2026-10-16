@@ -20,16 +20,11 @@ export const megaMenuModules: CorePracticeModule[] = [
     id: "immigration",
     title: "Immigration Law",
     href: "/immigration-lawyers-melbourne",
-    tagline: "Visas, Refusals & ART Appeals",
+    tagline: "Refusals, Appeals & Court Review",
     description:
-      "Comprehensive Australian migration guidance for visas, appeals, refusals, cancellations, and citizenship.",
+      "Legal representation for visa refusals, cancellations, ART appeals, judicial review, character decisions, and citizenship refusals.",
     status: "live",
     subPages: [
-      {
-        title: "Visa Applications",
-        href: "/immigration-lawyers-melbourne/visa-application-lawyer-melbourne/",
-        description: "Application review, eligibility checks and strategic advice",
-      },
       {
         title: "Visa Refusals",
         href: "/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/",
@@ -38,7 +33,7 @@ export const megaMenuModules: CorePracticeModule[] = [
       {
         title: "Visa Cancellations",
         href: "/immigration-lawyers-melbourne/visa-cancellation-lawyer-melbourne/",
-        description: "NOICC responses, character notices and urgent revocation",
+        description: "NOICC responses, section 116 cancellations and urgent revocation",
       },
       {
         title: "ART Appeals",
@@ -46,44 +41,29 @@ export const megaMenuModules: CorePracticeModule[] = [
         description: "Administrative Review Tribunal representation and merits appeals",
       },
       {
-        title: "Partner Visas",
-        href: "/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/",
-        description: "Subclass 820/801 & 309/100 relationship evidence and guidance",
+        title: "Judicial Review",
+        href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
+        description: "Federal Circuit and Family Court challenges after a tribunal decision",
       },
       {
-        title: "Student Visas",
-        href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
-        description: "Subclass 500, Genuine Student requirements and course changes",
+        title: "Character & Section 501",
+        href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
+        description: "Character refusals, mandatory cancellation and revocation requests",
       },
       {
-        title: "Skilled Migration",
-        href: "/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/",
-        description: "Points-tested visas 189, 190, 491 and skills assessments",
+        title: "Ministerial Intervention",
+        href: "/immigration-lawyers-melbourne/ministerial-intervention-lawyer-melbourne/",
+        description: "Section 351 and 501J requests after review options are finished",
       },
       {
-        title: "Employer Sponsored Visas",
-        href: "/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne/",
-        description: "Subclass 482 TSS, 186 ENS and employer nomination support",
+        title: "Detention & Removal",
+        href: "/immigration-lawyers-melbourne/detention-removal-lawyer-melbourne/",
+        description: "Urgent advice on immigration detention, bridging visas and removal",
       },
       {
-        title: "Permanent Residency",
-        href: "/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/",
-        description: "Strategic PR pathways, document review and transition planning",
-      },
-      {
-        title: "Citizenship Matters",
+        title: "Citizenship Refusals",
         href: "/immigration-lawyers-melbourne/citizenship-lawyer-australia/",
-        description: "Australian citizenship eligibility, applications and refusals",
-      },
-      {
-        title: "Requests for Further Info",
-        href: "/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne/",
-        description: "Section 56 RFI responses, document audits and deadline management",
-      },
-      {
-        title: "Immigration Document Review",
-        href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
-        description: "Pre-lodgement evidence audits to minimize refusal risks",
+        description: "Citizenship refusals, character issues and ART appeals",
       },
     ],
   },

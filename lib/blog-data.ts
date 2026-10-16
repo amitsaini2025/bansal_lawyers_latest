@@ -419,10 +419,10 @@ export const blogArticles: BlogArticle[] = [
     eyebrow: "Immigration Law",
     category: "Immigration Law",
     description:
-      "A timely analysis by Bansal Lawyers on the revocation of MD107 and introduction of Ministerial Direction 111 (MD111) for Australian Student visa (Subclass 500) processing.",
+      "Ministerial Direction 115 replaced Direction 111 on 14 November 2025 for offshore Subclass 500 applications lodged on or after that date. Earlier applications can still be processed under Direction 111.",
     href: "/blog/important-changes-to-student-visa-processing-ministerial-direction",
     imageSrc: "/images/legal-consultation-clarity.webp",
-    imageAlt: "Student Visa Processing Ministerial Direction 111",
+    imageAlt: "Student visa processing under Ministerial Direction 115",
     publishedDate: "Dec 22, 2024",
     readTime: "3 min read",
     wordCount: 497,
@@ -450,7 +450,7 @@ export const blogArticles: BlogArticle[] = [
     eyebrow: "Immigration Law",
     category: "Immigration Law",
     description:
-      "From TSS to SID: How the new Subclass 482 Skills in Demand visa revolutionizes Australian careers with 4-year validity, reduced work experience, 7-21 day processing, and PR pathways.",
+      "The Subclass 482 Skills in Demand visa replaced the TSS visa on 7 December 2024. From 1 July 2026 the salary thresholds are $79,423 and $146,576.",
     href: "/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
     imageSrc: "/images/legal-consultation-clarity.webp",
     imageAlt: "Subclass 482 Skills in Demand SID Visa Australia",
@@ -461,11 +461,11 @@ export const blogArticles: BlogArticle[] = [
   {
     id: "breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
     title:
-      "Breaking: Australia's National Innovation Visa Set to Revolutionize Immigration in 2024",
+      "Australia's National Innovation Visa (Subclass 858)",
     eyebrow: "Immigration Law",
     category: "Immigration Law",
     description:
-      "National Innovation Visa (Subclass 858) overview: replacing the Global Talent visa from 6 December 2024 with mandatory ministerial invitations, Form 47NI, and direct permanent residency.",
+      "The National Innovation Visa (Subclass 858) replaced the Global Talent visa on 6 December 2024. It requires a ministerial invitation, Form 47NI, and leads to permanent residency.",
     href: "/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
     imageSrc: "/images/melbourne-legal-chambers.webp",
     imageAlt: "Australia National Innovation Visa Subclass 858",

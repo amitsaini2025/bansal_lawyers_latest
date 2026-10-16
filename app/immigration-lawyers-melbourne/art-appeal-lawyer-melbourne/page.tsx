@@ -204,7 +204,7 @@ export default function ArtAppealLawyerMelbournePage() {
               <div>
                 <strong>Strict Statutory Time Limits Apply</strong>
                 <p style={{ margin: "0.25rem 0 0", fontSize: "0.92rem", color: "#7a271a" }}>
-                  Most ART appeal applications must be lodged within 21 to 28 days of receiving the Department&apos;s decision letter. If a deadline passes, the tribunal cannot extend the time.
+                  A review of a migration or protection decision must be lodged within 28 days of notification, or within 14 days if the applicant is in immigration detention on the day they are notified. The tribunal cannot extend either deadline. Some character decisions have a shorter limit, so check the Department&apos;s decision letter.
                 </p>
               </div>
             </div>
@@ -338,21 +338,21 @@ export default function ArtAppealLawyerMelbournePage() {
               ))}
             </ul>
             <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "1.25rem" }}>
-              Whether addressing relationship genuineness with our{" "}
+              If the tribunal has already decided the appeal, our{" "}
               <Link
-                href="/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/"
+                href="/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/"
                 style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
               >
-                Partner Visa Lawyer Melbourne
+                judicial review lawyers
               </Link>{" "}
-              team, or resolving study pathway concerns with our{" "}
+              can assess a court challenge. Where review rights are finished, our{" "}
               <Link
-                href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+                href="/immigration-lawyers-melbourne/ministerial-intervention-lawyer-melbourne/"
                 style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
               >
-                Student Visa Lawyer Melbourne
+                ministerial intervention lawyers
               </Link>{" "}
-              practitioners, Bansal Lawyers can help review the refusal reasons and advise on what may be needed for the appeal.
+              can advise whether a request to the Minister is available.
             </p>
           </div>
         </Container>

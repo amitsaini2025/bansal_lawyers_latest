@@ -13,6 +13,7 @@
   "dependencies": {
     "@fontsource/inter": "^5.2.8",
     "@fontsource/libre-baskerville": "^5.2.8",
+    "@microsoft/clarity": "^1.0.2",
     "bcryptjs": "^3.0.3",
     "mysql2": "^3.24.5",
     "next": "^16.3.6",

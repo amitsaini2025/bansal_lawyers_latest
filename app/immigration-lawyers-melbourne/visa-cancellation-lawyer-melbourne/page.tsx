@@ -261,15 +261,14 @@ export default function VisaCancellationLawyerMelbournePage() {
           </div>
           <p style={{ textAlign: "center", marginTop: "2rem", color: "var(--navy-950)", fontWeight: 600 }}>
             Each cancellation matter should be reviewed carefully before deciding
-            the next step. If your matter relates to studying in Australia, our
-            practice also provides tailored support from an experienced{" "}
+            the next step. If the cancellation is on character grounds, our{" "}
             <Link
-              href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+              href="/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/"
               style={{ color: "var(--brand-blue)", textDecoration: "underline" }}
             >
-              Student Visa Lawyer Melbourne
+              section 501 lawyers
             </Link>
-            .
+            {" "}can advise on the notice and any revocation request.
           </p>
         </Container>
       </Section>
@@ -475,14 +474,13 @@ export default function VisaCancellationLawyerMelbournePage() {
                 </p>
               </Link>
               <Link
-                href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+                href="/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/"
                 className="practice-card"
                 style={{ textDecoration: "none" }}
               >
-                <h3>Student Visa Lawyer Melbourne</h3>
+                <h3>Judicial Review Lawyer Melbourne</h3>
                 <p>
-                  Student visa applications, Genuine Student requirements, and
-                  Condition 8202 breach responses.
+                  Court challenges after a cancellation has been through the tribunal.
                 </p>
               </Link>
             </div>

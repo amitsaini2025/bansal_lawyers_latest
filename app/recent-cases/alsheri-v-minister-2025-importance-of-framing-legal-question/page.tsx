@@ -35,9 +35,9 @@ export const metadata: Metadata = createMetadata({
 
 const relatedServices = [
   {
-    title: "Skilled Migration Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/",
-    description: "General Skilled Migration, points testing audits, and Subclass 189/190/491 counsel.",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
+    description: "Court challenges to migration decisions in the Federal Circuit and Family Court.",
   },
   {
     title: "Visa Refusal Lawyer Melbourne",
@@ -55,14 +55,14 @@ const relatedServices = [
     description: "Comprehensive Australian immigration law counsel and strategic visa advice.",
   },
   {
-    title: "Immigration Document Review Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
-    description: "Employment reference review, remuneration verification, and skills assessment auditing.",
+    title: "Character and Section 501 Lawyer",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
+    description: "Character refusals, mandatory cancellation, and revocation requests.",
   },
   {
-    title: "Permanent Residency Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/",
-    description: "Pathways to Australian permanent residency through skilled and independent streams.",
+    title: "Ministerial Intervention Lawyer",
+    href: "/immigration-lawyers-melbourne/ministerial-intervention-lawyer-melbourne/",
+    description: "Section 351 and 501J requests after tribunal and court options are finished.",
   },
 ];
 

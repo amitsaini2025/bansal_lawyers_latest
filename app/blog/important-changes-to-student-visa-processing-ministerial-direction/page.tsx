@@ -21,12 +21,12 @@ import {
 
 export const metadata: Metadata = createMetadata({
   title:
-    "Key Changes to Student Visa Processing Under MD111 | Bansal Lawyers",
+    "Student Visa Processing Under Ministerial Direction 115 | Bansal Lawyers",
   description:
-    "Explore how Ministerial Direction 111 (MD111) replaces MD107 for Australian Student visa (Subclass 500) processing: priority categories, provider thresholds, and merit assessment.",
+    "Student visa processing under Ministerial Direction 115, which replaced Direction 111 on 14 November 2025: offshore Subclass 500 priorities and what still applies to earlier applications.",
   path: "/blog/important-changes-to-student-visa-processing-ministerial-direction",
   keywords: [
-    "Ministerial Direction 111 Student Visa",
+    "Ministerial Direction 115 Student Visa",
     "MD107 Revocation Student Visa Australia",
     "Subclass 500 Visa Processing Priority",
     "Indicative Overseas Student Allocations 2025",
@@ -47,16 +47,16 @@ const breadcrumbs = [
 
 const relatedImmigrationServices = [
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Offshore Subclass 500 applications, Genuine Student (GS) criteria, financial evidence, and enrollment assistance.",
+      "Court challenges to an offshore student visa refusal after tribunal review.",
   },
   {
     title: "Visa Refusal Lawyer Melbourne",
     href: "/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/",
     description:
-      "Challenging adverse Student visa refusals and GTE/GS requirement disputes.",
+      "Challenging adverse Student visa refusals and Genuine Student requirement disputes.",
   },
   {
     title: "ART Appeal Lawyer Melbourne",
@@ -81,10 +81,10 @@ export default function StudentVisaMinisterialDirectionPage() {
           title:
             "Key Changes to Student Visa Processing Under the Latest Ministerial Direction",
           description:
-            "A timely analysis by Bansal Lawyers on the revocation of MD107 and introduction of Ministerial Direction 111 (MD111) for Australian Student visa (Subclass 500) processing.",
+            "Ministerial Direction 115 replaced Direction 111 on 14 November 2025 for offshore Subclass 500 applications lodged on or after that date. This article explains the earlier Direction 111 settings, which still apply to applications lodged before then.",
           path: "/blog/important-changes-to-student-visa-processing-ministerial-direction",
           datePublished: "2024-12-22",
-          dateModified: "2024-12-22",
+          dateModified: "2026-10-16",
           authorName: "Bansal Lawyers",
         })}
       />
@@ -138,10 +138,10 @@ export default function StudentVisaMinisterialDirectionPage() {
                 maxWidth: "760px",
               }}
             >
-              The Australian Government has updated the student visa processing
-              system with the revocation of Ministerial Direction 107 (MD107)
-              and the introduction of Ministerial Direction 111 (MD111),
-              effective December 19, 2024.
+              The Australian Government updated student visa processing
+              when Ministerial Direction 111 (MD111) replaced Ministerial
+              Direction 107, effective 19 December 2024. Ministerial Direction
+              115 replaced MD111 on 14 November 2025.
             </p>
 
             <DynamicArticleMeta
@@ -158,7 +158,7 @@ export default function StudentVisaMinisterialDirectionPage() {
       <TrustBar
         items={[
           "Subclass 500 Student Visa Experts",
-          "Ministerial Direction 111 (MD111) Guidance",
+          "Ministerial Direction 115 (current from 14 November 2025)",
           "Genuine Student (GS) Requirement Strategy",
           "Melbourne Registered Legal Practitioners",
         ]}
@@ -187,7 +187,7 @@ export default function StudentVisaMinisterialDirectionPage() {
               >
                 <Image
                   src="/images/legal-consultation-clarity.webp"
-                  alt="Student Visa Processing Ministerial Direction 111"
+                  alt="Student visa processing under Ministerial Direction 115"
                   width={900}
                   height={480}
                   priority
@@ -220,13 +220,13 @@ export default function StudentVisaMinisterialDirectionPage() {
                     fontWeight: 500,
                   }}
                 >
-                  The Australian Government has updated the student visa
-                  processing system with the revocation of Ministerial Direction
-                  107 (MD107) and the introduction of Ministerial Direction 111
-                  (MD111), effective December 19, 2024. These changes aim to
-                  streamline and ensure fair and efficient processing of
-                  Student visas in response to the growing international
-                  education sector.
+                  Ministerial Direction 115 replaced Ministerial Direction 111
+                  on 14 November 2025. Offshore Subclass 500 applications lodged
+                  on or after that date are processed under Direction 115.
+                  Applications lodged before 14 November 2025, and not finally
+                  determined, continue under Direction 111. The sections below
+                  explain how Direction 111 replaced Direction 107 from
+                  19 December 2024.
                 </p>
               </div>
 
@@ -295,10 +295,11 @@ export default function StudentVisaMinisterialDirectionPage() {
                     marginBottom: "1.5rem",
                   }}
                 >
-                  MD111 establishes new guidelines for processing offshore
-                  Subclass 500 (Student) visa applications. It aims to ensure
-                  more equitable processing across different provider types and
-                  locations.
+                  MD111 set the guidelines for offshore Subclass 500 (Student)
+                  visa applications after it replaced MD107. It aimed to give
+                  more even processing across provider types and locations.
+                  It is no longer the direction for applications lodged on or
+                  after 14 November 2025.
                 </p>
 
                 {/* Key Aspects of MD111 */}
@@ -544,11 +545,10 @@ export default function StudentVisaMinisterialDirectionPage() {
                     margin: 0,
                   }}
                 >
-                  If you plan to study in Australia in 2025, now is the time to
-                  submit your visa application. Ensure your application is
-                  complete and submitted early to avoid delays. MD111 prioritizes
-                  applications based on the provider’s enrolment status, but
-                  applying early remains the best approach.
+                  If the application was lodged before 14 November 2025, Direction
+                  111 still sets the processing priority. Direction 115 applies
+                  to offshore Subclass 500 applications lodged on or after that
+                  date. A complete application remains the best way to avoid delay.
                 </p>
               </div>
 
@@ -575,10 +575,10 @@ export default function StudentVisaMinisterialDirectionPage() {
                     marginBottom: "1rem",
                   }}
                 >
-                  Ministerial Direction 111 is a significant step toward
-                  improving fairness and efficiency in student visa processing.
-                  Understanding the new priority system will help students
-                  navigate the process effectively.
+                  Ministerial Direction 111 improved how offshore student visa
+                  applications were prioritised after it replaced Direction 107.
+                  Direction 115 has been the current direction since 14 November
+                  2025 for applications lodged on or after that date.
                 </p>
 
                 <p
@@ -592,7 +592,7 @@ export default function StudentVisaMinisterialDirectionPage() {
                   At Bansal Lawyers, we understand the complexities of Australian
                   immigration law and are dedicated to providing expert legal
                   guidance throughout the student visa application process. With
-                  the recent changes under Ministerial Direction 111, it is more
+                  the current settings under Ministerial Direction 115, it is more
                   important than ever to ensure that your visa application is
                   well-prepared and submitted on time. Whether you are applying
                   for higher education, vocational training, or another education
@@ -649,10 +649,10 @@ export default function StudentVisaMinisterialDirectionPage() {
                       Contact Bansal Lawyers
                     </ButtonLink>
                     <ButtonLink
-                      href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+                      href="/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/"
                       variant="secondary"
                     >
-                      Student Visa Services
+                      Visa Refusal Advice
                     </ButtonLink>
                   </div>
                 </div>

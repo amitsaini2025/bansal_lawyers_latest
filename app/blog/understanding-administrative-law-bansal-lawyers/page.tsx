@@ -70,10 +70,10 @@ const relatedAdminServices = [
       "Resolution of complex civil, administrative, and regulatory disputes in Victoria.",
   },
   {
-    title: "Immigration Document Review",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
+    title: "Judicial Review",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Pre-submission compliance audits and thorough evidentiary review for administrative applications.",
+      "Court challenges to migration and administrative decisions affected by legal error.",
   },
   {
     title: "About Bansal Lawyers",

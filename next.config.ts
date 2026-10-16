@@ -67,6 +67,46 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
       {
+        source: "/immigration-lawyers-melbourne/visa-application-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne",
+        destination: "/immigration-lawyers-melbourne",
+        permanent: true,
+      },
+      {
         source: "/thakur-v-minister-for-immigration-2025-student-visa",
         destination: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
         permanent: true,

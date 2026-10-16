@@ -48,28 +48,28 @@ const breadcrumbs = [
 
 const relatedEmployerServices = [
   {
-    title: "Employer Sponsored Visa Lawyer",
-    href: "/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne/",
+    title: "Visa Refusal Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/",
     description:
-      "Strategic legal advice on Subclass 482 SID, Subclass 186 ENS, and regional sponsored pathways.",
+      "Advice after a Skills in Demand or employer-sponsored visa is refused.",
   },
   {
-    title: "Skilled Migration Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/",
+    title: "ART Appeal Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/",
     description:
-      "Points-tested general skilled migration (subclasses 189, 190, 491) and state nomination strategies.",
+      "Merits review of a refusal or cancellation in the Administrative Review Tribunal.",
   },
   {
-    title: "Permanent Residency Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Direct Entry and Temporary Residence Transition (TRT) streams to permanent Australian residency.",
+      "Court challenges after the tribunal has decided a sponsored-visa matter.",
   },
   {
-    title: "Immigration Document Review",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
+    title: "Visa Cancellation Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/visa-cancellation-lawyer-melbourne/",
     description:
-      "Compliance audits of employment contracts, skills assessments, and sponsorship records.",
+      "NOICC responses and cancellation decisions, including sponsorship breaches.",
   },
 ];
 
@@ -101,7 +101,7 @@ const keyFeatures = [
   {
     title: "Salary Threshold",
     description:
-      "The Core Skills stream requires a minimum salary of $73,150, while the Specialist Skills stream requires at least $135,000 annually.",
+      "From 1 July 2026, the Core Skills stream requires a minimum salary of $79,423, and the Specialist Skills stream requires at least $146,576. The salary must also meet the annual market salary rate if that is higher.",
     icon: "💼",
   },
   {
@@ -127,10 +127,10 @@ export default function Subclass482SidVisaPage() {
           title:
             "Don't Miss Out: Why the New Subclass 482 SID Visa Is the Fastest Way to Work and Stay in Australia",
           description:
-            "From TSS to SID: How the new Subclass 482 Skills in Demand visa revolutionizes Australian careers with 4-year validity, reduced work experience, 7-21 day processing, and PR pathways.",
+            "The Subclass 482 Skills in Demand visa replaced the TSS visa on 7 December 2024. From 1 July 2026 the salary thresholds are $79,423 and $146,576.",
           path: "/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
           datePublished: "2024-12-11",
-          dateModified: "2024-12-11",
+          dateModified: "2026-10-16",
           authorName: "Bansal Lawyers",
         })}
       />
@@ -171,8 +171,7 @@ export default function Subclass482SidVisaPage() {
                 marginBottom: "1.25rem",
               }}
             >
-              From TSS to SID: How the New Visa Will Revolutionize Your Career
-              in Australia
+              From TSS to SID: How the Skills in Demand Visa Works
             </p>
 
             <p
@@ -184,9 +183,9 @@ export default function Subclass482SidVisaPage() {
                 maxWidth: "760px",
               }}
             >
-              On December 7, 2024, Australia will launch a new Skills in Demand
-              (SID) visa, replacing the current Subclass 482 Temporary Skill
-              Shortage (TSS) visa. This revamped visa offers more flexibility
+              On 7 December 2024, Australia launched the Skills in Demand
+              (SID) visa, replacing the Subclass 482 Temporary Skill
+              Shortage (TSS) visa. This visa offers more flexibility
               for skilled workers and employers and provides a clearer path to
               permanent residency.
             </p>
@@ -267,9 +266,9 @@ export default function Subclass482SidVisaPage() {
                     fontWeight: 500,
                   }}
                 >
-                  On December 7, 2024, Australia will launch a new Skills in
-                  Demand (SID) visa, replacing the current Subclass 482 Temporary
-                  Skill Shortage (TSS) visa. This revamped visa offers more
+                  On 7 December 2024, Australia launched the Skills in
+                  Demand (SID) visa, replacing the Subclass 482 Temporary
+                  Skill Shortage (TSS) visa. This visa offers more
                   flexibility for skilled workers and employers and provides a
                   clearer path to permanent residency. Here is a simplified
                   breakdown of the key changes:
@@ -284,8 +283,8 @@ export default function Subclass482SidVisaPage() {
                 >
                   The Government has declared the launch of a fresh four-year
                   temporary skilled worker visa named the Subclass 482 Skills in
-                  Demand (SID) visa, which will replace the current Subclass 482
-                  Temporary Skill Shortage (TSS) visa from December 7, 2024. This
+                  Demand (SID) visa, which replaced the Subclass 482
+                  Temporary Skill Shortage (TSS) visa on 7 December 2024. This
                   updated visa offers sponsored workers enhanced options to
                   switch employers and a straightforward route to permanent
                   residency. The SID visa signifies a pivotal transformation of
@@ -574,7 +573,7 @@ export default function Subclass482SidVisaPage() {
                         margin: 0,
                       }}
                     >
-                      For highly skilled professionals earning at least $135,000.
+                      For highly skilled professionals earning at least $146,576 from 1 July 2026.
                       This stream doesn’t require a specific occupation on the
                       Skilled Occupation List, but does require a sponsor and
                       meeting health and character criteria.
@@ -610,7 +609,7 @@ export default function Subclass482SidVisaPage() {
                       For skilled workers filling skills shortages identified by
                       Jobs and Skills Australia. It includes roles in demand
                       across various industries, and the salary must be at least
-                      $73,150.
+                      $79,423 from 1 July 2026.
                     </p>
                   </div>
 
@@ -695,7 +694,7 @@ export default function Subclass482SidVisaPage() {
                     >
                       <li>
                         Designed for top talent who are highly skilled and earn
-                        $135,000 or more.
+                        $146,576 or more for nominations lodged from 1 July 2026.
                       </li>
                       <li>
                         No occupation list requirements, but excludes trades
@@ -735,8 +734,8 @@ export default function Subclass482SidVisaPage() {
                     >
                       <li>For most applicants in skilled jobs listed on the CSOL.</li>
                       <li>
-                        Salary must meet the average market rate or at least
-                        $73,150 (for applications until June 30, 2025).
+                        Salary must meet the annual market salary rate or at least
+                        $79,423 for nominations lodged from 1 July 2026.
                       </li>
                       <li>
                         Trades workers, machinery operators, and drivers can
@@ -1021,10 +1020,10 @@ export default function Subclass482SidVisaPage() {
                       Book A Consultation
                     </ButtonLink>
                     <ButtonLink
-                      href="/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne/"
+                      href="/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/"
                       variant="secondary"
                     >
-                      Employer Sponsored Visas
+                      Refusal and Appeal Advice
                     </ButtonLink>
                   </div>
                 </div>

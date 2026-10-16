@@ -66,16 +66,16 @@ const relatedImmigrationServices = [
       "Merits review and tribunal advocacy before the Administrative Review Tribunal (formerly AAT).",
   },
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Defense against course progress, attendance, and work limitation breach notices (condition 8202 / 8105).",
+      "Court challenges to a refusal or cancellation after tribunal review.",
   },
   {
-    title: "Immigration Document Review",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
+    title: "Character and Section 501 Lawyer",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
     description:
-      "Comprehensive compliance review to identify and resolve bogus document allegations and PIC 4020 risks.",
+      "Character refusals, mandatory cancellation, and revocation requests.",
   },
   {
     title: "Immigration Lawyers Melbourne",

@@ -72,16 +72,16 @@ const relatedImmigrationServices = [
       "Overcoming citizenship application refusals, character tests, identity issues, and residence requirement disputes.",
   },
   {
-    title: "Partner Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Partner visa appeals, genuine relationship evidence preparation, and Schedule 3 criteria waiver submissions.",
+      "Court challenges after an ART decision, including jurisdictional error.",
   },
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
+    title: "Character and Section 501 Lawyer",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
     description:
-      "Appealing Genuine Student Test (GST) refusals, enrollment cancellations, and financial capacity challenges.",
+      "Character refusals, mandatory cancellation, and revocation requests.",
   },
 ];
 
@@ -930,7 +930,7 @@ export default function VisaRefusalReviewAppealPage() {
                 >
                   We understand that cost is an important factor, and we want to
                   ensure that you have access to the support you need. The fee
-                  for most migration visa reviews is $3,496. However, if you are
+                  for most migration visa reviews is $3,727 from 1 July 2026. However, if you are
                   dealing with specific issues like immigration detention or
                   certain visa types, there might be no application fee.
                 </p>

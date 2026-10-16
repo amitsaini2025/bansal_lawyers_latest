@@ -66,16 +66,16 @@ const relatedImmigrationServices = [
       "Urgent legal defense against character ground cancellations and section 116 / 501 cancellations.",
   },
   {
-    title: "Partner Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
     description:
-      "Subclass 820/801 and 309/100 applications, appeals, and genuine relationship evidence preparation.",
+      "Court challenges to migration decisions in the Federal Circuit and Family Court.",
   },
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
+    title: "Character and Section 501 Lawyer",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
     description:
-      "Appeals against course progress breaches, work limit cancellations, and genuine temporary entrant refusals.",
+      "Character refusals, mandatory cancellation, and revocation requests.",
   },
   {
     title: "Immigration Lawyers Melbourne",
@@ -651,7 +651,7 @@ export default function HowToAppealArtGuidePage() {
                     ART Application Fees
                   </strong>
                   <span style={{ fontSize: "0.95rem", color: "#475569" }}>
-                    ART charges an application fee of <strong>$3,496</strong> (excluding bridging visa reviews). This must be paid upfront and may vary depending on the nature of your application.
+                    From 1 July 2026, ART charges an application fee of <strong>$3,727</strong> for most migration reviews (excluding some bridging visa reviews). This must be paid upfront and may vary depending on the nature of your application.
                   </span>
                 </div>
               </div>

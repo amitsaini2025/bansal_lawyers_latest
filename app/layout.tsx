@@ -4,6 +4,7 @@ import "@fontsource/inter/600.css";
 import "@fontsource/inter/700.css";
 import "@fontsource/libre-baskerville/400.css";
 import "@fontsource/libre-baskerville/700.css";
+import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { Footer, Header } from "@/components/layout";
 import { SiteChrome } from "@/components/layout/SiteChrome";
 import { siteUrl } from "@/lib/site";
@@ -79,6 +80,7 @@ export default function RootLayout({
         <SiteChrome header={<Header />} footer={<Footer />}>
           {children}
         </SiteChrome>
+        <MicrosoftClarity />
       </body>
     </html>
   );

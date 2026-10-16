@@ -190,7 +190,7 @@ export default function CitizenshipLawyerAustraliaPage() {
           "Collins Street Office & Nationwide Consultations",
           "Residence Calculator & Travel History Audits",
           "Good Character Requirement & Police History Review",
-          "AAT / ART Citizenship Refusal Appeals",
+          "ART Citizenship Refusal Appeals",
         ]}
       />
 
@@ -252,15 +252,14 @@ export default function CitizenshipLawyerAustraliaPage() {
           <p style={{ textAlign: "center", marginTop: "2rem", color: "var(--navy-950)", fontWeight: 600 }}>
             Each citizenship matter should be reviewed based on the
             applicant&apos;s personal history, visa background, documents, and
-            legal position. If you have questions regarding your underlying PR
-            status, our{" "}
+            legal position. If the tribunal has refused a citizenship review, our{" "}
             <Link
-              href="/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/"
+              href="/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/"
               style={{ color: "var(--brand-blue)", textDecoration: "underline" }}
             >
-              Permanent Residency Lawyer Melbourne
+              judicial review lawyers
             </Link>{" "}
-            can review your visa validity.
+            can assess whether the decision can be challenged in court.
           </p>
         </Container>
       </Section>
@@ -446,14 +445,13 @@ export default function CitizenshipLawyerAustraliaPage() {
                 </p>
               </Link>
               <Link
-                href="/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/"
+                href="/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/"
                 className="practice-card"
                 style={{ textDecoration: "none" }}
               >
-                <h3>Permanent Residency Lawyer Melbourne</h3>
+                <h3>ART Appeal Lawyer Melbourne</h3>
                 <p>
-                  PR pathway advice, eligibility criteria audits, and permanent
-                  stage visa applications.
+                  Tribunal review of a citizenship refusal, where a review right exists.
                 </p>
               </Link>
               <Link

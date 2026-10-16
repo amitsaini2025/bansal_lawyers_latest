@@ -40,9 +40,9 @@ const relatedServices = [
     description: "Responding to Notices of Intention to Consider Cancellation (NOICC) and tribunal appeals.",
   },
   {
-    title: "Student Visa Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
-    description: "Subclass 500 visa requirements, AQF level compliance, and condition 8202 disputes.",
+    title: "Judicial Review Lawyer Melbourne",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
+    description: "Court challenges after a tribunal decision, including jurisdictional error.",
   },
   {
     title: "ART Appeal Lawyer Melbourne",
@@ -60,9 +60,9 @@ const relatedServices = [
     description: "Comprehensive Australian immigration law counsel and strategic visa advice.",
   },
   {
-    title: "Request for Further Information Lawyer Melbourne",
-    href: "/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne/",
-    description: "Responding to s56 RFIs, s359A notifications, and procedural fairness letters.",
+    title: "Detention and Removal Lawyer",
+    href: "/immigration-lawyers-melbourne/detention-removal-lawyer-melbourne/",
+    description: "Urgent advice where a person is detained or facing removal.",
   },
 ];
 

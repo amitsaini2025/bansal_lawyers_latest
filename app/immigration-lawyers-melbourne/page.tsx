@@ -22,7 +22,7 @@ import {
 export const metadata: Metadata = createMetadata({
   title: "Immigration Lawyers Melbourne | Visa Refusals, Appeals & Migration Law",
   description:
-    "Immigration Lawyers Melbourne for visa refusals, cancellations, ART appeals, partner, student and skilled visas. Book a consultation with Bansal Lawyers.",
+    "Immigration lawyers in Melbourne for visa refusals, cancellations, ART appeals, judicial review, character decisions, and citizenship refusals.",
   path: "/immigration-lawyers-melbourne",
   keywords: [
     "Immigration Lawyers Melbourne",
@@ -30,17 +30,13 @@ export const metadata: Metadata = createMetadata({
     "Visa Lawyer Melbourne",
     "Visa Refusal Lawyer Melbourne",
     "ART Appeal Lawyer Melbourne",
-    "Partner Visa Lawyer Melbourne",
-    "Student Visa Lawyer Melbourne",
-    "Skilled Migration Lawyer Melbourne",
+    "Judicial Review Lawyer Melbourne",
+    "Section 501 Character Lawyer",
+    "Ministerial Intervention Lawyer Melbourne",
   ],
 });
 
 const immigrationMatters = [
-  {
-    title: "Visa applications",
-    href: "/immigration-lawyers-melbourne/visa-application-lawyer-melbourne/",
-  },
   {
     title: "Visa refusals",
     href: "/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/",
@@ -54,46 +50,34 @@ const immigrationMatters = [
     href: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne/",
   },
   {
-    title: "Partner visas",
-    href: "/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/",
+    title: "Judicial review",
+    href: "/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/",
   },
   {
-    title: "Student visas",
-    href: "/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/",
+    title: "Character and section 501",
+    href: "/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/",
   },
   {
-    title: "Skilled migration",
-    href: "/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/",
+    title: "Ministerial intervention",
+    href: "/immigration-lawyers-melbourne/ministerial-intervention-lawyer-melbourne/",
   },
   {
-    title: "Employer-sponsored visas",
-    href: "/immigration-lawyers-melbourne/employer-sponsored-visa-lawyer-melbourne/",
+    title: "Detention and removal",
+    href: "/immigration-lawyers-melbourne/detention-removal-lawyer-melbourne/",
   },
   {
-    title: "Permanent residency",
-    href: "/immigration-lawyers-melbourne/permanent-residency-lawyer-melbourne/",
-  },
-  {
-    title: "Citizenship matters",
+    title: "Citizenship refusals",
     href: "/immigration-lawyers-melbourne/citizenship-lawyer-australia/",
-  },
-  {
-    title: "Requests for further information",
-    href: "/immigration-lawyers-melbourne/request-for-further-information-lawyer-melbourne/",
-  },
-  {
-    title: "Immigration document review",
-    href: "/immigration-lawyers-melbourne/immigration-document-review-lawyer-melbourne/",
   },
 ];
 
 const approachPoints = [
-  "Explaining your immigration options in plain language",
-  "Reviewing your visa history and documents",
-  "Helping with refusals and cancellations",
-  "Supporting review applications and evidence preparation",
-  "Giving practical advice based on your deadlines and risks",
-  "Handling sensitive immigration matters with care",
+  "Explaining refusal, cancellation, and review options in plain language",
+  "Checking the decision record and the time limit",
+  "ART appeals and judicial review",
+  "Character refusals, section 501 cancellations, and revocation requests",
+  "Ministerial intervention only after other remedies are assessed",
+  "Urgent advice on detention and removal",
 ];
 
 const immigrationFaqs = [
@@ -108,14 +92,14 @@ const immigrationFaqs = [
       "Yes. We assist with ART reviews, often called appeals, for visa refusals and cancellations. We also help with other migration-related decisions that can be reviewed.",
   },
   {
-    question: "Can you help with partner visa applications?",
+    question: "Do you lodge new visa applications?",
     answer:
-      "Yes. We prepare partner visa applications (often called spouse visas), including de facto relationship evidence and supporting documents.",
+      "No. New visa applications are handled separately. This practice acts when a decision has gone wrong: refusals, cancellations, tribunal appeals, court challenges, character matters, and citizenship refusals.",
   },
   {
-    question: "Do you help with student visa matters?",
+    question: "Can you take a tribunal decision to court?",
     answer:
-      "Yes. We help with student visa applications, refusals and requests from the Department, including the Genuine Student requirement.",
+      "Yes. After the ART has decided a matter, we advise on judicial review in the Federal Circuit and Family Court, including whether there is jurisdictional error and what the filing deadline is.",
   },
   {
     question: "When should I contact an immigration lawyer?",
@@ -145,10 +129,10 @@ export default function ImmigrationLawyersMelbournePage() {
         intro={
           <>
             <p>
-              Immigration decisions can affect your family, your work, your studies, your business and your future in Australia. When a visa application, refusal, cancellation or review is involved, you need solid legal advice.
+              A visa refusal, cancellation, or tribunal decision can affect your family, your work, and your right to stay in Australia. When the decision has already been made, you need advice on review rights and court options.
             </p>
             <p style={{ marginTop: "0.75rem" }}>
-              At Bansal Lawyers, we&apos;re immigration lawyers in Melbourne. We help clients with immigration and migration law matters across Australia. We&apos;ll talk through your options, help you prepare the right documents and plan your next steps.
+              Bansal Lawyers acts in visa refusals, cancellations, ART appeals, judicial review, character decisions, ministerial intervention, detention and removal, and citizenship refusals.
             </p>
           </>
         }
@@ -171,7 +155,7 @@ export default function ImmigrationLawyersMelbournePage() {
         <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
           <h2>Immigration Advice Based on Your Situation</h2>
           <p style={{ fontSize: "1.12rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-            Every immigration matter is different. You might need help with a visa application. You might have had a refusal or a cancellation. Or you might have an ART review deadline or a request for information coming up.
+            The next step depends on the decision you have. It may be a refusal, a cancellation notice, an ART deadline, a character notice, or a tribunal decision that can only be challenged in court.
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
             Our visa lawyers in Melbourne look at your background, documents, visa history and deadlines. Then we give you practical legal advice on your options.
@@ -267,51 +251,49 @@ export default function ImmigrationLawyersMelbournePage() {
         </div>
       </Section>
 
-      {/* 5. Partner Visa and Family Migration [H2] */}
-      <Section tone="warm" id="partner-visas">
+      <Section tone="warm" id="court-and-character">
         <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-          <span className="eyebrow">Family Unity & Relationship Evidence</span>
-          <h2>Partner Visa and Family Migration</h2>
+          <span className="eyebrow">Court and character</span>
+          <h2>Judicial Review and Character Decisions</h2>
           <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-            Partner visa matters need strong evidence and careful preparation. A weak application or missing information can cause delays or a refusal.
+            Once the tribunal has decided a case, the remaining question is whether the decision was lawful. A court does not re-decide the visa. It looks for jurisdictional error.
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
             Our{" "}
             <Link
-              href="/immigration-lawyers-melbourne/partner-visa-lawyer-melbourne/"
+              href="/immigration-lawyers-melbourne/judicial-review-lawyer-melbourne/"
               style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
             >
-              partner visa lawyers in Melbourne
+              judicial review lawyers
             </Link>{" "}
-            help with partner visa applications (often called spouse visas), de facto relationship evidence, document preparation and responses to immigration concerns.
+            act in the Federal Circuit and Family Court. Character refusals and cancellations, including section 501, are handled by our{" "}
+            <Link
+              href="/immigration-lawyers-melbourne/character-section-501-lawyer-melbourne/"
+              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
+            >
+              section 501 lawyers
+            </Link>
+            .
           </p>
         </div>
       </Section>
 
-      {/* 6. Student Visa and Skilled Migration [H2] */}
-      <Section tone="white" id="student-and-skilled">
+      <Section tone="white" id="intervention-and-detention">
         <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
-          <span className="eyebrow">Education & Career Pathways</span>
-          <h2>Student Visa and Skilled Migration</h2>
+          <span className="eyebrow">After the usual remedies</span>
+          <h2>Ministerial Intervention, Detention and Removal</h2>
           <p style={{ fontSize: "1.08rem", lineHeight: "1.75", color: "var(--ink)", marginTop: "1rem" }}>
-            Students and skilled workers often need help with eligibility, documents, the Genuine Student requirement, work-related evidence, sponsorship pathways and long-term visa planning.
+            A request to the Minister is considered only in limited circumstances, and usually after tribunal and court options have been assessed.
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
-            As{" "}
+            If a person is detained or a removal date has been set, contact our{" "}
             <Link
-              href="/immigration-lawyers-melbourne/student-visa-lawyer-melbourne/"
+              href="/immigration-lawyers-melbourne/detention-removal-lawyer-melbourne/"
               style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
             >
-              student visa lawyers
+              detention and removal lawyers
             </Link>{" "}
-            and{" "}
-            <Link
-              href="/immigration-lawyers-melbourne/skilled-migration-lawyer-melbourne/"
-              style={{ color: "var(--brand-blue)", fontWeight: 600, textDecoration: "underline" }}
-            >
-              skilled migration lawyers in Melbourne
-            </Link>
-            , we help you understand the process before you submit or respond to a visa matter.
+            the same day. The ART time limit for a person in detention is 14 days, and the tribunal cannot extend it.
           </p>
         </div>
       </Section>
@@ -337,7 +319,7 @@ export default function ImmigrationLawyersMelbournePage() {
       {/* 8. Speak With Immigration Lawyers in Melbourne [H2] */}
       <CtaSection
         title="Speak With Immigration Lawyers in Melbourne"
-        text="Need help with a visa application, refusal, cancellation, review or immigration advice? Our team can talk you through the next step."
+        text="If you have a refusal, a cancellation, a tribunal decision, or a detention notice, we can tell you what the deadline is and what can still be done."
         action={{ label: "Book a Consultation", href: "/contact" }}
         phone="1300 226 725"
         phoneLabel="Speak With Our Immigration Team"
