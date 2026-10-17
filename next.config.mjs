@@ -1,12 +1,10 @@
 import fs from "node:fs";
 import path from "node:path";
-import type { NextConfig } from "next";
-import { blogArticles } from "./lib/blog-data";
 
 /** Top-level app routes that must not be overridden by a legacy blog URL. */
-function reservedRootPaths(): Set<string> {
+function reservedRootPaths() {
   const appDir = path.join(process.cwd(), "app");
-  const reserved = new Set<string>(["/api"]);
+  const reserved = new Set(["/api"]);
   for (const entry of fs.readdirSync(appDir, { withFileTypes: true })) {
     if (!entry.isDirectory() || entry.name.startsWith("(") || entry.name.startsWith("_")) continue;
     const dir = path.join(appDir, entry.name);
@@ -17,20 +15,25 @@ function reservedRootPaths(): Set<string> {
   return reserved;
 }
 
-/** Old site served posts at /slug. New posts in blogArticles pick this up on the next build. */
-function legacyBlogRedirects(taken: Set<string>) {
-  return blogArticles.flatMap((article) => {
-    const destination = article.href;
-    if (!destination.startsWith("/blog/")) return [];
-    const slug = destination.slice("/blog/".length);
-    if (!slug || slug.includes("/")) return [];
+/** Old site served posts at /slug. A new app/blog/<slug> page picks this up on the next build. */
+function legacyBlogRedirects(taken) {
+  const blogDir = path.join(process.cwd(), "app", "blog");
+  if (!fs.existsSync(blogDir)) return [];
+  const redirects = [];
+  for (const entry of fs.readdirSync(blogDir, { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name.startsWith("(") || entry.name.startsWith("_")) continue;
+    const slug = entry.name;
+    if (!slug || slug.includes("/")) continue;
+    const dir = path.join(blogDir, slug);
+    if (!fs.existsSync(path.join(dir, "page.tsx")) && !fs.existsSync(path.join(dir, "page.ts"))) continue;
     const source = `/${slug}`;
-    if (taken.has(source)) return [];
-    return [{ source, destination, permanent: true as const }];
-  });
+    if (taken.has(source)) continue;
+    redirects.push({ source, destination: `/blog/${slug}`, permanent: true });
+  }
+  return redirects;
 }
 
-const nextConfig: NextConfig = {
+const nextConfig = {
   poweredByHeader: false,
   compress: true,
   images: {
@@ -342,7 +345,7 @@ const nextConfig: NextConfig = {
         permanent: true,
       },
     ];
-    const taken = new Set<string>([...reservedRootPaths(), ...manual.map((rule) => rule.source)]);
+    const taken = new Set([...reservedRootPaths(), ...manual.map((rule) => rule.source)]);
     return [...manual, ...legacyBlogRedirects(taken)];
   },
 };
