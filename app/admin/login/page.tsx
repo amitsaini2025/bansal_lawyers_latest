@@ -1,32 +1,59 @@
 import { redirect } from "next/navigation";
-import { loginAction } from "@/lib/admin/actions";
-import { getCurrentAdmin } from "@/lib/admin/auth";
-import { messageOf } from "@/components/admin/AdminBits";
+import { sendLoginCodeAction, verifyLoginCodeAction } from "@/lib/admin/actions";
+import { currentLoginCode, getCurrentAdmin } from "@/lib/admin/auth";
+import { Flash, messageOf } from "@/components/admin/AdminBits";
+import { ADMIN_OTP_EMAIL } from "@/lib/admin/otp";
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ error?: string | string[] }>;
+  searchParams: Promise<{ error?: string | string[]; notice?: string | string[] }>;
 }) {
   if (await getCurrentAdmin()) redirect("/admin/dashboard");
-  const error = messageOf((await searchParams).error);
+  const params = await searchParams;
+  const error = messageOf(params.error);
+  const notice = messageOf(params.notice);
+  const pending = await currentLoginCode();
 
   return (
     <main className="admin-login">
-      <form action={loginAction}>
+      <div className="admin-login__card">
         <h1>Staff sign in</h1>
-        <p className="admin-lead">Sign in with the staff account below.</p>
-        {error ? <p className="admin-flash admin-flash--bad">{error}</p> : null}
-        <label>
-          Email
-          <input name="email" type="email" autoComplete="username" defaultValue="admin@bansallawyers.com.au" required />
-        </label>
-        <label>
-          Password
-          <input name="password" type="password" autoComplete="current-password" defaultValue="C00lins@278" required />
-        </label>
-        <button type="submit">Sign in</button>
-      </form>
+        <p className="admin-lead">
+          {pending
+            ? `Enter the six-digit code sent to ${ADMIN_OTP_EMAIL}. It expires in 10 minutes.`
+            : `A six-digit sign-in code will be emailed to ${ADMIN_OTP_EMAIL}.`}
+        </p>
+        <Flash notice={notice} error={error} />
+        {pending ? (
+          <>
+            <form action={verifyLoginCodeAction}>
+              <label>
+                Sign-in code
+                <input
+                  className="admin-login__code"
+                  name="code"
+                  inputMode="numeric"
+                  autoComplete="one-time-code"
+                  pattern="[0-9]{6}"
+                  maxLength={6}
+                  required
+                />
+              </label>
+              <button type="submit">Sign in</button>
+            </form>
+            <form action={sendLoginCodeAction}>
+              <button className="admin-button--ghost" type="submit">
+                Email a new code
+              </button>
+            </form>
+          </>
+        ) : (
+          <form action={sendLoginCodeAction}>
+            <button type="submit">Email sign-in code</button>
+          </form>
+        )}
+      </div>
     </main>
   );
 }

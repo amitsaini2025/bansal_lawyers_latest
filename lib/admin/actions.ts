@@ -1,7 +1,17 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { authenticateStaff, endAdminSession, hashPassword, requireAdmin, startAdminSession } from "@/lib/admin/auth";
+import { beginLoginCode, clearLoginCode, currentLoginCode, endAdminSession, findOtpAdmin, hashPassword, requireAdmin, startAdminSession } from "@/lib/admin/auth";
+import {
+  ADMIN_OTP_EMAIL,
+  ADMIN_OTP_MAX_ATTEMPTS,
+  ADMIN_OTP_SECONDS,
+  createLoginCode,
+  hashLoginCode,
+  loginCodeMatches,
+  loginCodeSendBlocked,
+  noteLoginCodeSent,
+} from "@/lib/admin/otp";
 import {
   addBlock,
   deleteBlock,
@@ -48,17 +58,86 @@ function isNextRedirect(error: unknown) {
   );
 }
 
-export async function loginAction(formData: FormData) {
-  const email = text(formData, "email", 191).toLowerCase();
-  const password = String(formData.get("password") ?? "");
-  if (!email || !password) bounce("/admin/login", "Email and password are required.");
+function databaseUnreachable(error: unknown) {
+  const code = typeof error === "object" && error !== null && "code" in error ? String((error as { code?: unknown }).code) : "";
+  return code === "ECONNREFUSED" || code === "ECONNRESET" || code === "PROTOCOL_CONNECTION_LOST";
+}
+
+export async function sendLoginCodeAction() {
+  const blocked = loginCodeSendBlocked(ADMIN_OTP_EMAIL);
+  if (blocked === "wait") bounce("/admin/login", "A code was just sent. Wait a minute before requesting another.");
+  if (blocked === "limited") bounce("/admin/login", "Too many codes have been sent. Wait a few minutes and try again.");
+
   try {
-    const staff = await authenticateStaff(email, password);
-    if (staff === "limited") bounce("/admin/login", "Too many attempts. Wait a few minutes and try again.");
-    if (!staff) bounce("/admin/login", "Those details do not match an active staff account.");
+    const staff = await findOtpAdmin();
+    if (!staff) bounce("/admin/login", "Sign-in is unavailable because that staff account is not active.");
+
+    const code = createLoginCode();
+    const exp = Math.floor(Date.now() / 1000) + ADMIN_OTP_SECONDS;
+    await beginLoginCode({ id: staff.id, codeHash: hashLoginCode(staff.id, code), exp, attempts: 0 });
+
+    const config = getMailConfig();
+    const mailer = getMailTransporter();
+    if (!config || !mailer) {
+      await clearLoginCode();
+      bounce("/admin/login", "Email is not configured, so the sign-in code could not be sent.");
+    }
+
+    try {
+      await mailer.sendMail({
+        from: config.fromEmail,
+        to: ADMIN_OTP_EMAIL,
+        subject: "Your Bansal Lawyers admin sign-in code",
+        text: `Your admin sign-in code is ${code}. It expires in 10 minutes. If you did not request this code, you can ignore this email.`,
+        html: `<p>Your admin sign-in code is <strong style="letter-spacing:0.2em;font-size:20px">${code}</strong>.</p><p>It expires in 10 minutes. If you did not request this code, you can ignore this email.</p>`,
+      });
+    } catch (error) {
+      console.error("[Admin] Sign-in code email failed", error);
+      await clearLoginCode();
+      bounce("/admin/login", "The sign-in code could not be sent. Try again in a moment.");
+    }
+    noteLoginCodeSent(ADMIN_OTP_EMAIL);
+  } catch (error) {
+    if (isNextRedirect(error)) throw error;
+    await clearLoginCode();
+    if (error instanceof AdminDatabaseError) bounce("/admin/login", error.message);
+    if (databaseUnreachable(error)) {
+      bounce("/admin/login", "The staff database could not be reached, so the sign-in code was not sent.");
+    }
+    console.error("[Admin]", error);
+    bounce("/admin/login", "The sign-in code could not be sent. Try again in a moment.");
+  }
+  done("/admin/login", `A sign-in code was sent to ${ADMIN_OTP_EMAIL}.`);
+}
+
+export async function verifyLoginCodeAction(formData: FormData) {
+  const submitted = text(formData, "code", 12);
+  const challenge = await currentLoginCode();
+  if (!challenge) bounce("/admin/login", "Request a new sign-in code.");
+
+  if (!loginCodeMatches(challenge.id, submitted, challenge.codeHash)) {
+    const attempts = challenge.attempts + 1;
+    if (attempts >= ADMIN_OTP_MAX_ATTEMPTS) {
+      await clearLoginCode();
+      bounce("/admin/login", "Too many attempts. Request a new sign-in code.");
+    }
+    await beginLoginCode({ ...challenge, attempts });
+    bounce("/admin/login", "That code is not valid.");
+  }
+
+  try {
+    const staff = await findOtpAdmin();
+    if (!staff || staff.id !== challenge.id) {
+      await clearLoginCode();
+      bounce("/admin/login", "Sign-in is unavailable because that staff account is not active.");
+    }
     await startAdminSession(staff.id);
   } catch (error) {
-    failure(error, "/admin/login");
+    if (isNextRedirect(error)) throw error;
+    if (error instanceof AdminDatabaseError) bounce("/admin/login", error.message);
+    if (databaseUnreachable(error)) bounce("/admin/login", "The staff database could not be reached.");
+    console.error("[Admin]", error);
+    bounce("/admin/login", "Sign-in could not be completed. Try again.");
   }
   redirect("/admin/dashboard");
 }

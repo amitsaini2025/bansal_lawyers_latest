@@ -7,6 +7,7 @@ import "@fontsource/libre-baskerville/700.css";
 import { MicrosoftClarity } from "@/components/analytics/MicrosoftClarity";
 import { Footer, Header } from "@/components/layout";
 import { SiteChrome } from "@/components/layout/SiteChrome";
+import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
 import { siteUrl } from "@/lib/site";
 import "./globals.css";
 import "./refinements.css";
@@ -77,7 +78,7 @@ export default function RootLayout({
   return (
     <html lang="en-AU">
       <body>
-        <SiteChrome header={<Header />} footer={<Footer />}>
+        <SiteChrome header={<Header />} footer={<Footer />} turnstileSiteKey={getTurnstileSiteKey()}>
           {children}
         </SiteChrome>
         <MicrosoftClarity />

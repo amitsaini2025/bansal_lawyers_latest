@@ -1,4 +1,34 @@
+import fs from "node:fs";
+import path from "node:path";
 import type { NextConfig } from "next";
+import { blogArticles } from "./lib/blog-data";
+
+/** Top-level app routes that must not be overridden by a legacy blog URL. */
+function reservedRootPaths(): Set<string> {
+  const appDir = path.join(process.cwd(), "app");
+  const reserved = new Set<string>(["/api"]);
+  for (const entry of fs.readdirSync(appDir, { withFileTypes: true })) {
+    if (!entry.isDirectory() || entry.name.startsWith("(") || entry.name.startsWith("_")) continue;
+    const dir = path.join(appDir, entry.name);
+    if (fs.existsSync(path.join(dir, "page.tsx")) || fs.existsSync(path.join(dir, "page.ts"))) {
+      reserved.add(`/${entry.name}`);
+    }
+  }
+  return reserved;
+}
+
+/** Old site served posts at /slug. New posts in blogArticles pick this up on the next build. */
+function legacyBlogRedirects(taken: Set<string>) {
+  return blogArticles.flatMap((article) => {
+    const destination = article.href;
+    if (!destination.startsWith("/blog/")) return [];
+    const slug = destination.slice("/blog/".length);
+    if (!slug || slug.includes("/")) return [];
+    const source = `/${slug}`;
+    if (taken.has(source)) return [];
+    return [{ source, destination, permanent: true as const }];
+  });
+}
 
 const nextConfig: NextConfig = {
   poweredByHeader: false,
@@ -25,7 +55,7 @@ const nextConfig: NextConfig = {
     ];
   },
   async redirects() {
-    return [
+    const manual = [
       {
         source: "/practice-areas",
         destination: "/immigration-lawyers-melbourne",
@@ -311,22 +341,9 @@ const nextConfig: NextConfig = {
         destination: "/property-lawyers-melbourne/property-dispute-lawyer-melbourne",
         permanent: true,
       },
-      {
-        source: "/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
-        destination: "/blog/dont-miss-out-why-the-new-subclass-482-sid-visa-is-the-fastest-way-to-work-and-stay-in-australia",
-        permanent: true,
-      },
-      {
-        source: "/breaking-rental-agreement-early-in-australia",
-        destination: "/blog/breaking-rental-agreement-early-in-australia",
-        permanent: true,
-      },
-      {
-        source: "/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
-        destination: "/blog/breaking-australia-national-innovation-visa-set-to-revolutionize-immigration-in-2024",
-        permanent: true,
-      },
     ];
+    const taken = new Set<string>([...reservedRootPaths(), ...manual.map((rule) => rule.source)]);
+    return [...manual, ...legacyBlogRedirects(taken)];
   },
 };
 

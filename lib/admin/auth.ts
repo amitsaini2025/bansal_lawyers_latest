@@ -3,6 +3,14 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { RowDataPacket } from "mysql2/promise";
 import { adminRows } from "@/lib/admin/db";
+import {
+  ADMIN_OTP_COOKIE,
+  ADMIN_OTP_EMAIL,
+  ADMIN_OTP_SECONDS,
+  type OtpChallenge,
+  readOtpChallenge,
+  signOtpChallenge,
+} from "@/lib/admin/otp";
 import { ADMIN_COOKIE, ADMIN_SESSION_SECONDS, readAdminSession, signAdminSession } from "@/lib/admin/session";
 
 export interface StaffUser {
@@ -13,41 +21,12 @@ export interface StaffUser {
   phone: string;
 }
 
-const attempts = new Map<string, { count: number; resetAt: number }>();
-
-function loginLimited(email: string): boolean {
-  const now = Date.now();
-  const entry = attempts.get(email);
-  if (!entry || now > entry.resetAt) {
-    attempts.set(email, { count: 1, resetAt: now + 10 * 60_000 });
-    return false;
-  }
-  entry.count += 1;
-  return entry.count > 8;
-}
-
-export async function passwordMatches(plain: string, hash: string): Promise<boolean> {
-  if (!plain || !hash.startsWith("$2")) return false;
-  const normalized = hash.replace(/^\$2y\$/, "$2a$");
-  try {
-    return await bcrypt.compare(plain, normalized);
-  } catch {
-    return false;
-  }
-}
-
 export async function hashPassword(plain: string): Promise<string> {
   return bcrypt.hash(plain, 10);
 }
 
-async function loadStaff(id: number): Promise<StaffUser | null> {
-  const rows = await adminRows<RowDataPacket>(
-    `SELECT id, first_name, last_name, email, phone, status, password
-     FROM admins WHERE id = ? LIMIT 1`,
-    [id]
-  );
-  const row = rows[0];
-  if (!row || !String(row.password ?? "").startsWith("$2")) return null;
+function staffFromRow(row: RowDataPacket | undefined): StaffUser | null {
+  if (!row) return null;
   if (row.status != null && Number(row.status) !== 1) return null;
   return {
     id: Number(row.id),
@@ -55,6 +34,34 @@ async function loadStaff(id: number): Promise<StaffUser | null> {
     lastName: String(row.last_name ?? ""),
     email: String(row.email ?? ""),
     phone: String(row.phone ?? ""),
+  };
+}
+
+async function loadStaff(id: number): Promise<StaffUser | null> {
+  const rows = await adminRows<RowDataPacket>(
+    `SELECT id, first_name, last_name, email, phone, status
+     FROM admins WHERE id = ? LIMIT 1`,
+    [id]
+  );
+  return staffFromRow(rows[0]);
+}
+
+export async function findOtpAdmin(): Promise<StaffUser | null> {
+  const rows = await adminRows<RowDataPacket>(
+    `SELECT id, first_name, last_name, email, phone, status
+     FROM admins WHERE LOWER(email) = ? LIMIT 1`,
+    [ADMIN_OTP_EMAIL]
+  );
+  return staffFromRow(rows[0]);
+}
+
+function cookieOptions(maxAge: number, path: string) {
+  return {
+    httpOnly: true,
+    sameSite: "lax" as const,
+    secure: process.env.NODE_ENV === "production",
+    path,
+    maxAge,
   };
 }
 
@@ -75,47 +82,35 @@ export async function requireAdmin(): Promise<StaffUser> {
   return admin;
 }
 
-export async function authenticateStaff(email: string, password: string): Promise<StaffUser | "limited" | null> {
-  const key = email.toLowerCase();
-  if (loginLimited(key)) return "limited";
-
-  const rows = await adminRows<RowDataPacket>(
-    `SELECT id, first_name, last_name, email, phone, status, password
-     FROM admins WHERE email = ? LIMIT 1`,
-    [email]
-  );
-  const row = rows[0];
-  if (!row || !(await passwordMatches(password, String(row.password ?? "")))) return null;
-  if (row.status != null && Number(row.status) !== 1) return null;
-  attempts.delete(key);
-  return {
-    id: Number(row.id),
-    firstName: String(row.first_name ?? ""),
-    lastName: String(row.last_name ?? ""),
-    email: String(row.email ?? ""),
-    phone: String(row.phone ?? ""),
-  };
-}
-
 export async function startAdminSession(id: number) {
   const exp = Math.floor(Date.now() / 1000) + ADMIN_SESSION_SECONDS;
   const jar = await cookies();
-  jar.set(ADMIN_COOKIE, signAdminSession(id, exp), {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/admin",
-    maxAge: ADMIN_SESSION_SECONDS,
-  });
+  jar.set(ADMIN_COOKIE, signAdminSession(id, exp), cookieOptions(ADMIN_SESSION_SECONDS, "/admin"));
+  jar.set(ADMIN_OTP_COOKIE, "", cookieOptions(0, "/admin"));
 }
 
 export async function endAdminSession() {
   const jar = await cookies();
-  jar.set(ADMIN_COOKIE, "", {
-    httpOnly: true,
-    sameSite: "lax",
-    secure: process.env.NODE_ENV === "production",
-    path: "/admin",
-    maxAge: 0,
-  });
+  jar.set(ADMIN_COOKIE, "", cookieOptions(0, "/admin"));
+  jar.set(ADMIN_OTP_COOKIE, "", cookieOptions(0, "/admin"));
+}
+
+export async function beginLoginCode(challenge: OtpChallenge) {
+  const jar = await cookies();
+  const maxAge = Math.max(1, challenge.exp - Math.floor(Date.now() / 1000));
+  jar.set(ADMIN_OTP_COOKIE, signOtpChallenge(challenge), cookieOptions(Math.min(maxAge, ADMIN_OTP_SECONDS), "/admin"));
+}
+
+export async function currentLoginCode(): Promise<OtpChallenge | null> {
+  try {
+    const jar = await cookies();
+    return readOtpChallenge(jar.get(ADMIN_OTP_COOKIE)?.value);
+  } catch {
+    return null;
+  }
+}
+
+export async function clearLoginCode() {
+  const jar = await cookies();
+  jar.set(ADMIN_OTP_COOKIE, "", cookieOptions(0, "/admin"));
 }
