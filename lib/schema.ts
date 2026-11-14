@@ -1,5 +1,5 @@
 import { ajayBansalFaqSchemaEntities } from "@/lib/ajay-bansal-faqs";
-import { businessDetails, siteUrl, socialLinks } from "@/lib/site";
+import { businessDetails, siteUrl } from "@/lib/site";
 import type { BreadcrumbItem, FaqItem } from "@/types/content";
 
 const homeUrl = `${siteUrl}/`;
@@ -13,74 +13,37 @@ export const HOME_PAGE_SCHEMA_TITLE =
 export const HOME_PAGE_SCHEMA_DESCRIPTION =
   "Explore immigration, family, criminal, commercial, property and civil law services from Bansal Lawyers in Melbourne.";
 
-const HOME_ORGANIZATION_DESCRIPTION =
-  "Bansal Lawyers provides legal services in Melbourne, including immigration, family, criminal, commercial, property and civil law.";
+/** Canonical organization LegalService used across page JSON-LD graphs. */
+function createOrganizationLegalService() {
+  return {
+    "@type": "LegalService" as const,
+    "@id": organizationId,
+    name: businessDetails.name,
+    alternateName: "Bansal Lawyers Melbourne",
+    url: homeUrl,
+    telephone: businessDetails.nationalLine,
+    email: businessDetails.email,
+    address: {
+      "@type": "PostalAddress" as const,
+      streetAddress: businessDetails.streetAddress,
+      addressLocality: businessDetails.addressLocality,
+      addressRegion: businessDetails.addressRegion,
+      postalCode: businessDetails.postalCode,
+      addressCountry: businessDetails.addressCountry,
+    },
+    areaServed: {
+      "@type": "City" as const,
+      name: "Melbourne",
+    },
+  };
+}
 
 /** Homepage JSON-LD @graph: LegalService, WebSite, WebPage, FAQPage (linked entities). */
 export function createHomePageGraphSchema(faqs: FaqItem[]) {
-  const nationalPhoneDigits = businessDetails.nationalLineTel.replace(/\D/g, "");
-  const directPhone = businessDetails.phone;
-
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "LegalService",
-        "@id": organizationId,
-        name: businessDetails.name,
-        url: homeUrl,
-        description: HOME_ORGANIZATION_DESCRIPTION,
-        telephone: nationalPhoneDigits,
-        email: businessDetails.email,
-        image: `${siteUrl}/images/collins-street-office.webp`,
-        logo: `${siteUrl}/images/logo.webp`,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        contactPoint: [
-          {
-            "@type": "ContactPoint",
-            telephone: nationalPhoneDigits,
-            contactType: "customer service",
-          },
-          {
-            "@type": "ContactPoint",
-            telephone: directPhone,
-            contactType: "appointments",
-          },
-        ],
-        openingHoursSpecification: [
-          {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            opens: "09:30",
-            closes: "18:00",
-          },
-        ],
-        areaServed: [
-          { "@type": "City", name: "Melbourne" },
-          { "@type": "AdministrativeArea", name: "Victoria" },
-          { "@type": "Country", name: "Australia" },
-        ],
-        sameAs: [
-          socialLinks.linkedin,
-          socialLinks.facebook,
-          "https://www.instagram.com/bansallawyers/",
-        ],
-        knowsAbout: [
-          "Immigration Law",
-          "Family Law",
-          "Criminal Law",
-          "Commercial Law",
-          "Property Law",
-          "Civil Law",
-        ],
-      },
+      createOrganizationLegalService(),
       {
         "@type": "WebSite",
         "@id": websiteId,
@@ -124,97 +87,7 @@ export function createHomePageGraphSchema(faqs: FaqItem[]) {
 export function createLegalServiceSchema() {
   return {
     "@context": "https://schema.org",
-    "@type": ["LegalService", "LawFirm", "LocalBusiness"],
-    "@id": `${siteUrl}/#organization`,
-    name: businessDetails.name,
-    alternateName: "Bansal Lawyers Melbourne",
-    description:
-      "Melbourne law firm at Level 8, 278 Collins Street, Melbourne VIC 3000 providing strategic legal representation in Australian immigration law, ART appeals, family law, criminal defence, commercial law, property & conveyancing, and civil litigation.",
-    url: siteUrl,
-    telephone: businessDetails.nationalLine,
-    email: businessDetails.email,
-    priceRange: "$$",
-    image: `${siteUrl}/images/logo.webp`,
-    logo: {
-      "@type": "ImageObject",
-      url: `${siteUrl}/images/logo.webp`,
-    },
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: businessDetails.streetAddress,
-      addressLocality: businessDetails.addressLocality,
-      addressRegion: businessDetails.addressRegion,
-      postalCode: businessDetails.postalCode,
-      addressCountry: businessDetails.addressCountry,
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: "-37.8164",
-      longitude: "144.9650",
-    },
-    hasMap:
-      "https://www.google.com/maps/search/?api=1&query=Level+8,+278+Collins+Street+Melbourne+VIC+3000",
-    areaServed: [
-      {
-        "@type": "City",
-        name: "Melbourne",
-      },
-      {
-        "@type": "AdministrativeArea",
-        name: "Victoria",
-      },
-      {
-        "@type": "Country",
-        name: "Australia",
-      },
-    ],
-    knowsAbout: [
-      "Australian Immigration Law",
-      "Administrative Review Tribunal (ART) Appeals",
-      "Visa Refusals and Visa Cancellations (s56, s57, s116, s501)",
-      "Family Law, Divorce, Parenting Orders and Property Settlement",
-      "Criminal Defence and Magistrates' Court Representation",
-      "Commercial Law, Business Contracts and Shareholder Agreements",
-      "Property Law, Conveyancing and Retail/Commercial Leases",
-      "Civil Litigation and VCAT/Court Dispute Resolution",
-    ],
-    contactPoint: [
-      {
-        "@type": "ContactPoint",
-        telephone: businessDetails.nationalLine,
-        contactType: "customer service",
-        areaServed: "AU",
-        availableLanguage: ["English", "Hindi", "Punjabi"],
-      },
-      {
-        "@type": "ContactPoint",
-        telephone: businessDetails.phone,
-        contactType: "Direct Solicitor Line",
-        areaServed: "AU",
-        availableLanguage: ["English", "Hindi", "Punjabi"],
-      },
-    ],
-    openingHoursSpecification: [
-      {
-        "@type": "OpeningHoursSpecification",
-        dayOfWeek: [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-        ],
-        opens: "09:30",
-        closes: "18:00",
-      },
-    ],
-    sameAs: [
-      "https://www.facebook.com/profile.php?id=61562008576642",
-      "https://www.instagram.com/bansallawyers",
-      "https://www.linkedin.com/company/bansallawyers",
-      "https://twitter.com/BansalLawyers",
-      "https://www.youtube.com/@BansalLawyers",
-    ],
+    ...createOrganizationLegalService(),
   };
 }
 
@@ -222,17 +95,6 @@ export const IMMIGRATION_LAWYERS_PAGE_TITLE =
   "Immigration Lawyers Melbourne, VIC 3000 | Bansal Lawyers";
 export const IMMIGRATION_LAWYERS_PAGE_DESCRIPTION =
   "Immigration lawyers in Melbourne for visa refusals, cancellations, ART appeals, judicial review, character decisions, and citizenship refusals. Call 1300 226 725.";
-
-const IMMIGRATION_ORGANIZATION_DESCRIPTION =
-  "Melbourne law firm providing legal advice and representation in Australian immigration law, ART reviews, visa refusals and cancellations, judicial review, character decisions and citizenship refusals.";
-
-function schemaNationalTelephoneHyphenated(): string {
-  const spaced = businessDetails.nationalLine.trim().replace(/\s+/g, "-");
-  if (/^1300-/i.test(spaced) || spaced.startsWith("1300")) {
-    return `+61-${spaced}`;
-  }
-  return businessDetails.nationalLine;
-}
 
 /** Immigration lawyers page JSON-LD @graph (LegalService, WebPage, WebSite, breadcrumbs, team, FAQ). */
 export function createImmigrationLawyersPageSchema(faqs: FaqItem[]) {
@@ -242,70 +104,12 @@ export function createImmigrationLawyersPageSchema(faqs: FaqItem[]) {
   const faqId = `${pageUrl}#faq`;
   const ajayId = `${pageUrl}#ajay-bansal`;
   const michaelId = `${pageUrl}#michael-saleh`;
-  const nationalPhone = schemaNationalTelephoneHyphenated();
-  const mapQuery = encodeURIComponent(
-    `${businessDetails.streetAddress}, ${businessDetails.addressLocality} ${businessDetails.addressRegion} ${businessDetails.postalCode}`
-  );
 
   return {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LegalService",
-        "@id": organizationId,
-        name: businessDetails.name,
-        alternateName: "Bansal Lawyers Melbourne",
-        url: homeUrl,
-        description: IMMIGRATION_ORGANIZATION_DESCRIPTION,
-        telephone: nationalPhone,
-        email: businessDetails.email,
-        logo: {
-          "@type": "ImageObject",
-          url: `${siteUrl}/images/logo.webp`,
-        },
-        image: `${siteUrl}/images/collins-street-office.webp`,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: -37.8164,
-          longitude: 144.965,
-        },
-        hasMap: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
-        areaServed: [
-          { "@type": "City", name: "Melbourne" },
-          { "@type": "AdministrativeArea", name: "Victoria" },
-          { "@type": "Country", name: "Australia" },
-        ],
-        openingHoursSpecification: [
-          {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            opens: "09:30",
-            closes: "18:00",
-          },
-        ],
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: nationalPhone,
-          email: businessDetails.email,
-          contactType: "customer service",
-          areaServed: "AU",
-          availableLanguage: ["English", "Hindi", "Punjabi"],
-        },
-        sameAs: [
-          socialLinks.facebook,
-          socialLinks.instagram,
-          socialLinks.linkedin,
-          socialLinks.twitter,
-          socialLinks.youtube,
-        ],
+        ...createOrganizationLegalService(),
         employee: [{ "@id": ajayId }, { "@id": michaelId }],
       },
       {
@@ -549,9 +353,6 @@ export const FAMILY_LAWYERS_MELBOURNE_PAGE_DESCRIPTION =
 const FAMILY_LAWYERS_MELBOURNE_SERVICE_DESCRIPTION =
   "Bansal Lawyers provides family law advice and representation in Melbourne, assisting with divorce and separation, parenting arrangements, child custody, property settlements, spousal maintenance, consent orders, binding financial agreements and family violence intervention orders. The firm also assists with matters involving marriages registered in India and provides legal assistance in English, Hindi and Punjabi.";
 
-const FAMILY_PAGE_ORGANIZATION_DESCRIPTION =
-  "Bansal Lawyers provides legal services and advice in Melbourne, Victoria.";
-
 /** Family lawyers Melbourne hub JSON-LD @graph. */
 export function createFamilyLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   const pageUrl = `${siteUrl}/family-lawyers-melbourne`;
@@ -563,31 +364,7 @@ export function createFamilyLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": ["LegalService", "LocalBusiness"],
-        "@id": organizationId,
-        name: businessDetails.name,
-        url: homeUrl,
-        description: FAMILY_PAGE_ORGANIZATION_DESCRIPTION,
-        telephone: businessDetails.phone,
-        email: businessDetails.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        areaServed: { "@type": "City", name: "Melbourne" },
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: businessDetails.phone,
-          contactType: "customer service",
-          email: businessDetails.email,
-          availableLanguage: ["English", "Hindi", "Punjabi"],
-        },
-      },
+      createOrganizationLegalService(),
       {
         "@type": "WebSite",
         "@id": websiteId,
@@ -788,9 +565,6 @@ export const COMMERCIAL_LAWYERS_MELBOURNE_PAGE_DESCRIPTION =
 const COMMERCIAL_LAWYERS_MELBOURNE_SERVICE_DESCRIPTION =
   "Commercial legal assistance for businesses, business owners, entrepreneurs, professionals and investors in Melbourne. Services include business contracts, commercial agreements, loan agreements, shareholder agreements, partnership agreements, business sales and purchases, commercial disputes and debt recovery.";
 
-const COMMERCIAL_PAGE_ORGANIZATION_DESCRIPTION =
-  "Bansal Lawyers provides legal services and advice in Melbourne, Victoria.";
-
 /** Commercial lawyers Melbourne hub JSON-LD @graph. */
 export function createCommercialLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   const pageUrl = `${siteUrl}/commercial-lawyers-melbourne`;
@@ -802,30 +576,7 @@ export function createCommercialLawyersMelbournePageGraphSchema(faqs: FaqItem[])
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": ["LegalService", "LocalBusiness"],
-        "@id": organizationId,
-        name: businessDetails.name,
-        url: homeUrl,
-        description: COMMERCIAL_PAGE_ORGANIZATION_DESCRIPTION,
-        telephone: businessDetails.phone,
-        email: businessDetails.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        areaServed: { "@type": "City", name: "Melbourne" },
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: businessDetails.phone,
-          contactType: "customer service",
-          email: businessDetails.email,
-        },
-      },
+      createOrganizationLegalService(),
       {
         "@type": "WebSite",
         "@id": websiteId,
@@ -915,24 +666,7 @@ export function createPropertyLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": "LegalService",
-        "@id": organizationId,
-        name: businessDetails.name,
-        alternateName: "Bansal Lawyers Melbourne",
-        url: homeUrl,
-        telephone: businessDetails.nationalLine,
-        email: businessDetails.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        areaServed: { "@type": "City", name: "Melbourne" },
-      },
+      createOrganizationLegalService(),
       {
         "@type": "WebPage",
         "@id": pageId,
@@ -1024,47 +758,11 @@ export function createCivilLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   const serviceId = `${pageUrl}#service`;
   const breadcrumbId = `${pageUrl}#breadcrumb`;
   const faqId = `${pageUrl}#faq`;
-  const mobileTelDigits = businessDetails.phone.replace(/\s/g, "");
 
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        "@type": ["LegalService", "LocalBusiness"],
-        "@id": organizationId,
-        name: businessDetails.name,
-        url: homeUrl,
-        telephone: businessDetails.nationalLine,
-        email: businessDetails.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        areaServed: [
-          { "@type": "City", name: "Melbourne" },
-          { "@type": "AdministrativeArea", name: "Victoria" },
-          { "@type": "Country", name: "Australia" },
-        ],
-        openingHoursSpecification: [
-          {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            opens: "09:30",
-            closes: "18:00",
-          },
-        ],
-        contactPoint: {
-          "@type": "ContactPoint",
-          telephone: mobileTelDigits,
-          contactType: "customer service",
-          email: businessDetails.email,
-          availableLanguage: ["English", "Hindi", "Punjabi"],
-        },
-      },
+      createOrganizationLegalService(),
       {
         "@type": "WebSite",
         "@id": websiteId,
@@ -1157,21 +855,11 @@ const CONTACT_PAGE_SCHEMA_NAME = "Contact Bansal Lawyers | Melbourne Lawyers";
 const CONTACT_PAGE_SCHEMA_DESCRIPTION =
   "Contact Bansal Lawyers in Melbourne CBD for enquiries about immigration, family, criminal, commercial, property and civil law. Call 1300 226 725 or request a consultation.";
 
-const CONTACT_ORGANIZATION_DESCRIPTION =
-  "Bansal Lawyers is a Melbourne law firm providing legal assistance in immigration, family, criminal, commercial, property and civil law.";
-
-function schemaMobileTelephoneDisplay(): string {
-  return businessDetails.phone;
-}
-
 /** Contact page JSON-LD @graph: ContactPage, WebSite, LegalService, BreadcrumbList. */
 export function createContactPageGraphSchema() {
   const contactUrl = `${siteUrl}/contact`;
   const contactWebPageId = `${contactUrl}#webpage`;
   const contactBreadcrumbId = `${contactUrl}#breadcrumb`;
-  const mapQuery = encodeURIComponent(
-    `${businessDetails.streetAddress}, ${businessDetails.addressLocality} ${businessDetails.addressRegion} ${businessDetails.postalCode}`
-  );
 
   return {
     "@context": "https://schema.org",
@@ -1196,69 +884,7 @@ export function createContactPageGraphSchema() {
         inLanguage: "en-AU",
         publisher: { "@id": organizationId },
       },
-      {
-        "@type": ["LegalService", "Attorney"],
-        "@id": organizationId,
-        name: businessDetails.name,
-        url: homeUrl,
-        description: CONTACT_ORGANIZATION_DESCRIPTION,
-        logo: {
-          "@type": "ImageObject",
-          url: `${siteUrl}/images/logo.webp`,
-        },
-        image: `${siteUrl}/images/collins-street-office.webp`,
-        telephone: businessDetails.nationalLine,
-        email: businessDetails.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
-        geo: {
-          "@type": "GeoCoordinates",
-          latitude: -37.8164,
-          longitude: 144.965,
-        },
-        hasMap: `https://www.google.com/maps/search/?api=1&query=${mapQuery}`,
-        areaServed: [
-          { "@type": "City", name: "Melbourne" },
-          { "@type": "AdministrativeArea", name: "Victoria" },
-          { "@type": "Country", name: "Australia" },
-        ],
-        contactPoint: [
-          {
-            "@type": "ContactPoint",
-            telephone: businessDetails.nationalLine,
-            contactType: "customer service",
-            areaServed: "AU",
-            availableLanguage: ["English", "Hindi", "Punjabi"],
-          },
-          {
-            "@type": "ContactPoint",
-            telephone: schemaMobileTelephoneDisplay(),
-            contactType: "legal enquiries",
-            areaServed: "AU",
-          },
-        ],
-        openingHoursSpecification: [
-          {
-            "@type": "OpeningHoursSpecification",
-            dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            opens: "09:30",
-            closes: "18:00",
-          },
-        ],
-        sameAs: [
-          socialLinks.linkedin,
-          socialLinks.facebook,
-          "https://www.instagram.com/bansallawyers",
-          socialLinks.twitter,
-          socialLinks.youtube,
-        ],
-      },
+      createOrganizationLegalService(),
       {
         "@type": "BreadcrumbList",
         "@id": contactBreadcrumbId,
@@ -1458,9 +1084,6 @@ const ABOUT_PAGE_SCHEMA_NAME = "About Bansal Lawyers | Trusted Law Firm in Melbo
 const ABOUT_PAGE_SCHEMA_DESCRIPTION =
   "Learn about Bansal Lawyers, a Melbourne law firm led by Ajay Bansal, providing legal services in immigration, family, criminal, commercial and property law.";
 
-const ABOUT_ORGANIZATION_DESCRIPTION =
-  "Bansal Lawyers is a Melbourne law firm providing legal services in immigration, family, criminal, commercial, property and civil law.";
-
 /** About page JSON-LD @graph: LegalService, AboutPage, WebSite, Person, BreadcrumbList. */
 export function createAboutPageGraphSchema() {
   const aboutUrl = `${siteUrl}/about`;
@@ -1473,34 +1096,9 @@ export function createAboutPageGraphSchema() {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "LegalService",
-        "@id": organizationId,
-        name: businessDetails.name,
-        url: homeUrl,
-        description: ABOUT_ORGANIZATION_DESCRIPTION,
-        logo: {
-          "@type": "ImageObject",
-          url: `${siteUrl}/images/logo.webp`,
-        },
-        image: `${siteUrl}/images/collins-street-office.webp`,
-        telephone: businessDetails.nationalLine,
-        email: businessDetails.email,
-        address: {
-          "@type": "PostalAddress",
-          streetAddress: businessDetails.streetAddress,
-          addressLocality: businessDetails.addressLocality,
-          addressRegion: businessDetails.addressRegion,
-          postalCode: businessDetails.postalCode,
-          addressCountry: businessDetails.addressCountry,
-        },
+        ...createOrganizationLegalService(),
         founder: { "@id": ajayId },
         employee: [{ "@id": ajayId }, { "@id": michaelId }],
-        sameAs: [
-          socialLinks.linkedin,
-          socialLinks.facebook,
-          socialLinks.instagram,
-          socialLinks.twitter,
-        ],
       },
       {
         "@type": "AboutPage",
@@ -1590,10 +1188,7 @@ export function createAjayBansalPageGraphSchema() {
         },
         image: `${siteUrl}/images/team/ajay-bansal-director.webp`,
         jobTitle: "Director & Principal Lawyer",
-        worksFor: {
-          "@type": ["LegalService", "LawFirm", "LocalBusiness"],
-          "@id": organizationId,
-        },
+        worksFor: createOrganizationLegalService(),
         telephone: mobileTel,
         email: businessDetails.email,
         knowsLanguage: ["English", "Hindi", "Punjabi"],
