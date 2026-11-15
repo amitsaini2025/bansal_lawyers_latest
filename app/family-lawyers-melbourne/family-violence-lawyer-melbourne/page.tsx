@@ -472,14 +472,25 @@ export default function FamilyViolenceLawyerMelbournePage() {
                 </p>
               </Link>
               <Link
-                href="/criminal-lawyers-melbourne/"
+                href="/family-lawyers-melbourne/intervention-order-lawyer-melbourne/"
                 className="practice-card"
                 style={{ textDecoration: "none" }}
               >
-                <h3>Criminal Lawyers Melbourne</h3>
+                <h3>Intervention Order Lawyer Melbourne</h3>
                 <p>
-                  Magistrates&apos; Court representation for breach of
-                  intervention order allegations and summary offences.
+                  Applying for, responding to, or varying a family violence
+                  intervention order.
+                </p>
+              </Link>
+              <Link
+                href="/criminal-lawyers-melbourne/family-violence-criminal-lawyer-melbourne/"
+                className="practice-card"
+                style={{ textDecoration: "none" }}
+              >
+                <h3>Family Violence Criminal Lawyer Melbourne</h3>
+                <p>
+                  Criminal charges connected to family violence, including
+                  alleged breaches of an intervention order.
                 </p>
               </Link>
             </div>

@@ -11,6 +11,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema, createFaqSchema, createLegalServiceSchema } from "@/lib/schema";
 
@@ -295,6 +296,8 @@ export default function IndianPowerOfAttorneyLawyerMelbournePage() {
         phoneLabel="Direct Property Solicitor"
         badges={["Drafted around the transaction", "Referral to a notary public", "English, Hindi and Punjabi"]}
       />
+
+      <RelatedServices currentPath="/property-lawyers-melbourne/indian-power-of-attorney-lawyer-melbourne" />
 
       <Section tone="warm" id="faqs">
         <Faq items={poaFaqs} />

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useId, useMemo, useRef, useState } from "react";
+import { useId, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { BlogCard } from "@/components/ui/BlogCard";
 import { Container, Section, SectionHeader } from "@/components/ui";
 
@@ -24,21 +24,28 @@ interface BlogListClientProps {
 
 const ITEMS_PER_PAGE = 6;
 
+function subscribeToBlogPage() {
+  return () => {};
+}
+
+function readBlogPage() {
+  const pageParam = Number(new URLSearchParams(window.location.search).get("page"));
+  return Number.isInteger(pageParam) && pageParam >= 1 ? pageParam : 1;
+}
+
 export function BlogListClient({ articles }: BlogListClientProps) {
+  const urlPage = useSyncExternalStore(subscribeToBlogPage, readBlogPage, () => 1);
   const [selectedCategory, setSelectedCategory] = useState<string>("All Articles");
   const [searchQuery, setSearchQuery] = useState<string>("");
   const [currentPage, setCurrentPage] = useState<number>(1);
+  const [appliedUrlPage, setAppliedUrlPage] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
   const searchInputId = useId();
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const params = new URLSearchParams(window.location.search);
-    const pageParam = Number(params.get("page"));
-    if (Number.isInteger(pageParam) && pageParam >= 1) {
-      setCurrentPage(pageParam);
-    }
-  }, []);
+  if (urlPage !== appliedUrlPage) {
+    setAppliedUrlPage(urlPage);
+    setCurrentPage(urlPage);
+  }
 
   // Extract unique categories preserving logical order
   const categories = useMemo(() => {

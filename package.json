@@ -33,7 +33,7 @@
     "@types/react": "^19.1.16",
     "@types/react-dom": "^19.1.9",
     "eslint": "^9.36.0",
-    "eslint-config-next": "^15.5.29",
+    "eslint-config-next": "^16.4.6",
     "typescript": "^5.9.2"
   }
 }

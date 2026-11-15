@@ -11,6 +11,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -178,6 +179,8 @@ export default function CommercialAgreementLawyerMelbournePage() {
       </Section>
 
       {/* FAQs */}
+      <RelatedServices currentPath="/commercial-lawyers-melbourne/commercial-agreement-lawyer-melbourne" />
+
       <Section tone="warm" id="faqs">
         <Faq items={commercialAgreementFaqs} />
       </Section>

@@ -12,6 +12,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -254,6 +255,8 @@ export default function InterventionOrderLawyerMelbournePage() {
       />
 
       {/* 6. Frequently Asked Questions [H2] */}
+      <RelatedServices currentPath="/family-lawyers-melbourne/intervention-order-lawyer-melbourne" />
+
       <Section tone="warm" id="faqs">
         <Faq items={ivoFaqs} subtitle="Common questions regarding intervention order applications, Magistrates" />
       </Section>

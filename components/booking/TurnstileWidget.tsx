@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, type RefObject } from "react";
 
 interface TurnstileApi {
   render: (
@@ -40,6 +40,44 @@ function loadTurnstileScript(): Promise<void> {
     document.head.appendChild(script);
   });
   return scriptPromise;
+}
+
+/**
+ * Keep the Cloudflare script off the first paint.
+ * It starts when a form below the fold scrolls into view, or when the visitor
+ * focuses, clicks, or submits a form. A form already on screen waits for that
+ * use, so the homepage does not download the challenge just by loading.
+ */
+export function useTurnstileOnEngage(enabled: boolean): {
+  formRef: RefObject<HTMLFormElement | null>;
+  engaged: boolean;
+  arm: () => void;
+} {
+  const formRef = useRef<HTMLFormElement>(null);
+  const [engaged, setEngaged] = useState(false);
+
+  useEffect(() => {
+    if (!enabled || engaged) return;
+    const form = formRef.current;
+    if (!form) return;
+    const engage = () => setEngaged(true);
+    const startedBelow = form.getBoundingClientRect().top >= window.innerHeight;
+    form.addEventListener("focusin", engage);
+    form.addEventListener("pointerdown", engage);
+    const observer = startedBelow
+      ? new IntersectionObserver((entries) => {
+          if (entries.some((entry) => entry.isIntersecting)) engage();
+        })
+      : null;
+    observer?.observe(form);
+    return () => {
+      form.removeEventListener("focusin", engage);
+      form.removeEventListener("pointerdown", engage);
+      observer?.disconnect();
+    };
+  }, [enabled, engaged]);
+
+  return { formRef, engaged, arm: () => setEngaged(true) };
 }
 
 /** `onToken` must be stable (e.g. a state setter); it receives "" when the token expires or fails. */

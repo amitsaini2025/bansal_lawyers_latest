@@ -292,6 +292,14 @@ export default function CharacterSection501LawyerPage() {
                 <h3>Detention and Removal</h3>
                 <p>Urgent advice if cancellation has led to detention or a removal pathway.</p>
               </Link>
+              <Link
+                href="/criminal-lawyers-melbourne/criminal-defence-lawyer-melbourne/"
+                className="practice-card"
+                style={{ textDecoration: "none" }}
+              >
+                <h3>Criminal Defence Lawyer Melbourne</h3>
+                <p>Criminal charges that can also affect a visa or a character decision.</p>
+              </Link>
             </div>
           </div>
         </Container>

@@ -12,6 +12,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -280,6 +281,8 @@ export default function SpousalMaintenanceLawyerMelbournePage() {
       />
 
       {/* 6. Frequently Asked Questions [H2] */}
+      <RelatedServices currentPath="/family-lawyers-melbourne/spousal-maintenance-lawyer-melbourne" />
+
       <Section tone="warm" id="faqs">
         <Faq items={spousalFaqs} subtitle="Key answers to questions about spousal maintenance eligibility, time limits, and financial disclosure under Australian family law." />
       </Section>

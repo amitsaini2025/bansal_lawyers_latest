@@ -12,6 +12,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -449,6 +450,8 @@ export default function ConsentOrdersLawyerMelbournePage() {
       />
 
       {/* 10. Frequently Asked Questions [H2] */}
+      <RelatedServices currentPath="/family-lawyers-melbourne/consent-orders-lawyer-melbourne" />
+
       <Section tone="warm" id="faqs">
         <Faq items={consentOrdersFaqs} subtitle="Clear answers to common questions about consent orders, property settlements, and parenting agreements in Victoria." />
       </Section>

@@ -275,6 +275,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/intervenition-orders",
+        destination: "/family-lawyers-melbourne/intervention-order-lawyer-melbourne",
+        permanent: true,
+      },
+      {
         source: "/art-application",
         destination: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne",
         permanent: true,
@@ -290,6 +295,11 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/juridicational-error-federal-circuit-court-application",
+        destination: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne",
+        permanent: true,
+      },
+      {
         source: "/federal-court-application",
         destination: "/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne",
         permanent: true,
@@ -300,12 +310,22 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/trafic-offences",
+        destination: "/criminal-lawyers-melbourne/traffic-offence-lawyer-melbourne",
+        permanent: true,
+      },
+      {
         source: "/drink-driving-offences",
         destination: "/criminal-lawyers-melbourne/drink-driving-lawyer-melbourne",
         permanent: true,
       },
       {
         source: "/assault-charges",
+        destination: "/criminal-lawyers-melbourne/assault-lawyer-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/assualt-charges",
         destination: "/criminal-lawyers-melbourne/assault-lawyer-melbourne",
         permanent: true,
       },
@@ -341,6 +361,11 @@ const nextConfig = {
       },
       {
         source: "/caveats-disputes-and-removal",
+        destination: "/property-lawyers-melbourne/property-dispute-lawyer-melbourne",
+        permanent: true,
+      },
+      {
+        source: "/caveats-disputs-and-removal",
         destination: "/property-lawyers-melbourne/property-dispute-lawyer-melbourne",
         permanent: true,
       },

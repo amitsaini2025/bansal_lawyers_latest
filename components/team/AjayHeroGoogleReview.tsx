@@ -90,12 +90,13 @@ export function AjayHeroGoogleReview() {
     if (scrollEndPx <= 0) return;
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (reducedMotion) {
-      setTranslateY(-scrollEndPx);
-      return;
-    }
 
     const update = () => {
+      if (reducedMotion) {
+        setTranslateY(-scrollEndPx);
+        return;
+      }
+
       const startEl = document.getElementById(SCROLL_START_ID);
       const endEl = document.getElementById(SCROLL_END_ID);
       if (!startEl || !endEl) return;
@@ -114,11 +115,12 @@ export function AjayHeroGoogleReview() {
       setTranslateY(-progress * scrollEndPx);
     };
 
-    update();
+    const frame = requestAnimationFrame(update);
     window.addEventListener("scroll", update, { passive: true });
     window.addEventListener("resize", update);
 
     return () => {
+      cancelAnimationFrame(frame);
       window.removeEventListener("scroll", update);
       window.removeEventListener("resize", update);
     };

@@ -12,6 +12,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -282,6 +283,8 @@ export default function ChildSupportLawyerMelbournePage() {
       />
 
       {/* 7. Frequently Asked Questions [H2] */}
+      <RelatedServices currentPath="/family-lawyers-melbourne/child-support-lawyer-melbourne" />
+
       <Section tone="warm" id="faqs">
         <Faq items={childSupportFaqs} subtitle="Common questions regarding child support assessments, private agreements, and Services Australia reviews in Victoria." />
       </Section>

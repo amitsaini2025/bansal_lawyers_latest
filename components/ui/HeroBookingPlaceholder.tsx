@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { TurnstileWidget } from "@/components/booking/TurnstileWidget";
+import { TurnstileWidget, useTurnstileOnEngage } from "@/components/booking/TurnstileWidget";
 import { businessDetails } from "@/lib/site";
 
 const HONEYPOT_INPUT_NAME = "bl_hp_field";
@@ -50,9 +51,19 @@ export function HeroBookingPlaceholder({
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileKey, setTurnstileKey] = useState(0);
   const [savedEnquiryId, setSavedEnquiryId] = useState<number | null>(null);
+  const turnstileEnabled = Boolean(turnstileSiteKey);
+  const { formRef, engaged: turnstileEngaged, arm: armTurnstile } = useTurnstileOnEngage(turnstileEnabled);
+  const pendingSubmitRef = useRef(false);
 
   const statusRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    if (!pendingSubmitRef.current || !turnstileToken) return;
+    pendingSubmitRef.current = false;
+    setError(null);
+    formRef.current?.requestSubmit();
+  }, [turnstileToken, formRef]);
 
   useEffect(
     () => () => {
@@ -83,7 +94,9 @@ export function HeroBookingPlaceholder({
     if (loading) return;
     if (!event.currentTarget.reportValidity()) return;
     if (turnstileSiteKey && !turnstileToken) {
-      setError("Please wait for the security check to finish, then try again.");
+      armTurnstile();
+      pendingSubmitRef.current = true;
+      setError("Complete the security check below. Your enquiry will send when it finishes.");
       return;
     }
 
@@ -334,7 +347,7 @@ export function HeroBookingPlaceholder({
         </div>
       ) : (
         /* Real Functional Form */
-        <form className="hero-booking-card__form" onSubmit={handleSubmit} aria-busy={loading}>
+        <form ref={formRef} className="hero-booking-card__form" onSubmit={handleSubmit} aria-busy={loading}>
           {error && (
             <div
               style={{
@@ -509,22 +522,24 @@ export function HeroBookingPlaceholder({
             />
           </div>
 
-          <label
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: "0.45rem",
-              fontSize: "0.72rem",
-              color: "var(--ink-secondary)",
-              lineHeight: 1.4,
-              cursor: "pointer",
-            }}
-          >
-            <input type="checkbox" name="consent" required defaultChecked style={{ marginTop: "0.15rem" }} />
-            <span>I agree to be contacted by Bansal Lawyers about this enquiry.</span>
-          </label>
+          <div style={{ fontSize: "0.72rem", color: "var(--ink-secondary)", lineHeight: 1.4 }}>
+            <label
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "0.45rem",
+                cursor: "pointer",
+              }}
+            >
+              <input type="checkbox" name="consent" required defaultChecked style={{ marginTop: "0.15rem" }} />
+              <span>I agree to be contacted by Bansal Lawyers about this enquiry.</span>
+            </label>
+            <p style={{ margin: "0.35rem 0 0" }}>
+              Confidential enquiry. Read our <Link href="/legal/privacy">Privacy Policy</Link>.
+            </p>
+          </div>
 
-          {turnstileSiteKey ? (
+          {turnstileSiteKey && turnstileEngaged ? (
             <TurnstileWidget key={turnstileKey} siteKey={turnstileSiteKey} onToken={setTurnstileToken} />
           ) : null}
 
@@ -542,17 +557,6 @@ export function HeroBookingPlaceholder({
             )}
           </button>
 
-          <p
-            style={{
-              fontSize: "0.72rem",
-              color: "var(--ink-secondary)",
-              lineHeight: 1.4,
-              margin: "0.4rem 0 0",
-              textAlign: "center",
-            }}
-          >
-            Confidential enquiry. By submitting, you agree to contact by Bansal Lawyers Melbourne.
-          </p>
         </form>
       )}
 

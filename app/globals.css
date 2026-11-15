@@ -1924,6 +1924,45 @@ h3 {
   transform: translateX(4px);
 }
 
+.related-more {
+  margin-top: 1.75rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--line);
+}
+
+.related-more__label {
+  margin: 0 0 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+}
+
+.related-more ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem 1.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.related-more a {
+  font-weight: 600;
+  color: var(--navy-950);
+  text-decoration: none;
+}
+
+.related-more a:hover {
+  color: var(--brand-blue);
+  text-decoration: underline;
+}
+
+a.who-we-help-chip {
+  text-decoration: none;
+}
+
 /* Process Timeline */
 .process-grid {
   display: grid;
@@ -2278,6 +2317,10 @@ h3 {
   margin-top: 2rem;
   padding: 0;
   list-style: none;
+}
+
+.who-we-help-chips > li {
+  display: contents;
 }
 
 .who-we-help-chip {

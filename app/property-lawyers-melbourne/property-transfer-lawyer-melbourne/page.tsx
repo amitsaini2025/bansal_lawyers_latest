@@ -11,6 +11,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import { createBreadcrumbSchema, createFaqSchema, createLegalServiceSchema } from "@/lib/schema";
 
@@ -225,6 +226,8 @@ export default function PropertyTransferLawyerMelbournePage() {
           </div>
         </Container>
       </Section>
+
+      <RelatedServices currentPath="/property-lawyers-melbourne/property-transfer-lawyer-melbourne" />
 
       <Section tone="warm" id="faqs">
         <Faq items={transferFaqs} />

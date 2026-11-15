@@ -12,6 +12,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -413,6 +414,8 @@ export default function ArtAppealLawyerMelbournePage() {
       />
 
       {/* 10. Frequently Asked Questions [H2] */}
+      <RelatedServices currentPath="/immigration-lawyers-melbourne/art-appeal-lawyer-melbourne" />
+
       <Section tone="white" id="faqs">
         <Faq items={artFaqs} />
       </Section>

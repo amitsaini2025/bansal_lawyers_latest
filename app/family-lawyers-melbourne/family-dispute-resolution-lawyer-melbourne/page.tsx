@@ -12,6 +12,7 @@ import {
   SectionHeader,
   TrustBar,
 } from "@/components/ui";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { createMetadata } from "@/lib/metadata";
 import {
   createBreadcrumbSchema,
@@ -291,6 +292,8 @@ export default function FamilyDisputeResolutionLawyerMelbournePage() {
       />
 
       {/* 7. Frequently Asked Questions [H2] */}
+      <RelatedServices currentPath="/family-lawyers-melbourne/family-dispute-resolution-lawyer-melbourne" />
+
       <Section tone="warm" id="faqs">
         <Faq items={disputeFaqs} subtitle="Common questions regarding family dispute resolution (FDR), mediation, and out-of-court settlements in Melbourne." />
       </Section>

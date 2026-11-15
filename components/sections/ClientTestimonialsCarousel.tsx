@@ -137,10 +137,12 @@ export function ClientTestimonialsCarousel({ items }: ClientTestimonialsCarousel
   const visibleCount = useVisibleCount();
   const [index, setIndex] = useState(0);
   const maxIndex = Math.max(0, items.length - visibleCount);
+  const [clampedTo, setClampedTo] = useState(maxIndex);
 
-  useEffect(() => {
+  if (clampedTo !== maxIndex) {
+    setClampedTo(maxIndex);
     setIndex((current) => Math.min(current, maxIndex));
-  }, [maxIndex]);
+  }
 
   const goNext = useCallback(() => {
     setIndex((current) => Math.min(current + 1, maxIndex));

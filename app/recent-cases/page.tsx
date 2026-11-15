@@ -240,8 +240,12 @@ export default function RecentCasesPage() {
               }}
             >
               Every legal matter depends on its specific documents, timing, and evidence. If you are facing an
-              adverse decision, visa refusal, or court proceedings in Melbourne, speak with our legal team for
-              tailored guidance.
+              adverse decision, a{" "}
+              <Link href="/immigration-lawyers-melbourne/visa-refusal-lawyer-melbourne/">visa refusal</Link>,
+              or court proceedings in Melbourne, speak with our{" "}
+              <Link href="/immigration-lawyers-melbourne/">immigration lawyers</Link> or the wider legal team
+              for tailored guidance. Published commentary is also on the{" "}
+              <Link href="/blog/">blog</Link>.
             </p>
             <div style={{ display: "flex", gap: "1rem", justifyContent: "center", flexWrap: "wrap" }}>
               <ButtonLink href="/contact/" variant="primary">

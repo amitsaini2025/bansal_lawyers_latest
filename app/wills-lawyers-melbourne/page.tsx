@@ -17,6 +17,7 @@ import {
   createFaqSchema,
   createLegalServiceSchema,
 } from "@/lib/schema";
+import { RelatedServices } from "@/components/sections/RelatedServices";
 import { businessDetails } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
@@ -203,6 +204,33 @@ export default function WillsLawyersMelbournePage() {
           "Collins Street office and online consultations",
           "Wills drafted so they do not revoke each other",
           "English, Hindi and Punjabi",
+        ]}
+      />
+
+      <RelatedServices
+        heading="Related services"
+        intro="A will often sits next to other family, property and India-related documents. These are the pages clients usually need alongside estate planning."
+        links={[
+          {
+            title: "Indian Power of Attorney Lawyer Melbourne",
+            href: "/property-lawyers-melbourne/indian-power-of-attorney-lawyer-melbourne/",
+            description: "A power of attorney signed in Melbourne for property or other matters in India.",
+          },
+          {
+            title: "Binding Financial Agreement Lawyer Melbourne",
+            href: "/family-lawyers-melbourne/binding-financial-agreement-lawyer-melbourne/",
+            description: "Financial agreements that can change what a will, or the family law rules, would otherwise do.",
+          },
+          {
+            title: "Property Settlement Lawyer Melbourne",
+            href: "/family-lawyers-melbourne/property-settlement-lawyer-melbourne/",
+            description: "Separating the asset pool before a will is updated, or after a relationship ends.",
+          },
+          {
+            title: "Indian Lawyers Melbourne",
+            href: "/indian-lawyers-melbourne/",
+            description: "How wills, property and family matters are handled for clients with ties to India.",
+          },
         ]}
       />
 

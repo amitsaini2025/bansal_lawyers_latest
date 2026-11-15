@@ -1,7 +1,8 @@
 "use client";
 
+import Link from "next/link";
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { TurnstileWidget } from "@/components/booking/TurnstileWidget";
+import { TurnstileWidget, useTurnstileOnEngage } from "@/components/booking/TurnstileWidget";
 import { Button } from "@/components/ui/Button";
 import { businessDetails } from "@/lib/site";
 
@@ -31,8 +32,18 @@ export function ContactForm({ turnstileSiteKey = null }: ContactFormProps) {
   const [error, setError] = useState<string | null>(null);
   const [turnstileToken, setTurnstileToken] = useState("");
   const [turnstileKey, setTurnstileKey] = useState(0);
+  const turnstileEnabled = Boolean(turnstileSiteKey);
+  const { formRef, engaged: turnstileEngaged, arm: armTurnstile } = useTurnstileOnEngage(turnstileEnabled);
+  const pendingSubmitRef = useRef(false);
   const statusRef = useRef<HTMLDivElement>(null);
   const requestRef = useRef<AbortController | null>(null);
+
+  useEffect(() => {
+    if (!pendingSubmitRef.current || !turnstileToken) return;
+    pendingSubmitRef.current = false;
+    setError(null);
+    formRef.current?.requestSubmit();
+  }, [turnstileToken, formRef]);
 
   useEffect(() => () => {
     const request = requestRef.current;
@@ -45,7 +56,9 @@ export function ContactForm({ turnstileSiteKey = null }: ContactFormProps) {
     event.preventDefault();
     if (loading || !event.currentTarget.reportValidity()) return;
     if (turnstileSiteKey && !turnstileToken) {
-      setError("Please wait for the security check to finish, then try again.");
+      armTurnstile();
+      pendingSubmitRef.current = true;
+      setError("Complete the security check below. Your enquiry will send when it finishes.");
       return;
     }
     setLoading(true);
@@ -116,7 +129,7 @@ export function ContactForm({ turnstileSiteKey = null }: ContactFormProps) {
   }
 
   return (
-    <form className="contact-form" onSubmit={handleSubmit} aria-busy={loading}>
+    <form ref={formRef} className="contact-form" onSubmit={handleSubmit} aria-busy={loading}>
       {error && (
         <div ref={statusRef} className="form-error" role="alert" tabIndex={-1}>
           <p>{error}</p>
@@ -195,12 +208,15 @@ export function ContactForm({ turnstileSiteKey = null }: ContactFormProps) {
             placeholder="Please briefly describe your situation, key dates, deadlines, or court appearances if applicable..."
           />
         </label>
-        <label className="form-consent form-grid__wide">
-          <input name="consent" type="checkbox" required />
-          <span>
-            By submitting this form, you agree to be contacted by Bansal Lawyers about your enquiry.
-          </span>
-        </label>
+        <div className="form-grid__wide">
+          <label className="form-consent">
+            <input name="consent" type="checkbox" required />
+            <span>By submitting this form, you agree to be contacted by Bansal Lawyers about your enquiry.</span>
+          </label>
+          <p style={{ margin: "0.45rem 0 0", fontSize: "0.85rem" }}>
+            Read our <Link href="/legal/privacy">Privacy Policy</Link>.
+          </p>
+        </div>
       </div>
       <div className="form-honeypot" aria-hidden="true">
         <input
@@ -215,7 +231,7 @@ export function ContactForm({ turnstileSiteKey = null }: ContactFormProps) {
           data-1p-ignore
         />
       </div>
-      {turnstileSiteKey && (
+      {turnstileSiteKey && turnstileEngaged && (
         <TurnstileWidget key={turnstileKey} siteKey={turnstileSiteKey} onToken={setTurnstileToken} />
       )}
       <Button variant="primary" type="submit" disabled={loading}>

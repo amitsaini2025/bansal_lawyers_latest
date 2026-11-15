@@ -33,17 +33,17 @@ export function TypingHeroTitle({
   const [subIndex, setSubIndex] = useState(items[0]?.length ?? 0);
   const [isDeleting, setIsDeleting] = useState(false);
   const [blink, setBlink] = useState(true);
-  const [isMounted, setIsMounted] = useState(false);
+  const isMounted = useSyncExternalStore(
+    () => () => {},
+    () => true,
+    () => false,
+  );
   const reducedMotion = useSyncExternalStore(
     subscribeToMotionPreference, getMotionPreference, getServerMotionPreference
   );
   const item = items[index] ?? items[0] ?? "";
 
   const fullConstant = connector ? `${constantPrefix} ${connector}` : constantPrefix;
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Typing logic
   useEffect(() => {

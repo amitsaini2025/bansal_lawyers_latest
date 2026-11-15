@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { StructuredData } from "@/components/seo";
 import {
   ButtonLink,
@@ -96,17 +97,17 @@ const whyChoosePoints = [
   "A Melbourne-based team",
 ];
 
-const whoWeHelpClients = [
-  "Individuals",
-  "Families",
-  "Migrants",
-  "Students",
-  "Professionals",
-  "Business Owners",
-  "Property Buyers",
-  "Landlords",
-  "Tenants",
-  "People Involved in Legal Disputes",
+const whoWeHelpClients: { label: string; href?: string }[] = [
+  { label: "Individuals" },
+  { label: "Families", href: "/family-lawyers-melbourne/" },
+  { label: "Migrants", href: "/immigration-lawyers-melbourne/" },
+  { label: "Students", href: "/immigration-lawyers-melbourne/" },
+  { label: "Professionals" },
+  { label: "Business Owners", href: "/commercial-lawyers-melbourne/" },
+  { label: "Property Buyers", href: "/property-lawyers-melbourne/buying-property-lawyer-melbourne/" },
+  { label: "Landlords", href: "/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne/" },
+  { label: "Tenants", href: "/property-lawyers-melbourne/landlord-tenant-lawyer-melbourne/" },
+  { label: "People Involved in Legal Disputes", href: "/civil-lawyers-melbourne/" },
 ];
 
 const processSteps = [
@@ -267,6 +268,14 @@ export default function HomePage() {
             <PracticeAreaCard key={card.title} {...card} />
           ))}
         </div>
+        <p style={{ marginTop: "1.75rem", fontSize: "1.05rem", lineHeight: 1.7, color: "var(--ink-secondary)" }}>
+          We also prepare{" "}
+          <Link href="/wills-lawyers-melbourne/">wills for assets in Australia and India</Link>, and we
+          advise the Indian community through our{" "}
+          <Link href="/indian-lawyers-melbourne/">Indian lawyers in Melbourne</Link> page. Published
+          work is on our <Link href="/recent-cases/">recent cases</Link> and{" "}
+          <Link href="/blog/">legal updates</Link> pages.
+        </p>
       </Section>
 
       {/* 4. Why Choose Section */}
@@ -299,8 +308,14 @@ export default function HomePage() {
         />
         <ul className="who-we-help-chips" aria-label="Client Groups We Help">
           {whoWeHelpClients.map((client) => (
-            <li key={client} className="who-we-help-chip">
-              {client}
+            <li key={client.label}>
+              {client.href ? (
+                <Link href={client.href} className="who-we-help-chip">
+                  {client.label}
+                </Link>
+              ) : (
+                <span className="who-we-help-chip">{client.label}</span>
+              )}
             </li>
           ))}
         </ul>

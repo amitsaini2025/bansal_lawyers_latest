@@ -50,13 +50,18 @@ export default async function BlogPage() {
           <h1>Legal Insights &amp; Updates</h1>
           <p>
             Stay informed with our expert articles on legal trends, industry news, and
-            professional insights. Our Melbourne lawyers publish practical guidance on
-            family law, migration and visa matters, criminal defence, commercial disputes,
-            and property law so you can understand your options before taking the next step.
+            professional insights. Our Melbourne lawyers publish practical guidance on{" "}
+            <Link href="/family-lawyers-melbourne/">family law</Link>,{" "}
+            <Link href="/immigration-lawyers-melbourne/">migration and visa matters</Link>,{" "}
+            <Link href="/criminal-lawyers-melbourne/">criminal defence</Link>,{" "}
+            <Link href="/commercial-lawyers-melbourne/">commercial disputes</Link>, and{" "}
+            <Link href="/property-lawyers-melbourne/">property law</Link> so you can understand
+            your options before taking the next step.
           </p>
           <p>
             Whether you are dealing with a visa refusal, separation, business contract, or
-            property transaction, browse articles written by the team at Bansal Lawyers — or{" "}
+            property transaction, browse articles written by the team at Bansal Lawyers, read{" "}
+            <Link href="/recent-cases/">recent cases</Link>, or{" "}
             <Link href="/contact">contact us</Link> for advice tailored to your situation.
           </p>
         </div>

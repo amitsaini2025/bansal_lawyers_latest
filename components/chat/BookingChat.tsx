@@ -28,7 +28,7 @@ export function BookingChat({ turnstileSiteKey }: { turnstileSiteKey?: string | 
   const inputRef = useRef<HTMLTextAreaElement>(null);
   const threadRef = useRef<HTMLDivElement>(null);
   const [open, setOpen] = useState(false);
-  const [started, setStarted] = useState(false);
+  const startedRef = useRef(false);
   const [busy, setBusy] = useState(false);
   const [text, setText] = useState("");
   const [messages, setMessages] = useState<ChatMessage[]>([]);
@@ -42,13 +42,12 @@ export function BookingChat({ turnstileSiteKey }: { turnstileSiteKey?: string | 
 
   const onBookingPage = pathname.startsWith("/book-an-appointment");
 
-  useEffect(() => {
-    if (!open || started) return;
-    setStarted(true);
+  function openPanel() {
+    setOpen(true);
+    if (startedRef.current) return;
+    startedRef.current = true;
     void send("", []);
-    // The greeting is loaded once, the first time the panel opens.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, started]);
+  }
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
@@ -223,7 +222,13 @@ export function BookingChat({ turnstileSiteKey }: { turnstileSiteKey?: string | 
         type="button"
         className="booking-chat__launcher"
         aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
+        onClick={() => {
+          if (open) {
+            setOpen(false);
+            return;
+          }
+          openPanel();
+        }}
       >
         {open ? "Close" : "Chat with us"}
       </button>
