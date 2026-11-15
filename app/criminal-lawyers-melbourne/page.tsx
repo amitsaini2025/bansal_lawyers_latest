@@ -287,7 +287,8 @@ export default function CriminalLawyersMelbournePage() {
               If you&apos;d like to talk to one of our{" "}
               <strong>criminal lawyers in Melbourne</strong> about a charge, a summons or a police
               interview, get in touch. We&apos;ll listen, look at your paperwork and explain your options.
-              Contact us before your court date if you can.
+              Contact us before your court date if you can. When you book, we confirm the consultation fee
+              before any work starts, and later costs depend on the matter.
             </p>
             <p className="cta-section__contact">
               <strong>{businessDetails.name}</strong>

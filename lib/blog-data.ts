@@ -21,7 +21,7 @@ export const blogArticles: BlogArticle[] = [
   },
   {
     id: "divorce-lawyers-guide",
-    title: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couple",
+    title: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couples",
     eyebrow: "Family Law",
     category: "Family Law",
     description:
@@ -370,7 +370,7 @@ export const blogArticles: BlogArticle[] = [
     eyebrow: "Civil & Estate Law",
     category: "Civil & Estate Law",
     description:
-      "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, AHRC complaints, and civil liberties defense.",
+      "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, AHRC complaints, and civil liberties defence.",
     href: "/blog/human-rights-legal-recourse-australia",
     imageSrc: "/images/melbourne-legal-chambers.webp",
     imageAlt: "Human Rights and Legal Recourse in Australia",

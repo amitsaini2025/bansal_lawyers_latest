@@ -194,16 +194,22 @@ export const INDIAN_LAWYERS_MELBOURNE_PAGE_TITLE =
 export const INDIAN_LAWYERS_MELBOURNE_PAGE_DESCRIPTION =
   "Need an Indian lawyer in Melbourne? Bansal Lawyers offers legal advice in family, criminal, civil, commercial and dispute matters. Advice in English, Hindi and Punjabi. Contact our team today to discuss your legal needs.";
 
-/** Indian lawyers Melbourne page JSON-LD @graph: WebPage, BreadcrumbList, FAQPage. */
+/** Indian lawyers Melbourne page JSON-LD @graph: LegalService, WebPage, WebSite, breadcrumbs, team, FAQ. */
 export function createIndianLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   const pageUrl = `${siteUrl}/indian-lawyers-melbourne`;
   const pageId = `${pageUrl}#webpage`;
   const breadcrumbId = `${pageUrl}#breadcrumb`;
   const faqId = `${pageUrl}#faq`;
+  const ajayId = `${pageUrl}#ajay-bansal`;
+  const michaelId = `${pageUrl}#michael-saleh`;
 
   return {
     "@context": "https://schema.org",
     "@graph": [
+      {
+        ...createOrganizationLegalService(),
+        employee: [{ "@id": ajayId }, { "@id": michaelId }],
+      },
       {
         "@type": "WebPage",
         "@id": pageId,
@@ -211,9 +217,19 @@ export function createIndianLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
         name: INDIAN_LAWYERS_MELBOURNE_PAGE_TITLE,
         description: INDIAN_LAWYERS_MELBOURNE_PAGE_DESCRIPTION,
         inLanguage: "en-AU",
+        isPartOf: { "@id": websiteId },
         about: { "@id": organizationId },
+        mainEntity: { "@id": organizationId },
         breadcrumb: { "@id": breadcrumbId },
-        mainEntity: { "@id": faqId },
+        hasPart: [{ "@id": faqId }],
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: homeUrl,
+        name: businessDetails.name,
+        publisher: { "@id": organizationId },
+        inLanguage: "en-AU",
       },
       {
         "@type": "BreadcrumbList",
@@ -234,9 +250,28 @@ export function createIndianLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
         ],
       },
       {
+        "@type": "Person",
+        "@id": ajayId,
+        name: "Ajay Bansal",
+        jobTitle: "Director & Principal Lawyer",
+        email: businessDetails.email,
+        worksFor: { "@id": organizationId },
+        url: `${siteUrl}/about/ajay-bansal`,
+      },
+      {
+        "@type": "Person",
+        "@id": michaelId,
+        name: "Michael Saleh",
+        jobTitle: "Solicitor",
+        email: businessDetails.email,
+        worksFor: { "@id": organizationId },
+        url: `${siteUrl}/about/michael-saleh`,
+      },
+      {
         "@type": "FAQPage",
         "@id": faqId,
-        url: pageUrl,
+        url: `${pageUrl}#faqs`,
+        isPartOf: { "@id": pageId },
         inLanguage: "en-AU",
         mainEntity: faqs.map((item) => ({
           "@type": "Question",

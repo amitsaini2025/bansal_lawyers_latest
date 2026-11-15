@@ -409,7 +409,7 @@ export default function ChildCustodyLawyerMelbournePage() {
       {/* 9. Speak With a Child Custody Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Child Custody Lawyer in Melbourne"
-        text="If you are separating, dealing with parenting issues, concerned about your child’s living arrangements, or need help with parenting orders, Bansal Lawyers can help you understand your next step."
+        text="If you are separating, dealing with parenting issues, concerned about your child’s living arrangements, or need help with parenting orders, Bansal Lawyers can help you understand your next step. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Parenting Team",

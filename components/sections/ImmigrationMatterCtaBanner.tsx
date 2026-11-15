@@ -18,7 +18,10 @@ export function ImmigrationMatterCtaBanner() {
           </div>
           <div className="immigration-matter-cta__copy">
             <h2 id="immigration-matter-cta-title">Need Advice on Your Immigration Matter?</h2>
-            <p>Speak with our experienced immigration lawyers in Melbourne.</p>
+            <p>
+              Speak with our experienced immigration lawyers in Melbourne. When you book, we confirm the
+              consultation fee before any work starts, and later costs depend on the matter.
+            </p>
           </div>
           <Link className="immigration-matter-cta__button" href="/contact">
             Request a Consultation →

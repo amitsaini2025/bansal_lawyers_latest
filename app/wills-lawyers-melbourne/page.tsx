@@ -195,7 +195,7 @@ export default function WillsLawyersMelbournePage() {
 
       <CtaSection
         title="Talk to a Lawyer About Your Will"
-        text="Bring a list of what you own in Australia and in India. We will tell you whether you need one will or two, and which powers of attorney fit."
+        text="Bring a list of what you own in Australia and in India. We will tell you whether you need one will or two, and which powers of attorney fit. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{ label: `Call ${businessDetails.phone}`, href: businessDetails.phoneTel }}
         phone="1300 226 725"

@@ -286,7 +286,7 @@ export default function IndianPowerOfAttorneyLawyerMelbournePage() {
 
       <CtaSection
         title="Speak With Us About an Indian Power of Attorney"
-        text="Before you sign a draft sent from India, or appoint someone to sell, manage or attend to a matter for you, speak with us about the wording. If a notary public is required, we will refer you to one, and we will explain what still has to be done in India."
+        text="Before you sign a draft sent from India, or appoint someone to sell, manage or attend to a matter for you, speak with us about the wording. If a notary public is required, we will refer you to one, and we will explain what still has to be done in India. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Property Law Team",

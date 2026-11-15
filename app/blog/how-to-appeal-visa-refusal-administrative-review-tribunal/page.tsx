@@ -64,7 +64,7 @@ const relatedImmigrationServices = [
     title: "Visa Cancellation Lawyer Melbourne",
     href: "/immigration-lawyers-melbourne/visa-cancellation-lawyer-melbourne/",
     description:
-      "Urgent legal defense for character cancellations (s 501), bogus documents (s 109), and breach of conditions (s 116).",
+      "Urgent legal defence for character cancellations (s 501), bogus documents (s 109), and breach of conditions (s 116).",
   },
   {
     title: "Judicial Review Lawyer Melbourne",

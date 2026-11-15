@@ -359,7 +359,7 @@ export default function VisaRefusalLawyerMelbournePage() {
       {/* 8. Speak With a Visa Refusal Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Visa Refusal Lawyer in Melbourne"
-        text="If your visa has been refused, do not wait until the deadline is close. Early advice can help you understand whether you can appeal, what documents may be needed, and what risks should be addressed."
+        text="If your visa has been refused, do not wait until the deadline is close. Early advice can help you understand whether you can appeal, what documents may be needed, and what risks should be addressed. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Visa Refusal Team",

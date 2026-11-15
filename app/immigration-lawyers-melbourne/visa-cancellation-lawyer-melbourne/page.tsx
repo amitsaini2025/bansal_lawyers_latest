@@ -420,7 +420,7 @@ export default function VisaCancellationLawyerMelbournePage() {
       {/* 9. Speak With a Visa Cancellation Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Visa Cancellation Lawyer in Melbourne"
-        text="If you have received a visa cancellation notice or your visa has been cancelled, do not delay. Early advice can help you understand your position, your deadlines, and your possible next steps."
+        text="If you have received a visa cancellation notice or your visa has been cancelled, do not delay. Early advice can help you understand your position, your deadlines, and your possible next steps. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Cancellation Team",

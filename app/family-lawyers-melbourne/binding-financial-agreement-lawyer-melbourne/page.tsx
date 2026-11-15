@@ -488,7 +488,7 @@ export default function BindingFinancialAgreementLawyerMelbournePage() {
       {/* 11. Speak With a Binding Financial Agreement Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Binding Financial Agreement Lawyer in Melbourne"
-        text="If you are considering a binding financial agreement, reviewing a proposed agreement, or dealing with financial matters after separation, Bansal Lawyers can help you understand your next step."
+        text="If you are considering a binding financial agreement, reviewing a proposed agreement, or dealing with financial matters after separation, Bansal Lawyers can help you understand your next step. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Family Law Team",

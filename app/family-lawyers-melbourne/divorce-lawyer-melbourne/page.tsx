@@ -397,7 +397,7 @@ export default function DivorceLawyerMelbournePage() {
       {/* 10. Speak With a Divorce Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Divorce Lawyer in Melbourne"
-        text="If you are separated, planning to apply for divorce, or dealing with parenting or property issues after separation, Bansal Lawyers can help you understand your next step."
+        text="If you are separated, planning to apply for divorce, or dealing with parenting or property issues after separation, Bansal Lawyers can help you understand your next step. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Divorce Team",

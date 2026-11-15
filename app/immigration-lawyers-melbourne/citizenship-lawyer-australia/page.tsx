@@ -413,7 +413,7 @@ export default function CitizenshipLawyerAustraliaPage() {
       {/* 9. Speak With a Citizenship Lawyer [H2] */}
       <CtaSection
         title="Speak With a Citizenship Lawyer"
-        text="If you are preparing to apply for Australian citizenship, responding to a request for information, or dealing with a citizenship refusal, Bansal Lawyers can help you understand your options."
+        text="If you are preparing to apply for Australian citizenship, responding to a request for information, or dealing with a citizenship refusal, Bansal Lawyers can help you understand your options. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Citizenship Team",

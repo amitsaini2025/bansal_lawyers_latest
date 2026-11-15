@@ -691,7 +691,8 @@ export default function FamilyLawyersMelbournePage() {
           <>
             <p>
               Separating, divorcing, arguing over parenting or property, or dealing with family violence? Get in touch
-              and we&apos;ll help you work out your next step.
+              and we&apos;ll help you work out your next step. When you book, we confirm the consultation fee
+              before any work starts, and later costs depend on the matter.
             </p>
             <p className="cta-section__contact">
               {businessDetails.name}

@@ -23,7 +23,7 @@ export const metadata: Metadata = createMetadata({
   title:
     "Human Rights & Legal Recourse in Australia | Bansal Lawyers",
   description:
-    "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, Australian Human Rights Commission (AHRC) complaints, and civil liberties defense.",
+    "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, Australian Human Rights Commission (AHRC) complaints, and civil liberties defence.",
   path: "/blog/human-rights-legal-recourse-australia",
   keywords: [
     "Human Rights Australia Legal Recourse",
@@ -91,7 +91,7 @@ export default function HumanRightsLegalRecourseGuidePage() {
         data={createArticleSchema({
           title: "Human Rights and Legal Recourse in Australia: A Brief Guide",
           description:
-            "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, Australian Human Rights Commission (AHRC) complaints, and civil liberties defense.",
+            "A brief guide by Bansal Lawyers to human rights protection and legal recourse in Australia: anti-discrimination acts, Australian Human Rights Commission (AHRC) complaints, and civil liberties defence.",
           path: "/blog/human-rights-legal-recourse-australia",
           datePublished: "2025-01-03",
           dateModified: "2025-01-03",

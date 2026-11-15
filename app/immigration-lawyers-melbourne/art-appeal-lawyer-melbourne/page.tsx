@@ -402,7 +402,7 @@ export default function ArtAppealLawyerMelbournePage() {
       {/* 9. Speak With an ART Appeal Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With an ART Appeal Lawyer in Melbourne"
-        text="If you have received a visa refusal or cancellation decision, do not wait until the deadline is close. Early advice can help you understand your review options and prepare properly."
+        text="If you have received a visa refusal or cancellation decision, do not wait until the deadline is close. Early advice can help you understand your review options and prepare properly. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Appeals Team",

@@ -247,6 +247,14 @@ export default function BailApplicationLawyerMelbournePage() {
         </Container>
       </Section>
 
+      <Section tone="white">
+        <Container>
+          <p style={{ maxWidth: "52rem", margin: "0 auto", fontSize: "1.05rem", lineHeight: 1.75, color: "var(--ink-secondary)" }}>
+            When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter.
+          </p>
+        </Container>
+      </Section>
+
       <RelatedServices currentPath="/criminal-lawyers-melbourne/bail-application-lawyer-melbourne" />
 
       <Section tone="warm" id="faqs">

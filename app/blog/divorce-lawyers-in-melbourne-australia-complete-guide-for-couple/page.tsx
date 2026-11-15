@@ -41,7 +41,7 @@ export const metadata: Metadata = createMetadata({
 const breadcrumbs = [
   { label: "Home", href: "/" },
   { label: "Blog", href: "/blog" },
-  { label: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couple" },
+  { label: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couples" },
 ];
 
 const relatedFamilyServices = [
@@ -83,7 +83,7 @@ export default function DivorceGuideArticlePage() {
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
       <StructuredData
         data={createArticleSchema({
-          title: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couple",
+          title: "Divorce Lawyers in Melbourne Australia — Complete Guide for Couples",
           description:
             "Complete guide by Bansal Lawyers on getting a divorce in Melbourne Australia under the Family Law Act 1975, covering requirements, documents, joint vs sole applications, fees, hearings, and property settlements.",
           path: "/blog/divorce-lawyers-in-melbourne-australia-complete-guide-for-couple",
@@ -119,7 +119,7 @@ export default function DivorceGuideArticlePage() {
                 fontWeight: 700,
               }}
             >
-              Divorce Lawyers in Melbourne Australia — Complete Guide for Couple
+              Divorce Lawyers in Melbourne Australia — Complete Guide for Couples
             </h1>
 
             <DynamicArticleMeta

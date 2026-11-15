@@ -243,7 +243,7 @@ export default function InterventionOrderLawyerMelbournePage() {
       {/* 5. Speak With an Intervention Order Lawyer [H2] */}
       <CtaSection
         title="Speak With an Intervention Order Lawyer"
-        text="If you are involved in an intervention order matter, Bansal Lawyers can help you understand the documents, conditions, risks, and next steps."
+        text="If you are involved in an intervention order matter, Bansal Lawyers can help you understand the documents, conditions, risks, and next steps. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Family Law Team",

@@ -269,7 +269,7 @@ export default function SpousalMaintenanceLawyerMelbournePage() {
       {/* 5. Speak With a Spousal Maintenance Lawyer [H2] */}
       <CtaSection
         title="Speak With a Spousal Maintenance Lawyer"
-        text="If you need financial support after separation, or if you are responding to a spousal maintenance claim, Bansal Lawyers can help you understand your options."
+        text="If you need financial support after separation, or if you are responding to a spousal maintenance claim, Bansal Lawyers can help you understand your options. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Family Law Team",

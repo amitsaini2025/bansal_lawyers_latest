@@ -431,7 +431,7 @@ export default function PropertySettlementLawyerMelbournePage() {
       {/* 10. Speak With a Property Settlement Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Property Settlement Lawyer in Melbourne"
-        text="If you are separating, divorced, or dealing with unresolved property issues, Bansal Lawyers can help you understand your options."
+        text="If you are separating, divorced, or dealing with unresolved property issues, Bansal Lawyers can help you understand your options. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Property Settlement Team",

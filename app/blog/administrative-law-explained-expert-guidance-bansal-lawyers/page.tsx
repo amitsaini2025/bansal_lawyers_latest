@@ -60,7 +60,7 @@ const relatedAdministrativeServices = [
   {
     title: "Visa Cancellation Lawyer Melbourne",
     href: "/immigration-lawyers-melbourne/visa-cancellation-lawyer-melbourne/",
-    description: "Urgent legal defense for Section 501 character cancellations and Section 116 visa cancellations.",
+    description: "Urgent legal defence for Section 501 character cancellations and Section 116 visa cancellations.",
   },
   {
     title: "Civil Dispute Lawyer Melbourne",

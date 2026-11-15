@@ -407,7 +407,7 @@ export default function FamilyViolenceLawyerMelbournePage() {
       {/* 9. Speak With a Family Violence Lawyer in Melbourne [H2] */}
       <CtaSection
         title="Speak With a Family Violence Lawyer in Melbourne"
-        text="If you are dealing with a family violence matter, intervention order, parenting concern, or urgent safety-related issue, Bansal Lawyers can help you understand your next step."
+        text="If you are dealing with a family violence matter, intervention order, parenting concern, or urgent safety-related issue, Bansal Lawyers can help you understand your next step. When you book, we confirm the consultation fee before any work starts, and later costs depend on the matter."
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: "Speak With Our Family Law Team",

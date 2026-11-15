@@ -10,7 +10,7 @@
 - **Direct Solicitor Line:** 0422 905 860
 - **Email:** info@bansallawyers.com.au
 - **Office Hours:** Monday – Friday, 9:30 AM – 6:00 PM AEST/AEDT
-- **Languages Spoken:** English, Hindi, Punjabi
+- **Languages Spoken:** English, Hindi, Punjabi, and Arabic
 - **Full AI Knowledge Base:** [llms-full.txt](https://www.bansallawyers.com.au/llms-full.txt)
 
 ## Core Pages & Legal Team
