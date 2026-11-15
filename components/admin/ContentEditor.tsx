@@ -100,8 +100,9 @@ export function ContentEditor({
       ) : null}
       {kind !== "category" ? (
         <p className="admin-note">
-          Blog posts, CMS pages and case studies saved here update the shared database. The public pages on this
-          website are still the pages built into the site, so a change here does not rewrite those pages.
+          Published blog posts saved here appear on the public blog. CMS pages and case studies saved here
+          update the shared database and do not rewrite the pages built into the site. New Grok posts arrive
+          as drafts until you set status to Published.
         </p>
       ) : null}
     </div>

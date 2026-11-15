@@ -7,7 +7,7 @@ const sections = {
     kind: "blogs",
     title: "Blog posts",
     path: "/admin/blogs",
-    hint: "Posts stored in the shared database.",
+    hint: "Published posts appear on the public blog. Posts sent by Grok stay drafts until you publish them.",
   },
   categories: {
     kind: "categories",

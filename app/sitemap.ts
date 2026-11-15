@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
+import { listPublishedBlogPosts } from "@/lib/blog/store";
 import {
   policySlugs,
   siteUrl,
@@ -54,7 +55,7 @@ function lastModifiedFor(url: string): string {
   return contentLastModified.get(path) ?? STATIC_LAST_MODIFIED;
 }
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const currentDate = STATIC_LAST_MODIFIED;
 
   const staticRoutes: MetadataRoute.Sitemap = [
@@ -645,8 +646,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.3,
   }));
 
-  return [...staticRoutes, ...additionalRoutes, ...policyRoutes].map((entry) => ({
+  const mapped = [...staticRoutes, ...additionalRoutes, ...policyRoutes].map((entry) => ({
     ...entry,
     lastModified: lastModifiedFor(entry.url),
   }));
+
+  try {
+    const staticHrefs = new Set(blogArticles.map((article) => article.href.replace(/\/$/, "")));
+    const posts = await listPublishedBlogPosts();
+    const dynamicBlogRoutes: MetadataRoute.Sitemap = posts
+      .filter((post) => !staticHrefs.has(`/blog/${post.slug}`))
+      .map((post) => ({
+        url: `${siteUrl}/blog/${post.slug}`,
+        lastModified: post.modifiedAt.toISOString().slice(0, 10),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      }));
+    return [...mapped, ...dynamicBlogRoutes];
+  } catch {
+    return mapped;
+  }
 }

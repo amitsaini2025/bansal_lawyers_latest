@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { BlogListClient, type BlogArticleItem } from "@/components/blog/BlogListClient";
+import { BlogListClient } from "@/components/blog/BlogListClient";
+import { listBlogIndexArticles } from "@/lib/blog/store";
 import { StructuredData } from "@/components/seo";
 import { Container, CtaSection, Section, SectionHeader } from "@/components/ui";
 import { createMetadata } from "@/lib/metadata";
@@ -24,9 +25,10 @@ export const metadata: Metadata = createMetadata({
   ],
 });
 
-import { blogArticles } from "@/lib/blog-data";
+export const dynamic = "force-dynamic";
 
-export default function BlogPage() {
+export default async function BlogPage() {
+  const articles = await listBlogIndexArticles();
   const breadcrumbs = [{ label: "Home", href: "/" }, { label: "Blog" }];
 
   return (
@@ -61,7 +63,7 @@ export default function BlogPage() {
       </section>
 
       {/* Dynamic Stats Bar, Interactive Search, Category Filters, Cards & Pagination */}
-      <BlogListClient articles={blogArticles} />
+      <BlogListClient articles={articles} />
 
       <CtaSection
         title="Need Advice on a Family or Commercial Law Matter?"
