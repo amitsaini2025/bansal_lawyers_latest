@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Flash, messageOf } from "@/components/admin/AdminBits";
 import { ContentEditor } from "@/components/admin/ContentEditor";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { categoryOptions, getRecord } from "@/lib/admin/data";
 import { positiveId } from "@/lib/admin/labels";
 import { staticCaseSlugs } from "@/lib/cases/static";
@@ -21,6 +22,7 @@ export function contentEditorPage(section: keyof typeof editors, mode: "new" | "
     params?: Promise<{ id: string }>;
     searchParams: Promise<{ notice?: string | string[]; error?: string | string[] }>;
   }) {
+    if (section === "category") await requireFullAdmin();
     const query = await searchParams;
     let record: Record<string, unknown> | null = null;
     if (mode === "edit") {

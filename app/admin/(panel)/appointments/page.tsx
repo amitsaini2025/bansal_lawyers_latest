@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Flash, messageOf, Pager, queryHref, StatusPill } from "@/components/admin/AdminBits";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { listAppointments } from "@/lib/admin/data";
 import { formatDate, pageNumber, searchTerm } from "@/lib/admin/labels";
 
@@ -8,6 +9,7 @@ export default async function AppointmentsPage({
 }: {
   searchParams: Promise<{ q?: string | string[]; page?: string | string[]; notice?: string | string[]; error?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const query = await searchParams;
   const q = searchTerm(query.q);
   const page = pageNumber(query.page);

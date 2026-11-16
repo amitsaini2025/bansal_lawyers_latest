@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Flash, messageOf } from "@/components/admin/AdminBits";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { deleteContactAction, forwardContactAction, updateContactStatusAction } from "@/lib/admin/actions";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { getContact, markContactRead } from "@/lib/admin/data";
 import { CONTACT_STATUSES, formatWhen, positiveId } from "@/lib/admin/labels";
 
@@ -13,6 +14,7 @@ export default async function ContactPage({
   params: Promise<{ id: string }>;
   searchParams: Promise<{ notice?: string | string[]; error?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const id = positiveId((await params).id);
   if (!id) notFound();
   const contact = await getContact(id);

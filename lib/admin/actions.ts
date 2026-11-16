@@ -1,9 +1,9 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { beginLoginCode, clearLoginCode, currentLoginCode, endAdminSession, findOtpAdmin, requireAdmin, startAdminSession } from "@/lib/admin/auth";
+import { homeForRole, writerMayManage } from "@/lib/admin/access";
+import { beginLoginCode, clearLoginCode, currentLoginCode, endAdminSession, findActiveStaff, findStaffForLogin, requireAdmin, requireFullAdmin, startAdminSession } from "@/lib/admin/auth";
 import {
-  ADMIN_OTP_EMAIL,
   ADMIN_OTP_MAX_ATTEMPTS,
   ADMIN_OTP_SECONDS,
   createLoginCode,
@@ -67,18 +67,28 @@ function databaseUnreachable(error: unknown) {
   return code === "ECONNREFUSED" || code === "ECONNRESET" || code === "PROTOCOL_CONNECTION_LOST";
 }
 
-export async function sendLoginCodeAction() {
-  const blocked = loginCodeSendBlocked(ADMIN_OTP_EMAIL);
+async function loginEmail(formData: FormData): Promise<string> {
+  const submitted = text(formData, "email", 191).toLowerCase();
+  if (submitted) return submitted;
+  const challenge = await currentLoginCode();
+  return challenge?.email ?? "";
+}
+
+export async function sendLoginCodeAction(formData: FormData) {
+  const email = await loginEmail(formData);
+  if (!email) bounce("/admin/login", "Enter the staff email address.");
+
+  const blocked = loginCodeSendBlocked(email);
   if (blocked === "wait") bounce("/admin/login", "A code was just sent. Wait a minute before requesting another.");
   if (blocked === "limited") bounce("/admin/login", "Too many codes have been sent. Wait a few minutes and try again.");
 
   try {
-    const staff = await findOtpAdmin();
-    if (!staff) bounce("/admin/login", "Sign-in is unavailable because that staff account is not active.");
+    const staff = await findStaffForLogin(email);
+    if (!staff) bounce("/admin/login", "That email cannot sign in, or the staff account is not active.");
 
     const code = createLoginCode();
     const exp = Math.floor(Date.now() / 1000) + ADMIN_OTP_SECONDS;
-    await beginLoginCode({ id: staff.id, codeHash: hashLoginCode(staff.id, code), exp, attempts: 0 });
+    await beginLoginCode({ id: staff.id, codeHash: hashLoginCode(staff.id, code), exp, attempts: 0, email: staff.email.toLowerCase() });
 
     const config = getMailConfig();
     const mailer = getMailTransporter();
@@ -90,7 +100,7 @@ export async function sendLoginCodeAction() {
     try {
       await mailer.sendMail({
         from: config.fromEmail,
-        to: ADMIN_OTP_EMAIL,
+        to: staff.email,
         subject: "Your Bansal Lawyers admin sign-in code",
         text: `Your admin sign-in code is ${code}. It expires in 10 minutes. If you did not request this code, you can ignore this email.`,
         html: `<p>Your admin sign-in code is <strong style="letter-spacing:0.2em;font-size:20px">${code}</strong>.</p><p>It expires in 10 minutes. If you did not request this code, you can ignore this email.</p>`,
@@ -100,7 +110,7 @@ export async function sendLoginCodeAction() {
       await clearLoginCode();
       bounce("/admin/login", "The sign-in code could not be sent. Try again in a moment.");
     }
-    noteLoginCodeSent(ADMIN_OTP_EMAIL);
+    noteLoginCodeSent(email);
   } catch (error) {
     if (isNextRedirect(error)) throw error;
     await clearLoginCode();
@@ -111,7 +121,7 @@ export async function sendLoginCodeAction() {
     console.error("[Admin]", error);
     bounce("/admin/login", "The sign-in code could not be sent. Try again in a moment.");
   }
-  done("/admin/login", `A sign-in code was sent to ${ADMIN_OTP_EMAIL}.`);
+  done("/admin/login", `A sign-in code was sent to ${email}.`);
 }
 
 export async function verifyLoginCodeAction(formData: FormData) {
@@ -130,12 +140,13 @@ export async function verifyLoginCodeAction(formData: FormData) {
   }
 
   try {
-    const staff = await findOtpAdmin();
+    const staff = await findActiveStaff(challenge.id);
     if (!staff || staff.id !== challenge.id) {
       await clearLoginCode();
       bounce("/admin/login", "Sign-in is unavailable because that staff account is not active.");
     }
     await startAdminSession(staff.id);
+    redirect(homeForRole(staff.role));
   } catch (error) {
     if (isNextRedirect(error)) throw error;
     if (error instanceof AdminDatabaseError) bounce("/admin/login", error.message);
@@ -143,7 +154,6 @@ export async function verifyLoginCodeAction(formData: FormData) {
     console.error("[Admin]", error);
     bounce("/admin/login", "Sign-in could not be completed. Try again.");
   }
-  redirect("/admin/dashboard");
 }
 
 export async function logoutAction() {
@@ -152,7 +162,7 @@ export async function logoutAction() {
 }
 
 export async function updateAppointmentStatusAction(formData: FormData) {
-  await requireAdmin();
+  await requireFullAdmin();
   const id = positiveId(text(formData, "id", 12));
   const status = Number(text(formData, "status", 2));
   const path = id ? `/admin/appointments/${id}` : "/admin/appointments";
@@ -166,7 +176,7 @@ export async function updateAppointmentStatusAction(formData: FormData) {
 }
 
 export async function createBlockAction(formData: FormData) {
-  await requireAdmin();
+  await requireFullAdmin();
   const date = text(formData, "date", 10);
   const fullDay = formData.get("full_day") === "1";
   const start = text(formData, "start_time", 5);
@@ -185,7 +195,7 @@ export async function createBlockAction(formData: FormData) {
 }
 
 export async function deleteBlockAction(formData: FormData) {
-  await requireAdmin();
+  await requireFullAdmin();
   const id = positiveId(text(formData, "id", 12));
   if (!id) bounce("/admin/booking-blocks", "That block could not be found.");
   try {
@@ -197,7 +207,7 @@ export async function deleteBlockAction(formData: FormData) {
 }
 
 export async function updateContactStatusAction(formData: FormData) {
-  await requireAdmin();
+  await requireFullAdmin();
   const id = positiveId(text(formData, "id", 12));
   const status = text(formData, "status", 20);
   const path = id ? `/admin/contacts/${id}` : "/admin/contacts";
@@ -213,7 +223,7 @@ export async function updateContactStatusAction(formData: FormData) {
 }
 
 export async function deleteContactAction(formData: FormData) {
-  await requireAdmin();
+  await requireFullAdmin();
   const id = positiveId(text(formData, "id", 12));
   if (!id) bounce("/admin/contacts", "That enquiry could not be found.");
   try {
@@ -225,7 +235,7 @@ export async function deleteContactAction(formData: FormData) {
 }
 
 export async function forwardContactAction(formData: FormData) {
-  await requireAdmin();
+  await requireFullAdmin();
   const id = positiveId(text(formData, "id", 12));
   const path = id ? `/admin/contacts/${id}` : "/admin/contacts";
   if (!id) bounce(path, "That enquiry could not be found.");
@@ -323,9 +333,10 @@ async function contentPhotoUpdate(formData: FormData, slug: string, id: number |
 }
 
 export async function saveContentAction(formData: FormData) {
-  await requireAdmin();
+  const staff = await requireAdmin();
   const table = contentTable(text(formData, "table", 40));
-  if (!table) bounce("/admin/dashboard", "Unknown record.");
+  if (!table) bounce(homeForRole(staff.role), "Unknown record.");
+  if (staff.role === "writer" && !writerMayManage(table)) redirect("/admin/blogs");
   const list = CONTENT[table].list;
   const rawId = text(formData, "id", 12);
   const id = rawId ? positiveId(rawId) : null;
@@ -376,10 +387,11 @@ export async function saveContentAction(formData: FormData) {
 }
 
 export async function deleteContentAction(formData: FormData) {
-  await requireAdmin();
+  const staff = await requireAdmin();
   const table = contentTable(text(formData, "table", 40));
   const id = positiveId(text(formData, "id", 12));
-  if (!table || !id) bounce("/admin/dashboard", "That record could not be found.");
+  if (!table || !id) bounce(homeForRole(staff.role), "That record could not be found.");
+  if (staff.role === "writer" && !writerMayManage(table)) redirect("/admin/blogs");
   try {
     await deleteRecord(table, id);
   } catch (error) {

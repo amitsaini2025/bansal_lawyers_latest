@@ -3,6 +3,7 @@ import { adminSessionSecret } from "@/lib/admin/session";
 
 export const ADMIN_OTP_COOKIE = "bl_admin_otp";
 export const ADMIN_OTP_EMAIL = "admin@bansallawyers.com.au";
+export const CONTENT_WRITER_EMAIL = "bansallawyersvrushali@gmail.com";
 export const ADMIN_OTP_SECONDS = 10 * 60;
 export const ADMIN_OTP_MAX_ATTEMPTS = 5;
 
@@ -13,6 +14,7 @@ export interface OtpChallenge {
   codeHash: string;
   exp: number;
   attempts: number;
+  email?: string;
 }
 
 export function createLoginCode(): string {
@@ -56,10 +58,11 @@ export function readOtpChallenge(token: string | undefined, now = Date.now(), se
     const exp = Number(parsed.exp);
     const attempts = Number(parsed.attempts);
     const codeHash = String(parsed.codeHash ?? "");
+    const email = typeof parsed.email === "string" ? parsed.email.trim().toLowerCase() : "";
     if (!Number.isInteger(id) || id <= 0 || !Number.isFinite(exp) || exp * 1000 <= now) return null;
     if (!Number.isInteger(attempts) || attempts < 0 || attempts > ADMIN_OTP_MAX_ATTEMPTS) return null;
     if (!codeHash) return null;
-    return { id, codeHash, exp, attempts };
+    return email.includes("@") ? { id, codeHash, exp, attempts, email } : { id, codeHash, exp, attempts };
   } catch {
     return null;
   }

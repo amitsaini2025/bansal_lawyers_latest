@@ -1,6 +1,7 @@
 import { Flash, messageOf } from "@/components/admin/AdminBits";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { createBlockAction, deleteBlockAction } from "@/lib/admin/actions";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { listBlocks } from "@/lib/admin/data";
 import { formatDate } from "@/lib/admin/labels";
 
@@ -9,6 +10,7 @@ export default async function BookingBlocksPage({
 }: {
   searchParams: Promise<{ notice?: string | string[]; error?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const query = await searchParams;
   const blocks = await listBlocks();
 

@@ -1,5 +1,6 @@
 import { ContentIndex } from "@/components/admin/ContentIndex";
 import { messageOf } from "@/components/admin/AdminBits";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { pageNumber, searchTerm } from "@/lib/admin/labels";
 
 const sections = {
@@ -30,6 +31,7 @@ export function contentListPage(section: keyof typeof sections) {
   }: {
     searchParams: Promise<{ q?: string | string[]; page?: string | string[]; notice?: string | string[]; error?: string | string[] }>;
   }) {
+    if (section === "categories") await requireFullAdmin();
     const query = await searchParams;
     return (
       <ContentIndex

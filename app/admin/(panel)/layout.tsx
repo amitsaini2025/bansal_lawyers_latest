@@ -8,5 +8,9 @@ export const runtime = "nodejs";
 export default async function PanelLayout({ children }: { children: React.ReactNode }) {
   const admin = await requireAdmin();
   const name = displayName(admin.firstName, admin.lastName, admin.email);
-  return <AdminShell name={name}>{children}</AdminShell>;
+  return (
+    <AdminShell name={name} role={admin.role}>
+      {children}
+    </AdminShell>
+  );
 }

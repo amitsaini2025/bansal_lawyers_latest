@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Flash, messageOf, StatusPill } from "@/components/admin/AdminBits";
 import { updateAppointmentStatusAction } from "@/lib/admin/actions";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { getAppointment } from "@/lib/admin/data";
 import { APPOINTMENT_STATUSES, formatDate, formatWhen, positiveId } from "@/lib/admin/labels";
 
@@ -12,6 +13,7 @@ export default async function AppointmentPage({
   params: Promise<{ id: string }>;
   searchParams: Promise<{ notice?: string | string[]; error?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const { id: rawId } = await params;
   const id = positiveId(rawId);
   if (!id) notFound();

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Flash, messageOf, StatusPill } from "@/components/admin/AdminBits";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { dashboardSnapshot } from "@/lib/admin/data";
 import { AdminDatabaseError } from "@/lib/admin/db";
 import { formatDate, formatWhen } from "@/lib/admin/labels";
@@ -9,6 +10,7 @@ export default async function DashboardPage({
 }: {
   searchParams: Promise<{ notice?: string | string[]; error?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const query = await searchParams;
   let data: Awaited<ReturnType<typeof dashboardSnapshot>> | null = null;
   let problem: string | null = null;

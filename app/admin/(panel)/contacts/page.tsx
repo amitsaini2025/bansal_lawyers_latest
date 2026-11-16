@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Flash, messageOf, Pager, queryHref } from "@/components/admin/AdminBits";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { contactStats, listContacts } from "@/lib/admin/data";
 import { CONTACT_STATUSES, formatWhen, pageNumber, searchTerm } from "@/lib/admin/labels";
 
@@ -8,6 +9,7 @@ export default async function ContactsPage({
 }: {
   searchParams: Promise<{ q?: string | string[]; status?: string | string[]; page?: string | string[]; notice?: string | string[]; error?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const query = await searchParams;
   const q = searchTerm(query.q);
   const status = searchTerm(query.status);

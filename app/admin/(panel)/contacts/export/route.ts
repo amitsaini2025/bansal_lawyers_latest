@@ -10,6 +10,7 @@ function cell(value: unknown) {
 export async function GET(request: Request) {
   const admin = await getCurrentAdmin();
   if (!admin) return new NextResponse("Sign in required", { status: 401 });
+  if (admin.role !== "admin") return new NextResponse("Forbidden", { status: 403 });
 
   const url = new URL(request.url);
   const result = await exportContacts(searchTerm(url.searchParams.get("q") ?? ""), searchTerm(url.searchParams.get("status") ?? ""));

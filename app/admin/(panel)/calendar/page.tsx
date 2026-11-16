@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { requireFullAdmin } from "@/lib/admin/auth";
 import { monthAppointments } from "@/lib/admin/data";
 import { melbourneToday } from "@/lib/admin/labels";
 
@@ -13,6 +14,7 @@ export default async function CalendarPage({
 }: {
   searchParams: Promise<{ month?: string | string[] }>;
 }) {
+  await requireFullAdmin();
   const raw = (await searchParams).month;
   const requested = Array.isArray(raw) ? raw[0] : raw;
   const month = /^\d{4}-\d{2}$/.test(requested ?? "") ? requested! : melbourneToday().slice(0, 7);
