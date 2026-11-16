@@ -30,3 +30,7 @@ yarn-error.log*
 # typescript cache
 *.tsbuildinfo
 tsconfig.tsbuildinfo
+
+# blog photos uploaded from the admin
+/public/images/blog/uploads/*
+!/public/images/blog/uploads/.gitkeep

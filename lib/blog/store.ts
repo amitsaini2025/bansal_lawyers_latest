@@ -1,12 +1,12 @@
 import type { RowDataPacket } from "mysql2/promise";
 import type { BlogArticleItem } from "@/components/blog/BlogListClient";
 import { blogArticles } from "@/lib/blog-data";
-import type { IngestDraft } from "@/lib/blog/ingest";
+import { staticBlogSlugs, type IngestDraft, type IngestPatch } from "@/lib/blog/ingest";
 import { plainTextFromHtml } from "@/lib/blog/html";
 import { adminExecute, adminRows, columnsOf, tableReady } from "@/lib/admin/db";
 import { slugTaken } from "@/lib/admin/data";
 
-const DEFAULT_IMAGE = "/images/melbourne-legal-chambers.webp";
+export const DEFAULT_BLOG_IMAGE = "/images/melbourne-legal-chambers.webp";
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 export interface PublishedBlogPost {
@@ -17,6 +17,7 @@ export interface PublishedBlogPost {
   body: string;
   category: string;
   imageSrc: string;
+  imageFull: string;
   imageAlt: string;
   publishedAt: Date;
   modifiedAt: Date;
@@ -61,8 +62,14 @@ function melbourneLabel(date: Date): string {
 }
 
 function localImage(value: string): string {
-  if (value.startsWith("/images/") && !value.includes("..")) return value;
-  return DEFAULT_IMAGE;
+  if (!value.startsWith("/images/") || value.includes("..") || value.includes("\\")) return "";
+  return value === DEFAULT_BLOG_IMAGE ? "" : value;
+}
+
+function articleImage(thumb: string, featured: string): string {
+  if (featured && !featured.endsWith("-thumb.webp")) return featured;
+  if (thumb.endsWith("-thumb.webp")) return thumb.replace(/-thumb\.webp$/, ".webp");
+  return thumb;
 }
 
 function readTime(words: number): string {
@@ -101,7 +108,10 @@ function toPost(row: RowDataPacket): PublishedBlogPost | null {
   const publishedAt = asDate(row.published_at ?? row.created_at ?? row.updated_at, now);
   const modifiedAt = asDate(row.updated_at ?? row.published_at ?? row.created_at, publishedAt);
   const category = pick(row, ["category_name", "category"]) || "Legal updates";
-  const imageSrc = localImage(pick(row, ["image", "featured_image", "image_src", "thumbnail"]));
+  const thumb = localImage(pick(row, ["thumbnail", "image", "image_src"]));
+  const featured = localImage(pick(row, ["featured_image"]));
+  const imageSrc = thumb || featured || DEFAULT_BLOG_IMAGE;
+  const imageFull = articleImage(imageSrc === DEFAULT_BLOG_IMAGE ? "" : imageSrc, featured) || imageSrc;
   return {
     id: Number(row.id),
     slug,
@@ -110,6 +120,7 @@ function toPost(row: RowDataPacket): PublishedBlogPost | null {
     body,
     category,
     imageSrc,
+    imageFull,
     imageAlt: title,
     publishedAt,
     modifiedAt,
@@ -198,9 +209,9 @@ export async function saveIngestedBlog(draft: IngestDraft): Promise<SavedBlogDra
   put("meta_title", draft.title.slice(0, 250));
   put("meta_description", draft.shortDescription.slice(0, 500));
   put("author", "Bansal Lawyers");
-  put("image", DEFAULT_IMAGE);
-  put("featured_image", DEFAULT_IMAGE);
-  put("image_src", DEFAULT_IMAGE);
+  put("image", DEFAULT_BLOG_IMAGE);
+  put("featured_image", DEFAULT_BLOG_IMAGE);
+  put("image_src", DEFAULT_BLOG_IMAGE);
 
   if (columns.has("parent_category")) {
     put("parent_category", await categoryId(draft.category));
@@ -220,4 +231,95 @@ export async function saveIngestedBlog(draft: IngestDraft): Promise<SavedBlogDra
     entries.map(([, value]) => value)
   );
   return { id: result.insertId, slug: draft.slug, published: draft.published };
+}
+
+function rowPublished(row: RowDataPacket): boolean {
+  const status = row.status;
+  if (status === 1 || status === "1") return true;
+  return typeof status === "string" && status.toLowerCase() === "published";
+}
+
+export async function findIngestedBlog(ref: string): Promise<RowDataPacket | null> {
+  const problem = await tableReady("blogs", ["id", "slug"]);
+  if (problem) throw new Error(problem);
+  let key = ref.trim();
+  try {
+    key = decodeURIComponent(key).trim();
+  } catch {
+    return null;
+  }
+  if (!key || key.length > 180) return null;
+  if (/^\d+$/.test(key)) {
+    const byId = await adminRows<RowDataPacket>("SELECT * FROM blogs WHERE id = ? LIMIT 1", [Number(key)]);
+    if (byId[0]) return byId[0];
+  }
+  const bySlug = await adminRows<RowDataPacket>("SELECT * FROM blogs WHERE slug = ? LIMIT 1", [key]);
+  return bySlug[0] ?? null;
+}
+
+export async function updateIngestedBlog(ref: string, patch: IngestPatch): Promise<SavedBlogDraft> {
+  const row = await findIngestedBlog(ref);
+  if (!row) throw new Error("That blog post was not found.");
+  const id = Number(row.id);
+  const columns = await columnsOf("blogs");
+  if (!columns.has("status")) throw new Error("The blogs table has no status column.");
+
+  const currentSlug = pick(row, ["slug"]);
+  const nextSlug = patch.slug ?? currentSlug;
+  if (!nextSlug) throw new Error("A usable slug is required.");
+  if (patch.slug && patch.slug !== currentSlug) {
+    if (staticBlogSlugs().has(patch.slug)) {
+      throw new Error("That slug is already a page built into the website. Choose another slug.");
+    }
+    if (await slugTaken("blogs", "slug", patch.slug, id)) throw new Error("That slug is already used.");
+  }
+
+  const values = new Map<string, string | number | Date | null>();
+  const put = (column: string, value: string | number | Date | null) => {
+    if (columns.has(column)) values.set(column, value);
+  };
+
+  if (patch.title) {
+    put("title", patch.title);
+    put("name", patch.title);
+    put("meta_title", patch.title.slice(0, 250));
+  }
+  if (patch.slug) put("slug", patch.slug);
+  if (patch.body) {
+    put("description", patch.body);
+    put("content", patch.body);
+    put("body", patch.body);
+  }
+  if (patch.shortDescription) {
+    put("short_description", patch.shortDescription);
+    put("meta_description", patch.shortDescription.slice(0, 500));
+  }
+  if (patch.category) {
+    if (columns.has("parent_category")) {
+      const matched = await categoryId(patch.category);
+      if (!matched) throw new Error("That category does not exist.");
+      put("parent_category", matched);
+    }
+    if (columns.has("category")) put("category", patch.category);
+  }
+  if (patch.published !== undefined) {
+    put("status", patch.published ? 1 : 0);
+    if (patch.published) put("published_at", new Date());
+  }
+  const changed = [...values.keys()];
+  put("updated_at", new Date());
+  if (changed.length === 0) throw new Error("The blogs table has no column for that change.");
+
+  const entries = [...values.entries()];
+  const assignments = entries.map(([column]) => `${column} = ?`).join(", ");
+  await adminExecute(`UPDATE blogs SET ${assignments} WHERE id = ?`, [...entries.map(([, value]) => value), id]);
+  return { id, slug: nextSlug, published: patch.published ?? rowPublished(row) };
+}
+
+export async function deleteIngestedBlog(ref: string): Promise<{ id: number; slug: string }> {
+  const row = await findIngestedBlog(ref);
+  if (!row) throw new Error("That blog post was not found.");
+  const id = Number(row.id);
+  await adminExecute("DELETE FROM blogs WHERE id = ?", [id]);
+  return { id, slug: pick(row, ["slug"]) };
 }

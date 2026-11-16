@@ -36,6 +36,11 @@ function legacyBlogRedirects(taken) {
 const nextConfig = {
   poweredByHeader: false,
   compress: true,
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
+  },
   images: {
     formats: ["image/avif", "image/webp"],
   },

@@ -2600,6 +2600,18 @@ a.who-we-help-chip {
   line-height: 1.75;
 }
 
+.blog-db-figure {
+  margin: 0 0 1.5rem;
+}
+
+.blog-db-figure img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: var(--radius-md);
+}
+
 .blog-db-article p,
 .blog-db-article li {
   margin: 0;

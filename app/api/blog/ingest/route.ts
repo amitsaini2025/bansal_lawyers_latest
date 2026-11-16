@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { AdminDatabaseError } from "@/lib/admin/db";
-import { ingestAuthorized, ingestSecretConfigured, parseIngestPayload } from "@/lib/blog/ingest";
+import { ingestAccess, ingestSecretConfigured, parseIngestPayload } from "@/lib/blog/ingest";
 import { saveIngestedBlog } from "@/lib/blog/store";
 
 export const runtime = "nodejs";
@@ -16,6 +16,8 @@ export async function GET() {
       ok: true,
       endpoint: "/api/blog/ingest",
       method: "POST",
+      update: "PATCH /api/blog/ingest/{id-or-slug}",
+      delete: "DELETE /api/blog/ingest/{id-or-slug}",
       configured: ingestSecretConfigured(),
     },
     200
@@ -23,12 +25,8 @@ export async function GET() {
 }
 
 export async function POST(request: NextRequest) {
-  if (!ingestSecretConfigured()) {
-    return json({ ok: false, error: "Blog ingest is not configured." }, 503);
-  }
-  if (!ingestAuthorized(request.headers.get("authorization"))) {
-    return json({ ok: false, error: "Unauthorized." }, 401);
-  }
+  const access = ingestAccess(request.headers.get("authorization"));
+  if (!access.ok) return json({ ok: false, error: access.error }, access.status);
 
   let payload: unknown;
   try {

@@ -1,6 +1,6 @@
 import test from "node:test";
 import assert from "node:assert/strict";
-import { parseIngestPayload } from "../lib/blog/ingest.ts";
+import { parseIngestPayload, parseIngestUpdate } from "../lib/blog/ingest.ts";
 import { cleanEditorHtml, plainTextFromHtml, prepareEditorHtml, sanitizeBlogHtml } from "../lib/blog/html.ts";
 
 test("turns plain text into paragraphs and strips scripts", () => {
@@ -47,6 +47,28 @@ test("editor html keeps article tags and turns inline bullets into lists", () =>
   assert.match(opened, /<ul><li>One spouse must be a citizen\.<\/li><li>The couple must have been apart for 12 months\.<\/li><\/ul>/);
   assert.match(opened, /<ol><li>The marriage certificate\.<\/li><li>Proof of separation\.<\/li><\/ol>/);
   assert.equal(prepareEditorHtml("<h2>Keep</h2><p>Already structured.</p>"), "<h2>Keep</h2><p>Already structured.</p>");
+});
+
+test("update accepts a partial change and leaves status alone unless it is sent", () => {
+  const missing = parseIngestUpdate({});
+  assert.equal(missing.ok, false);
+
+  const titleOnly = parseIngestUpdate({ title: "A clearer title for the draft" });
+  assert.equal(titleOnly.ok, true);
+  if (titleOnly.ok) {
+    assert.equal(titleOnly.value.title, "A clearer title for the draft");
+    assert.equal(titleOnly.value.published, undefined);
+    assert.equal(titleOnly.value.body, undefined);
+  }
+
+  const short = parseIngestUpdate({
+    body: "Too short to replace the article.",
+  });
+  assert.equal(short.ok, false);
+
+  const unpublish = parseIngestUpdate({ status: "draft" });
+  assert.equal(unpublish.ok, true);
+  if (unpublish.ok) assert.equal(unpublish.value.published, false);
 });
 
 test("publishes only when the payload asks for it", () => {

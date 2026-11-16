@@ -362,6 +362,35 @@
   font-weight: 600;
 }
 
+.blog-photo {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.blog-photo__preview {
+  width: min(100%, 20rem);
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  background: #f8fafc;
+}
+
+.admin-app .blog-photo input[type="file"] {
+  padding: 0.4rem;
+}
+
+.blog-photo__remove {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 600;
+}
+
+.admin-app .blog-photo__remove input {
+  width: auto;
+}
+
 .rte {
   display: grid;
   gap: 0;

@@ -1,6 +1,8 @@
 import { saveContentAction, deleteContentAction } from "@/lib/admin/actions";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
+import { BlogPhotoField } from "@/components/admin/BlogPhotoField";
 import { RichTextEditor } from "@/components/admin/RichTextEditor";
+import { DEFAULT_BLOG_IMAGE } from "@/lib/blog/store";
 
 export function ContentEditor({
   table,
@@ -18,7 +20,7 @@ export function ContentEditor({
 
   return (
     <div className="admin-form">
-    <form action={saveContentAction} className="admin-form admin-form--inner">
+    <form action={saveContentAction} className="admin-form admin-form--inner" encType="multipart/form-data">
       <input type="hidden" name="table" value={table} />
       {record ? <input type="hidden" name="id" value={String(record.id)} /> : null}
       <label>
@@ -64,6 +66,7 @@ export function ContentEditor({
           <option value="0">Draft</option>
         </select>
       </label>
+      {kind === "blog" ? <BlogPhotoField {...blogPhoto(record)} /> : null}
       {kind === "blog" ? (
         <label>
           Short description
@@ -94,4 +97,13 @@ export function ContentEditor({
       ) : null}
     </div>
   );
+}
+
+function blogPhoto(record: Record<string, unknown> | null) {
+  const paths = ["featured_image", "image", "thumbnail", "image_src"].map((key) => String(record?.[key] ?? ""));
+  const src =
+    paths.find((value) => value.startsWith("/images/blog/uploads/") && !value.endsWith("-thumb.webp")) ||
+    paths.find((value) => value.startsWith("/images/") && value !== DEFAULT_BLOG_IMAGE) ||
+    "";
+  return { currentSrc: src, hasCustomPhoto: Boolean(src) };
 }

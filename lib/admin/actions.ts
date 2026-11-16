@@ -18,6 +18,7 @@ import {
   deleteContact,
   deleteRecord,
   getContact,
+  getRecord,
   markContactForwarded,
   saveRecord,
   setAppointmentStatus,
@@ -27,6 +28,8 @@ import {
 import { AdminDatabaseError } from "@/lib/admin/db";
 import { APPOINTMENT_STATUSES, CONTACT_STATUSES, positiveId, slugify } from "@/lib/admin/labels";
 import { cleanEditorHtml } from "@/lib/blog/html";
+import { BlogPhotoError, deleteBlogUploads, storeBlogPhoto } from "@/lib/blog/photo";
+import { DEFAULT_BLOG_IMAGE } from "@/lib/blog/store";
 import { getMailConfig, getMailTransporter } from "@/lib/mail";
 
 function text(formData: FormData, name: string, max = 500) {
@@ -266,6 +269,52 @@ function contentTable(value: string): ContentTable | null {
   return value in CONTENT ? (value as ContentTable) : null;
 }
 
+function uploadPaths(row: object | null): string[] {
+  if (!row) return [];
+  const record = row as Record<string, unknown>;
+  return ["image", "featured_image", "image_src", "thumbnail"]
+    .map((key) => String(record[key] ?? ""))
+    .filter((value) => value.startsWith("/images/blog/uploads/"));
+}
+
+async function blogPhotoUpdate(formData: FormData, slug: string, id: number | null) {
+  const file = formData.get("photo");
+  const remove = text(formData, "remove_photo", 1) === "1";
+  const back = id ? `${CONTENT.blogs.list}/${id}` : `${CONTENT.blogs.list}/new`;
+  if (!(file instanceof File && file.size > 0) && !remove) return { values: {}, retired: [] as string[] };
+
+  const existing = id ? (await getRecord("blogs", id)).row : null;
+  const previous = uploadPaths(existing);
+  if (!(file instanceof File) || file.size === 0) {
+    return {
+      values: {
+        image: DEFAULT_BLOG_IMAGE,
+        image_src: DEFAULT_BLOG_IMAGE,
+        thumbnail: DEFAULT_BLOG_IMAGE,
+        featured_image: DEFAULT_BLOG_IMAGE,
+      },
+      retired: previous,
+    };
+  }
+
+  try {
+    const saved = await storeBlogPhoto(Buffer.from(await file.arrayBuffer()), slug);
+    return {
+      values: {
+        image: saved.thumb,
+        image_src: saved.thumb,
+        thumbnail: saved.thumb,
+        featured_image: saved.full,
+      },
+      retired: previous.filter((path) => path !== saved.thumb && path !== saved.full),
+    };
+  } catch (error) {
+    if (error instanceof BlogPhotoError) bounce(back, error.message);
+    console.error("[Admin] photo", error);
+    bounce(back, "That photo could not be saved.");
+  }
+}
+
 export async function saveContentAction(formData: FormData) {
   await requireAdmin();
   const table = contentTable(text(formData, "table", 40));
@@ -291,9 +340,17 @@ export async function saveContentAction(formData: FormData) {
   if (formData.has("parent_id")) values.parent_id = positiveId(text(formData, "parent_id", 12)) ?? 0;
   if (formData.has("parent_category")) values.parent_category = positiveId(text(formData, "parent_category", 12));
 
+  let retiredPhotos: string[] = [];
+  if (table === "blogs") {
+    const photo = await blogPhotoUpdate(formData, slug, id);
+    Object.assign(values, photo.values);
+    retiredPhotos = photo.retired;
+  }
+
   try {
     if (await slugTaken(table, slugColumn, slug, id)) bounce(id ? `${list}/${id}` : `${list}/new`, "That slug is already used.");
     const saved = await saveRecord(table, id, values);
+    if (retiredPhotos.length) await deleteBlogUploads(retiredPhotos);
     done(`${list}/${saved}`, "Saved.");
   } catch (error) {
     failure(error, id ? `${list}/${id}` : `${list}/new`);

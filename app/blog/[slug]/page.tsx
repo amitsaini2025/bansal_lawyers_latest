@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { DynamicArticleMeta } from "@/components/blog/DynamicArticleMeta";
@@ -6,7 +7,7 @@ import { RecommendedArticles } from "@/components/blog/RecommendedArticles";
 import { StructuredData } from "@/components/seo";
 import { Breadcrumbs, Container, CtaSection, Section } from "@/components/ui";
 import { sanitizeBlogHtml } from "@/lib/blog/html";
-import { getPublishedBlogPost, toBlogCard } from "@/lib/blog/store";
+import { DEFAULT_BLOG_IMAGE, getPublishedBlogPost, toBlogCard } from "@/lib/blog/store";
 import { createMetadata } from "@/lib/metadata";
 import { createArticleSchema, createBreadcrumbSchema, createLegalServiceSchema } from "@/lib/schema";
 
@@ -58,6 +59,7 @@ export default async function DatabaseBlogPage({
           datePublished: isoDate(post.publishedAt),
           dateModified: isoDate(post.modifiedAt),
           authorName: "Bansal Lawyers",
+          image: post.imageFull,
         })}
       />
       <StructuredData data={createLegalServiceSchema()} />
@@ -79,6 +81,18 @@ export default async function DatabaseBlogPage({
 
       <Section tone="warm">
         <article className="prose blog-db-article" data-blog-content aria-label={post.title}>
+          {post.imageFull !== DEFAULT_BLOG_IMAGE ? (
+            <figure className="blog-db-figure">
+              <Image
+                src={post.imageFull}
+                alt={post.imageAlt}
+                width={1600}
+                height={900}
+                priority
+                sizes="(max-width: 800px) 100vw, 736px"
+              />
+            </figure>
+          ) : null}
           <div dangerouslySetInnerHTML={{ __html: sanitizeBlogHtml(post.body) }} />
           <p>
             This article is general information about Australian law. It is not advice for your

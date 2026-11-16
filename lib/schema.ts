@@ -982,6 +982,7 @@ export function createArticleSchema({
   datePublished = "2026-01-01",
   dateModified = "2026-01-01",
   authorName = "Ajay Bansal",
+  image,
 }: {
   title: string;
   description: string;
@@ -989,6 +990,7 @@ export function createArticleSchema({
   datePublished?: string;
   dateModified?: string;
   authorName?: string;
+  image?: string;
 }) {
   const url = new URL(path, siteUrl).toString();
 
@@ -997,7 +999,7 @@ export function createArticleSchema({
     "@type": "Article",
     headline: title,
     description: description,
-    image: `${siteUrl}/images/logo.webp`,
+    image: image ? new URL(image, siteUrl).toString() : `${siteUrl}/images/logo.webp`,
     inLanguage: "en-AU",
     mainEntityOfPage: {
       "@type": "WebPage",
