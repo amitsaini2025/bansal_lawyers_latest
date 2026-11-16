@@ -15,6 +15,12 @@ const sections = {
     path: "/admin/blog-categories",
     hint: "Categories used to group blog posts.",
   },
+  cases: {
+    kind: "cases",
+    title: "Recent cases",
+    path: "/admin/cases",
+    hint: "Published cases appear on Recent Cases. The six case pages already built into the site stay as they are.",
+  },
 } as const;
 
 export function contentListPage(section: keyof typeof sections) {

@@ -30,6 +30,8 @@ import { APPOINTMENT_STATUSES, CONTACT_STATUSES, positiveId, slugify } from "@/l
 import { cleanEditorHtml } from "@/lib/blog/html";
 import { BlogPhotoError, deleteBlogUploads, storeBlogPhoto } from "@/lib/blog/photo";
 import { DEFAULT_BLOG_IMAGE } from "@/lib/blog/store";
+import { DEFAULT_CASE_IMAGE } from "@/lib/cases/store";
+import { staticCaseSlugs } from "@/lib/cases/static";
 import { getMailConfig, getMailTransporter } from "@/lib/mail";
 
 function text(formData: FormData, name: string, max = 500) {
@@ -261,6 +263,7 @@ export async function forwardContactAction(formData: FormData) {
 const CONTENT = {
   blogs: { slug: "slug", list: "/admin/blogs" },
   blog_categories: { slug: "slug", list: "/admin/blog-categories" },
+  recent_cases: { slug: "slug", list: "/admin/cases" },
 } as const;
 
 type ContentTable = keyof typeof CONTENT;
@@ -277,21 +280,23 @@ function uploadPaths(row: object | null): string[] {
     .filter((value) => value.startsWith("/images/blog/uploads/"));
 }
 
-async function blogPhotoUpdate(formData: FormData, slug: string, id: number | null) {
+async function contentPhotoUpdate(formData: FormData, slug: string, id: number | null, table: "blogs" | "recent_cases") {
   const file = formData.get("photo");
   const remove = text(formData, "remove_photo", 1) === "1";
-  const back = id ? `${CONTENT.blogs.list}/${id}` : `${CONTENT.blogs.list}/new`;
+  const list = CONTENT[table].list;
+  const back = id ? `${list}/${id}` : `${list}/new`;
   if (!(file instanceof File && file.size > 0) && !remove) return { values: {}, retired: [] as string[] };
 
-  const existing = id ? (await getRecord("blogs", id)).row : null;
+  const existing = id ? (await getRecord(table, id)).row : null;
   const previous = uploadPaths(existing);
+  const fallback = table === "blogs" ? DEFAULT_BLOG_IMAGE : DEFAULT_CASE_IMAGE;
   if (!(file instanceof File) || file.size === 0) {
     return {
       values: {
-        image: DEFAULT_BLOG_IMAGE,
-        image_src: DEFAULT_BLOG_IMAGE,
-        thumbnail: DEFAULT_BLOG_IMAGE,
-        featured_image: DEFAULT_BLOG_IMAGE,
+        image: fallback,
+        image_src: fallback,
+        thumbnail: fallback,
+        featured_image: fallback,
       },
       retired: previous,
     };
@@ -299,11 +304,13 @@ async function blogPhotoUpdate(formData: FormData, slug: string, id: number | nu
 
   try {
     const saved = await storeBlogPhoto(Buffer.from(await file.arrayBuffer()), slug);
+    if (table === "recent_cases") await deleteBlogUploads([saved.thumb]);
+    const image = table === "recent_cases" ? saved.full : saved.thumb;
     return {
       values: {
-        image: saved.thumb,
-        image_src: saved.thumb,
-        thumbnail: saved.thumb,
+        image,
+        image_src: image,
+        thumbnail: table === "recent_cases" ? saved.full : saved.thumb,
         featured_image: saved.full,
       },
       retired: previous.filter((path) => path !== saved.thumb && path !== saved.full),
@@ -335,19 +342,30 @@ export async function saveContentAction(formData: FormData) {
     [slugColumn]: slug,
   };
   if (formData.has("short_description")) values.short_description = text(formData, "short_description", 255);
-  if (formData.has("body")) values.description = cleanEditorHtml(text(formData, "body", 500_000));
+  if (formData.has("body")) {
+    const html = cleanEditorHtml(text(formData, "body", 500_000));
+    values.description = html;
+    values.content = html;
+  }
   if (formData.has("status")) values.status = text(formData, "status", 1) === "1" ? 1 : 0;
   if (formData.has("parent_id")) values.parent_id = positiveId(text(formData, "parent_id", 12)) ?? 0;
   if (formData.has("parent_category")) values.parent_category = positiveId(text(formData, "parent_category", 12));
+  if (formData.has("category")) values.category = text(formData, "category", 80);
 
   let retiredPhotos: string[] = [];
-  if (table === "blogs") {
-    const photo = await blogPhotoUpdate(formData, slug, id);
+  if (table === "blogs" || table === "recent_cases") {
+    const photo = await contentPhotoUpdate(formData, slug, id, table);
     Object.assign(values, photo.values);
     retiredPhotos = photo.retired;
   }
 
   try {
+    if (table === "recent_cases" && staticCaseSlugs().has(slug)) {
+      const current = id ? String((await getRecord(table, id)).row?.slug ?? "") : "";
+      if (current !== slug) {
+        bounce(id ? `${list}/${id}` : `${list}/new`, "That slug is already a case page built into the website. Choose another slug.");
+      }
+    }
     if (await slugTaken(table, slugColumn, slug, id)) bounce(id ? `${list}/${id}` : `${list}/new`, "That slug is already used.");
     const saved = await saveRecord(table, id, values);
     if (retiredPhotos.length) await deleteBlogUploads(retiredPhotos);

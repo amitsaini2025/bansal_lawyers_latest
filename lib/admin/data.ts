@@ -303,6 +303,16 @@ export function listBlogs(search: string, page: number) {
   return listContent("blogs", ["title", "slug"], ["title", "slug", "status", "created_at", "updated_at"], search, page);
 }
 
+export function listCases(search: string, page: number) {
+  return listContent(
+    "recent_cases",
+    ["title", "slug"],
+    ["title", "slug", "status", "created_at", "updated_at"],
+    search,
+    page
+  );
+}
+
 export function listCategories(search: string, page: number) {
   return listContent(
     "blog_categories",

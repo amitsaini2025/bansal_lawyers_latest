@@ -12,6 +12,7 @@ const links = [
   { href: "/admin/booking-blocks", label: "Block time slots" },
   { href: "/admin/blog-categories", label: "Blog categories" },
   { href: "/admin/blogs", label: "Blog posts" },
+  { href: "/admin/cases", label: "Recent cases" },
   { href: "/admin/contacts", label: "Contact management" },
 ];
 

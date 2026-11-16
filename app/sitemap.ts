@@ -1,6 +1,8 @@
 import type { MetadataRoute } from "next";
 import { blogArticles } from "@/lib/blog-data";
 import { listPublishedBlogPosts } from "@/lib/blog/store";
+import { listPublishedCases } from "@/lib/cases/store";
+import { staticCaseSlugs } from "@/lib/cases/static";
 import {
   policySlugs,
   siteUrl,
@@ -668,7 +670,17 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
         changeFrequency: "monthly",
         priority: 0.7,
       }));
-    return [...mapped, ...dynamicBlogRoutes];
+    const reservedCases = staticCaseSlugs();
+    const cases = await listPublishedCases();
+    const dynamicCaseRoutes: MetadataRoute.Sitemap = cases
+      .filter((item) => !reservedCases.has(item.slug))
+      .map((item) => ({
+        url: `${siteUrl}/recent-cases/${item.slug}`,
+        lastModified: item.modifiedAt.toISOString().slice(0, 10),
+        changeFrequency: "monthly",
+        priority: 0.7,
+      }));
+    return [...mapped, ...dynamicBlogRoutes, ...dynamicCaseRoutes];
   } catch {
     return mapped;
   }

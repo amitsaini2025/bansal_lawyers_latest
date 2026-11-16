@@ -4,10 +4,12 @@ import { Flash, messageOf } from "@/components/admin/AdminBits";
 import { ContentEditor } from "@/components/admin/ContentEditor";
 import { categoryOptions, getRecord } from "@/lib/admin/data";
 import { positiveId } from "@/lib/admin/labels";
+import { staticCaseSlugs } from "@/lib/cases/static";
 
 const editors = {
   blog: { table: "blogs", kind: "blog", list: "/admin/blogs", title: "Blog post", back: "blog posts" },
   category: { table: "blog_categories", kind: "category", list: "/admin/blog-categories", title: "Blog category", back: "blog categories" },
+  case: { table: "recent_cases", kind: "case", list: "/admin/cases", title: "Recent case", back: "recent cases" },
 } as const;
 
 export function contentEditorPage(section: keyof typeof editors, mode: "new" | "edit") {
@@ -29,13 +31,15 @@ export function contentEditorPage(section: keyof typeof editors, mode: "new" | "
       record = loaded.row;
     }
     const categories = config.kind === "blog" || config.kind === "category" ? await categoryOptions() : [];
+    const builtIn =
+      config.kind === "case" && staticCaseSlugs().has(String(record?.slug ?? record?.alias ?? ""));
 
     return (
       <>
         <p><Link href={config.list}>Back to {config.back}</Link></p>
         <h1>{record ? `Edit ${config.title.toLowerCase()}` : `New ${config.title.toLowerCase()}`}</h1>
         <Flash notice={messageOf(query.notice)} error={messageOf(query.error)} />
-        <ContentEditor table={config.table} kind={config.kind} record={record} categories={categories} />
+        <ContentEditor table={config.table} kind={config.kind} record={record} categories={categories} builtIn={builtIn} />
       </>
     );
   };
