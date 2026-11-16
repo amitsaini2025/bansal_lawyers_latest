@@ -6,6 +6,21 @@ export interface BlogArticle extends BlogArticleItem {
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "property-contract-review-victoria",
+    title: "What to Check Before Signing a Property Contract in Victoria",
+    eyebrow: "Property Law",
+    category: "Property Law",
+    description:
+      "Property contract review Victoria: what to check in the Section 32, special conditions, title, cooling-off and settlement terms before you sign.",
+    href: "/blog/property-contract-review-victoria",
+    imageSrc: "/images/blog/property-contract-review-victoria.jpg",
+    imageAlt:
+      "What to check before signing a property contract in Victoria — Bansal Lawyers",
+    publishedDate: "Nov 16, 2026",
+    readTime: "8 min read",
+    wordCount: 1950,
+  },
+  {
     id: "parenting-orders-vs-parenting-plans",
     title: "Parenting Orders vs Parenting Plans in Australia: What's the Difference?",
     eyebrow: "Family Law",

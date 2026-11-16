@@ -78,6 +78,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
+      url: `${siteUrl}/blog/property-contract-review-victoria`,
+      lastModified: currentDate,
+      changeFrequency: "monthly",
+      priority: 0.8,
+    },
+    {
       url: `${siteUrl}/blog/parenting-orders-vs-parenting-plans-australia`,
       lastModified: currentDate,
       changeFrequency: "monthly",

@@ -1263,3 +1263,126 @@ export function createAjayBansalPageGraphSchema() {
   };
 }
 
+const PROPERTY_CONTRACT_REVIEW_VICTORIA_BLOG_PATH =
+  "/blog/property-contract-review-victoria";
+
+/** Property Contract Review Victoria blog JSON-LD @graph: Organization, WebSite, WebPage, BlogPosting, BreadcrumbList, FAQPage. */
+export function createPropertyContractReviewVictoriaBlogGraphSchema(
+  faqs: FaqItem[]
+) {
+  const pageUrl = `${siteUrl}${PROPERTY_CONTRACT_REVIEW_VICTORIA_BLOG_PATH}`;
+  const webpageId = `${pageUrl}#webpage`;
+  const articleId = `${pageUrl}#article`;
+  const breadcrumbId = `${pageUrl}#breadcrumb`;
+  const faqId = `${pageUrl}#faq`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": organizationId,
+        name: businessDetails.name,
+        url: homeUrl,
+        telephone: businessDetails.nationalLine,
+        email: businessDetails.email,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: businessDetails.streetAddress,
+          addressLocality: businessDetails.addressLocality,
+          addressRegion: businessDetails.addressRegion,
+          postalCode: businessDetails.postalCode,
+          addressCountry: businessDetails.addressCountry,
+        },
+      },
+      {
+        "@type": "WebSite",
+        "@id": websiteId,
+        url: homeUrl,
+        name: businessDetails.name,
+        publisher: { "@id": organizationId },
+        inLanguage: "en-AU",
+      },
+      {
+        "@type": "WebPage",
+        "@id": webpageId,
+        url: pageUrl,
+        name: "Property Contract Review Victoria: What to Check Before Signing",
+        description:
+          "Buying property in Victoria? Learn what to check in your contract of sale, Section 32, special conditions, title, cooling-off rights and settlement terms.",
+        inLanguage: "en-AU",
+        isPartOf: { "@id": websiteId },
+        publisher: { "@id": organizationId },
+        breadcrumb: { "@id": breadcrumbId },
+        mainEntity: { "@id": articleId },
+      },
+      {
+        "@type": "BlogPosting",
+        "@id": articleId,
+        mainEntityOfPage: { "@id": webpageId },
+        headline: "What to Check Before Signing a Property Contract in Victoria",
+        description:
+          "A practical guide to reviewing a property contract in Victoria, including Section 32 vendor statements, title checks, special conditions, cooling-off rights and settlement terms.",
+        inLanguage: "en-AU",
+        articleSection: "Property Law",
+        keywords: [
+          "Property Contract Review Victoria",
+          "Property Contract Review Melbourne",
+          "Section 32 Vendor Statement",
+          "Contract of Sale Victoria",
+          "Special Conditions in Property Contracts",
+          "Cooling-Off Period Victoria",
+          "Property Lawyers Melbourne",
+        ],
+        author: {
+          "@type": "Organization",
+          "@id": organizationId,
+          name: businessDetails.name,
+        },
+        publisher: { "@id": organizationId },
+        about: {
+          "@type": "Thing",
+          name: "Property Contract Review in Victoria",
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": breadcrumbId,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: homeUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: `${siteUrl}/blog/`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Property Contract Review Victoria",
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": faqId,
+        url: pageUrl,
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: typeof item.answer === "string" ? item.answer : "",
+          },
+        })),
+      },
+    ],
+  };
+}
+
