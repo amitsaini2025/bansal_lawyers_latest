@@ -1,6 +1,7 @@
 import type { RowDataPacket } from "mysql2/promise";
 import type { BlogArticleItem } from "@/components/blog/BlogListClient";
 import { blogArticles } from "@/lib/blog-data";
+import { slugify } from "@/lib/admin/labels";
 import { staticBlogSlugs, type IngestDraft, type IngestPatch } from "@/lib/blog/ingest";
 import { plainTextFromHtml } from "@/lib/blog/html";
 import { adminExecute, adminRows, columnsOf, tableReady } from "@/lib/admin/db";
@@ -167,16 +168,69 @@ export async function listBlogIndexArticles(): Promise<BlogArticleItem[]> {
   return [...extras, ...blogArticles];
 }
 
+function plainCategory(value: string): string {
+  return value
+    .replace(/&amp;/gi, "&")
+    .replace(/&#0*38;/g, "&")
+    .replace(/&#x0*26;/gi, "&")
+    .replace(/&nbsp;/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function categoryNameKey(value: string): string {
+  return plainCategory(value).toLowerCase();
+}
+
+async function categoryColumns(): Promise<Set<string>> {
+  return columnsOf("blog_categories").catch(() => new Set<string>());
+}
+
+/** Match a category name the same way a person would: case, spacing, and &amp; do not matter. */
 async function categoryId(name: string): Promise<number | null> {
-  const columns = await columnsOf("blog_categories").catch(() => new Set<string>());
+  const columns = await categoryColumns();
   if (!columns.has("id") || !columns.has("name")) return null;
-  const rows = columns.has("slug")
-    ? await adminRows<RowDataPacket>(
-        "SELECT id FROM blog_categories WHERE name = ? OR slug = ? ORDER BY id LIMIT 1",
-        [name, name]
-      )
-    : await adminRows<RowDataPacket>("SELECT id FROM blog_categories WHERE name = ? ORDER BY id LIMIT 1", [name]);
-  return rows[0] ? Number(rows[0].id) : null;
+  const wantedName = categoryNameKey(name);
+  const wantedSlug = slugify(plainCategory(name));
+  if (!wantedName) return null;
+  const rows = await adminRows<RowDataPacket>(
+    columns.has("slug") ? "SELECT id, name, slug FROM blog_categories" : "SELECT id, name FROM blog_categories"
+  );
+  let slugHit: number | null = null;
+  for (const row of rows) {
+    if (categoryNameKey(String(row.name ?? "")) === wantedName) return Number(row.id);
+    if (!wantedSlug) continue;
+    const storedSlug = String(row.slug ?? "").trim().toLowerCase();
+    const nameSlug = slugify(plainCategory(String(row.name ?? "")));
+    if (storedSlug === wantedSlug || nameSlug === wantedSlug) slugHit ??= Number(row.id);
+  }
+  return slugHit;
+}
+
+/**
+ * POST already accepts any category string. Updates must accept the same strings.
+ * When the name is not already a row, create it so parent_category can point at it.
+ */
+async function ensureCategoryId(name: string): Promise<number | null> {
+  const found = await categoryId(name);
+  if (found) return found;
+  const columns = await categoryColumns();
+  if (!columns.has("id") || !columns.has("name")) return null;
+  const clean = plainCategory(name).slice(0, 255);
+  if (!clean) return null;
+  const values = new Map<string, string | number | Date | null>();
+  values.set("name", clean);
+  if (columns.has("slug")) values.set("slug", (slugify(clean) || "category").slice(0, 200));
+  if (columns.has("status")) values.set("status", 1);
+  const now = new Date();
+  if (columns.has("created_at")) values.set("created_at", now);
+  if (columns.has("updated_at")) values.set("updated_at", now);
+  const entries = [...values.entries()];
+  const result = await adminExecute(
+    `INSERT INTO blog_categories (${entries.map(([column]) => column).join(", ")}) VALUES (${entries.map(() => "?").join(", ")})`,
+    entries.map(([, value]) => value)
+  );
+  return result.insertId || (await categoryId(clean));
 }
 
 export async function saveIngestedBlog(draft: IngestDraft): Promise<SavedBlogDraft> {
@@ -214,7 +268,7 @@ export async function saveIngestedBlog(draft: IngestDraft): Promise<SavedBlogDra
   put("image_src", DEFAULT_BLOG_IMAGE);
 
   if (columns.has("parent_category")) {
-    put("parent_category", await categoryId(draft.category));
+    put("parent_category", await ensureCategoryId(draft.category));
   }
 
   const now = new Date();
@@ -296,9 +350,9 @@ export async function updateIngestedBlog(ref: string, patch: IngestPatch): Promi
   }
   if (patch.category) {
     if (columns.has("parent_category")) {
-      const matched = await categoryId(patch.category);
-      if (!matched) throw new Error("That category does not exist.");
-      put("parent_category", matched);
+      const matched = await ensureCategoryId(patch.category);
+      if (matched) put("parent_category", matched);
+      else if (!columns.has("category")) throw new Error("That category does not exist.");
     }
     if (columns.has("category")) put("category", patch.category);
   }
