@@ -1,4 +1,3 @@
-import bcrypt from "bcryptjs";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import type { RowDataPacket } from "mysql2/promise";
@@ -19,10 +18,6 @@ export interface StaffUser {
   lastName: string;
   email: string;
   phone: string;
-}
-
-export async function hashPassword(plain: string): Promise<string> {
-  return bcrypt.hash(plain, 10);
 }
 
 function staffFromRow(row: RowDataPacket | undefined): StaffUser | null {

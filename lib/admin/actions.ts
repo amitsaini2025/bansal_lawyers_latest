@@ -1,7 +1,7 @@
 "use server";
 
 import { redirect } from "next/navigation";
-import { beginLoginCode, clearLoginCode, currentLoginCode, endAdminSession, findOtpAdmin, hashPassword, requireAdmin, startAdminSession } from "@/lib/admin/auth";
+import { beginLoginCode, clearLoginCode, currentLoginCode, endAdminSession, findOtpAdmin, requireAdmin, startAdminSession } from "@/lib/admin/auth";
 import {
   ADMIN_OTP_EMAIL,
   ADMIN_OTP_MAX_ATTEMPTS,
@@ -17,9 +17,7 @@ import {
   deleteBlock,
   deleteContact,
   deleteRecord,
-  emailTaken,
   getContact,
-  getStaff,
   markContactForwarded,
   saveRecord,
   setAppointmentStatus,
@@ -28,6 +26,7 @@ import {
 } from "@/lib/admin/data";
 import { AdminDatabaseError } from "@/lib/admin/db";
 import { APPOINTMENT_STATUSES, CONTACT_STATUSES, positiveId, slugify } from "@/lib/admin/labels";
+import { cleanEditorHtml } from "@/lib/blog/html";
 import { getMailConfig, getMailTransporter } from "@/lib/mail";
 
 function text(formData: FormData, name: string, max = 500) {
@@ -259,8 +258,6 @@ export async function forwardContactAction(formData: FormData) {
 const CONTENT = {
   blogs: { slug: "slug", list: "/admin/blogs" },
   blog_categories: { slug: "slug", list: "/admin/blog-categories" },
-  cms_pages: { slug: "slug", list: "/admin/pages" },
-  recent_cases: { slug: "slug", list: "/admin/cases" },
 } as const;
 
 type ContentTable = keyof typeof CONTENT;
@@ -289,13 +286,7 @@ export async function saveContentAction(formData: FormData) {
     [slugColumn]: slug,
   };
   if (formData.has("short_description")) values.short_description = text(formData, "short_description", 255);
-  if (formData.has("body")) {
-    const body = text(formData, "body", 500_000);
-    if (table === "cms_pages") values.content = body;
-    else values.description = body;
-  }
-  if (formData.has("meta_title")) values.meta_title = text(formData, "meta_title", 250);
-  if (formData.has("meta_description")) values.meta_description = text(formData, "meta_description", 500);
+  if (formData.has("body")) values.description = cleanEditorHtml(text(formData, "body", 500_000));
   if (formData.has("status")) values.status = text(formData, "status", 1) === "1" ? 1 : 0;
   if (formData.has("parent_id")) values.parent_id = positiveId(text(formData, "parent_id", 12)) ?? 0;
   if (formData.has("parent_category")) values.parent_category = positiveId(text(formData, "parent_category", 12));
@@ -320,68 +311,4 @@ export async function deleteContentAction(formData: FormData) {
     failure(error, CONTENT[table].list);
   }
   done(CONTENT[table].list, "Deleted.");
-}
-
-export async function saveProfileAction(formData: FormData) {
-  const admin = await requireAdmin();
-  const firstName = text(formData, "first_name", 120);
-  const lastName = text(formData, "last_name", 120);
-  const phone = text(formData, "phone", 50);
-  const password = String(formData.get("password") ?? "");
-  const confirm = String(formData.get("password_confirmation") ?? "");
-  if (!firstName) bounce("/admin/profile", "First name is required.");
-  if (password && (password.length < 8 || password !== confirm)) {
-    bounce("/admin/profile", "New password must be at least 8 characters and match the confirmation.");
-  }
-  try {
-    const values: Record<string, string | number | null> = {
-      first_name: firstName,
-      last_name: lastName,
-      phone,
-    };
-    if (password) values.password = await hashPassword(password);
-    await saveRecord("admins", admin.id, values);
-  } catch (error) {
-    failure(error, "/admin/profile");
-  }
-  done("/admin/profile", password ? "Profile and password updated." : "Profile updated.");
-}
-
-export async function saveStaffAction(formData: FormData) {
-  const admin = await requireAdmin();
-  const rawId = text(formData, "id", 12);
-  const id = rawId ? positiveId(rawId) : null;
-  const path = id ? `/admin/staff/${id}` : "/admin/staff/new";
-  const firstName = text(formData, "first_name", 120);
-  const lastName = text(formData, "last_name", 120);
-  const email = text(formData, "email", 191).toLowerCase();
-  const phone = text(formData, "phone", 50);
-  const company = text(formData, "company_name", 255);
-  const status = text(formData, "status", 1) === "1" ? 1 : 0;
-  const password = String(formData.get("password") ?? "");
-  const confirm = String(formData.get("password_confirmation") ?? "");
-  if (!firstName || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) bounce(path, "First name and a valid email are required.");
-  if (id === admin.id && status === 0) bounce(path, "You cannot disable the account you are signed in with.");
-  if (!id && password.length < 8) bounce(path, "A new staff account needs a password of at least 8 characters.");
-  if (password && (password.length < 8 || password !== confirm)) {
-    bounce(path, "Password must be at least 8 characters and match the confirmation.");
-  }
-  try {
-    if (id && !(await getStaff(id))) bounce(path, "That staff account could not be found.");
-    if (await emailTaken(email, id)) bounce(path, "That email is already used.");
-    const values: Record<string, string | number | null> = {
-      first_name: firstName,
-      last_name: lastName,
-      email,
-      phone,
-      company_name: company,
-      status,
-      is_archived: 0,
-    };
-    if (password) values.password = await hashPassword(password);
-    const saved = await saveRecord("admins", id, values);
-    done(`/admin/staff/${saved}`, "Staff account saved.");
-  } catch (error) {
-    failure(error, path);
-  }
 }

@@ -352,6 +352,134 @@
 
 .admin-day--muted { background: #f8fafc; color: #94a3b8; }
 
+.rte-field {
+  display: grid;
+  gap: 0.3rem;
+}
+
+.rte-field__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.rte {
+  display: grid;
+  gap: 0;
+  font-weight: 400;
+}
+
+.rte__bar,
+.rte__link {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  align-items: center;
+}
+
+.rte__bar {
+  padding: 0.4rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px 8px 0 0;
+  background: #f8fafc;
+}
+
+.admin-app .rte__bar button,
+.admin-app .rte__bar select,
+.admin-app .rte__link button {
+  width: auto;
+  background: #fff;
+  color: #1e293b;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.admin-app .rte__bar button[aria-pressed="true"] {
+  background: #dbeafe;
+  border-color: #93c5fd;
+  color: #1e3a8a;
+}
+
+.admin-app .rte__mode {
+  margin-left: auto;
+}
+
+.rte__link {
+  padding: 0.45rem 0.4rem 0;
+}
+
+.admin-app .rte__link input {
+  width: min(100%, 24rem);
+}
+
+.rte__link-error {
+  flex-basis: 100%;
+  margin: 0;
+  color: #991b1b;
+  font-size: 0.8rem;
+}
+
+.rte__surface,
+.admin-app textarea.rte__source {
+  min-height: 24rem;
+  border: 1px solid #cbd5e1;
+  border-radius: 0 0 8px 8px;
+  padding: 0.9rem 1rem;
+  background: #fff;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.65;
+}
+
+.rte__surface:focus,
+.admin-app textarea.rte__source:focus {
+  outline: 2px solid #93c5fd;
+  outline-offset: 1px;
+}
+
+.rte__surface h2,
+.rte__surface h3,
+.rte__surface h4 {
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.3;
+  margin: 1rem 0 0.4rem;
+}
+
+.rte__surface h2 { font-size: 1.55rem; }
+.rte__surface h3 { font-size: 1.3rem; }
+.rte__surface h4 { font-size: 1.1rem; }
+
+.rte__surface p,
+.rte__surface ul,
+.rte__surface ol,
+.rte__surface blockquote {
+  margin: 0.7rem 0;
+}
+
+.rte__surface ul,
+.rte__surface ol {
+  padding-left: 1.3rem;
+}
+
+.rte__surface a {
+  color: #1d4ed8;
+}
+
+.rte__surface blockquote {
+  padding-left: 0.8rem;
+  border-left: 3px solid #cbd5e1;
+  color: #475569;
+}
+
+.rte__hint {
+  margin: 0.4rem 0 0;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
 @media (max-width: 800px) {
   .admin-app { display: block; }
   .admin-side { width: auto; height: auto; position: static; }

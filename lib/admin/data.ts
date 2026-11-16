@@ -313,20 +313,6 @@ export function listCategories(search: string, page: number) {
   );
 }
 
-export function listPages(search: string, page: number) {
-  return listContent("cms_pages", ["title", "slug"], ["title", "slug", "status", "created_at", "updated_at"], search, page);
-}
-
-export function listCases(search: string, page: number) {
-  return listContent(
-    "recent_cases",
-    ["title", "slug"],
-    ["title", "slug", "status", "created_at", "updated_at"],
-    search,
-    page
-  );
-}
-
 export async function getRecord(table: string, id: number) {
   const problem = await tableReady(table, ["id"]);
   if (problem) return { error: problem, row: null as RowDataPacket | null };
@@ -368,38 +354,3 @@ export async function slugTaken(table: string, column: string, slug: string, exc
   return rows.length > 0;
 }
 
-const STAFF_WHERE = "password LIKE '$2%'";
-
-export async function listStaff(search: string, page: number): Promise<PageResult<RowDataPacket>> {
-  const params: unknown[] = [];
-  let where = `WHERE ${STAFF_WHERE}`;
-  if (search) {
-    const pattern = likePattern(search);
-    where += ` AND (first_name LIKE ? ESCAPE '\\\\' OR last_name LIKE ? ESCAPE '\\\\' OR email LIKE ? ESCAPE '\\\\')`;
-    params.push(pattern, pattern, pattern);
-  }
-  const totalRows = await adminRows<RowDataPacket>(`SELECT COUNT(*) AS total FROM admins ${where}`, params);
-  const rows = await adminRows<RowDataPacket>(
-    `SELECT id, first_name, last_name, email, phone, status, created_at
-     FROM admins ${where} ORDER BY created_at DESC LIMIT ? OFFSET ?`,
-    [...params, PAGE_SIZE, offset(page)]
-  );
-  return paged(rows, Number(totalRows[0]?.total ?? 0), page);
-}
-
-export async function getStaff(id: number) {
-  const rows = await adminRows<RowDataPacket>(
-    `SELECT id, first_name, last_name, email, phone, company_name, status
-     FROM admins WHERE id = ? AND ${STAFF_WHERE} LIMIT 1`,
-    [id]
-  );
-  return rows[0] ?? null;
-}
-
-export async function emailTaken(email: string, exceptId: number | null) {
-  const rows = await adminRows<RowDataPacket>(
-    `SELECT id FROM admins WHERE email = ? ${exceptId ? "AND id <> ?" : ""} LIMIT 1`,
-    exceptId ? [email, exceptId] : [email]
-  );
-  return rows.length > 0;
-}

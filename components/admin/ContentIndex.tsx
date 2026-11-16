@@ -1,13 +1,11 @@
 import Link from "next/link";
 import { Flash, Pager, queryHref } from "@/components/admin/AdminBits";
-import { listBlogs, listCases, listCategories, listPages } from "@/lib/admin/data";
+import { listBlogs, listCategories } from "@/lib/admin/data";
 import { formatWhen, publishLabel } from "@/lib/admin/labels";
 
 const loaders = {
   blogs: listBlogs,
   categories: listCategories,
-  pages: listPages,
-  cases: listCases,
 } as const;
 
 export async function ContentIndex({

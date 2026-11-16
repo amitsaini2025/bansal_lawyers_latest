@@ -12,11 +12,7 @@ const links = [
   { href: "/admin/booking-blocks", label: "Block time slots" },
   { href: "/admin/blog-categories", label: "Blog categories" },
   { href: "/admin/blogs", label: "Blog posts" },
-  { href: "/admin/pages", label: "CMS pages" },
-  { href: "/admin/cases", label: "Case studies" },
   { href: "/admin/contacts", label: "Contact management" },
-  { href: "/admin/staff", label: "Staff" },
-  { href: "/admin/profile", label: "My profile" },
 ];
 
 export function AdminShell({ name, children }: { name: string; children: ReactNode }) {

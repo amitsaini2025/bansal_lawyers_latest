@@ -1,7 +1,7 @@
 import test from "node:test";
 import assert from "node:assert/strict";
 import { parseIngestPayload } from "../lib/blog/ingest.ts";
-import { plainTextFromHtml, sanitizeBlogHtml } from "../lib/blog/html.ts";
+import { cleanEditorHtml, plainTextFromHtml, prepareEditorHtml, sanitizeBlogHtml } from "../lib/blog/html.ts";
 
 test("turns plain text into paragraphs and strips scripts", () => {
   const html = sanitizeBlogHtml("First paragraph.\n\nSecond line.");
@@ -35,6 +35,18 @@ test("rejects a short post and a slug that already has a built-in page", () => {
     assert.equal(draft.value.slug, "section-501-visa-cancellation-in-melbourne");
     assert.match(draft.value.body, /<h2>/);
   }
+});
+
+test("editor html keeps article tags and turns inline bullets into lists", () => {
+  const saved = cleanEditorHtml('<div><b>Bold</b> and <i>italic</i><script>alert(1)</script></div>');
+  assert.equal(saved, "<p><strong>Bold</strong> and <em>italic</em></p>");
+
+  const opened = prepareEditorHtml(
+    "<p>To file for divorce in Australia: &bull; One spouse must be a citizen. &bull; The couple must have been apart for 12 months.</p><p>Bring: 1. The marriage certificate. 2. Proof of separation.</p>",
+  );
+  assert.match(opened, /<ul><li>One spouse must be a citizen\.<\/li><li>The couple must have been apart for 12 months\.<\/li><\/ul>/);
+  assert.match(opened, /<ol><li>The marriage certificate\.<\/li><li>Proof of separation\.<\/li><\/ol>/);
+  assert.equal(prepareEditorHtml("<h2>Keep</h2><p>Already structured.</p>"), "<h2>Keep</h2><p>Already structured.</p>");
 });
 
 test("publishes only when the payload asks for it", () => {

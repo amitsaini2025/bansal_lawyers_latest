@@ -15,18 +15,6 @@ const sections = {
     path: "/admin/blog-categories",
     hint: "Categories used to group blog posts.",
   },
-  pages: {
-    kind: "pages",
-    title: "CMS pages",
-    path: "/admin/pages",
-    hint: "Pages stored in the shared database.",
-  },
-  cases: {
-    kind: "cases",
-    title: "Case studies",
-    path: "/admin/cases",
-    hint: "Case studies stored in the shared database.",
-  },
 } as const;
 
 export function contentListPage(section: keyof typeof sections) {

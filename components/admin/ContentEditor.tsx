@@ -1,5 +1,6 @@
 import { saveContentAction, deleteContentAction } from "@/lib/admin/actions";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
+import { RichTextEditor } from "@/components/admin/RichTextEditor";
 
 export function ContentEditor({
   table,
@@ -7,8 +8,8 @@ export function ContentEditor({
   record,
   categories = [],
 }: {
-  table: "blogs" | "blog_categories" | "cms_pages" | "recent_cases";
-  kind: "blog" | "category" | "page" | "case";
+  table: "blogs" | "blog_categories";
+  kind: "blog" | "category";
   record: Record<string, unknown> | null;
   categories?: { id: number; name: string }[];
 }) {
@@ -63,29 +64,17 @@ export function ContentEditor({
           <option value="0">Draft</option>
         </select>
       </label>
-      {kind === "blog" || kind === "case" ? (
+      {kind === "blog" ? (
         <label>
           Short description
           <textarea name="short_description" rows={3} defaultValue={String(record?.short_description ?? "")} maxLength={255} />
         </label>
       ) : null}
-      {kind === "page" ? (
-        <>
-          <label>
-            Meta title
-            <input name="meta_title" defaultValue={String(record?.meta_title ?? "")} maxLength={250} />
-          </label>
-          <label>
-            Meta description
-            <textarea name="meta_description" rows={3} defaultValue={String(record?.meta_description ?? "")} maxLength={500} />
-          </label>
-        </>
-      ) : null}
-      {kind !== "category" ? (
-        <label>
-          Content
-          <textarea name="body" rows={16} defaultValue={String((kind === "page" ? record?.content : record?.description) ?? "")} />
-        </label>
+      {kind === "blog" ? (
+        <div className="rte-field">
+          <span className="rte-field__label">Content</span>
+          <RichTextEditor initialHtml={String(record?.description ?? "")} />
+        </div>
       ) : null}
       <button type="submit">{record ? "Save changes" : "Create"}</button>
     </form>
@@ -98,11 +87,9 @@ export function ContentEditor({
           </button>
         </ConfirmForm>
       ) : null}
-      {kind !== "category" ? (
+      {kind === "blog" ? (
         <p className="admin-note">
-          Published blog posts saved here appear on the public blog. CMS pages and case studies saved here
-          update the shared database and do not rewrite the pages built into the site. New Grok posts arrive
-          as drafts until you set status to Published.
+          Published blog posts saved here appear on the public blog. New Grok posts arrive as drafts until you set status to Published.
         </p>
       ) : null}
     </div>
