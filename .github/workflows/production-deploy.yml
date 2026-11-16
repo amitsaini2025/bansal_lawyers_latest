@@ -41,6 +41,15 @@ jobs:
             -e "ssh -p $SSH_PORT" \
             ./ "$SSH_USER@$SSH_HOST:$DEPLOY_PATH"
 
+          # Remove source files deleted from the repo. The full sync above does not
+          # delete, so stale pages stay on the server and fail the Next.js type check.
+          # Limit --delete to source trees so .env, .next, node_modules, and public uploads stay.
+          for dir in app components lib; do
+            rsync -avz --delete \
+              -e "ssh -p $SSH_PORT" \
+              "./$dir/" "$SSH_USER@$SSH_HOST:$DEPLOY_PATH/$dir/"
+          done
+
       - name: Build and restart Next.js
         env:
           SSH_HOST: ${{ secrets.SSH_HOST }}
