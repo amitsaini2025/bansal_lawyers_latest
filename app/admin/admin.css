@@ -309,11 +309,6 @@
   font-weight: 600;
 }
 
-.admin-login__heading {
-  margin: 0;
-  font-size: 0.95rem;
-}
-
 .admin-login__code {
   letter-spacing: 0.35em;
   font-size: 1.25rem;
