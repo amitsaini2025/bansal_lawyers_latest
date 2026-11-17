@@ -60,9 +60,7 @@ export default async function LoginPage({
             </form>
             <form action={sendLoginCodeAction}>
               <input type="hidden" name="email" value={CONTENT_WRITER_EMAIL} />
-              <button className="admin-button--ghost" type="submit">
-                Blogs and recent cases
-              </button>
+              <button type="submit">Blogs and recent cases</button>
             </form>
             <p className="admin-note">
               Staff codes go to {ADMIN_OTP_EMAIL}. The blogs and recent cases button emails {CONTENT_WRITER_EMAIL} and can edit and publish those two areas only.
