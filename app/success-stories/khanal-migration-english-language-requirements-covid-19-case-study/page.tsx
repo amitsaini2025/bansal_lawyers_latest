@@ -20,7 +20,7 @@ export const metadata: Metadata = createMetadata({
   title: "Khanal Migration Case Study: English Requirements & COVID-19",
   description:
     "Case study of Khanal (Migration) [2025] ARTA 104 examining Subclass 485 Temporary Graduate English requirements, Department pandemic flexibility, and ART merits review.",
-  path: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+  path: "/success-stories/khanal-migration-english-language-requirements-covid-19-case-study",
   keywords: [
     "Khanal Migration Case Study",
     "Subclass 485 English Requirement",
@@ -69,7 +69,7 @@ const relatedServices = [
 export default function KhanalCaseDetailPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Recent Cases", href: "/recent-cases" },
+    { label: "Success Stories", href: "/success-stories" },
     { label: "Khanal (Migration) [2025]" },
   ];
 
@@ -82,7 +82,7 @@ export default function KhanalCaseDetailPage() {
             "Khanal Migration Case Study: English Language Requirements and Flexibility During COVID-19",
           description:
             "Case summary of Khanal (Migration) [2025] ARTA 104 examining English language requirements and administrative flexibility during COVID-19 under Subclass 485.",
-          path: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+          path: "/success-stories/khanal-migration-english-language-requirements-covid-19-case-study",
           datePublished: "2025-04-11",
           dateModified: "2025-04-11",
           articleSection: "Immigration Law",
@@ -624,7 +624,7 @@ export default function KhanalCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question"
+                      href="/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister 2025 →
@@ -632,7 +632,7 @@ export default function KhanalCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
+                      href="/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case →
@@ -640,7 +640,7 @@ export default function KhanalCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024"
+                      href="/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained →
@@ -648,7 +648,7 @@ export default function KhanalCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/thakur-v-minister-for-immigration-2025-student-visa"
+                      href="/success-stories/thakur-v-minister-for-immigration-2025-student-visa"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Thakur v Minister for Immigration 2025 — Student Visa Case →
@@ -656,10 +656,10 @@ export default function KhanalCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases"
+                      href="/success-stories"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
-                      ← Back to All Recent Cases
+                      ← Back to Success Stories
                     </Link>
                   </li>
                 </ul>

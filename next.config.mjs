@@ -65,6 +65,26 @@ const nextConfig = {
   async redirects() {
     const manual = [
       {
+        source: "/recent-cases",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/:slug",
+        destination: "/success-stories/:slug",
+        permanent: true,
+      },
+      {
+        source: "/admin/cases",
+        destination: "/admin/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/admin/cases/:path*",
+        destination: "/admin/success-stories/:path*",
+        permanent: true,
+      },
+      {
         source: "/practice-areas",
         destination: "/immigration-lawyers-melbourne",
         permanent: true,
@@ -146,32 +166,32 @@ const nextConfig = {
       },
       {
         source: "/thakur-v-minister-for-immigration-2025-student-visa",
-        destination: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
+        destination: "/success-stories/thakur-v-minister-for-immigration-2025-student-visa",
         permanent: true,
       },
       {
         source: "/student-visa-refusal-bias-jaggi-v-minister-2024",
-        destination: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
+        destination: "/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024",
         permanent: true,
       },
       {
         source: "/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
-        destination: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+        destination: "/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
         permanent: true,
       },
       {
         source: "/khanal-migration-english-language-requirements-covid-19-case-study",
-        destination: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+        destination: "/success-stories/khanal-migration-english-language-requirements-covid-19-case-study",
         permanent: true,
       },
       {
         source: "/alsheri-v-minister-2025-importance-of-framing-legal-question",
-        destination: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
+        destination: "/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question",
         permanent: true,
       },
       {
         source: "/maazuddin-v-minister-2024-tribunal-decision-overturned",
-        destination: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+        destination: "/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned",
         permanent: true,
       },
       {
@@ -186,7 +206,7 @@ const nextConfig = {
       },
       {
         source: "/case",
-        destination: "/recent-cases",
+        destination: "/success-stories",
         permanent: true,
       },
       {

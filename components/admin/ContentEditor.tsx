@@ -126,8 +126,8 @@ export function ContentEditor({
       {kind === "case" ? (
         <p className="admin-note">
           {builtIn
-            ? "This slug belongs to a case page built into the website. Saving updates the database copy only. The public page stays as it is. Choose a new slug to publish a separate case update."
-            : "Published cases saved here appear on Recent Cases. Drafts stay in this list until you set status to Published."}
+            ? "This slug belongs to a success story built into the website. Saving updates the database copy only. The public page stays as it is. Choose a new slug to publish a separate story."
+            : "Published stories saved here appear on Success Stories. Drafts, including stories sent by Grok, stay in this list until you set status to Published."}
         </p>
       ) : null}
     </div>

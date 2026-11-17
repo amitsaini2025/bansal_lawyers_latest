@@ -71,7 +71,7 @@ export const navigation: LinkItem[] = [
     href: "/immigration-lawyers-melbourne",
     isMegaMenu: true,
   },
-  { label: "Recent Cases", href: "/recent-cases" },
+  { label: "Success Stories", href: "/success-stories" },
   { label: "Blog", href: "/blog" },
   { label: "Contact", href: "/contact" },
 ];

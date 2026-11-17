@@ -9,8 +9,8 @@ export function MainContent({ children }: { children: ReactNode }) {
   const deferred =
     pathname === "/blog" || pathname.startsWith("/blog/") ||
     pathname.startsWith("/legal/") ||
-    pathname === "/recent-cases" ||
-    pathname.startsWith("/recent-cases/") ||
+    pathname === "/success-stories" ||
+    pathname.startsWith("/success-stories/") ||
     pathname === "/thakur-v-minister-for-immigration-2025-student-visa" ||
     pathname === "/student-visa-refusal-bias-jaggi-v-minister-2024" ||
     pathname === "/chikweu-v-minister-2024-federal-court-visa-refusal-overturn" ||

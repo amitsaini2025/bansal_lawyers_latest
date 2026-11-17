@@ -16,7 +16,7 @@ const footerNavLinks = [
   { label: "Home", href: "/" },
   { label: "About Bansal Lawyers", href: "/about/" },
   { label: "Indian Lawyers Melbourne", href: "/indian-lawyers-melbourne/" },
-  { label: "Recent Cases", href: "/recent-cases/" },
+  { label: "Success Stories", href: "/success-stories/" },
   { label: "Blog & Legal Updates", href: "/blog/" },
   { label: "Book an Appointment", href: "/book-an-appointment/" },
   { label: "Contact Our Legal Team", href: "/contact/" },

@@ -20,7 +20,7 @@ export const metadata: Metadata = createMetadata({
   title: "Tribunal Decision Overturned — Maazuddin v Minister 2024",
   description:
     "Case study of Maazuddin v Minister for Immigration [2024] FedCFamC2G 1349 examining Student Visa condition 8202 cancellation, copy-and-paste tribunal reasoning, and section 359A procedural fairness.",
-  path: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+  path: "/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned",
   keywords: [
     "Maazuddin v Minister 2024",
     "Maazuddin v Minister for Immigration",
@@ -69,7 +69,7 @@ const relatedServices = [
 export default function MaazuddinCaseDetailPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Recent Cases", href: "/recent-cases" },
+    { label: "Success Stories", href: "/success-stories" },
     { label: "Maazuddin v Minister for Immigration [2024]" },
   ];
 
@@ -82,7 +82,7 @@ export default function MaazuddinCaseDetailPage() {
             "Tribunal Decision Overturned for \"Copy and Paste\" Reasoning — Maazuddin v Minister for Immigration 2024",
           description:
             "Case summary of Maazuddin v Minister for Immigration and Multicultural Affairs [2024] FedCFamC2G 1349 examining student visa cancellation, independent tribunal review, and procedural fairness.",
-          path: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+          path: "/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned",
           datePublished: "2025-04-11",
           dateModified: "2025-04-11",
           articleSection: "Immigration Law",
@@ -492,7 +492,7 @@ export default function MaazuddinCaseDetailPage() {
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   <li>
                     <Link
-                      href="/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question"
+                      href="/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Alsheri v Minister 2025 – Importance of Framing Legal Question →
@@ -500,7 +500,7 @@ export default function MaazuddinCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study"
+                      href="/success-stories/khanal-migration-english-language-requirements-covid-19-case-study"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Khanal Migration Case Study: English Language Requirements and COVID-19 Flexibility →
@@ -508,7 +508,7 @@ export default function MaazuddinCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
+                      href="/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case →
@@ -516,7 +516,7 @@ export default function MaazuddinCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024"
+                      href="/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained →
@@ -524,7 +524,7 @@ export default function MaazuddinCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/thakur-v-minister-for-immigration-2025-student-visa"
+                      href="/success-stories/thakur-v-minister-for-immigration-2025-student-visa"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Thakur v Minister for Immigration 2025 — Student Visa Case →
@@ -532,10 +532,10 @@ export default function MaazuddinCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases"
+                      href="/success-stories"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
-                      ← Back to All Recent Cases
+                      ← Back to Success Stories
                     </Link>
                   </li>
                 </ul>

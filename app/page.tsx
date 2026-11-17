@@ -273,7 +273,7 @@ export default function HomePage() {
           <Link href="/wills-lawyers-melbourne/">wills for assets in Australia and India</Link>, and we
           advise the Indian community through our{" "}
           <Link href="/indian-lawyers-melbourne/">Indian lawyers in Melbourne</Link> page. Published
-          work is on our <Link href="/recent-cases/">recent cases</Link> and{" "}
+          work is on our <Link href="/success-stories/">success stories</Link> and{" "}
           <Link href="/blog/">legal updates</Link> pages.
         </p>
       </Section>

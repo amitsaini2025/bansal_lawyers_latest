@@ -19,12 +19,12 @@ import { businessDetails } from "@/lib/site";
 export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = createMetadata({
-  title: "Recent Cases | Bansal Lawyers Melbourne",
+  title: "Success Stories | Bansal Lawyers Melbourne",
   description:
-    "Read recent case updates from Bansal Lawyers covering immigration law, student visa refusals, judicial review and Australian legal developments.",
-  path: "/recent-cases",
+    "Read success stories from Bansal Lawyers covering immigration law, student visa refusals, judicial review and Australian legal developments.",
+  path: "/success-stories",
   keywords: [
-    "Recent Cases Australia",
+    "Success Stories Australia",
     "Recent Legal Cases Australia",
     "Immigration Case Updates Australia",
     "Australian Legal Updates",
@@ -38,17 +38,17 @@ export default async function RecentCasesPage() {
   const recentCases = await listRecentCaseCards();
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Recent Cases" },
+    { label: "Success Stories" },
   ];
 
   return (
     <>
       <StructuredData
         data={createCollectionPageSchema({
-          title: "Recent Cases | Bansal Lawyers Melbourne",
+          title: "Success Stories | Bansal Lawyers Melbourne",
           description:
-            "Read recent case updates from Bansal Lawyers covering immigration law, student visa refusals, judicial review and Australian legal developments.",
-          path: "/recent-cases",
+            "Read success stories from Bansal Lawyers covering immigration law, student visa refusals, judicial review and Australian legal developments.",
+          path: "/success-stories",
         })}
       />
       <StructuredData data={createLegalServiceSchema()} />
@@ -58,16 +58,16 @@ export default async function RecentCasesPage() {
 
       <Hero
         eyebrow="Bansal Lawyers · Melbourne CBD"
-        title="Recent Cases"
+        title="Success Stories"
         intro={
           <>
             <p>
-              Bansal Lawyers shares selected recent case updates to help clients understand how Australian
+              Bansal Lawyers shares selected success stories to help clients understand how Australian
               legal decisions may affect immigration, family, criminal, commercial, property, and civil law
               matters.
             </p>
             <p style={{ marginTop: "0.75rem", fontSize: "0.98rem", opacity: 0.9 }}>
-              These updates are provided for general information only. They do not replace legal advice. Every
+              These stories are provided for general information only. They do not replace legal advice. Every
               matter depends on its own facts, documents, evidence, deadlines, and legal circumstances.
             </p>
           </>
@@ -88,9 +88,9 @@ export default async function RecentCasesPage() {
       <Section tone="white">
         <Container>
           <SectionHeader
-            eyebrow="Case Updates & Summaries"
-            title="Latest Case Updates"
-            intro="Explore our recent legal summaries examining judicial review, administrative tribunal decisions, and Australian court findings."
+            eyebrow="Stories & Summaries"
+            title="Latest Success Stories"
+            intro="Explore summaries of judicial review, administrative tribunal decisions, and Australian court findings."
           />
 
           <div className="recent-cases-grid">
@@ -144,7 +144,7 @@ export default async function RecentCasesPage() {
                 {/* Action Button */}
                 <div className="case-card__footer">
                   <ButtonLink href={item.slug} variant="primary" className="button--full">
-                    Read Case Summary
+                    Read Story
                   </ButtonLink>
                 </div>
               </article>

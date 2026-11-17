@@ -25,8 +25,11 @@ export function ingestSecretConfigured(): boolean {
   return Boolean(process.env.BLOG_INGEST_SECRET?.trim());
 }
 
-export function ingestAccess(authorization: string | null): { ok: true } | { ok: false; status: 401 | 503; error: string } {
-  if (!ingestSecretConfigured()) return { ok: false, status: 503, error: "Blog ingest is not configured." };
+export function ingestAccess(
+  authorization: string | null,
+  label = "Blog ingest"
+): { ok: true } | { ok: false; status: 401 | 503; error: string } {
+  if (!ingestSecretConfigured()) return { ok: false, status: 503, error: `${label} is not configured.` };
   if (!ingestAuthorized(authorization)) return { ok: false, status: 401, error: "Unauthorized." };
   return { ok: true };
 }

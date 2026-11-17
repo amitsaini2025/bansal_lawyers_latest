@@ -13,7 +13,7 @@ test("content writer emails are a role, and the principal address stays an admin
   assert.equal(CONTENT_WRITER_EMAIL, "bansallawyersvrushali@gmail.com");
 });
 
-test("writers manage blogs and recent cases and land on the blog list", () => {
+test("writers manage blogs and success stories and land on the blog list", () => {
   assert.equal(writerMayManage("blogs"), true);
   assert.equal(writerMayManage("recent_cases"), true);
   assert.equal(writerMayManage("blog_categories"), false);

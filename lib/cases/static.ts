@@ -11,7 +11,7 @@ export interface CaseCardItem {
 export const builtInCases: CaseCardItem[] = [
   {
     title: "Tribunal Decision Overturned for \"Copy and Paste\" Reasoning — Maazuddin v Minister for Immigration 2024",
-    slug: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+    slug: "/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
     summary:
@@ -20,7 +20,7 @@ export const builtInCases: CaseCardItem[] = [
   },
   {
     title: "The Crucial Importance of Correctly Framing the Legal Question — Alsheri v Minister for Immigration 2025",
-    slug: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
+    slug: "/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
     summary:
@@ -29,7 +29,7 @@ export const builtInCases: CaseCardItem[] = [
   },
   {
     title: "Khanal Migration Case Study: English Language Requirements and Flexibility During COVID-19",
-    slug: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+    slug: "/success-stories/khanal-migration-english-language-requirements-covid-19-case-study",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
     summary:
@@ -38,7 +38,7 @@ export const builtInCases: CaseCardItem[] = [
   },
   {
     title: "When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case",
-    slug: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+    slug: "/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
     summary:
@@ -47,7 +47,7 @@ export const builtInCases: CaseCardItem[] = [
   },
   {
     title: "Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained",
-    slug: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
+    slug: "/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024",
     practiceArea: "Immigration Law",
     publishedDate: "Apr 11, 2025",
     summary:
@@ -56,7 +56,7 @@ export const builtInCases: CaseCardItem[] = [
   },
   {
     title: "Thakur v Minister for Immigration and Citizenship 2025 — Student Visa Judicial Review",
-    slug: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
+    slug: "/success-stories/thakur-v-minister-for-immigration-2025-student-visa",
     practiceArea: "Immigration Law",
     publishedDate: "Aug 23, 2025",
     summary:
@@ -66,5 +66,5 @@ export const builtInCases: CaseCardItem[] = [
 ];
 
 export function staticCaseSlugs(): Set<string> {
-  return new Set(builtInCases.map((item) => item.slug.replace(/^\/recent-cases\//, "").replace(/\/$/, "")));
+  return new Set(builtInCases.map((item) => item.slug.replace(/^\/success-stories\//, "").replace(/\/$/, "")));
 }

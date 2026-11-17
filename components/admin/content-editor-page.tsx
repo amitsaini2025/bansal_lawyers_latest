@@ -10,7 +10,7 @@ import { staticCaseSlugs } from "@/lib/cases/static";
 const editors = {
   blog: { table: "blogs", kind: "blog", list: "/admin/blogs", title: "Blog post", back: "blog posts" },
   category: { table: "blog_categories", kind: "category", list: "/admin/blog-categories", title: "Blog category", back: "blog categories" },
-  case: { table: "recent_cases", kind: "case", list: "/admin/cases", title: "Recent case", back: "recent cases" },
+  case: { table: "recent_cases", kind: "case", list: "/admin/success-stories", title: "Success story", back: "success stories" },
 } as const;
 
 export function contentEditorPage(section: keyof typeof editors, mode: "new" | "edit") {

@@ -273,7 +273,7 @@ export async function forwardContactAction(formData: FormData) {
 const CONTENT = {
   blogs: { slug: "slug", list: "/admin/blogs" },
   blog_categories: { slug: "slug", list: "/admin/blog-categories" },
-  recent_cases: { slug: "slug", list: "/admin/cases" },
+  recent_cases: { slug: "slug", list: "/admin/success-stories" },
 } as const;
 
 type ContentTable = keyof typeof CONTENT;

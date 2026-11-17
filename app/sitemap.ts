@@ -35,12 +35,12 @@ function publishedLabelToIso(label: string): string {
 }
 
 const contentLastModified = new Map<string, string>([
-  ["/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned", "2025-04-11"],
-  ["/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question", "2025-04-11"],
-  ["/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study", "2025-04-11"],
-  ["/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn", "2025-04-11"],
-  ["/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024", "2025-04-11"],
-  ["/recent-cases/thakur-v-minister-for-immigration-2025-student-visa", "2025-08-23"],
+  ["/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned", "2025-04-11"],
+  ["/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question", "2025-04-11"],
+  ["/success-stories/khanal-migration-english-language-requirements-covid-19-case-study", "2025-04-11"],
+  ["/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn", "2025-04-11"],
+  ["/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024", "2025-04-11"],
+  ["/success-stories/thakur-v-minister-for-immigration-2025-student-visa", "2025-08-23"],
 ]);
 
 let newestBlogDate = STATIC_LAST_MODIFIED;
@@ -284,43 +284,43 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/recent-cases`,
+      url: `${siteUrl}/success-stories`,
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.85,
     },
     {
-      url: `${siteUrl}/recent-cases/thakur-v-minister-for-immigration-2025-student-visa`,
+      url: `${siteUrl}/success-stories/thakur-v-minister-for-immigration-2025-student-visa`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024`,
+      url: `${siteUrl}/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn`,
+      url: `${siteUrl}/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study`,
+      url: `${siteUrl}/success-stories/khanal-migration-english-language-requirements-covid-19-case-study`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question`,
+      url: `${siteUrl}/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
     },
     {
-      url: `${siteUrl}/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned`,
+      url: `${siteUrl}/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned`,
       lastModified: currentDate,
       changeFrequency: "monthly",
       priority: 0.8,
@@ -675,7 +675,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const dynamicCaseRoutes: MetadataRoute.Sitemap = cases
       .filter((item) => !reservedCases.has(item.slug))
       .map((item) => ({
-        url: `${siteUrl}/recent-cases/${item.slug}`,
+        url: `${siteUrl}/success-stories/${item.slug}`,
         lastModified: item.modifiedAt.toISOString().slice(0, 10),
         changeFrequency: "monthly",
         priority: 0.7,

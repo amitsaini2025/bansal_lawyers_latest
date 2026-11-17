@@ -61,7 +61,7 @@ export default async function BlogPage() {
           <p>
             Whether you are dealing with a visa refusal, separation, business contract, or
             property transaction, browse articles written by the team at Bansal Lawyers, read{" "}
-            <Link href="/recent-cases/">recent cases</Link>, or{" "}
+            <Link href="/success-stories/">success stories</Link>, or{" "}
             <Link href="/contact">contact us</Link> for advice tailored to your situation.
           </p>
         </div>

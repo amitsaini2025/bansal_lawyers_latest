@@ -26,7 +26,7 @@ export async function generateMetadata({
   return createMetadata({
     title: item.title,
     description: item.description,
-    path: `/recent-cases/${item.slug}`,
+    path: `/success-stories/${item.slug}`,
   });
 }
 
@@ -41,10 +41,10 @@ export default async function DatabaseCasePage({
 
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Recent Cases", href: "/recent-cases" },
+    { label: "Success Stories", href: "/success-stories" },
     { label: item.title },
   ];
-  const path = `/recent-cases/${item.slug}`;
+  const path = `/success-stories/${item.slug}`;
 
   return (
     <>

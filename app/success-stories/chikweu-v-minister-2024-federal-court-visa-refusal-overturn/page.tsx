@@ -20,7 +20,7 @@ export const metadata: Metadata = createMetadata({
   title: "When Tribunal Errors Matter: Chikweu v Minister 2024 Immigration Case",
   description:
     "Case study of Chikweu v Minister for Immigration [2024] FCA 1478 examining materiality of administrative errors, student visa refusals, and Federal Court overturns.",
-  path: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+  path: "/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
   keywords: [
     "Chikweu v Minister 2024",
     "Chikweu v Minister for Immigration",
@@ -69,7 +69,7 @@ const relatedServices = [
 export default function ChikweuCaseDetailPage() {
   const breadcrumbs = [
     { label: "Home", href: "/" },
-    { label: "Recent Cases", href: "/recent-cases" },
+    { label: "Success Stories", href: "/success-stories" },
     { label: "Chikweu v Minister for Immigration [2024]" },
   ];
 
@@ -82,7 +82,7 @@ export default function ChikweuCaseDetailPage() {
             "When Tribunal Errors Matter Chikweu v Minister 2024 Immigration Case",
           description:
             "Case summary of Chikweu v Minister for Immigration, Citizenship and Multicultural Affairs [2024] FCA 1478 examining when decision-maker errors matter enough to overturn a visa refusal.",
-          path: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+          path: "/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
           datePublished: "2025-04-11",
           dateModified: "2025-04-11",
           articleSection: "Immigration Law",
@@ -682,7 +682,7 @@ export default function ChikweuCaseDetailPage() {
                 <ul style={{ listStyle: "none", padding: 0, margin: "1.25rem 0 0", display: "flex", flexDirection: "column", gap: "0.6rem" }}>
                   <li>
                     <Link
-                      href="/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study"
+                      href="/success-stories/khanal-migration-english-language-requirements-covid-19-case-study"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Khanal Migration Case Study: English Language Requirements and COVID-19 Flexibility →
@@ -690,7 +690,7 @@ export default function ChikweuCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024"
+                      href="/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Apprehended Bias in Student Visa Refusals: Jaggi v Minister 2024 Explained →
@@ -698,7 +698,7 @@ export default function ChikweuCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases/thakur-v-minister-for-immigration-2025-student-visa"
+                      href="/success-stories/thakur-v-minister-for-immigration-2025-student-visa"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
                       Thakur v Minister for Immigration 2025 — Student Visa Case →
@@ -706,10 +706,10 @@ export default function ChikweuCaseDetailPage() {
                   </li>
                   <li>
                     <Link
-                      href="/recent-cases"
+                      href="/success-stories"
                       style={{ color: "var(--brand-blue)", textDecoration: "underline", fontWeight: 600 }}
                     >
-                      ← Back to All Recent Cases
+                      ← Back to Success Stories
                     </Link>
                   </li>
                 </ul>

@@ -638,13 +638,13 @@ export function Header() {
                 )}
               </div>
 
-              {/* 4. Recent Cases */}
+              {/* 4. Success Stories */}
               <Link
-                href="/recent-cases"
-                className={`mobile-nav-link ${pathname.startsWith("/recent-cases") || pathname.includes("thakur-v-minister") || pathname.includes("jaggi-v-minister") ? "mobile-nav-link--active" : ""}`}
+                href="/success-stories"
+                className={`mobile-nav-link ${pathname.startsWith("/success-stories") || pathname.includes("thakur-v-minister") || pathname.includes("jaggi-v-minister") ? "mobile-nav-link--active" : ""}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
-                <span>Recent Cases</span>
+                <span>Success Stories</span>
               </Link>
 
               {/* 5. Blog */}

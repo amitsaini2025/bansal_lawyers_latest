@@ -18,9 +18,9 @@ const sections = {
   },
   cases: {
     kind: "cases",
-    title: "Recent cases",
-    path: "/admin/cases",
-    hint: "Published cases appear on Recent Cases. The six case pages already built into the site stay as they are.",
+    title: "Success stories",
+    path: "/admin/success-stories",
+    hint: "Published stories appear on Success Stories. The six stories already built into the site stay as they are.",
   },
 } as const;
 
