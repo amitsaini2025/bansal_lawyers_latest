@@ -1,5 +1,5 @@
 import { redirect } from "next/navigation";
-import { sendLoginCodeAction, verifyLoginCodeAction } from "@/lib/admin/actions";
+import { sendLoginCodeAction, verifyLoginCodeAction, writerPasswordLoginAction } from "@/lib/admin/actions";
 import { homeForRole } from "@/lib/admin/access";
 import { currentLoginCode, getCurrentAdmin } from "@/lib/admin/auth";
 import { Flash, messageOf } from "@/components/admin/AdminBits";
@@ -25,7 +25,7 @@ export default async function LoginPage({
         <p className="admin-lead">
           {pending
             ? `Enter the six-digit code sent to ${pendingEmail ?? "your email"}. It expires in 10 minutes.`
-            : "Choose who is signing in. A six-digit code is emailed to that address."}
+            : "Staff sign in with an emailed code. Blogs and recent cases use email and password."}
         </p>
         <Flash notice={notice} error={error} />
         {pending ? (
@@ -58,12 +58,20 @@ export default async function LoginPage({
               <input type="hidden" name="email" value={ADMIN_OTP_EMAIL} />
               <button type="submit">Email staff sign-in code</button>
             </form>
-            <form action={sendLoginCodeAction}>
-              <input type="hidden" name="email" value={CONTENT_WRITER_EMAIL} />
-              <button type="submit">Blogs and recent cases</button>
+            <form action={writerPasswordLoginAction}>
+              <p className="admin-login__heading">Blogs and recent cases</p>
+              <label>
+                Email
+                <input name="email" type="email" autoComplete="username" defaultValue={CONTENT_WRITER_EMAIL} required />
+              </label>
+              <label>
+                Password
+                <input name="password" type="password" autoComplete="current-password" required />
+              </label>
+              <button type="submit">Sign in</button>
             </form>
             <p className="admin-note">
-              Staff codes go to {ADMIN_OTP_EMAIL}. The blogs and recent cases button emails {CONTENT_WRITER_EMAIL} and can edit and publish those two areas only.
+              Staff codes go to {ADMIN_OTP_EMAIL}. Blogs and recent cases sign in with email and password and can edit and publish those two areas only.
             </p>
           </>
         )}

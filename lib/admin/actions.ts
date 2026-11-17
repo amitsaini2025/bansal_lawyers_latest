@@ -6,12 +6,14 @@ import { beginLoginCode, clearLoginCode, currentLoginCode, endAdminSession, find
 import {
   ADMIN_OTP_MAX_ATTEMPTS,
   ADMIN_OTP_SECONDS,
+  CONTENT_WRITER_EMAIL,
   createLoginCode,
   hashLoginCode,
   loginCodeMatches,
   loginCodeSendBlocked,
   noteLoginCodeSent,
 } from "@/lib/admin/otp";
+import { isContentWriterEmail, noteWriterPasswordFailure, writerPasswordBlocked, writerPasswordMatches } from "@/lib/admin/writer-password";
 import {
   addBlock,
   deleteBlock,
@@ -74,9 +76,36 @@ async function loginEmail(formData: FormData): Promise<string> {
   return challenge?.email ?? "";
 }
 
+export async function writerPasswordLoginAction(formData: FormData) {
+  const email = text(formData, "email", 191).toLowerCase();
+  const password = String(formData.get("password") ?? "");
+  if (!isContentWriterEmail(email)) bounce("/admin/login", "That email or password is not valid.");
+  if (writerPasswordBlocked(email)) bounce("/admin/login", "Too many sign-in attempts. Wait a few minutes and try again.");
+  if (!writerPasswordMatches(password)) {
+    noteWriterPasswordFailure(email);
+    bounce("/admin/login", "That email or password is not valid.");
+  }
+
+  try {
+    const staff = await findStaffForLogin(CONTENT_WRITER_EMAIL);
+    if (!staff || staff.role !== "writer") {
+      bounce("/admin/login", "Sign-in is unavailable because that staff account is not active.");
+    }
+    await startAdminSession(staff.id);
+    redirect(homeForRole(staff.role));
+  } catch (error) {
+    if (isNextRedirect(error)) throw error;
+    if (error instanceof AdminDatabaseError) bounce("/admin/login", error.message);
+    if (databaseUnreachable(error)) bounce("/admin/login", "The staff database could not be reached.");
+    console.error("[Admin]", error);
+    bounce("/admin/login", "Sign-in could not be completed. Try again.");
+  }
+}
+
 export async function sendLoginCodeAction(formData: FormData) {
   const email = await loginEmail(formData);
   if (!email) bounce("/admin/login", "Enter the staff email address.");
+  if (isContentWriterEmail(email)) bounce("/admin/login", "Blogs and recent cases use the email and password form.");
 
   const blocked = loginCodeSendBlocked(email);
   if (blocked === "wait") bounce("/admin/login", "A code was just sent. Wait a minute before requesting another.");

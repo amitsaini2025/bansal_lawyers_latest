@@ -3,7 +3,7 @@ import { adminSessionSecret } from "@/lib/admin/session";
 
 export const ADMIN_OTP_COOKIE = "bl_admin_otp";
 export const ADMIN_OTP_EMAIL = "admin@bansallawyers.com.au";
-export const CONTENT_WRITER_EMAIL = "bansallawyersvrushali@gmail.com";
+export const CONTENT_WRITER_EMAIL = "blog@bansallawyers.com.au";
 export const ADMIN_OTP_SECONDS = 10 * 60;
 export const ADMIN_OTP_MAX_ATTEMPTS = 5;
 
