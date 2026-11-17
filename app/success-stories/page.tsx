@@ -94,7 +94,9 @@ export default async function RecentCasesPage() {
           />
 
           <div className="recent-cases-grid">
-            {recentCases.map((item) => (
+            {recentCases.length === 0 ? (
+              <p>New success stories will appear here.</p>
+            ) : recentCases.map((item) => (
               <article key={item.title} className="case-card">
                 {/* Header row: Practice Area Tag */}
                 <div className="case-card__header">

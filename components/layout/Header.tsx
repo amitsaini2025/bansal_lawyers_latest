@@ -641,7 +641,7 @@ export function Header() {
               {/* 4. Success Stories */}
               <Link
                 href="/success-stories"
-                className={`mobile-nav-link ${pathname.startsWith("/success-stories") || pathname.includes("thakur-v-minister") || pathname.includes("jaggi-v-minister") ? "mobile-nav-link--active" : ""}`}
+                className={`mobile-nav-link ${pathname.startsWith("/success-stories") ? "mobile-nav-link--active" : ""}`}
                 onClick={() => setMobileMenuOpen(false)}
               >
                 <span>Success Stories</span>

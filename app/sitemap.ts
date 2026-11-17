@@ -34,14 +34,7 @@ function publishedLabelToIso(label: string): string {
   return `${match[3]}-${month}-${match[2].padStart(2, "0")}`;
 }
 
-const contentLastModified = new Map<string, string>([
-  ["/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned", "2025-04-11"],
-  ["/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question", "2025-04-11"],
-  ["/success-stories/khanal-migration-english-language-requirements-covid-19-case-study", "2025-04-11"],
-  ["/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn", "2025-04-11"],
-  ["/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024", "2025-04-11"],
-  ["/success-stories/thakur-v-minister-for-immigration-2025-student-visa", "2025-08-23"],
-]);
+const contentLastModified = new Map<string, string>();
 
 let newestBlogDate = STATIC_LAST_MODIFIED;
 for (const article of blogArticles) {
@@ -288,42 +281,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: currentDate,
       changeFrequency: "weekly",
       priority: 0.85,
-    },
-    {
-      url: `${siteUrl}/success-stories/thakur-v-minister-for-immigration-2025-student-visa`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/success-stories/khanal-migration-english-language-requirements-covid-19-case-study`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${siteUrl}/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned`,
-      lastModified: currentDate,
-      changeFrequency: "monthly",
-      priority: 0.8,
     },
     {
       url: `${siteUrl}/contact`,

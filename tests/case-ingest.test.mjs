@@ -21,14 +21,8 @@ test("accepts a draft case and builds the slug from the title", () => {
   }
 });
 
-test("rejects a short case and a slug that already has a built-in page", () => {
+test("rejects a story that is too short", () => {
   assert.equal(parseCaseIngestPayload({ title: "Short", body: "Too small." }).ok, false);
-  const taken = parseCaseIngestPayload({
-    title: "Thakur again as a new database case",
-    slug: "thakur-v-minister-for-immigration-2025-student-visa",
-    body,
-  });
-  assert.equal(taken.ok, false);
 });
 
 test("publishes only when the payload asks for it", () => {

@@ -20,7 +20,7 @@ const sections = {
     kind: "cases",
     title: "Success stories",
     path: "/admin/success-stories",
-    hint: "Published stories appear on Success Stories. The six stories already built into the site stay as they are.",
+    hint: "Published stories appear on Success Stories.",
   },
 } as const;
 

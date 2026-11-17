@@ -70,6 +70,66 @@ const nextConfig = {
         permanent: true,
       },
       {
+        source: "/success-stories/thakur-v-minister-for-immigration-2025-student-visa",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/success-stories/khanal-migration-english-language-requirements-covid-19-case-study",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/thakur-v-minister-for-immigration-2025-student-visa",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/student-visa-refusal-bias-jaggi-v-minister-2024",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/khanal-migration-english-language-requirements-covid-19-case-study",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/alsheri-v-minister-2025-importance-of-framing-legal-question",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
+        source: "/recent-cases/maazuddin-v-minister-2024-tribunal-decision-overturned",
+        destination: "/success-stories",
+        permanent: true,
+      },
+      {
         source: "/recent-cases/:slug",
         destination: "/success-stories/:slug",
         permanent: true,
@@ -166,32 +226,32 @@ const nextConfig = {
       },
       {
         source: "/thakur-v-minister-for-immigration-2025-student-visa",
-        destination: "/success-stories/thakur-v-minister-for-immigration-2025-student-visa",
+        destination: "/success-stories",
         permanent: true,
       },
       {
         source: "/student-visa-refusal-bias-jaggi-v-minister-2024",
-        destination: "/success-stories/student-visa-refusal-bias-jaggi-v-minister-2024",
+        destination: "/success-stories",
         permanent: true,
       },
       {
         source: "/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
-        destination: "/success-stories/chikweu-v-minister-2024-federal-court-visa-refusal-overturn",
+        destination: "/success-stories",
         permanent: true,
       },
       {
         source: "/khanal-migration-english-language-requirements-covid-19-case-study",
-        destination: "/success-stories/khanal-migration-english-language-requirements-covid-19-case-study",
+        destination: "/success-stories",
         permanent: true,
       },
       {
         source: "/alsheri-v-minister-2025-importance-of-framing-legal-question",
-        destination: "/success-stories/alsheri-v-minister-2025-importance-of-framing-legal-question",
+        destination: "/success-stories",
         permanent: true,
       },
       {
         source: "/maazuddin-v-minister-2024-tribunal-decision-overturned",
-        destination: "/success-stories/maazuddin-v-minister-2024-tribunal-decision-overturned",
+        destination: "/success-stories",
         permanent: true,
       },
       {

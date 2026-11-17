@@ -2,8 +2,6 @@
 
 Grokbot can add a story by calling one private endpoint. It uses the same bearer token as the blog ingest (`BLOG_INGEST_SECRET`). Published stories appear on `/success-stories`. Drafts stay in `/admin/success-stories` until a staff member publishes them.
 
-The six case studies already built into the site stay as those pages. A new case needs its own slug. Sending one of those six slugs is rejected.
-
 ## Grokbot request
 
 - Method: `POST`
@@ -51,7 +49,7 @@ Send only the fields that should change. Omitting `status` does not publish or u
 - URL: `https://www.bansallawyers.com.au/api/success-stories/ingest/<id-or-slug>`
 - Header: `Authorization: Bearer <BLOG_INGEST_SECRET>`
 
-This removes that row. The six case pages built into the site are files, so they are not removed this way. If a database row uses one of those slugs, deleting the row leaves the built-in page in place.
+This removes that row. If the story was published, it leaves `/success-stories` immediately.
 
 ## Success response
 
@@ -74,7 +72,7 @@ This removes that row. The six case pages built into the site are files, so they
 
 | Status | Meaning |
 | --- | --- |
-| 400 | Title, body, or slug is not usable, or an update sent no fields. Title needs at least 8 characters. Body needs at least 80 characters of text. A slug that belongs to one of the six built-in case pages is rejected here. |
+| 400 | Title, body, or slug is not usable, or an update sent no fields. Title needs at least 8 characters. Body needs at least 80 characters of text. |
 | 401 | The bearer token does not match `BLOG_INGEST_SECRET`. |
 | 404 | Update or delete could not find that id or slug. |
 | 409 | That slug is already used by another database case. |
