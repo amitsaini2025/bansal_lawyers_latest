@@ -102,8 +102,8 @@ export async function sendLoginCodeAction(formData: FormData) {
         from: config.fromEmail,
         to: staff.email,
         subject: "Your Bansal Lawyers admin sign-in code",
-        text: `Your admin sign-in code is ${code}. It expires in 10 minutes. If you did not request this code, you can ignore this email.`,
-        html: `<p>Your admin sign-in code is <strong style="letter-spacing:0.2em;font-size:20px">${code}</strong>.</p><p>It expires in 10 minutes. If you did not request this code, you can ignore this email.</p>`,
+        text: `Your Bansal Lawyers sign-in code is ${code}. It expires in 10 minutes. If you did not request this code, you can ignore this email.`,
+        html: `<p>Your Bansal Lawyers sign-in code is</p><p style="font-size:28px;font-family:Consolas,monospace;letter-spacing:0">${code}</p><p>It expires in 10 minutes. If you did not request this code, you can ignore this email.</p>`,
       });
     } catch (error) {
       console.error("[Admin] Sign-in code email failed", error);

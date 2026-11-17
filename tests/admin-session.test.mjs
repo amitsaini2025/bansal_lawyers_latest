@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import { appointmentStatus, slugify } from "../lib/admin/labels.ts";
-import { hashLoginCode, loginCodeMatches, readOtpChallenge, signOtpChallenge } from "../lib/admin/otp.ts";
+import { hashLoginCode, loginCodeMatches, normalizeLoginCode, readOtpChallenge, signOtpChallenge } from "../lib/admin/otp.ts";
 import { readAdminSession, signAdminSession } from "../lib/admin/session.ts";
 
 const secret = "test-secret-value-32";
@@ -21,6 +21,8 @@ test("admin login codes round-trip and reject a wrong code", () => {
   const challenge = readOtpChallenge(token, Date.now(), secret);
   assert.ok(challenge);
   assert.equal(loginCodeMatches(4, "123456", challenge.codeHash, secret), true);
+  assert.equal(loginCodeMatches(4, "1 2 3 4 5 6", challenge.codeHash, secret), true);
+  assert.equal(normalizeLoginCode("Your sign-in code is 123456. It expires in 10 minutes."), "123456");
   assert.equal(loginCodeMatches(4, "000000", challenge.codeHash, secret), false);
   assert.equal(readOtpChallenge(`${token}x`, Date.now(), secret), null);
   assert.equal(readOtpChallenge(token, exp * 1000 + 1000, secret), null);

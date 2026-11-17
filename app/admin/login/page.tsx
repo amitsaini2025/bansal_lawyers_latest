@@ -38,8 +38,8 @@ export default async function LoginPage({
                   name="code"
                   inputMode="numeric"
                   autoComplete="one-time-code"
-                  pattern="[0-9]{6}"
-                  maxLength={6}
+                  autoCapitalize="off"
+                  spellCheck={false}
                   required
                 />
               </label>

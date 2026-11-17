@@ -25,13 +25,20 @@ export function hashLoginCode(id: number, code: string, secret = adminSessionSec
   return createHash("sha256").update(`${secret}:${id}:${code}`).digest("base64url");
 }
 
+export function normalizeLoginCode(submitted: string): string | null {
+  const compact = submitted.replace(/[\u200B-\u200D\uFEFF]/g, "").replace(/(\d)\s+(?=\d)/g, "$1");
+  const matches = compact.match(/\d{6}/g);
+  if (matches?.length === 1) return matches[0];
+  const digits = submitted.replace(/\D/g, "");
+  return digits.length === 6 ? digits : null;
+}
+
 export function loginCodeMatches(id: number, submitted: string, codeHash: string, secret = adminSessionSecret()): boolean {
-  const normalized = submitted.replace(/\s+/g, "");
-  const candidate = /^\d{6}$/.test(normalized) ? normalized : "000000";
-  const actual = Buffer.from(hashLoginCode(id, candidate, secret));
+  const candidate = normalizeLoginCode(submitted);
+  const actual = Buffer.from(hashLoginCode(id, candidate ?? "000000", secret));
   const expected = Buffer.from(codeHash);
-  if (actual.length !== expected.length) return false;
-  return timingSafeEqual(actual, expected) && /^\d{6}$/.test(normalized);
+  if (actual.length !== expected.length || !candidate) return false;
+  return timingSafeEqual(actual, expected);
 }
 
 export function signOtpChallenge(challenge: OtpChallenge, secret = adminSessionSecret()): string {
