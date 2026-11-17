@@ -190,26 +190,24 @@ export function createImmigrationLawyersPageSchema(faqs: FaqItem[]) {
 }
 
 export const INDIAN_LAWYERS_MELBOURNE_PAGE_TITLE =
-  "Indian Lawyers in Melbourne | Family, Criminal, Disputes & Wills";
+  "Indian Lawyers in Melbourne | Family, Criminal, Disputes & Wills Law";
 export const INDIAN_LAWYERS_MELBOURNE_PAGE_DESCRIPTION =
   "Need an Indian lawyer in Melbourne? Bansal Lawyers offers legal advice in family, criminal, civil, commercial and dispute matters. Advice in English, Hindi and Punjabi. Contact our team today to discuss your legal needs.";
 
-/** Indian lawyers Melbourne page JSON-LD @graph: LegalService, WebPage, WebSite, breadcrumbs, team, FAQ. */
+const INDIAN_LAWYERS_MELBOURNE_CONTENT_NAME = "Indian Legal Services in Melbourne";
+const INDIAN_LAWYERS_MELBOURNE_CONTENT_DESCRIPTION =
+  "Information about legal assistance available through Bansal Lawyers for family law, criminal law, civil matters, commercial matters, business disputes, property settlements and wills.";
+
+/** Indian lawyers Melbourne page JSON-LD @graph: WebPage, CreativeWork, FAQPage. */
 export function createIndianLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
   const pageUrl = `${siteUrl}/indian-lawyers-melbourne`;
   const pageId = `${pageUrl}#webpage`;
-  const breadcrumbId = `${pageUrl}#breadcrumb`;
+  const contentId = `${pageUrl}#content`;
   const faqId = `${pageUrl}#faq`;
-  const ajayId = `${pageUrl}#ajay-bansal`;
-  const michaelId = `${pageUrl}#michael-saleh`;
 
   return {
     "@context": "https://schema.org",
     "@graph": [
-      {
-        ...createOrganizationLegalService(),
-        employee: [{ "@id": ajayId }, { "@id": michaelId }],
-      },
       {
         "@type": "WebPage",
         "@id": pageId,
@@ -219,60 +217,26 @@ export function createIndianLawyersMelbournePageGraphSchema(faqs: FaqItem[]) {
         inLanguage: "en-AU",
         isPartOf: { "@id": websiteId },
         about: { "@id": organizationId },
-        mainEntity: { "@id": organizationId },
-        breadcrumb: { "@id": breadcrumbId },
-        hasPart: [{ "@id": faqId }],
+        mainEntity: { "@id": contentId },
+        hasPart: { "@id": faqId },
       },
       {
-        "@type": "WebSite",
-        "@id": websiteId,
-        url: homeUrl,
-        name: businessDetails.name,
-        publisher: { "@id": organizationId },
+        "@type": "CreativeWork",
+        "@id": contentId,
+        name: INDIAN_LAWYERS_MELBOURNE_CONTENT_NAME,
+        description: INDIAN_LAWYERS_MELBOURNE_CONTENT_DESCRIPTION,
         inLanguage: "en-AU",
-      },
-      {
-        "@type": "BreadcrumbList",
-        "@id": breadcrumbId,
-        itemListElement: [
-          {
-            "@type": "ListItem",
-            position: 1,
-            name: "Home",
-            item: homeUrl,
-          },
-          {
-            "@type": "ListItem",
-            position: 2,
-            name: "Indian Lawyers in Melbourne",
-            item: pageUrl,
-          },
-        ],
-      },
-      {
-        "@type": "Person",
-        "@id": ajayId,
-        name: "Ajay Bansal",
-        jobTitle: "Director & Principal Lawyer",
-        email: businessDetails.email,
-        worksFor: { "@id": organizationId },
-        url: `${siteUrl}/about/ajay-bansal`,
-      },
-      {
-        "@type": "Person",
-        "@id": michaelId,
-        name: "Michael Saleh",
-        jobTitle: "Solicitor",
-        email: businessDetails.email,
-        worksFor: { "@id": organizationId },
-        url: `${siteUrl}/about/michael-saleh`,
+        publisher: { "@id": organizationId },
+        about: { "@id": organizationId },
+        isPartOf: { "@id": pageId },
       },
       {
         "@type": "FAQPage",
         "@id": faqId,
-        url: `${pageUrl}#faqs`,
-        isPartOf: { "@id": pageId },
+        url: pageUrl,
+        name: "Frequently Asked Questions – Indian Lawyers in Melbourne",
         inLanguage: "en-AU",
+        isPartOf: { "@id": pageId },
         mainEntity: faqs.map((item) => ({
           "@type": "Question",
           name: item.question,

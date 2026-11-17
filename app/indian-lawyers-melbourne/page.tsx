@@ -16,6 +16,7 @@ import {
   TrustBar,
 } from "@/components/ui";
 import { getTurnstileSiteKey } from "@/lib/booking/turnstile";
+import { indianLawyersMelbourneFaqs } from "@/lib/indian-lawyers-melbourne-faqs";
 import { indianLawyersMelbourneTestimonials } from "@/lib/indian-lawyers-melbourne-testimonials";
 import { createMetadata } from "@/lib/metadata";
 import {
@@ -23,7 +24,7 @@ import {
   INDIAN_LAWYERS_MELBOURNE_PAGE_DESCRIPTION,
   INDIAN_LAWYERS_MELBOURNE_PAGE_TITLE,
 } from "@/lib/schema";
-import { businessDetails } from "@/lib/site";
+import { businessDetails, officeHoursDescription } from "@/lib/site";
 
 export const metadata: Metadata = createMetadata({
   title: INDIAN_LAWYERS_MELBOURNE_PAGE_TITLE,
@@ -31,11 +32,15 @@ export const metadata: Metadata = createMetadata({
   path: "/indian-lawyers-melbourne",
   keywords: [
     "Indian Lawyers Melbourne",
+    "Indian Lawyer Melbourne",
     "Indian Family Lawyers Melbourne",
-    "Divorce After Indian Marriage Australia",
+    "Hindi-Speaking Lawyer Melbourne",
+    "Punjabi-Speaking Lawyer Melbourne",
     "Business Dispute Lawyer Melbourne",
-    "Wills for Assets in India",
-    "Hindi Punjabi Lawyer Melbourne",
+    "Legal Consultation Melbourne",
+    "Indian Civil Lawyers in Melbourne",
+    "Indian Criminal Lawyers in Melbourne",
+    "Indian Commercial Lawyers in Melbourne",
   ],
 });
 
@@ -62,64 +67,6 @@ const lawyers = [
   },
 ];
 
-const indianFaqs = [
-  {
-    question: "Can I divorce in Australia if I married in India?",
-    answer:
-      "Yes, if the marriage is recognised and an Australian court has jurisdiction. A marriage that was valid in India is generally recognised here. You can apply after 12 months of separation. At least one spouse must be an Australian citizen, domiciled in Australia, or ordinarily resident in Australia for the 12 months before filing. The divorce ends the marriage only. Parenting arrangements and property settlement are separate.",
-  },
-  {
-    question: "Is my property in India included in an Australian property settlement?",
-    answer:
-      "It can be. When the Federal Circuit and Family Court of Australia decides a property settlement, it looks at the property of both parties, including assets outside Australia. A house, land or business interest in India can be taken into account. The order binds the spouses. It does not, by itself, change the title records in India. A transfer or sale there can still require steps under Indian law.",
-  },
-  {
-    question: "How do I resolve a dispute with my business partner?",
-    answer:
-      "Start with the agreement and the accounts. A partnership agreement, a shareholders agreement, the company register and the payment records show who owns the business and what was promised. Many disputes settle by negotiation or a buy-out once those facts are on the table. If they do not, the next step may be a letter of demand, mediation, or a claim in VCAT or a court, depending on the amount and the type of dispute. Get advice before you move money out of the business or resign as a director.",
-  },
-  {
-    question: "Do I need a separate will for my assets in India?",
-    answer:
-      "Often, yes, if you own land or other immovable property in India. That property is governed by the law of the place where it sits. A will made only in Australia is not always the document an Indian registry, bank or court will act on, and a later Indian will can revoke the Australian will if the revocation clause is too wide. We draft the two so they work together. What you can leave in India also depends on the succession rules for your religion.",
-  },
-  {
-    question: "Can I get advice in Hindi or Punjabi?",
-    answer:
-      "Yes. You can take advice in English, Hindi or Punjabi. That includes meetings at the Collins Street office and online consultations if you are elsewhere in Australia, or if family in India are joining the call. Court documents are still prepared in English.",
-  },
-  {
-    question: "What documents should I bring to a consultation about a family business dispute?",
-    answer:
-      "Bring whatever you can find. That’s usually partnership or shareholder agreements, company records, bank and accounting statements, contracts, invoices, and any emails or messages with the other side. A rough timeline helps too. If something’s missing, come anyway and we’ll tell you what to look for.",
-  },
-  {
-    question: "Can I consult Bansal Lawyers if I live outside Melbourne?",
-    answer:
-      "Yes. We act for clients across Australia by phone or secure video, and we also advise overseas clients on Australian law. If you’d prefer to meet in person, you’re welcome at our Collins Street office. Just tell us which you’d like when you book.",
-  },
-  {
-    question: "Can family members in India participate in an online legal consultation?",
-    answer:
-      "Yes. They can join by phone or video from wherever they are. What you tell us is confidential, so we’ll check who’s on the call before we discuss your matter. Tell us when you book who’ll be joining and we’ll set it up.",
-  },
-  {
-    question: "Do you act in criminal matters?",
-    answer:
-      "Yes. If you’re looking for Indian criminal lawyers in Melbourne, our criminal lawyers act for people facing criminal charges, traffic offences and police matters. That includes bail applications and breaches of intervention orders. If you’ve got a court date or the police have contacted you, call us early.",
-  },
-  {
-    question: "What's the difference between a will and a power of attorney?",
-    answer:
-      "A will takes effect after you die. A power of attorney works while you’re alive. In Victoria, an enduring power of attorney lets someone make financial and personal decisions for you, even if you later lose capacity. If you own assets in two countries, you may need more than one document. Our wills lawyers can go through what suits you.",
-  },
-  {
-    question: "Do my documents need to be translated into English?",
-    answer:
-      "If a document is in Hindi or Punjabi and will be used in court, it generally needs an English translation from a certified translator. Bring the originals to your first meeting and we’ll tell you which ones need translating, so you don’t pay for translations you won’t use.",
-  },
-];
-
 export default function IndianLawyersMelbournePage() {
   const turnstileSiteKey = getTurnstileSiteKey();
   const breadcrumbs = [
@@ -129,7 +76,7 @@ export default function IndianLawyersMelbournePage() {
 
   return (
     <>
-      <StructuredData data={createIndianLawyersMelbournePageGraphSchema(indianFaqs)} />
+      <StructuredData data={createIndianLawyersMelbournePageGraphSchema(indianLawyersMelbourneFaqs)} />
 
       <Breadcrumbs items={breadcrumbs} />
 
@@ -160,6 +107,7 @@ export default function IndianLawyersMelbournePage() {
         ]}
       />
 
+      <div id="content">
       <Section tone="white" id="family-law">
         <div style={{ maxWidth: "52rem", margin: "0 auto" }}>
           <span className="eyebrow">Family Law</span>
@@ -312,7 +260,9 @@ export default function IndianLawyersMelbournePage() {
           </p>
           <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
             Ajay speaks English, Hindi and Punjabi. So if you want an <strong>Indian lawyer in Melbourne</strong>, you can talk about sensitive things in the language you&apos;re most at ease with. He works alongside solicitor{" "}
-            <Link href="/about/michael-saleh/">Michael Saleh</Link> and the rest of the team.
+            <Link href="/about/michael-saleh/">Michael Saleh</Link> and the rest of the team. See{" "}
+            <Link href="/about/ajay-bansal/">Ajay&apos;s full profile</Link> and meet{" "}
+            <Link href="/about/">the rest of the team</Link>.
           </p>
         </div>
       </Section>
@@ -432,6 +382,12 @@ export default function IndianLawyersMelbournePage() {
           <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
             We may need to read through your documents before we can advise on your options. We can&apos;t promise an outcome, a timeframe or a fee until we&apos;ve looked at your matter.
           </p>
+          <p style={{ fontSize: "1.05rem", lineHeight: "1.75", color: "var(--ink-secondary)", marginTop: "0.75rem" }}>
+            To request a consultation, use our <Link href="/contact/">contact page</Link>, call{" "}
+            {businessDetails.nationalLine} or {businessDetails.phone}, or email{" "}
+            <a href={businessDetails.emailMailto}>{businessDetails.email}</a>. We can meet by phone, secure video or at
+            our Collins Street CBD office. Tell us your preferred language when you book.
+          </p>
         </div>
       </Section>
 
@@ -475,7 +431,7 @@ export default function IndianLawyersMelbournePage() {
 
       <Section tone="warm" id="faqs">
         <Faq
-          items={indianFaqs}
+          items={indianLawyersMelbourneFaqs}
           title="Frequently Asked Questions"
           subtitle="Questions Indian families and business owners ask before they book."
           contactTitle="Want advice on your own matter?"
@@ -483,13 +439,36 @@ export default function IndianLawyersMelbournePage() {
           contactHref="/contact"
         />
       </Section>
+      </div>
 
       <CtaSection
-        title="Book a Consultation"
-        text="Family law, a dispute in a family business, a contract or debt, or a will covering Australia and India. Tell us which it is and we will set the next step."
+        id="speak-with-us"
+        title="Speak to an Indian Lawyer in Melbourne Today"
+        text={
+          <>
+            <p>
+              Legal trouble can feel confusing, but the right advice early on makes things simpler. Our Indian lawyers in
+              Melbourne act in family, criminal, civil, commercial and dispute matters, and can also help with your will,
+              explaining every step in English, Hindi or Punjabi. Meet us on Collins Street or online, from anywhere in
+              Australia or India. Call {businessDetails.nationalLine} and speak to a lawyer who understands your situation.
+            </p>
+            <p style={{ marginTop: "1rem" }}>
+              <strong>Office:</strong> {businessDetails.address}
+              <br />
+              <strong>Phone:</strong>{" "}
+              <a href={businessDetails.nationalLineTel}>{businessDetails.nationalLineDisplay}</a> |{" "}
+              <strong>Mobile:</strong> <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>
+              <br />
+              <strong>Email:</strong>{" "}
+              <a href={businessDetails.emailMailto}>{businessDetails.email}</a>
+              <br />
+              <strong>Hours:</strong> {officeHoursDescription} Melbourne time
+            </p>
+          </>
+        }
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{ label: `Call ${businessDetails.phone}`, href: businessDetails.phoneTel }}
-        phone="1300 226 725"
+        phone={businessDetails.nationalLine}
         phoneLabel="Call the Office"
         badges={[
           "English, Hindi and Punjabi",
