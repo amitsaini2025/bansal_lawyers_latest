@@ -924,18 +924,34 @@ export function createBreadcrumbSchema(items: BreadcrumbItem[]) {
   };
 }
 
-export function createFaqSchema(items: FaqItem[]) {
+export function createFaqSchema(items: FaqItem[], path?: string) {
+  const pageUrl = path ? new URL(path, `${siteUrl}/`).toString().replace(/\/$/, "") : undefined;
+  const mainEntity = items.map((item) => ({
+    "@type": "Question" as const,
+    name: item.question,
+    acceptedAnswer: {
+      "@type": "Answer" as const,
+      text:
+        item.answerText ??
+        (typeof item.answer === "string" ? item.answer : "[Answer text goes here]"),
+    },
+  }));
+
+  if (pageUrl) {
+    return {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "@id": `${pageUrl}#faq`,
+      url: pageUrl,
+      inLanguage: "en-AU",
+      mainEntity,
+    };
+  }
+
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
-    mainEntity: items.map((item) => ({
-      "@type": "Question",
-      name: item.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: typeof item.answer === "string" ? item.answer : "[Answer text goes here]",
-      },
-    })),
+    mainEntity,
   };
 }
 
