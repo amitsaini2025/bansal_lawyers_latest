@@ -6,6 +6,21 @@ export interface BlogArticle extends BlogArticleItem {
 
 export const blogArticles: BlogArticle[] = [
   {
+    id: "bail-in-victoria-bail-application-guide",
+    title: "Bail in Victoria: How a Bail Application Works After the Recent Reforms",
+    eyebrow: "Criminal Law",
+    category: "Criminal Law",
+    description:
+      "Bail application Victoria explained: how the tests work, what the second-strike rule means and what to prepare before your hearing. Correct as of Nov 2026.",
+    href: "/blog/bail-in-victoria-bail-application-guide",
+    imageSrc: "/images/blog/bail-in-victoria-bail-application-guide.jpg",
+    imageAlt:
+      "Bail in Victoria — how a bail application works after recent reforms — Bansal Lawyers",
+    publishedDate: "Nov 19, 2026",
+    readTime: "9 min read",
+    wordCount: 2200,
+  },
+  {
     id: "property-contract-review-victoria",
     title: "What to Check Before Signing a Property Contract in Victoria",
     eyebrow: "Property Law",

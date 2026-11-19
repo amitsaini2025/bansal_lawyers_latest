@@ -1368,3 +1368,89 @@ export function createPropertyContractReviewVictoriaBlogGraphSchema(
   };
 }
 
+const BAIL_IN_VICTORIA_BLOG_PATH = "/blog/bail-in-victoria-bail-application-guide";
+
+/** Bail in Victoria blog JSON-LD @graph: BlogPosting, BreadcrumbList, FAQPage. */
+export function createBailInVictoriaBlogGraphSchema(faqs: FaqItem[]) {
+  const pageUrl = `${siteUrl}${BAIL_IN_VICTORIA_BLOG_PATH}`;
+  const blogIndexUrl = `${siteUrl}/blog/`;
+  const imageUrl = `${siteUrl}/images/blog/bail-in-victoria-bail-application-guide.jpg`;
+
+  return {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${pageUrl}#blogposting`,
+        mainEntityOfPage: {
+          "@type": "WebPage",
+          "@id": pageUrl,
+        },
+        headline: "Bail in Victoria: How a Bail Application Works After the Recent Reforms",
+        description:
+          "Bail application Victoria explained: how the tests work, what the second-strike rule means and what to prepare before your hearing. Correct as of Nov 2026.",
+        inLanguage: "en-AU",
+        articleSection: "Criminal Law",
+        keywords: [
+          "Bail Application Victoria",
+          "Bail in Victoria",
+          "Bail Laws Victoria",
+          "Bail Act 1977",
+          "Second-Strike Rule Victoria",
+          "Bail Hearing Melbourne",
+          "Criminal Lawyers Melbourne",
+          "Bail Conditions Victoria",
+        ],
+        image: {
+          "@type": "ImageObject",
+          url: imageUrl,
+        },
+        publisher: {
+          "@type": "Organization",
+          "@id": organizationId,
+          name: businessDetails.name,
+          url: homeUrl,
+        },
+        datePublished: "2026-11-19",
+        dateModified: "2026-11-19",
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${pageUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Home",
+            item: homeUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Blog",
+            item: blogIndexUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: "Bail in Victoria: How a Bail Application Works After the Recent Reforms",
+            item: pageUrl,
+          },
+        ],
+      },
+      {
+        "@type": "FAQPage",
+        "@id": `${pageUrl}#faq`,
+        mainEntity: faqs.map((item) => ({
+          "@type": "Question",
+          name: item.question,
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: typeof item.answer === "string" ? item.answer : "",
+          },
+        })),
+      },
+    ],
+  };
+}
+
