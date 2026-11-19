@@ -170,7 +170,7 @@ export default function DivorceLawyerMelbournePage() {
   ];
 
   return (
-    <>
+    <div className="divorce-lawyer-melbourne-page">
       <StructuredData data={createLegalServiceSchema()} />
       <StructuredData data={createBreadcrumbSchema(breadcrumbs)} />
       <StructuredData
@@ -792,6 +792,6 @@ export default function DivorceLawyerMelbournePage() {
           contactHref="/contact"
         />
       </Section>
-    </>
+    </div>
   );
 }
