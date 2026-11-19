@@ -4820,6 +4820,48 @@ a.matter-item:hover .matter-item__arrow {
   margin-bottom: 1.25rem;
 }
 
+/* Divorce lawyer Melbourne page — tighter section gaps (this page only) */
+.divorce-lawyer-melbourne-page .section-header,
+.divorce-lawyer-melbourne-page .section-header p {
+  max-width: none;
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .section {
+  padding-block: clamp(1.65rem, 3vw, 2.35rem);
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .section + .section {
+  padding-block-start: clamp(0.85rem, 1.75vw, 1.15rem);
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .section-header {
+  margin-bottom: clamp(1rem, 2vw, 1.35rem);
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .service-detail-grid {
+  gap: 0.85rem;
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .service-text-block {
+  padding: 1.5rem 1.65rem;
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .section h2 {
+  margin-bottom: 0.65rem;
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .section h3 {
+  margin-top: 1.15rem;
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .points-list {
+  margin-top: 1rem;
+}
+
+.site-main--refined .divorce-lawyer-melbourne-page .client-testimonials-section {
+  padding-block: clamp(1.75rem, 3vw, 2.5rem);
+}
+
 .deadline-alert-box {
   display: flex;
   align-items: flex-start;
