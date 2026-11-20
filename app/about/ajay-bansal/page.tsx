@@ -6,10 +6,9 @@ import { createMetadata } from "@/lib/metadata";
 import { createAjayBansalPageGraphSchema } from "@/lib/schema";
 
 export const metadata: Metadata = createMetadata({
-  title:
-    "Ajay Bansal | Indian Lawyer in Melbourne | Director & Principal Lawyer | Bansal Lawyers",
+  title: "Indian Lawyer Melbourne | Hindi & Punjabi Speaking Lawyer | Ajay Bansal",
   description:
-    "Looking for an Indian lawyer in Melbourne? Ajay Bansal founding Director & Principal Lawyer at Bansal Lawyers offers legal guidance in English, Hindi and Punjabi across family, criminal, civil and commercial law. Contact our team today to book a consultation!",
+    "Looking for the best Indian lawyer in Melbourne? Bansal Lawyers assists with family, criminal, civil, commercial and other legal matters. Contact our team to discuss your needs.",
   path: "/about/ajay-bansal",
   keywords: ["Ajay Bansal", "Ajay Bansal Lawyer Melbourne", "Principal Lawyer Bansal Lawyers", "Immigration Lawyer Ajay Bansal", "Melbourne Solicitor Ajay Bansal", "Bansal Lawyers Director"],
 });

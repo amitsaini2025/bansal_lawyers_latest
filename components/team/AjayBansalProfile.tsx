@@ -11,7 +11,7 @@ import {
   Section,
   TrustBar,
 } from "@/components/ui";
-import { businessDetails } from "@/lib/site";
+import { businessDetails, officeHoursDescription } from "@/lib/site";
 
 const focusAreas = [
   {
@@ -84,24 +84,28 @@ export function AjayBansalProfile() {
         <Container>
           <div className="practitioner-hero__grid">
             <div className="practitioner-hero__content">
-              <h1>Indian Lawyer in Melbourne – Ajay Bansal</h1>
+              <h1>Indian Lawyer in Melbourne – Legal Support for the Indian Community</h1>
               <p className="practitioner-hero__lead">
-                If you&apos;re searching for an Indian lawyer in Melbourne, you probably want two
-                things: someone who knows Australian law, and someone you can talk to in your own
-                language.
+                Finding the right legal representation can make an important difference when dealing
+                with a family, criminal, civil or commercial matter. If you are searching for the best
+                Indian lawyer in Melbourne, it is important to consider relevant legal experience,
+                knowledge of Australian law, clear communication and an understanding of your
+                circumstances.
               </p>
               <hr className="ajay-hero-divider" />
               <div className="ajay-hero-intro">
                 <p>
-                  That&apos;s Ajay Bansal. He started Bansal Lawyers and is the Director and
-                  Principal Lawyer. He speaks English, Hindi and Punjabi, and he works on family,
-                  criminal, civil, commercial and property matters from our office in the Melbourne
-                  CBD.
+                  At Bansal Lawyers, our team assists members of the Indian community with a range of
+                  legal matters, including family law, divorce, criminal law, civil disputes, property
+                  matters, immigration and commercial law. We aim to help clients understand their legal
+                  options and the processes involved so they can make informed decisions about their
+                  matters.
                 </p>
                 <p>
-                  One thing we&apos;d rather say upfront: we only advise on Australian law. If part
-                  of your problem is in India, we&apos;ll tell you what we can do from Melbourne,
-                  and where you&apos;ll need a lawyer over there.
+                  Whether you need assistance with a personal legal issue, a family dispute or a
+                  business-related matter, speak with our team to discuss your requirements.
+                  Consultations in English, Hindi and Punjabi are available, subject to confirmation of
+                  language availability with the firm.
                 </p>
               </div>
               <div className="practitioner-hero__actions">
@@ -132,55 +136,29 @@ export function AjayBansalProfile() {
         <div className="ajay-profile-scroll-layout__content">
           <Section tone="white" id="why-choose" className="ajay-profile-scroll-first-section">
         <div className="ajay-profile-section ajay-profile-why">
-          <h2>Why Choose Ajay Bansal?</h2>
+          <h2>Meet Ajay Bansal</h2>
           <AjayAtAGlanceCard variant="mobile" />
           <p>
-            Picking a lawyer is a personal choice. You&apos;re handing over private details, often
-            when life is stressful, so you want someone you can be open with and who explains things
-            properly. Here&apos;s what you can expect from Ajay at Bansal Lawyers.
-          </p>
-          <hr className="ajay-profile-divider" />
-          <h3>Speak in the language you&apos;re most comfortable with</h3>
-          <p>
-            Legal problems are stressful enough without hunting for the right words. Ajay speaks
-            English, Hindi and Punjabi, so you can explain things the way you would to a family
-            member. You don&apos;t have to translate in your head, and you won&apos;t leave out
-            details just because you can&apos;t think of the English word.
+            Ajay Bansal founded Bansal Lawyers and is its Director and Principal Lawyer. Over 7 years,
+            he&apos;s helped hundreds of clients with immigration, family, property, commercial,
+            criminal and civil matters. He appears in the Victorian and Federal courts and acts for
+            clients all over Australia.
           </p>
           <p>
-            If you&apos;re looking for a Punjabi lawyer in Melbourne, just tell us your preferred
-            language when you call or book. Court papers, contracts and letters will still be in
-            English, so Ajay will go through them with you in whichever language suits you.
-          </p>
-          <h3>Experience across Victorian and Federal Courts</h3>
-          <p>
-            Ajay founded Bansal Lawyers and is its Director and Principal Lawyer. Over seven years in
-            practice, he&apos;s worked on family, property, commercial, criminal and civil matters.
-            He&apos;s helped hundreds of clients with legal problems across Australia, and he appears
-            in both Victorian and Federal courts.
+            His approach is simple. He gets to know your situation, explains where you stand in plain
+            terms, and helps you make decisions without dragging things out. The firm was built on
+            honest, practical advice that people can actually follow.
           </p>
           <p>
-            That range is useful because legal problems don&apos;t stay in one box. A separation can
-            lead to property and money questions. A business dispute can turn into a debt claim. If
-            your lawyer already knows these areas, you don&apos;t have to start from scratch every
-            time something new comes up.
-          </p>
-          <h3>Plain-English advice, and the decision stays yours</h3>
-          <p>
-            Ajay starts by finding out what&apos;s actually going on. Then he explains where you
-            stand, what your options are and what could happen with each one, without piling on legal
-            jargon. Nobody will pressure you. The final decision is yours, and you&apos;ll make it
-            knowing the facts.
-          </p>
-          <h3>Easy ways to meet and get started</h3>
-          <p>
-            You can come to our office at Level 8, 278 Collins Street in the Melbourne CBD, or talk
-            to us by phone or video. Video and phone are handy if you work long hours, live a long
-            way from the city or just prefer to start from home.
+            For families, he deals with parenting arrangements, property settlement and family violence
+            matters. For business owners, he handles contracts, transactions, property and disputes.
           </p>
           <p>
-            Again, we advise on Australian law. If part of your problem is in India, we&apos;ll tell
-            you what we can do from Melbourne and where you might need a lawyer in India.
+            Ajay speaks English, Hindi and Punjabi. So if you want an Indian lawyer in Melbourne, you
+            can talk about sensitive things in the language you&apos;re most at ease with. He works
+            alongside solicitor <Link href="/about/michael-saleh/">Michael Saleh</Link> and the rest of
+            the team. See <Link href="/about/michael-saleh/">Michael&apos;s profile</Link> and meet{" "}
+            <Link href="/about/">the rest of the team</Link>.
           </p>
         </div>
       </Section>
@@ -353,6 +331,47 @@ export function AjayBansalProfile() {
         </div>
       </div>
 
+      <Section tone="white" id="how-to-choose-indian-lawyer">
+        <div className="ajay-profile-section ajay-profile-why">
+          <h2>How to Choose the Best Indian Lawyer in Melbourne</h2>
+          <p>
+            Choosing a lawyer is an important decision, particularly when your legal matter involves
+            family circumstances, business interests or connections between Australia and India. When
+            comparing Indian lawyers in Melbourne, consider the following factors:
+          </p>
+          <h3>Experience Relevant to Your Legal Matter</h3>
+          <p>
+            Look for a lawyer who regularly handles the type of matter you need help with, whether it
+            involves family law, criminal charges, property disputes, commercial matters or immigration.
+          </p>
+          <h3>Understanding of Australian Law</h3>
+          <p>
+            A lawyer assisting you in Melbourne should understand the relevant Australian and Victorian
+            legal requirements. Matters involving Indian assets or overseas family circumstances may
+            also require advice from a lawyer in India.
+          </p>
+          <h3>Clear Communication</h3>
+          <p>
+            Choose a legal team that explains the available legal options, potential risks, procedures
+            and costs in language you understand. If you prefer Hindi or Punjabi, confirm whether
+            consultations are available in your preferred language.
+          </p>
+          <h3>Professional Reputation and Client Feedback</h3>
+          <p>
+            Consider the lawyer&apos;s professional background, relevant experience and genuine client
+            feedback. Reviews can help you understand other clients&apos; experiences, but they should
+            not be treated as a guarantee of legal outcomes.
+          </p>
+          <h3>Accessibility and Consultation</h3>
+          <p>
+            Check whether the firm offers convenient consultation arrangements, explains its fees and
+            provides a clear point of contact for your matter. At Bansal Lawyers, you can contact the
+            team to discuss your legal requirements and find out whether the firm can assist with your
+            matter.
+          </p>
+        </div>
+      </Section>
+
       <section className="client-testimonials-section" id="client-reviews">
         <Container>
           <header className="client-testimonials-section__header">
@@ -430,7 +449,27 @@ export function AjayBansalProfile() {
 
       <CtaSection
         title="Schedule a Consultation With Ajay Bansal"
-        text="Speak with Ajay Bansal and the Bansal Lawyers team about your immigration, family, criminal, civil or commercial matter."
+        text={
+          <>
+            <p>
+              Speak with Ajay Bansal and the Bansal Lawyers team about your immigration, family,
+              criminal, civil or commercial matter.
+            </p>
+            <p>
+              <strong>Phone:</strong>{" "}
+              <a href={businessDetails.nationalLineTel}>{businessDetails.nationalLine}</a>
+            </p>
+            <p>
+              <strong>Mobile:</strong> <a href={businessDetails.phoneTel}>{businessDetails.phone}</a>
+            </p>
+            <p>
+              <strong>Address:</strong> {businessDetails.address}
+            </p>
+            <p>
+              <strong>Hours:</strong> {officeHoursDescription}
+            </p>
+          </>
+        }
         action={{ label: "Book a Consultation", href: "/contact" }}
         secondaryAction={{
           label: `Call ${businessDetails.phone}`,
