@@ -1,6 +1,7 @@
 import type { RowDataPacket } from "mysql2/promise";
 import { builtInCases, staticCaseSlugs, type CaseCardItem } from "@/lib/cases/static";
 import { plainTextFromHtml } from "@/lib/blog/html";
+import { uploadFilePath } from "@/lib/blog/photo";
 import { adminExecute, adminRows, columnsOf, tableReady } from "@/lib/admin/db";
 import { slugTaken } from "@/lib/admin/data";
 import type { CaseIngestDraft, CaseIngestPatch } from "@/lib/cases/ingest";
@@ -53,8 +54,12 @@ function melbourneLabel(date: Date): string {
 }
 
 function localImage(value: string): string {
-  if (!value.startsWith("/images/") || value.includes("..") || value.includes("\\")) return "";
-  return value === DEFAULT_CASE_IMAGE ? "" : value;
+  if (value.includes("..") || value.includes("\\")) return "";
+  if (value === DEFAULT_CASE_IMAGE) return "";
+  const upload = value.startsWith("/media/blog/") || value.startsWith("/images/blog/uploads/");
+  if (upload) return uploadFilePath(value) ? value : "";
+  if (!value.startsWith("/images/")) return "";
+  return value;
 }
 
 function articleImage(thumb: string, featured: string): string {

@@ -1,5 +1,6 @@
 import { randomBytes } from "node:crypto";
-import { unlink, mkdir, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { unlink, mkdir, writeFile, readFile } from "node:fs/promises";
 import path from "node:path";
 import sharp from "sharp";
 
@@ -8,9 +9,21 @@ export const BLOG_THUMB = { width: 960, height: 540 } as const;
 /** Article preview sits in a column about 736px wide, so the full photo is about 2× that. */
 export const BLOG_FULL = { width: 1600, height: 900 } as const;
 
-const UPLOAD_PREFIX = "/images/blog/uploads/";
+/** New photos are served by a route, so they appear without a rebuild. */
+const MEDIA_PREFIX = "/media/blog/";
+/** Photos saved before the media route. */
+const LEGACY_PREFIX = "/images/blog/uploads/";
 const ACCEPTED = new Set(["jpeg", "png", "webp"]);
 const MAX_BYTES = 8 * 1024 * 1024;
+const FILE_NAME = /^[a-z0-9-]+\.webp$/;
+
+function storageDir() {
+  return path.join(process.cwd(), "storage", "blog-photos");
+}
+
+function legacyDir() {
+  return path.join(process.cwd(), "public", "images", "blog", "uploads");
+}
 
 export class BlogPhotoError extends Error {
   constructor(message: string) {
@@ -90,34 +103,67 @@ function safeSlug(slug: string) {
 export async function storeBlogPhoto(input: Buffer, slug: string) {
   const rendered = await renderBlogPhoto(input);
   const stamp = randomBytes(4).toString("hex");
-  const base = `${safeSlug(slug)}-${stamp}`;
-  const dir = path.join(process.cwd(), "public", "images", "blog", "uploads");
-  await mkdir(dir, { recursive: true });
+  const base = `${safeSlug(slug).slice(0, 40)}-${stamp}`;
   const thumbName = `${base}-thumb.webp`;
   const fullName = `${base}.webp`;
-  await Promise.all([
-    writeFile(path.join(dir, thumbName), rendered.thumb),
-    writeFile(path.join(dir, fullName), rendered.full),
-  ]);
+  const dirs = [storageDir(), legacyDir()];
+  await Promise.all(dirs.map((dir) => mkdir(dir, { recursive: true })));
+  await Promise.all(
+    dirs.flatMap((dir) => [
+      writeFile(path.join(dir, thumbName), rendered.thumb),
+      writeFile(path.join(dir, fullName), rendered.full),
+    ])
+  );
+  const thumb = `${MEDIA_PREFIX}${thumbName}`;
+  const full = `${MEDIA_PREFIX}${fullName}`;
+  if (!uploadFilePath(thumb) || !uploadFilePath(full)) {
+    throw new BlogPhotoError("The photo was processed, but the file could not be stored. Try again.");
+  }
   return {
-    thumb: `${UPLOAD_PREFIX}${thumbName}`,
-    full: `${UPLOAD_PREFIX}${fullName}`,
+    thumb,
+    full,
     thumbBytes: rendered.thumb.length,
     fullBytes: rendered.full.length,
   };
 }
 
+function uploadName(publicPath: string): string | null {
+  const prefix = publicPath.startsWith(MEDIA_PREFIX)
+    ? MEDIA_PREFIX
+    : publicPath.startsWith(LEGACY_PREFIX)
+      ? LEGACY_PREFIX
+      : "";
+  if (!prefix) return null;
+  const name = publicPath.slice(prefix.length);
+  if (!FILE_NAME.test(name) || name.includes("/") || name.includes("\\")) return null;
+  return name;
+}
+
+/** Absolute paths of a stored photo. The same file is kept in the private folder and the older public folder. */
+export function uploadFilePaths(publicPath: string): string[] {
+  const name = uploadName(publicPath);
+  if (!name) return [];
+  const files: string[] = [];
+  for (const root of [storageDir(), legacyDir()]) {
+    const dir = path.resolve(root);
+    const file = path.resolve(dir, name);
+    if (file !== dir && !file.startsWith(dir + path.sep)) continue;
+    if (existsSync(file)) files.push(file);
+  }
+  return files;
+}
+
 export function uploadFilePath(publicPath: string): string | null {
-  if (!publicPath.startsWith(UPLOAD_PREFIX)) return null;
-  const name = publicPath.slice(UPLOAD_PREFIX.length);
-  if (!/^[a-z0-9-]+\.webp$/.test(name)) return null;
-  const root = path.resolve(process.cwd(), "public", "images", "blog", "uploads");
-  const file = path.resolve(root, name);
-  if (file !== root && !file.startsWith(root + path.sep)) return null;
-  return file;
+  return uploadFilePaths(publicPath)[0] ?? null;
+}
+
+export async function readUpload(publicPath: string): Promise<Buffer | null> {
+  const file = uploadFilePath(publicPath);
+  if (!file) return null;
+  return readFile(file);
 }
 
 export async function deleteBlogUploads(publicPaths: string[]) {
-  const files = [...new Set(publicPaths.map(uploadFilePath).filter((file): file is string => Boolean(file)))];
+  const files = [...new Set(publicPaths.flatMap(uploadFilePaths))];
   await Promise.all(files.map((file) => unlink(file).catch(() => undefined)));
 }

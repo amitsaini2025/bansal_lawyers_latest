@@ -2,8 +2,8 @@ import Link from "next/link";
 import { appointmentStatus } from "@/lib/admin/labels";
 
 export function Flash({ notice, error }: { notice?: string; error?: string }) {
-  if (notice) return <p className="admin-flash admin-flash--ok">{notice}</p>;
-  if (error) return <p className="admin-flash admin-flash--bad">{error}</p>;
+  if (notice) return <p className="admin-flash admin-flash--ok" role="status">{notice}</p>;
+  if (error) return <p className="admin-flash admin-flash--bad" role="alert">{error}</p>;
   return null;
 }
 

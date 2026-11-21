@@ -4,6 +4,7 @@ import { blogArticles } from "@/lib/blog-data";
 import { slugify } from "@/lib/admin/labels";
 import { staticBlogSlugs, type IngestDraft, type IngestPatch } from "@/lib/blog/ingest";
 import { plainTextFromHtml } from "@/lib/blog/html";
+import { uploadFilePath } from "@/lib/blog/photo";
 import { adminExecute, adminRows, columnsOf, tableReady } from "@/lib/admin/db";
 import { slugTaken } from "@/lib/admin/data";
 
@@ -63,8 +64,12 @@ function melbourneLabel(date: Date): string {
 }
 
 function localImage(value: string): string {
-  if (!value.startsWith("/images/") || value.includes("..") || value.includes("\\")) return "";
-  return value === DEFAULT_BLOG_IMAGE ? "" : value;
+  if (value.includes("..") || value.includes("\\")) return "";
+  if (value === DEFAULT_BLOG_IMAGE) return "";
+  const upload = value.startsWith("/media/blog/") || value.startsWith("/images/blog/uploads/");
+  if (upload) return uploadFilePath(value) ? value : "";
+  if (!value.startsWith("/images/")) return "";
+  return value;
 }
 
 function articleImage(thumb: string, featured: string): string {

@@ -287,7 +287,7 @@ function uploadPaths(row: object | null): string[] {
   const record = row as Record<string, unknown>;
   return ["image", "featured_image", "image_src", "thumbnail"]
     .map((key) => String(record[key] ?? ""))
-    .filter((value) => value.startsWith("/images/blog/uploads/"));
+    .filter((value) => value.startsWith("/images/blog/uploads/") || value.startsWith("/media/blog/"));
 }
 
 async function contentPhotoUpdate(formData: FormData, slug: string, id: number | null, table: "blogs" | "recent_cases") {
@@ -378,7 +378,11 @@ export async function saveContentAction(formData: FormData) {
     if (await slugTaken(table, slugColumn, slug, id)) bounce(id ? `${list}/${id}` : `${list}/new`, "That slug is already used.");
     const saved = await saveRecord(table, id, values);
     if (retiredPhotos.length) await deleteBlogUploads(retiredPhotos);
-    done(`${list}/${saved}`, "Saved.");
+    const label = table === "blogs" ? "Blog post" : table === "recent_cases" ? "Success story" : "Record";
+    const photoSaved =
+      typeof values.featured_image === "string" &&
+      (values.featured_image.startsWith("/media/blog/") || values.featured_image.startsWith("/images/blog/uploads/"));
+    done(`${list}/${saved}`, photoSaved ? `${label} saved. The photo is on the website.` : `${label} saved.`);
   } catch (error) {
     failure(error, id ? `${list}/${id}` : `${list}/new`);
   }
