@@ -380,10 +380,12 @@
   padding: 0.4rem;
 }
 
-.blog-photo__remove {
+.admin-app label.blog-photo__remove {
   display: flex;
   align-items: center;
+  justify-content: flex-start;
   gap: 0.45rem;
+  min-width: 0;
   font-weight: 600;
 }
 
@@ -398,7 +400,8 @@
 }
 
 .rte__bar,
-.rte__link {
+.rte__link,
+.rte__table {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
@@ -414,7 +417,8 @@
 
 .admin-app .rte__bar button,
 .admin-app .rte__bar select,
-.admin-app .rte__link button {
+.admin-app .rte__link button,
+.admin-app .rte__table button {
   width: auto;
   background: #fff;
   color: #1e293b;
@@ -435,8 +439,20 @@
   margin-left: auto;
 }
 
-.rte__link {
+.rte__link,
+.rte__table {
   padding: 0.45rem 0.4rem 0;
+}
+
+.admin-app .rte__table label {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  min-width: 0;
+}
+
+.admin-app .rte__table input {
+  width: 4.2rem;
 }
 
 .admin-app .rte__link input {
@@ -500,6 +516,32 @@
   padding-left: 0.8rem;
   border-left: 3px solid #cbd5e1;
   color: #475569;
+}
+
+.rte__surface table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0.8rem 0;
+}
+
+.rte__surface th,
+.rte__surface td {
+  border: 1px solid #cbd5e1;
+  padding: 0.4rem 0.55rem;
+  min-width: 4rem;
+  vertical-align: top;
+  text-align: left;
+}
+
+.rte__surface th {
+  background: #f1f5f9;
+  font-weight: 700;
+}
+
+.rte__surface hr {
+  border: 0;
+  border-top: 1px solid #cbd5e1;
+  margin: 1rem 0;
 }
 
 .rte__hint {

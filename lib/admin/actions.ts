@@ -314,13 +314,11 @@ async function contentPhotoUpdate(formData: FormData, slug: string, id: number |
 
   try {
     const saved = await storeBlogPhoto(Buffer.from(await file.arrayBuffer()), slug);
-    if (table === "recent_cases") await deleteBlogUploads([saved.thumb]);
-    const image = table === "recent_cases" ? saved.full : saved.thumb;
     return {
       values: {
-        image,
-        image_src: image,
-        thumbnail: table === "recent_cases" ? saved.full : saved.thumb,
+        image: saved.thumb,
+        image_src: saved.thumb,
+        thumbnail: saved.thumb,
         featured_image: saved.full,
       },
       retired: previous.filter((path) => path !== saved.thumb && path !== saved.full),

@@ -16,6 +16,7 @@ export interface PublishedCase {
   body: string;
   practiceArea: string;
   imageSrc: string;
+  imageFull: string;
   imageAlt: string;
   publishedAt: Date;
   modifiedAt: Date;
@@ -53,7 +54,13 @@ function melbourneLabel(date: Date): string {
 
 function localImage(value: string): string {
   if (!value.startsWith("/images/") || value.includes("..") || value.includes("\\")) return "";
-  return value;
+  return value === DEFAULT_CASE_IMAGE ? "" : value;
+}
+
+function articleImage(thumb: string, featured: string): string {
+  if (featured && !featured.endsWith("-thumb.webp")) return featured;
+  if (thumb.endsWith("-thumb.webp")) return thumb.replace(/-thumb\.webp$/, ".webp");
+  return thumb;
 }
 
 function publishedWhere(statusColumn: string): string {
@@ -81,7 +88,10 @@ function toCase(row: RowDataPacket): PublishedCase | null {
   const now = new Date();
   const publishedAt = asDate(row.published_at ?? row.created_at ?? row.updated_at, now);
   const modifiedAt = asDate(row.updated_at ?? row.published_at ?? row.created_at, publishedAt);
-  const imageSrc = localImage(pick(row, ["image", "featured_image", "thumbnail", "image_src"])) || DEFAULT_CASE_IMAGE;
+  const thumb = localImage(pick(row, ["thumbnail", "image", "image_src"]));
+  const featured = localImage(pick(row, ["featured_image"]));
+  const imageSrc = thumb || featured || DEFAULT_CASE_IMAGE;
+  const imageFull = articleImage(imageSrc === DEFAULT_CASE_IMAGE ? "" : imageSrc, featured) || imageSrc;
   return {
     id: Number(row.id),
     slug,
@@ -90,6 +100,7 @@ function toCase(row: RowDataPacket): PublishedCase | null {
     body,
     practiceArea: pick(row, ["category", "practice_area"]) || "Case update",
     imageSrc,
+    imageFull,
     imageAlt: pick(row, ["image_alt"]) || title,
     publishedAt,
     modifiedAt,

@@ -88,7 +88,7 @@ export default async function DatabaseCasePage({
           <article className="prose case-story__article" aria-label={item.title}>
             <figure className="blog-db-figure">
               <Image
-                src={item.imageSrc}
+                src={item.imageFull}
                 alt={item.imageAlt}
                 width={1600}
                 height={900}

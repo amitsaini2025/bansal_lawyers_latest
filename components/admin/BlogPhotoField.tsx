@@ -2,7 +2,15 @@
 
 import { useEffect, useState } from "react";
 
-export function BlogPhotoField({ currentSrc, hasCustomPhoto }: { currentSrc: string; hasCustomPhoto: boolean }) {
+export function BlogPhotoField({
+  currentSrc,
+  hasCustomPhoto,
+  missing = false,
+}: {
+  currentSrc: string;
+  hasCustomPhoto: boolean;
+  missing?: boolean;
+}) {
   const [preview, setPreview] = useState(currentSrc);
   const [note, setNote] = useState("");
 
@@ -30,9 +38,14 @@ export function BlogPhotoField({ currentSrc, hasCustomPhoto }: { currentSrc: str
         }}
       />
       <p className="rte__hint">
-        Best size is 1600×900 or larger. Saving creates a 960×540 thumbnail for the blog list and a photo up to
-        1600×900 for the article. Both are 16:9 WebP.
+        Best size is 1600×900 or larger. Saving creates a 960×540 thumbnail for the list and a photo up to 1600×900
+        for the page. Both are 16:9 WebP.
       </p>
+      {missing ? (
+        <p className="rte__hint">
+          The saved photo file is missing, so this page is showing the standard image. Choose a new photo, or remove it.
+        </p>
+      ) : null}
       {note ? <p className="rte__hint">{note}</p> : null}
       {hasCustomPhoto ? (
         <label className="blog-photo__remove">

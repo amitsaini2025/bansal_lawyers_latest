@@ -2636,6 +2636,43 @@ a.who-we-help-chip {
   color: var(--brand-blue);
 }
 
+.blog-db-article table,
+.case-story__article table,
+.blog-article__article table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.98rem;
+  line-height: 1.5;
+}
+
+.blog-db-article th,
+.blog-db-article td,
+.case-story__article th,
+.case-story__article td,
+.blog-article__article th,
+.blog-article__article td {
+  border: 1px solid var(--line-strong);
+  padding: 0.55rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+  color: var(--ink);
+}
+
+.blog-db-article th,
+.case-story__article th,
+.blog-article__article th {
+  background: var(--blue-50);
+  color: var(--navy-950);
+  font-weight: 700;
+}
+
+.blog-db-article hr,
+.case-story__article hr,
+.blog-article__article hr {
+  border: 0;
+  border-top: 1px solid var(--line-strong);
+}
+
 .case-story-hero,
 .blog-article-hero {
   background: var(--navy-950);

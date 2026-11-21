@@ -37,7 +37,13 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
   const [block, setBlock] = useState("p");
   const [bold, setBold] = useState(false);
   const [italic, setItalic] = useState(false);
+  const [underline, setUnderline] = useState(false);
+  const [strike, setStrike] = useState(false);
   const [linkOpen, setLinkOpen] = useState(false);
+  const [tableOpen, setTableOpen] = useState(false);
+  const [tableRows, setTableRows] = useState(3);
+  const [tableCols, setTableCols] = useState(3);
+  const [tableMessage, setTableMessage] = useState("");
   const [linkUrl, setLinkUrl] = useState("https://");
   const [linkMessage, setLinkMessage] = useState("");
 
@@ -74,8 +80,12 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
       try {
         const nextBold = document.queryCommandState("bold");
         const nextItalic = document.queryCommandState("italic");
+        const nextUnderline = document.queryCommandState("underline");
+        const nextStrike = document.queryCommandState("strikeThrough");
         setBold((current) => (current === nextBold ? current : nextBold));
         setItalic((current) => (current === nextItalic ? current : nextItalic));
+        setUnderline((current) => (current === nextUnderline ? current : nextUnderline));
+        setStrike((current) => (current === nextStrike ? current : nextStrike));
       } catch {
         setBold(false);
         setItalic(false);
@@ -117,6 +127,71 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
     syncVisual();
   }
 
+  function currentCell(): HTMLTableCellElement | null {
+    const node = window.getSelection()?.anchorNode;
+    const el = node instanceof Element ? node : node?.parentElement;
+    const cell = el?.closest("td, th");
+    if (!(cell instanceof HTMLTableCellElement) || !editorRef.current?.contains(cell)) return null;
+    return cell;
+  }
+
+  function insertTable() {
+    const rows = Math.min(8, Math.max(2, tableRows));
+    const cols = Math.min(6, Math.max(2, tableCols));
+    if (currentCell()) {
+      setTableMessage("Click outside the current table before inserting another.");
+      return;
+    }
+    const head = Array.from({ length: cols }, (_, index) => `<th>Heading ${index + 1}</th>`).join("");
+    const body = Array.from({ length: rows - 1 }, () => {
+      const cells = Array.from({ length: cols }, () => "<td><br></td>").join("");
+      return `<tr>${cells}</tr>`;
+    }).join("");
+    setTableMessage("");
+    run("insertHTML", `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`);
+    setTableOpen(false);
+  }
+
+  function changeTable(action: "row" | "column" | "delete-row" | "delete-table") {
+    const cell = currentCell();
+    if (!cell) {
+      setTableMessage("Click inside a table first.");
+      return;
+    }
+    const row = cell.parentElement;
+    const table = cell.closest("table");
+    if (!(row instanceof HTMLTableRowElement) || !table) return;
+    setTableMessage("");
+    if (action === "delete-table") {
+      table.remove();
+    } else if (action === "delete-row") {
+      const body = table.querySelector("tbody");
+      const rows = body ? [...body.rows] : [...table.rows];
+      if (rows.length <= 1) table.remove();
+      else row.remove();
+    } else if (action === "row") {
+      const body = table.querySelector("tbody") ?? table;
+      const next = document.createElement("tr");
+      for (let index = 0; index < row.cells.length; index += 1) {
+        const td = document.createElement("td");
+        td.appendChild(document.createElement("br"));
+        next.appendChild(td);
+      }
+      body.appendChild(next);
+    } else {
+      const index = cell.cellIndex;
+      [...table.rows].forEach((item) => {
+        const tag = item.cells[index]?.tagName === "TH" ? "th" : "td";
+        const added = document.createElement(tag);
+        added.appendChild(document.createElement("br"));
+        const reference = item.cells[index];
+        if (reference) reference.after(added);
+        else item.appendChild(added);
+      });
+    }
+    syncVisual();
+  }
+
   function applyLink() {
     const url = linkUrl.trim();
     if (!acceptableHref(url)) {
@@ -134,6 +209,7 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
     modeRef.current = "html";
     setMode("html");
     setLinkOpen(false);
+    setTableOpen(false);
   }
 
   function showVisual() {
@@ -175,6 +251,24 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
         <button type="button" aria-pressed={italic} onMouseDown={(event) => event.preventDefault()} onClick={() => run("italic")}>
           Italic
         </button>
+        <button type="button" aria-pressed={underline} onMouseDown={(event) => event.preventDefault()} onClick={() => run("underline")}>
+          Underline
+        </button>
+        <button type="button" aria-pressed={strike} onMouseDown={(event) => event.preventDefault()} onClick={() => run("strikeThrough")}>
+          Strike
+        </button>
+        <button type="button" aria-label="Align left" onMouseDown={(event) => event.preventDefault()} onClick={() => run("justifyLeft")}>
+          Left
+        </button>
+        <button type="button" aria-label="Align centre" onMouseDown={(event) => event.preventDefault()} onClick={() => run("justifyCenter")}>
+          Centre
+        </button>
+        <button type="button" aria-label="Align right" onMouseDown={(event) => event.preventDefault()} onClick={() => run("justifyRight")}>
+          Right
+        </button>
+        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertHorizontalRule")}>
+          Line
+        </button>
         <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertUnorderedList")}>
           Bullets
         </button>
@@ -189,6 +283,17 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
         </button>
         <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("removeFormat")}>
           Clear
+        </button>
+        <button
+          type="button"
+          aria-pressed={tableOpen}
+          onMouseDown={(event) => event.preventDefault()}
+          onClick={() => {
+            setTableOpen((open) => !open);
+            setTableMessage("");
+          }}
+        >
+          Table
         </button>
         {mode === "visual" ? (
           <button type="button" className="rte__mode" onClick={showSource}>
@@ -220,6 +325,54 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
           {linkMessage ? <p className="rte__link-error">{linkMessage}</p> : null}
         </div>
       ) : null}
+      {tableOpen ? (
+        <div className="rte__table">
+          <label>
+            Rows
+            <input
+              aria-label="Table rows"
+              type="number"
+              min={2}
+              max={8}
+              value={tableRows}
+              onChange={(event) => setTableRows(Number(event.target.value))}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") event.preventDefault();
+              }}
+            />
+          </label>
+          <label>
+            Columns
+            <input
+              aria-label="Table columns"
+              type="number"
+              min={2}
+              max={6}
+              value={tableCols}
+              onChange={(event) => setTableCols(Number(event.target.value))}
+              onKeyDown={(event) => {
+                if (event.key === "Enter") event.preventDefault();
+              }}
+            />
+          </label>
+          <button type="button" onClick={insertTable}>
+            Insert table
+          </button>
+          <button type="button" onClick={() => changeTable("row")}>
+            Add row
+          </button>
+          <button type="button" onClick={() => changeTable("column")}>
+            Add column
+          </button>
+          <button type="button" onClick={() => changeTable("delete-row")}>
+            Delete row
+          </button>
+          <button type="button" onClick={() => changeTable("delete-table")}>
+            Delete table
+          </button>
+          {tableMessage ? <p className="rte__link-error">{tableMessage}</p> : null}
+        </div>
+      ) : null}
       <div
         ref={editorRef}
         className="rte__surface"
@@ -243,8 +396,8 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
         spellCheck={mode === "html"}
       />
       <p className="rte__hint">
-        This is the article readers see. Headings, lists, bold, italic, quotes, and links are kept. HTML is only for a
-        stubborn link or heading.
+        Headings, lists, tables, bold, italic, underline, strike, alignment, quotes, and links are kept. The first table
+        row is a header. HTML is only for a stubborn link or heading.
       </p>
     </div>
   );

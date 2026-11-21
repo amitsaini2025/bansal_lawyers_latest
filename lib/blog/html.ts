@@ -1,4 +1,31 @@
-const ALLOWED_TAGS = new Set(["p", "br", "h2", "h3", "h4", "ul", "ol", "li", "strong", "em", "a", "blockquote"]);
+const ALLOWED_TAGS = new Set([
+  "p",
+  "br",
+  "h2",
+  "h3",
+  "h4",
+  "ul",
+  "ol",
+  "li",
+  "strong",
+  "em",
+  "u",
+  "s",
+  "sup",
+  "sub",
+  "a",
+  "blockquote",
+  "hr",
+  "table",
+  "thead",
+  "tbody",
+  "tfoot",
+  "tr",
+  "th",
+  "td",
+  "caption",
+]);
+const ALIGNABLE = new Set(["p", "h2", "h3", "h4", "blockquote", "td", "th", "caption"]);
 
 /** Browser editing commands use b, i, and div. Map those before the allow-list runs. */
 function mapEditorTags(input: string): string {
@@ -10,7 +37,28 @@ function mapEditorTags(input: string): string {
     .replace(/<\s*h1(\s[^>]*)?>/gi, "<h2>")
     .replace(/<\/\s*h1\s*>/gi, "</h2>")
     .replace(/<\s*div(\s[^>]*)?>/gi, "<p>")
-    .replace(/<\/\s*div\s*>/gi, "</p>");
+    .replace(/<\/\s*div\s*>/gi, "</p>")
+    .replace(/<\s*(strike|del)(\s[^>]*)?>/gi, "<s>")
+    .replace(/<\/\s*(strike|del)\s*>/gi, "</s>");
+}
+
+function alignmentAttr(rawAttrs: string): string {
+  const style = /text-align\s*:\s*(left|center|right)/i.exec(rawAttrs);
+  const attr = /\balign\s*=\s*["']?(left|center|right)/i.exec(rawAttrs);
+  const value = (style?.[1] || attr?.[1] || "").toLowerCase();
+  return value ? ` style="text-align: ${value}"` : "";
+}
+
+function spanAttr(rawAttrs: string, name: "colspan" | "rowspan"): string {
+  const match = new RegExp(`${name}\\s*=\\s*["']?(\\d{1,2})`, "i").exec(rawAttrs);
+  const value = Number(match?.[1]);
+  if (!value || value < 2 || value > 12) return "";
+  return ` ${name}="${value}"`;
+}
+
+/** A table pasted inside a paragraph is lifted out so the markup stays valid. */
+function liftTables(html: string): string {
+  return html.replace(/<p>(\s*<table>[\s\S]*?<\/table>\s*)<\/p>/gi, "$1");
 }
 
 function flattenParagraphs(html: string): string {
@@ -107,8 +155,10 @@ export function sanitizeBlogHtml(input: string): string {
       const tag = rawTag.toLowerCase();
       if (!ALLOWED_TAGS.has(tag)) return "";
       if (match.startsWith("</")) return `</${tag}>`;
-      if (tag === "br") return "<br>";
-      if (tag !== "a") return `<${tag}>`;
+      if (tag === "br" || tag === "hr") return `<${tag}>`;
+      const align = ALIGNABLE.has(tag) ? alignmentAttr(rawAttrs) : "";
+      if (tag === "td" || tag === "th") return `<${tag}${spanAttr(rawAttrs, "colspan")}${spanAttr(rawAttrs, "rowspan")}${align}>`;
+      if (tag !== "a") return `<${tag}${align}>`;
       const hrefMatch = /href\s*=\s*(?:"([^"]*)"|'([^']*)'|([^\s>]+))/i.exec(rawAttrs);
       const href = safeUrl(hrefMatch?.[1] || hrefMatch?.[2] || hrefMatch?.[3] || "");
       if (!href) return "";
@@ -119,7 +169,7 @@ export function sanitizeBlogHtml(input: string): string {
 
 /** HTML saved from the editor: allowed tags only, with browser tags rewritten. */
 export function cleanEditorHtml(input: string): string {
-  return flattenParagraphs(sanitizeBlogHtml(mapEditorTags(input)));
+  return liftTables(flattenParagraphs(sanitizeBlogHtml(mapEditorTags(input))));
 }
 
 /** First open of a draft: same cleanup, plus inline bullets and numbered runs become lists. */

@@ -49,6 +49,17 @@ test("editor html keeps article tags and turns inline bullets into lists", () =>
   assert.equal(prepareEditorHtml("<h2>Keep</h2><p>Already structured.</p>"), "<h2>Keep</h2><p>Already structured.</p>");
 });
 
+test("editor html keeps tables, alignment, and inline emphasis", () => {
+  const saved = cleanEditorHtml(
+    '<p style="text-align: center; color: red">Centred</p><p><u>Under</u> <strike>gone</strike></p><p><table><thead><tr><th colspan="2">Fee</th></tr></thead><tbody><tr><td style="text-align: right">$1</td><td onclick="alert(1)">Court</td></tr></tbody></table></p>'
+  );
+  assert.match(saved, /<p style="text-align: center">Centred<\/p>/);
+  assert.match(saved, /<u>Under<\/u> <s>gone<\/s>/);
+  assert.match(saved, /<table><thead><tr><th colspan="2">Fee<\/th><\/tr><\/thead><tbody><tr><td style="text-align: right">\$1<\/td><td>Court<\/td><\/tr><\/tbody><\/table>/);
+  assert.equal(saved.includes("onclick"), false);
+  assert.equal(saved.includes("color:"), false);
+});
+
 test("update accepts a partial change and leaves status alone unless it is sent", () => {
   const missing = parseIngestUpdate({});
   assert.equal(missing.ok, false);

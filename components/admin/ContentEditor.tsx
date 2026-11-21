@@ -1,3 +1,5 @@
+import { existsSync } from "node:fs";
+import path from "node:path";
 import { saveContentAction, deleteContentAction } from "@/lib/admin/actions";
 import { ConfirmForm } from "@/components/admin/ConfirmForm";
 import { BlogPhotoField } from "@/components/admin/BlogPhotoField";
@@ -138,11 +140,22 @@ function practiceAreas(current: string) {
   return current && !PRACTICE_AREAS.includes(current) ? [current, ...PRACTICE_AREAS] : PRACTICE_AREAS;
 }
 
+function imageOnDisk(publicPath: string): boolean {
+  if (!publicPath.startsWith("/images/") || publicPath.includes("..") || publicPath.includes("\\")) return false;
+  const root = path.resolve(process.cwd(), "public");
+  const file = path.resolve(root, publicPath.slice(1));
+  return file.startsWith(root + path.sep) && existsSync(file);
+}
+
 function storedPhoto(record: Record<string, unknown> | null, fallback: string) {
-  const paths = ["featured_image", "image", "thumbnail", "image_src"].map((key) => String(record?.[key] ?? ""));
-  const src =
-    paths.find((value) => value.startsWith("/images/blog/uploads/") && !value.endsWith("-thumb.webp")) ||
-    paths.find((value) => value.startsWith("/images/") && value !== fallback && value !== DEFAULT_BLOG_IMAGE && value !== DEFAULT_CASE_IMAGE) ||
-    "";
-  return { currentSrc: src, hasCustomPhoto: Boolean(src) };
+  const paths = ["featured_image", "image", "thumbnail", "image_src"]
+    .map((key) => String(record?.[key] ?? ""))
+    .filter((value, index, all) => all.indexOf(value) === index)
+    .filter((value) => value.startsWith("/images/") && value !== fallback && value !== DEFAULT_BLOG_IMAGE && value !== DEFAULT_CASE_IMAGE);
+  const available = paths.find((value) => imageOnDisk(value)) || "";
+  return {
+    currentSrc: available || fallback,
+    hasCustomPhoto: paths.length > 0,
+    missing: paths.length > 0 && !available,
+  };
 }
