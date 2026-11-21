@@ -1,6 +1,10 @@
 "use client";
 
-import { useEffect, useRef, useState, type ClipboardEvent } from "react";
+import { useEffect, useRef, useState } from "react";
+import { EditorContent, useEditor, useEditorState } from "@tiptap/react";
+import { StarterKit } from "@tiptap/starter-kit";
+import { Table, TableCell, TableHeader, TableRow } from "@tiptap/extension-table";
+import { TextAlign } from "@tiptap/extension-text-align";
 import { cleanEditorHtml, prepareEditorHtml } from "@/lib/blog/html";
 
 const BLOCKS: { value: string; label: string }[] = [
@@ -11,7 +15,7 @@ const BLOCKS: { value: string; label: string }[] = [
   { value: "blockquote", label: "Quote" },
 ];
 
-function acceptableHref(value: string): boolean {
+function allowedHref(value: string): boolean {
   const url = value.trim();
   if (url.startsWith("/") && !url.startsWith("//")) return true;
   if (/^https?:\/\//i.test(url)) return true;
@@ -19,40 +23,84 @@ function acceptableHref(value: string): boolean {
   return false;
 }
 
-function blockFromSelection(root: HTMLElement): string {
-  const node = window.getSelection()?.anchorNode;
-  const el = node instanceof Element ? node : node?.parentElement;
-  const block = el?.closest("h2, h3, h4, blockquote, p");
-  if (!block || !root.contains(block)) return "p";
-  return block.tagName.toLowerCase();
+function clamp(value: number, min: number, max: number): number {
+  if (!Number.isFinite(value)) return min;
+  return Math.min(max, Math.max(min, value));
 }
 
 export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
-  const seed = useRef(prepareEditorHtml(initialHtml));
-  const editorRef = useRef<HTMLDivElement>(null);
+  const seed = useRef(prepareEditorHtml(initialHtml) || "<p></p>");
   const fieldRef = useRef<HTMLTextAreaElement>(null);
-  const rangeRef = useRef<Range | null>(null);
   const modeRef = useRef<"visual" | "html">("visual");
   const [mode, setMode] = useState<"visual" | "html">("visual");
-  const [block, setBlock] = useState("p");
-  const [bold, setBold] = useState(false);
-  const [italic, setItalic] = useState(false);
-  const [underline, setUnderline] = useState(false);
-  const [strike, setStrike] = useState(false);
   const [linkOpen, setLinkOpen] = useState(false);
+  const [linkUrl, setLinkUrl] = useState("https://");
+  const [linkMessage, setLinkMessage] = useState("");
   const [tableOpen, setTableOpen] = useState(false);
   const [tableRows, setTableRows] = useState(3);
   const [tableCols, setTableCols] = useState(3);
   const [tableMessage, setTableMessage] = useState("");
-  const [linkUrl, setLinkUrl] = useState("https://");
-  const [linkMessage, setLinkMessage] = useState("");
 
-  useEffect(() => {
-    const editor = editorRef.current;
-    if (!editor || editor.dataset.ready === "1") return;
-    editor.innerHTML = seed.current || "<p><br></p>";
-    editor.dataset.ready = "1";
-  }, []);
+  const editor = useEditor({
+    immediatelyRender: false,
+    extensions: [
+      StarterKit.configure({
+        heading: { levels: [2, 3, 4] },
+        code: false,
+        codeBlock: false,
+        link: {
+          openOnClick: false,
+          autolink: false,
+          protocols: ["http", "https", "mailto"],
+          isAllowedUri: (url) => allowedHref(url),
+          HTMLAttributes: {},
+        },
+      }),
+      TextAlign.configure({
+        types: ["heading", "paragraph", "tableCell", "tableHeader"],
+        alignments: ["left", "center", "right"],
+      }),
+      Table.configure({ resizable: false }),
+      TableRow,
+      TableHeader,
+      TableCell,
+    ],
+    content: seed.current,
+    editorProps: {
+      attributes: {
+        "aria-label": "Content",
+      },
+    },
+    onUpdate: ({ editor: current }) => {
+      if (modeRef.current !== "visual" || !fieldRef.current) return;
+      fieldRef.current.value = cleanEditorHtml(current.getHTML());
+    },
+  });
+
+  const active = useEditorState({
+    editor,
+    selector: ({ editor: current }) => {
+      if (!current) {
+        return { block: "p", bold: false, italic: false, underline: false, strike: false };
+      }
+      const block = current.isActive("heading", { level: 2 })
+        ? "h2"
+        : current.isActive("heading", { level: 3 })
+          ? "h3"
+          : current.isActive("heading", { level: 4 })
+            ? "h4"
+            : current.isActive("blockquote")
+              ? "blockquote"
+              : "p";
+      return {
+        block,
+        bold: current.isActive("bold"),
+        italic: current.isActive("italic"),
+        underline: current.isActive("underline"),
+        strike: current.isActive("strike"),
+      };
+    },
+  });
 
   useEffect(() => {
     const form = fieldRef.current?.form;
@@ -60,151 +108,68 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
     const onSubmit = () => {
       const field = fieldRef.current;
       if (!field) return;
-      const raw = modeRef.current === "html" ? field.value : editorRef.current?.innerHTML ?? field.value;
+      const raw = modeRef.current === "html" ? field.value : editor?.getHTML() ?? field.value;
       field.value = cleanEditorHtml(raw);
     };
     form.addEventListener("submit", onSubmit);
     return () => form.removeEventListener("submit", onSubmit);
-  }, []);
-
-  useEffect(() => {
-    const onSelection = () => {
-      const root = editorRef.current;
-      const selection = window.getSelection();
-      if (!root || !selection || selection.rangeCount === 0) return;
-      const anchor = selection.anchorNode;
-      if (!anchor || !root.contains(anchor)) return;
-      rangeRef.current = selection.getRangeAt(0);
-      const nextBlock = blockFromSelection(root);
-      setBlock((current) => (current === nextBlock ? current : nextBlock));
-      try {
-        const nextBold = document.queryCommandState("bold");
-        const nextItalic = document.queryCommandState("italic");
-        const nextUnderline = document.queryCommandState("underline");
-        const nextStrike = document.queryCommandState("strikeThrough");
-        setBold((current) => (current === nextBold ? current : nextBold));
-        setItalic((current) => (current === nextItalic ? current : nextItalic));
-        setUnderline((current) => (current === nextUnderline ? current : nextUnderline));
-        setStrike((current) => (current === nextStrike ? current : nextStrike));
-      } catch {
-        setBold(false);
-        setItalic(false);
-      }
-    };
-    document.addEventListener("selectionchange", onSelection);
-    return () => document.removeEventListener("selectionchange", onSelection);
-  }, []);
-
-  function syncVisual() {
-    const field = fieldRef.current;
-    const editor = editorRef.current;
-    if (!field || !editor) return;
-    field.value = cleanEditorHtml(editor.innerHTML);
-  }
-
-  function restoreRange() {
-    const selection = window.getSelection();
-    const range = rangeRef.current;
-    const editor = editorRef.current;
-    if (!selection || !range || !editor) return;
-    editor.focus();
-    selection.removeAllRanges();
-    selection.addRange(range);
-    document.execCommand("defaultParagraphSeparator", false, "p");
-  }
-
-  function run(command: string, value?: string) {
-    restoreRange();
-    document.execCommand(command, false, value);
-    syncVisual();
-  }
+  }, [editor]);
 
   function formatBlock(value: string) {
-    restoreRange();
-    const applied = document.execCommand("formatBlock", false, value);
-    if (!applied) document.execCommand("formatBlock", false, `<${value}>`);
-    setBlock(value);
-    syncVisual();
-  }
-
-  function currentCell(): HTMLTableCellElement | null {
-    const node = window.getSelection()?.anchorNode;
-    const el = node instanceof Element ? node : node?.parentElement;
-    const cell = el?.closest("td, th");
-    if (!(cell instanceof HTMLTableCellElement) || !editorRef.current?.contains(cell)) return null;
-    return cell;
-  }
-
-  function insertTable() {
-    const rows = Math.min(8, Math.max(2, tableRows));
-    const cols = Math.min(6, Math.max(2, tableCols));
-    if (currentCell()) {
-      setTableMessage("Click outside the current table before inserting another.");
+    if (!editor) return;
+    const chain = editor.chain().focus();
+    if (value === "h2" || value === "h3" || value === "h4") {
+      chain.setHeading({ level: Number(value.slice(1)) as 2 | 3 | 4 }).run();
       return;
     }
-    const head = Array.from({ length: cols }, (_, index) => `<th>Heading ${index + 1}</th>`).join("");
-    const body = Array.from({ length: rows - 1 }, () => {
-      const cells = Array.from({ length: cols }, () => "<td><br></td>").join("");
-      return `<tr>${cells}</tr>`;
-    }).join("");
-    setTableMessage("");
-    run("insertHTML", `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`);
-    setTableOpen(false);
-  }
-
-  function changeTable(action: "row" | "column" | "delete-row" | "delete-table") {
-    const cell = currentCell();
-    if (!cell) {
-      setTableMessage("Click inside a table first.");
+    if (value === "blockquote") {
+      chain.setBlockquote().run();
       return;
     }
-    const row = cell.parentElement;
-    const table = cell.closest("table");
-    if (!(row instanceof HTMLTableRowElement) || !table) return;
-    setTableMessage("");
-    if (action === "delete-table") {
-      table.remove();
-    } else if (action === "delete-row") {
-      const body = table.querySelector("tbody");
-      const rows = body ? [...body.rows] : [...table.rows];
-      if (rows.length <= 1) table.remove();
-      else row.remove();
-    } else if (action === "row") {
-      const body = table.querySelector("tbody") ?? table;
-      const next = document.createElement("tr");
-      for (let index = 0; index < row.cells.length; index += 1) {
-        const td = document.createElement("td");
-        td.appendChild(document.createElement("br"));
-        next.appendChild(td);
-      }
-      body.appendChild(next);
-    } else {
-      const index = cell.cellIndex;
-      [...table.rows].forEach((item) => {
-        const tag = item.cells[index]?.tagName === "TH" ? "th" : "td";
-        const added = document.createElement(tag);
-        added.appendChild(document.createElement("br"));
-        const reference = item.cells[index];
-        if (reference) reference.after(added);
-        else item.appendChild(added);
-      });
-    }
-    syncVisual();
+    chain.setParagraph().run();
   }
 
   function applyLink() {
+    if (!editor) return;
     const url = linkUrl.trim();
-    if (!acceptableHref(url)) {
+    if (!allowedHref(url)) {
       setLinkMessage("Use an https:// address, a /page path, or a mailto: address.");
       return;
     }
     setLinkMessage("");
-    run("createLink", url);
+    editor.chain().focus().extendMarkRange("link").setLink({ href: url }).run();
     setLinkOpen(false);
   }
 
+  function insertTable() {
+    if (!editor) return;
+    const rows = clamp(tableRows, 2, 8);
+    const cols = clamp(tableCols, 2, 6);
+    const inserted = editor.chain().focus().insertTable({ rows, cols, withHeaderRow: true }).run();
+    if (!inserted) {
+      setTableMessage("Click in the article, outside an existing table, then insert.");
+      return;
+    }
+    setTableMessage("");
+    setTableOpen(false);
+  }
+
+  function changeTable(action: "row" | "column" | "delete-row" | "delete-table") {
+    if (!editor) return;
+    const chain = editor.chain().focus();
+    const ran =
+      action === "row"
+        ? chain.addRowAfter().run()
+        : action === "column"
+          ? chain.addColumnAfter().run()
+          : action === "delete-row"
+            ? chain.deleteRow().run()
+            : chain.deleteTable().run();
+    setTableMessage(ran ? "" : "Click inside a table first.");
+  }
+
   function showSource() {
-    const next = cleanEditorHtml(editorRef.current?.innerHTML ?? "");
+    const next = cleanEditorHtml(editor?.getHTML() ?? fieldRef.current?.value ?? "");
     if (fieldRef.current) fieldRef.current.value = next;
     modeRef.current = "html";
     setMode("html");
@@ -214,80 +179,67 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
 
   function showVisual() {
     const next = cleanEditorHtml(fieldRef.current?.value ?? "");
-    if (editorRef.current) editorRef.current.innerHTML = next || "<p><br></p>";
+    editor?.commands.setContent(next || "<p></p>", { emitUpdate: false });
     if (fieldRef.current) fieldRef.current.value = next;
     modeRef.current = "visual";
     setMode("visual");
   }
 
-  function onPaste(event: ClipboardEvent<HTMLDivElement>) {
-    event.preventDefault();
-    const html = event.clipboardData.getData("text/html");
-    const text = event.clipboardData.getData("text/plain");
-    const fragment = prepareEditorHtml(html || text);
-    if (!fragment) return;
-    restoreRange();
-    document.execCommand("insertHTML", false, fragment);
-    syncVisual();
-  }
-
   return (
     <div className="rte">
       <div className="rte__bar" role="toolbar" aria-label="Article formatting">
-        <select
-          aria-label="Text style"
-          value={block}
-          onChange={(event) => formatBlock(event.target.value)}
-        >
+        <select aria-label="Text style" value={active?.block ?? "p"} onChange={(event) => formatBlock(event.target.value)}>
           {BLOCKS.map((item) => (
             <option key={item.value} value={item.value}>
               {item.label}
             </option>
           ))}
         </select>
-        <button type="button" aria-pressed={bold} onMouseDown={(event) => event.preventDefault()} onClick={() => run("bold")}>
+        <button type="button" aria-pressed={active?.bold ?? false} onClick={() => editor?.chain().focus().toggleBold().run()}>
           Bold
         </button>
-        <button type="button" aria-pressed={italic} onMouseDown={(event) => event.preventDefault()} onClick={() => run("italic")}>
+        <button type="button" aria-pressed={active?.italic ?? false} onClick={() => editor?.chain().focus().toggleItalic().run()}>
           Italic
         </button>
-        <button type="button" aria-pressed={underline} onMouseDown={(event) => event.preventDefault()} onClick={() => run("underline")}>
+        <button type="button" aria-pressed={active?.underline ?? false} onClick={() => editor?.chain().focus().toggleUnderline().run()}>
           Underline
         </button>
-        <button type="button" aria-pressed={strike} onMouseDown={(event) => event.preventDefault()} onClick={() => run("strikeThrough")}>
+        <button type="button" aria-pressed={active?.strike ?? false} onClick={() => editor?.chain().focus().toggleStrike().run()}>
           Strike
         </button>
-        <button type="button" aria-label="Align left" onMouseDown={(event) => event.preventDefault()} onClick={() => run("justifyLeft")}>
+        <button type="button" aria-label="Align left" onClick={() => editor?.chain().focus().setTextAlign("left").run()}>
           Left
         </button>
-        <button type="button" aria-label="Align centre" onMouseDown={(event) => event.preventDefault()} onClick={() => run("justifyCenter")}>
+        <button type="button" aria-label="Align centre" onClick={() => editor?.chain().focus().setTextAlign("center").run()}>
           Centre
         </button>
-        <button type="button" aria-label="Align right" onMouseDown={(event) => event.preventDefault()} onClick={() => run("justifyRight")}>
+        <button type="button" aria-label="Align right" onClick={() => editor?.chain().focus().setTextAlign("right").run()}>
           Right
         </button>
-        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertHorizontalRule")}>
+        <button type="button" onClick={() => editor?.chain().focus().setHorizontalRule().run()}>
           Line
         </button>
-        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertUnorderedList")}>
+        <button type="button" onClick={() => editor?.chain().focus().toggleBulletList().run()}>
           Bullets
         </button>
-        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("insertOrderedList")}>
+        <button type="button" onClick={() => editor?.chain().focus().toggleOrderedList().run()}>
           Numbered
         </button>
-        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => setLinkOpen((open) => !open)}>
+        <button type="button" onClick={() => setLinkOpen((open) => !open)}>
           Link
         </button>
-        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("unlink")}>
+        <button type="button" onClick={() => editor?.chain().focus().unsetLink().run()}>
           Unlink
         </button>
-        <button type="button" onMouseDown={(event) => event.preventDefault()} onClick={() => run("removeFormat")}>
+        <button
+          type="button"
+          onClick={() => editor?.chain().focus().unsetAllMarks().clearNodes().run()}
+        >
           Clear
         </button>
         <button
           type="button"
           aria-pressed={tableOpen}
-          onMouseDown={(event) => event.preventDefault()}
           onClick={() => {
             setTableOpen((open) => !open);
             setTableMessage("");
@@ -373,19 +325,7 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
           {tableMessage ? <p className="rte__link-error">{tableMessage}</p> : null}
         </div>
       ) : null}
-      <div
-        ref={editorRef}
-        className="rte__surface"
-        contentEditable={mode === "visual"}
-        role="textbox"
-        aria-multiline="true"
-        aria-label="Content"
-        hidden={mode !== "visual"}
-        suppressContentEditableWarning
-        onPaste={onPaste}
-        onInput={syncVisual}
-        onFocus={() => document.execCommand("defaultParagraphSeparator", false, "p")}
-      />
+      <EditorContent editor={editor} className="rte__surface" hidden={mode !== "visual"} />
       <textarea
         ref={fieldRef}
         name="body"
@@ -396,8 +336,8 @@ export function RichTextEditor({ initialHtml }: { initialHtml: string }) {
         spellCheck={mode === "html"}
       />
       <p className="rte__hint">
-        Headings, lists, tables, bold, italic, underline, strike, alignment, quotes, and links are kept. The first table
-        row is a header. HTML is only for a stubborn link or heading.
+        Used for both blog posts and success stories. Headings, lists, tables, bold, italic, underline, strike,
+        alignment, quotes, and links are kept. The first table row is a header.
       </p>
     </div>
   );

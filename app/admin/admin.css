@@ -478,10 +478,19 @@
   line-height: 1.65;
 }
 
-.rte__surface:focus,
+.rte__surface:focus-within,
 .admin-app textarea.rte__source:focus {
   outline: 2px solid #93c5fd;
   outline-offset: 1px;
+}
+
+.rte__surface .ProseMirror {
+  min-height: 22rem;
+  outline: none;
+}
+
+.rte__surface .ProseMirror > *:first-child {
+  margin-top: 0;
 }
 
 .rte__surface h2,
