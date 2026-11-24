@@ -55,18 +55,38 @@ jobs:
           SSH_HOST: ${{ secrets.SSH_HOST }}
           SSH_PORT: ${{ secrets.SSH_PORT }}
           SSH_USER: ${{ secrets.SSH_USER }}
+          DEPLOY_PATH: ${{ secrets.DEPLOY_PATH }}
         run: |
           ssh -p "$SSH_PORT" "$SSH_USER@$SSH_HOST" "bash -lc '
             set -e
-            export PATH=\"/opt/nvm/versions/node/v24.21.0/bin:\$PATH\"
-            cd /home/bansalla/public_html
-            /opt/nvm/versions/node/v24.21.0/bin/npm install
-            
+            NODE_ROOT=/opt/nvm/versions/node
+            if [ -x \"\$NODE_ROOT/v24.21.0/bin/npm\" ]; then
+              NODE_BIN=\"\$NODE_ROOT/v24.21.0/bin\"
+            else
+              NODE_BIN=\"\$(ls -1d \"\$NODE_ROOT\"/v* 2>/dev/null | sort -V | tail -1)/bin\"
+            fi
+            if [ ! -x \"\$NODE_BIN/npm\" ]; then
+              echo \"No usable Node.js install under \$NODE_ROOT\" >&2
+              ls -la \"\$NODE_ROOT\" >&2 || true
+              exit 1
+            fi
+            export PATH=\"\$NODE_BIN:\$PATH\"
+            echo \"Using Node from \$NODE_BIN (\$(node -v))\"
+
+            cd \"$DEPLOY_PATH\"
+            npm install
+
             echo \"Building Next.js application...\"
             ./node_modules/.bin/next build --webpack
 
             echo \"Restarting PM2 application...\"
-            /opt/nvm/versions/node/v14.15.3/bin/pm2 restart bansalla --update-env
+            if [ -x /opt/nvm/versions/node/v14.15.3/bin/pm2 ]; then
+              /opt/nvm/versions/node/v14.15.3/bin/pm2 restart bansalla --update-env
+            elif command -v pm2 >/dev/null 2>&1; then
+              pm2 restart bansalla --update-env
+            else
+              ./node_modules/.bin/pm2 restart bansalla --update-env
+            fi
 
             echo \"Deployment completed successfully.\"
           '"
