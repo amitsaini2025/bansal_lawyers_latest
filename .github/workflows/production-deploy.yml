@@ -80,12 +80,30 @@ jobs:
             ./node_modules/.bin/next build --webpack
 
             echo \"Restarting PM2 application...\"
-            if [ -x /opt/nvm/versions/node/v14.15.3/bin/pm2 ]; then
-              /opt/nvm/versions/node/v14.15.3/bin/pm2 restart bansalla --update-env
-            elif command -v pm2 >/dev/null 2>&1; then
-              pm2 restart bansalla --update-env
+            PM2_BIN=\"\"
+            for candidate in \\
+              /opt/nvm/versions/node/v14.15.3/bin/pm2 \\
+              \"\$NODE_BIN/pm2\" \\
+              \"\$(command -v pm2 || true)\" \\
+              ./node_modules/.bin/pm2
+            do
+              if [ -n \"\$candidate\" ] && [ -x \"\$candidate\" ]; then
+                PM2_BIN=\"\$candidate\"
+                break
+              fi
+            done
+            if [ -z \"\$PM2_BIN\" ]; then
+              echo \"pm2 not found\" >&2
+              exit 1
+            fi
+            echo \"Using pm2 from \$PM2_BIN\"
+            \"\$PM2_BIN\" list || true
+            if \"\$PM2_BIN\" describe bansalla >/dev/null 2>&1; then
+              \"\$PM2_BIN\" restart bansalla --update-env
             else
-              ./node_modules/.bin/pm2 restart bansalla --update-env
+              echo \"bansalla process missing; starting it\"
+              \"\$PM2_BIN\" start npm --name bansalla -- start
+              \"\$PM2_BIN\" save || true
             fi
 
             echo \"Deployment completed successfully.\"
