@@ -100,37 +100,24 @@ jobs:
             echo \"TipTap confirmed in build output\"
 
             echo \"Restarting PM2 application...\"
-            PM2_BIN=\"\"
-            for candidate in \\
-              /opt/nvm/versions/node/v14.15.3/bin/pm2 \\
-              \"\$NODE_BIN/pm2\" \\
-              \"\$(command -v pm2 || true)\" \\
-              ./node_modules/.bin/pm2
-            do
-              if [ -n \"\$candidate\" ] && [ -x \"\$candidate\" ]; then
-                PM2_BIN=\"\$candidate\"
-                break
-              fi
-            done
-            if [ -z \"\$PM2_BIN\" ]; then
-              echo \"pm2 not found\" >&2
+            # PM2 must come from the same Node install we run the app with.
+            if [ ! -x \"\$NODE_BIN/pm2\" ]; then
+              echo \"Installing pm2 for \$NODE_BIN\"
+              \"\$NODE_BIN/npm\" install -g pm2
+            fi
+            PM2_BIN=\"\$NODE_BIN/pm2\"
+            if [ ! -x \"\$PM2_BIN\" ]; then
+              echo \"pm2 not available under \$NODE_BIN\" >&2
               exit 1
             fi
             echo \"Using pm2 from \$PM2_BIN\"
             \"\$PM2_BIN\" list || true
 
             # Live traffic is served by bansalla-next.
+            APP_NAME=bansalla-next
             \"\$PM2_BIN\" delete bansalla || true
-            if \"\$PM2_BIN\" describe bansalla-next >/dev/null 2>&1; then
-              APP_NAME=bansalla-next
-            else
-              APP_NAME=bansalla-next
-              echo \"Creating bansalla-next\"
-              \"\$PM2_BIN\" start \"\$APP_DIR/node_modules/next/dist/bin/next\" --name bansalla-next --cwd \"\$APP_DIR\" --interpreter \"\$NODE_BIN/node\" -- start
-            fi
-
-            echo \"Restarting \$APP_NAME with Node \$NODE_BIN\"
             \"\$PM2_BIN\" delete \"\$APP_NAME\" || true
+            echo \"Starting \$APP_NAME with Node \$NODE_BIN\"
             \"\$PM2_BIN\" start \"\$APP_DIR/node_modules/next/dist/bin/next\" --name \"\$APP_NAME\" --cwd \"\$APP_DIR\" --interpreter \"\$NODE_BIN/node\" -- start
             \"\$PM2_BIN\" save || true
 
