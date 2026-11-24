@@ -118,10 +118,23 @@ jobs:
             fi
             echo \"Using pm2 from \$PM2_BIN\"
             \"\$PM2_BIN\" list || true
+
+            # Live traffic is served by bansalla-next (not the older bansalla npm wrapper).
             \"\$PM2_BIN\" delete bansalla || true
-            \"\$PM2_BIN\" start npm --name bansalla --cwd \"\$APP_DIR\" -- start
-            \"\$PM2_BIN\" save || true
-            \"\$PM2_BIN\" show bansalla || true
+            if \"\$PM2_BIN\" describe bansalla-next >/dev/null 2>&1; then
+              echo \"Restarting bansalla-next\"
+              \"\$PM2_BIN\" restart bansalla-next --update-env
+              \"\$PM2_BIN\" show bansalla-next || true
+            elif \"\$PM2_BIN\" describe bansalla >/dev/null 2>&1; then
+              echo \"Restarting bansalla\"
+              \"\$PM2_BIN\" restart bansalla --update-env
+              \"\$PM2_BIN\" show bansalla || true
+            else
+              echo \"No known PM2 app found; starting bansalla-next\"
+              \"\$PM2_BIN\" start ./node_modules/next/dist/bin/next --name bansalla-next --cwd \"\$APP_DIR\" -- start
+              \"\$PM2_BIN\" save || true
+              \"\$PM2_BIN\" show bansalla-next || true
+            fi
 
             echo \"Deployment completed successfully.\"
           '"
